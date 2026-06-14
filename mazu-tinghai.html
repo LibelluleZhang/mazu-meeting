@@ -143,18 +143,25 @@ let waveAudio=null;
 function startWaves(){
   try{
     const ctx=new(window.AudioContext||window.webkitAudioContext)();
-    const buflen=ctx.sampleRate*3;
-    const buf=ctx.createBuffer(1,buflen,ctx.sampleRate);
-    const ch=buf.getChannelData(0);let last=0;
-    for(let i=0;i<buflen;i++){const white=Math.random()*2-1;last=(last+(0.02*white))/1.02;ch[i]=last*0.12*Math.sin(i*0.00003)}
+    // Generate rhythmic ocean waves: slow swell + gentle foam
+    const dur=6,rate=ctx.sampleRate,len=rate*dur;
+    const buf=ctx.createBuffer(1,len,rate);
+    const ch=buf.getChannelData(0);
+    let last=0;
+    for(let i=0;i<len;i++){
+      const t=i/rate;
+      const swell=Math.sin(t*0.15)*0.5+0.5; // slow 7-second swell
+      const white=Math.random()*2-1;
+      last=(last+0.015*white)/1.015;
+      ch[i]=last*0.35*swell;
+    }
     const src=ctx.createBufferSource();src.buffer=buf;src.loop=true;
-    const lp=ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=400;
-    const gain=ctx.createGain();gain.gain.value=0.08;
+    const lp=ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=600;
+    const gain=ctx.createGain();gain.gain.value=0.22;
     src.connect(lp);lp.connect(gain);gain.connect(ctx.destination);src.start();
     waveAudio={ctx,src,gain};
-  }catch(e){}
+  }catch(e){console.log('audio:',e)}
 }
-// Start on ANY touch/click — must be sync for iOS
 function touchStartAudio(e){
   if(waveAudio){waveAudio.ctx.resume();return}
   startWaves();
