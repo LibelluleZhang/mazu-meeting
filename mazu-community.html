@@ -1,228 +1,197 @@
-1|1|<!DOCTYPE html>
-2|2|<html lang="zh-CN">
-3|3|<head>
-4|4|<meta charset="UTF-8">
-5|5|<meta name="viewport" content="width=device-width, initial-scale=1.0">
-6|6|<title>妈祖 · 社群</title>
-7|7|<style>
-8|8|  :root{--bg:#efe2d4;--ink:#33302e;--soft:#6b625c;--faint:#8b827c;--accent:#2f6e64;--asoft:#5d9a90;--gold:#c4956a;--hair:rgba(80,74,70,0.10);--card:rgba(255,253,250,0.45)}
-9|9|  *{margin:0;padding:0;box-sizing:border-box}
-10|10|  html{background:var(--bg);-webkit-text-size-adjust:100%}
-11|11|  body{color:var(--ink);font-family:"Noto Serif SC","Songti SC","STSong","Source Serif 4",Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.9}
-12|12|  article{max-width:640px;margin:0 auto;padding:40px 28px 80px;animation:fadeIn .6s cubic-bezier(.4,0,.2,1) both}
-13|13|  @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-14|14|
-15|15|  .top-bar{display:flex;justify-content:flex-end;margin-bottom:28px}
-16|16|  .lang-switch{display:flex;gap:0;border:1px solid var(--hair);border-radius:6px;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-17|17|  .lang-switch button{padding:3px 10px;font-size:10px;border:none;background:transparent;color:var(--faint);cursor:pointer;letter-spacing:.04em;transition:all .2s}
-18|18|  .lang-switch button.active{background:var(--accent);color:#fff}
-19|19|  .lang-switch button:hover:not(.active){color:var(--accent)}
-20|20|  [data-en]{display:none}
-21|21|  html[lang="en"] [data-zh]{display:none}
-22|22|  html[lang="en"] [data-en]{display:inline}
-23|23|  html[lang="zh"] [data-en]{display:none}
-24|24|  html[lang="zh"] [data-zh]{display:inline}
-25|25|
-26|26|  nav{margin-bottom:28px;font-size:12px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-27|27|  nav a{color:var(--soft);text-decoration:none;transition:all .2s;padding:2px 0;border-bottom:1px solid transparent}
-28|28|  nav a:hover{color:var(--accent);border-color:var(--accent)}
-29|29|  nav span{color:var(--faint);margin:0 6px}
-30|30|
-31|31|  header{text-align:center;margin-bottom:44px}
-32|32|  header h1{font-size:clamp(24px,5vw,30px);font-weight:300;letter-spacing:.04em;line-height:1.4;margin-bottom:12px}
-33|33|  header h1 span{color:var(--accent);font-weight:400}
-34|34|  header .sub{font-size:14px;color:var(--soft);line-height:1.7}
-35|35|
-36|36|  .count{text-align:center;font-size:52px;font-weight:300;color:var(--accent);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1;margin-bottom:44px}
-37|37|  .count .l{font-size:12px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;display:block;margin-top:6px;letter-spacing:.06em}
-38|38|
-39|39|  section{margin-bottom:44px}
-40|40|  .cat{font-size:10px;font-weight:600;color:var(--faint);letter-spacing:.10em;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;text-transform:uppercase;margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--hair)}
-41|41|
-42|42|  .member{padding:13px 0;border-bottom:1px solid var(--hair);display:flex;gap:14px;align-items:baseline;transition:background .2s}
-43|43|  .member:hover{background:rgba(255,253,250,.3)}
-44|44|  .member:last-child{border-bottom:none}
-45|45|  .member .name{font-weight:600;font-size:14px;min-width:110px}
-46|46|  .member .bio{font-size:12px;color:var(--soft);line-height:1.6}
-47|47|
-48|48|  footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--hair);text-align:center;font-size:11px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-49|49|  footer a{color:var(--soft);text-decoration:none;transition:all .2s;padding:2px 0;border-bottom:1px solid transparent}
-50|50|  footer a:hover{color:var(--accent);border-color:var(--accent)}
-51|51|
-52|52|  html{scroll-behavior:smooth}
-53|53|  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
-54|54|  @media(prefers-reduced-motion:reduce){article{animation:none}html{scroll-behavior:auto}}
-55|55|  .progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:100;width:0;transition:width .1s linear}
-56|56|  .btt{position:fixed;bottom:24px;right:24px;width:36px;height:36px;border-radius:50%;background:var(--card);border:1px solid var(--hair);color:var(--accent);font-size:16px;cursor:pointer;opacity:0;transform:translateY(12px);transition:all .3s cubic-bezier(.4,0,.2,1);z-index:50;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,sans-serif;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-57|57|  .btt.visible{opacity:1;transform:translateY(0)}
-58|58|  .btt:hover{background:var(--accent);color:#fff;border-color:var(--accent);transform:translateY(-2px)}
-59|59|  .poe-overlay{position:fixed;inset:0;background:rgba(51,48,46,.3);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
-60|60|  .poe-overlay.show{opacity:1;pointer-events:auto}
-61|61|  .poe-box{background:var(--bg);border-radius:16px;padding:32px 24px;text-align:center;max-width:280px;width:90%;animation:popIn .4s cubic-bezier(.34,1.56,.64,1)}
-62|62|  @keyframes popIn{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
-63|63|  .poe-box .result{font-size:48px;animation:toss .6s ease}
-64|64|  @keyframes toss{0%{transform:rotate(0) scale(0);opacity:0}50%{transform:rotate(180deg) scale(1.2);opacity:1}100%{transform:rotate(360deg) scale(1);opacity:1}}
-65|65|  .poe-box .msg{margin-top:12px;font-size:15px;color:var(--ink);line-height:1.6}
-66|66|  .poe-box .close-btn{margin-top:16px;font-size:12px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer;border:none;background:none}
-67|67|
-68|68|  @media(max-width:600px){article{padding:24px 14px 56px}.member{flex-direction:column;gap:2px;padding:10px 0;font-size:13px}.member .name{min-width:auto}.member .bio{font-size:11px}}
-69|69|</style>
-70|70|</head>
-71|71|<body>
-72|72|<div class="progress"></div>
-73|73|<article>
-74|74|
-75|75|<div class="top-bar">
-76|76|  <div class="lang-switch">
-77|77|    <button onclick="setLang('zh')" class="active" id="btn-zh">中文</button>
-78|78|    <button onclick="setLang('en')" id="btn-en">EN</button>
-79|79|  </div>
-80|80|</div>
-81|81|
-82|82|<nav><a href="mazu-intro.html">← <span data-zh>首页</span><span data-en>Home</span></a><span>/</span><span data-zh>社群</span><span data-en>Community</span></nav>
-83|83|
-84|84|<header>
-85|85|  <h1><span>Mazu</span> · <span data-zh>社群</span><span data-en>Community</span></h1>
-86|86|  <p class="sub"><span data-zh>一群人，因为相信妈祖的善意可以在今天被重新讲述，而聚在一起。</span><span data-en>People brought together by the belief that Mazu's kindness can be retold today.</span></p>
-87|87|</header>
-88|88|
-89|89|<div class="count">69<span class="l"><span data-zh>位成员 · 持续增长</span><span data-en>Members · Growing</span></span></div>
-90|90|
-91|91|<section><div class="cat"><span data-zh>🎬 导演 · 发起</span><span data-en>🎬 Director · Founder</span></div>
-92|92|<div class="member"><div class="name">郁斌 · giulianoooooo</div><div class="bio"><span data-zh>导演，数字艺术家，祖籍福建莆田</span><span data-en>Director, digital artist, from Putian, Fujian</span></div></div>
-93|93|<div class="member"><div class="name">布布 · Libi</div><div class="bio"><span data-zh>社群发起人</span><span data-en>Community founder</span></div></div>
-94|94|</section>
-95|95|
-96|96|<section><div class="cat"><span data-zh>✍️ 编剧 · 故事</span><span data-en>✍️ Writers</span></div>
-97|97|<div class="member"><div class="name"><span data-zh>北电编剧组</span><span data-en>BFA Writers</span></div><div class="bio"><span data-zh>北京电影学院电影文学系 · 腾讯S级编剧 · 宗教文化博士</span><span data-en>Beijing Film Academy · Tencent S-level screenwriters · PhD in Religious Culture</span></div></div>
-98|98|<div class="member"><div class="name">阿娟</div><div class="bio"><span data-zh>月亮装置艺术家，跑路艺术小组（上海）核心成员。伦敦国王学院→美国纯艺。潮汕在地文化。女性叙事。</span><span data-en>Lunar installation artist. King's College London → US Fine Arts. Chaoshan local culture. Women's narratives.</span></div></div>
-99|99|<div class="member"><div class="name">长风</div><div class="bio"><span data-zh>写作者，IT/金融跨界。历史架空小说。上海高校城市文化硕士。关注文化出海。</span><span data-en>Writer, IT/finance crossover. Historical fiction. Urban Culture MA. Cultural export.</span></div></div>
-100|100|<div class="member"><div class="name">木央</div><div class="bio"><span data-zh>科幻小说作家，弱影像国际主义网络。曾为冼太夫人创作小说。</span><span data-en>Sci-fi writer. Weak Image Internationalism. Wrote for Lady Xian.</span></div></div>
-101|101|<div class="member"><div class="name">Leon</div><div class="bio"><span data-zh>技术写作，程序工程师</span><span data-en>Technical writer, software engineer</span></div></div>
-102|102|</section>
-103|103|
-104|104|<section><div class="cat"><span data-zh>📚 学术 · 文化</span><span data-en>📚 Academia</span></div>
-105|105|<div class="member"><div class="name">Booker</div><div class="bio"><span data-zh>北师大民间文学博士，泉州本地人。蟳埔村田野调查。</span><span data-en>PhD in Folklore, BNU. Quanzhou native. Xunpu Village fieldwork.</span></div></div>
-106|106|<div class="member"><div class="name">Richard老师</div><div class="bio"><span data-zh>北大硕士，台湾高雄寺庙第三代。宗教文化数字化。</span><span data-en>PKU MA. 3rd-gen Kaohsiung temple. Digital cultural heritage.</span></div></div>
-107|107|<div class="member"><div class="name">卢老师</div><div class="bio"><span data-zh>闽南人类学学者，妈祖文化研究</span><span data-en>Minnan anthropology scholar, Mazu studies</span></div></div>
-108|108|<div class="member"><div class="name">Hazel</div><div class="bio"><span data-zh>品牌管理咨询。澳门妈祖与圣母共生研究。</span><span data-en>Brand consulting. Macau Mazu-Madonna syncretism research.</span></div></div>
-109|109|</section>
-110|110|
-111|111|<section><div class="cat"><span data-zh>🎥 制作 · 技术</span><span data-en>🎥 Production</span></div>
-112|112|<div class="member"><div class="name">福秀</div><div class="bio"><span data-zh>上海智隽CTO，星辰StarLab上海负责人。红果S级制作方。</span><span data-en>Shanghai Zhijun CTO. StarLab Shanghai lead. Hongguo S-level producer.</span></div></div>
-113|113|<div class="member"><div class="name">Kevin孔老师</div><div class="bio"><span data-zh>上海拾多趣CEO，prompt factory AI视频制作</span><span data-en>CEO, Prompt Factory AI video production</span></div></div>
-114|114|<div class="member"><div class="name">陈星</div><div class="bio"><span data-zh>前新浪VR总经理。互动影游/AI短剧。《众神之战》制片人。</span><span data-en>Ex-Sina VR GM. Interactive film/AI drama. Producer.</span></div></div>
-115|115|<div class="member"><div class="name">丁一</div><div class="bio"><span data-zh>纪录片/AIGC创作。《赛博鹏哥》导演。</span><span data-en>Documentary/AIGC. Director.</span></div></div>
-116|116|<div class="member"><div class="name">月归</div><div class="bio"><span data-zh>全能创作者。导演/编剧/剪辑/AI工具。</span><span data-en>Versatile creator. Directing/writing/editing/AI tools.</span></div></div>
-117|117|<div class="member"><div class="name">Yuki</div><div class="bio"><span data-zh>纽大Tisch虚拟制作。联合国AIGC宣传片。入围国内外电影节。</span><span data-en>NYU Tisch virtual production. UN AIGC film. Film festival selections.</span></div></div>
-118|118|</section>
-119|119|
-120|120|<section><div class="cat"><span data-zh>🎨 设计 · 国风</span><span data-en>🎨 Design</span></div>
-121|121|<div class="member"><div class="name">静颜 & Elaine</div><div class="bio"><span data-zh>全栈设计师，AI古风/非遗创作。《骨生皮》制作中。</span><span data-en>Full-stack designer. AI Guofeng/heritage art.</span></div></div>
-122|122|<div class="member"><div class="name">小喵</div><div class="bio"><span data-zh>AEM美术总监，国风领域</span><span data-en>AEM Art Director, Guofeng</span></div></div>
-123|123|<div class="member"><div class="name">悠扬</div><div class="bio"><span data-zh>动画导演，706社区组织者。youyang.art</span><span data-en>Animation director, 706 community organizer</span></div></div>
-124|124|<div class="member"><div class="name">庞老师</div><div class="bio"><span data-zh>非遗数字艺术家</span><span data-en>Digital heritage artist</span></div></div>
-125|125|<div class="member"><div class="name">梁老师</div><div class="bio"><span data-zh>平面品牌设计师，福州人</span><span data-en>Brand designer, Fuzhou native</span></div></div>
-126|126|<div class="member"><div class="name">Limbo</div><div class="bio"><span data-zh>摄影，北电摄影系。道家文化影像。</span><span data-en>Photography, BFA. Daoist visual culture.</span></div></div>
-127|127|</section>
-128|128|
-129|129|<section><div class="cat"><span data-zh>🎵 音乐 · 声音</span><span data-en>🎵 Music</span></div>
-130|130|<div class="member"><div class="name">ringKo</div><div class="bio"><span data-zh>电子流行音乐人。南音采样×电子。</span><span data-en>Electronic pop musician. Nanyin × electronic.</span></div></div>
-131|131|<div class="member"><div class="name">冷斋</div><div class="bio"><span data-zh>仪式音乐田野工作。福州三坊七巷天后宫。</span><span data-en>Ritual music fieldwork. Fuzhou Tianhou Temple.</span></div></div>
-132|132|<div class="member"><div class="name">Jesse</div><div class="bio"><span data-zh>音频工程。声音后期，现场音响师。</span><span data-en>Audio engineering. Sound post-production.</span></div></div>
-133|133|</section>
-134|134|
-135|135|<section><div class="cat"><span data-zh>🤖 AI · 产品</span><span data-en>🤖 AI · Product</span></div>
-136|136|<div class="member"><div class="name">可歆</div><div class="bio"><span data-zh>智能传播研一，字节AI产品经理。多次黑客松获奖。</span><span data-en>MA Intelligent Communication. ByteDance AI PM. Hackathon winner.</span></div></div>
-137|137|<div class="member"><div class="name">黄鹏老师</div><div class="bio"><span data-zh>长三角高端产业促进中心AI专委会CMO</span><span data-en>Yangtze Delta Innovation Center AI Committee CMO</span></div></div>
-138|138|<div class="member"><div class="name">uke</div><div class="bio"><span data-zh>无人机设计师，博物学。运营深圳706。</span><span data-en>Drone designer, naturalist. Shenzhen 706.</span></div></div>
-139|139|</section>
-140|140|
-141|141|<section><div class="cat"><span data-zh>🌏 传播 · 全球</span><span data-en>🌏 Outreach</span></div>
-142|142|<div class="member"><div class="name">政老师</div><div class="bio"><span data-zh>星辰StarLab（全球OPC）组织者。AI短剧出海。</span><span data-en>StarLab global OPC organizer. AI drama global distribution.</span></div></div>
-143|143|<div class="member"><div class="name">706 · Woody</div><div class="bio"><span data-zh>全球社群运营。Hudson大中华区合伙人。</span><span data-en>Global community ops. Hudson Greater China partner.</span></div></div>
-144|144|<div class="member"><div class="name">齐飞</div><div class="bio"><span data-zh>33美术馆馆长，广美教授</span><span data-en>33 Art Museum director, GAFA professor</span></div></div>
-145|145|</section>
-146|146|
-147|147|<footer>
-148|148|  <a href="mazu-recruit.html"><span data-zh>共创者招募</span><span data-en>Join Us</span></a> ·
-149|149|  <a href="mazu-pitch.html"><span data-zh>合作碰撞</span><span data-en>Collaborate</span></a> ·
-150|150|  <a href="mazu-voice.html"><span data-zh>有话说</span><span data-en>Speak</span></a>
-151|151|</footer>
-152|152|
-153|153|</article>
-154|154|
-155|155|<div class="poe-overlay" id="poe-overlay" onclick="closePoe()">
-156|156|  <div class="poe-box" onclick="event.stopPropagation()">
-157|157|    <div class="result" id="poe-result"></div>
-158|158|    <div class="msg" id="poe-msg"></div>
-159|159|    <button class="close-btn" onclick="closePoe()"><span data-zh>知道了</span><span data-en>OK</span></button>
-160|160|  </div>
-161|161|</div>
-162|162|
-163|163|<button class="btt" aria-label="返回顶部">↑</button>
-164|164|
-165|165|<script>
-166|166|function setLang(lang) {
-167|167|  document.documentElement.setAttribute('lang', lang);
-168|168|  document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
-169|169|  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-170|170|  localStorage.setItem('mazu-lang', lang);
-171|171|}
-172|172|var saved = localStorage.getItem('mazu-lang');
-173|173|if (saved) setLang(saved);
-174|174|
-175|175|// Mazu easter egg
-176|176|(function(){
-177|177|  var el = document.querySelector('h1 span');
-178|178|  if (!el) return;
-179|179|  var clicks = 0, timer;
-180|180|  el.addEventListener('click', function(){
-181|181|    clicks++;
-182|182|    el.style.transform = 'scale(1.08)'; el.style.color = 'var(--gold)';
-183|183|    setTimeout(function(){ el.style.transform = ''; el.style.color = ''; }, 400);
-184|184|    clearTimeout(timer); timer = setTimeout(function(){ clicks = 0; }, 1500);
-185|185|    if (clicks >= 3){ clicks = 0; tossPoe(); }
-186|186|  });
-187|187|})();
-188|188|
-189|189|function tossPoe(){
-190|190|  var outcomes = [
-191|191|    {r:'☯️', m:'<span data-zh>圣杯。妈祖说，可以。</span><span data-en>Sacred cup. Mazu says yes.</span>'},
-192|192|    {r:'😊', m:'<span data-zh>笑杯。妈祖笑了。<br>她在听，只是不说。</span><span data-en>Laughing cup. She\'s listening.</span>'},
-193|193|    {r:'🙏', m:'<span data-zh>圣杯。妈祖点头了。<br>去做吧。</span><span data-en>Sacred cup. Mazu nods. Go ahead.</span>'}
-194|194|  ];
-195|195|  var o = outcomes[Math.floor(Math.random()*outcomes.length)];
-196|196|  document.getElementById('poe-result').textContent = o.r;
-197|197|  document.getElementById('poe-msg').innerHTML = o.m;
-198|198|  document.getElementById('poe-overlay').classList.add('show');
-199|199|}
-200|200|function closePoe(){ document.getElementById('poe-overlay').classList.remove('show'); }
-201|201|
-202|202|// Tab title
-203|203|var T = document.title, msgs = ['还在吗？','妈祖记得你','海还在动','风没停'];
-204|204|document.addEventListener('visibilitychange', function(){
-205|205|  if (document.hidden){ document.title = msgs[Math.floor(Math.random()*msgs.length)]; }
-206|206|  else { document.title = '你回来了。'; setTimeout(function(){document.title=T;},2000); }
-207|207|});
-208|208|
-209|209|// Bottom blessing
-210|210|(function(){
-211|211|  var b = document.createElement('div');
-212|212|  b.style.cssText = 'text-align:center;font-size:12px;color:var(--faint);margin-top:12px;font-style:italic';
-213|213|  b.innerHTML = ['<span data-zh>妈祖说：今天有风，但你会到岸的。</span><span data-en>There\'s wind today, but you\'ll reach shore.</span>','<span data-zh>妈祖说：你做的事，有人看见了。</span><span data-en>Someone saw what you did.</span>','<span data-zh>妈祖说：累了就坐一会儿。海又不会跑。</span><span data-en>Rest. The sea isn\'t going anywhere.</span>','<span data-zh>妈祖说：我记得你的名字。</span><span data-en>I remember your name.</span>'][Math.floor(Math.random()*4)];
-214|214|  var f = document.querySelector('footer'); if (f) f.appendChild(b);
-215|215|})();
-216|216|
-217|217|// Progress + BTT
-218|218|(function(){
-219|219|  var bar=document.querySelector('.progress');
-220|220|  window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-window.innerHeight;bar.style.width=h>0?(window.scrollY/h*100)+'%':'0'},{passive:true});
-221|221|  var btt=document.querySelector('.btt');
-222|222|  btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
-223|223|  window.addEventListener('scroll',function(){btt.classList.toggle('visible',window.scrollY>400)},{passive:true});
-224|224|  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.style.scrollBehavior='auto';
-225|225|})();
-226|226|</script>
-227|227|</body>
-228|228|</html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>妈祖 · 社群</title>
+<style>
+:root{--bg:#efe2d4;--ink:#33302e;--soft:#6b625c;--faint:#8b827c;--accent:#2f6e64;--asoft:#5d9a90;--gold:#c4956a;--hair:rgba(80,74,70,0.10);--card:rgba(255,253,250,0.45)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--bg);-webkit-text-size-adjust:100%}
+body{color:var(--ink);font-family:"Noto Serif SC","Songti SC","STSong","Source Serif 4",Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.9}
+article{max-width:640px;margin:0 auto;padding:40px 28px 80px;animation:fadeIn .6s cubic-bezier(.4,0,.2,1) both}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.top-bar{display:flex;justify-content:flex-end;margin-bottom:28px}
+.lang-switch{display:flex;gap:0;border:1px solid var(--hair);border-radius:6px;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+.lang-switch button{padding:3px 10px;font-size:10px;border:none;background:transparent;color:var(--faint);cursor:pointer;letter-spacing:.04em;transition:all .2s}
+.lang-switch button.active{background:var(--accent);color:#fff}
+.lang-switch button:hover:not(.active){color:var(--accent)}
+[data-en]{display:none}
+html[lang="en"] [data-zh]{display:none}
+html[lang="en"] [data-en]{display:inline}
+html[lang="zh"] [data-en]{display:none}
+html[lang="zh"] [data-zh]{display:inline}
+nav{margin-bottom:28px;font-size:12px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+nav a{color:var(--soft);text-decoration:none;transition:all .2s;padding:2px 0;border-bottom:1px solid transparent}
+nav a:hover{color:var(--accent);border-color:var(--accent)}
+nav span{color:var(--faint);margin:0 6px}
+header{text-align:center;margin-bottom:44px}
+header h1{font-size:clamp(24px,5vw,30px);font-weight:300;letter-spacing:.04em;line-height:1.4;margin-bottom:12px}
+header h1 span{color:var(--accent);font-weight:400}
+header .sub{font-size:14px;color:var(--soft);line-height:1.7}
+.count{text-align:center;font-size:52px;font-weight:300;color:var(--accent);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1;margin-bottom:44px}
+.count .l{font-size:12px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;display:block;margin-top:6px;letter-spacing:.06em}
+section{margin-bottom:44px}
+.cat{font-size:10px;font-weight:600;color:var(--faint);letter-spacing:.10em;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;text-transform:uppercase;margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--hair)}
+.member{padding:13px 0;border-bottom:1px solid var(--hair);display:flex;gap:14px;align-items:baseline;transition:background .2s}
+.member:hover{background:rgba(255,253,250,.3)}
+.member:last-child{border-bottom:none}
+.member .name{font-weight:600;font-size:14px;min-width:110px}
+.member .bio{font-size:12px;color:var(--soft);line-height:1.6}
+footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--hair);text-align:center;font-size:11px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+footer a{color:var(--soft);text-decoration:none;transition:all .2s;padding:2px 0;border-bottom:1px solid transparent}
+footer a:hover{color:var(--accent);border-color:var(--accent)}
+html{scroll-behavior:smooth}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+@media(prefers-reduced-motion:reduce){article{animation:none}html{scroll-behavior:auto}}
+.progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:100;width:0;transition:width .1s linear}
+.btt{position:fixed;bottom:24px;right:24px;width:36px;height:36px;border-radius:50%;background:var(--card);border:1px solid var(--hair);color:var(--accent);font-size:16px;cursor:pointer;opacity:0;transform:translateY(12px);transition:all .3s cubic-bezier(.4,0,.2,1);z-index:50;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,sans-serif;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.btt.visible{opacity:1;transform:translateY(0)}
+.btt:hover{background:var(--accent);color:#fff;border-color:var(--accent);transform:translateY(-2px)}
+.poe-overlay{position:fixed;inset:0;background:rgba(51,48,46,.3);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.poe-overlay.show{opacity:1;pointer-events:auto}
+.poe-box{background:var(--bg);border-radius:16px;padding:32px 24px;text-align:center;max-width:280px;width:90%;animation:popIn .4s cubic-bezier(.34,1.56,.64,1)}
+@keyframes popIn{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
+.poe-box .result{font-size:48px;animation:toss .6s ease}
+@keyframes toss{0%{transform:rotate(0) scale(0);opacity:0}50%{transform:rotate(180deg) scale(1.2);opacity:1}100%{transform:rotate(360deg) scale(1);opacity:1}}
+.poe-box .msg{margin-top:12px;font-size:15px;color:var(--ink);line-height:1.6}
+.poe-box .close-btn{margin-top:16px;font-size:12px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer;border:none;background:none}
+@media(max-width:600px){article{padding:24px 14px 56px}.member{flex-direction:column;gap:2px;padding:10px 0;font-size:13px}.member .name{min-width:auto}.member .bio{font-size:11px}}
+</style>
+</head>
+<body>
+<div class="progress"></div>
+<article>
+<div class="top-bar">
+<div class="lang-switch">
+<button onclick="setLang('zh')" class="active" id="btn-zh">中文</button>
+<button onclick="setLang('en')" id="btn-en">EN</button>
+</div>
+</div>
+<nav><a href="mazu-intro.html">← <span data-zh>首页</span><span data-en>Home</span></a><span>/</span><span data-zh>社群</span><span data-en>Community</span></nav>
+<header>
+<h1><span>Mazu</span> · <span data-zh>社群</span><span data-en>Community</span></h1>
+<p class="sub"><span data-zh>一群人，因为相信妈祖的善意可以在今天被重新讲述，而聚在一起。</span><span data-en>People brought together by the belief that Mazu's kindness can be retold today.</span></p>
+</header>
+<div class="count">69<span class="l"><span data-zh>位成员 · 持续增长</span><span data-en>Members · Growing</span></span></div>
+<section><div class="cat"><span data-zh>🎬 导演 · 发起</span><span data-en>🎬 Director · Founder</span></div>
+<div class="member"><div class="name">郁斌 · giulianoooooo</div><div class="bio"><span data-zh>导演，数字艺术家，祖籍福建莆田</span><span data-en>Director, digital artist, from Putian, Fujian</span></div></div>
+<div class="member"><div class="name">布布 · Libi</div><div class="bio"><span data-zh>社群发起人</span><span data-en>Community founder</span></div></div>
+</section>
+<section><div class="cat"><span data-zh>✍️ 编剧 · 故事</span><span data-en>✍️ Writers</span></div>
+<div class="member"><div class="name"><span data-zh>北电编剧组</span><span data-en>BFA Writers</span></div><div class="bio"><span data-zh>北京电影学院电影文学系 · 腾讯S级编剧 · 宗教文化博士</span><span data-en>Beijing Film Academy · Tencent S-level screenwriters · PhD in Religious Culture</span></div></div>
+<div class="member"><div class="name">阿娟</div><div class="bio"><span data-zh>月亮装置艺术家，跑路艺术小组（上海）核心成员。伦敦国王学院→美国纯艺。潮汕在地文化。女性叙事。</span><span data-en>Lunar installation artist. King's College London → US Fine Arts. Chaoshan local culture. Women's narratives.</span></div></div>
+<div class="member"><div class="name">长风</div><div class="bio"><span data-zh>写作者，IT/金融跨界。历史架空小说。上海高校城市文化硕士。关注文化出海。</span><span data-en>Writer, IT/finance crossover. Historical fiction. Urban Culture MA. Cultural export.</span></div></div>
+<div class="member"><div class="name">木央</div><div class="bio"><span data-zh>科幻小说作家，弱影像国际主义网络。曾为冼太夫人创作小说。</span><span data-en>Sci-fi writer. Weak Image Internationalism. Wrote for Lady Xian.</span></div></div>
+<div class="member"><div class="name">Leon</div><div class="bio"><span data-zh>技术写作，程序工程师</span><span data-en>Technical writer, software engineer</span></div></div>
+</section>
+<section><div class="cat"><span data-zh>📚 学术 · 文化</span><span data-en>📚 Academia</span></div>
+<div class="member"><div class="name">Booker</div><div class="bio"><span data-zh>北师大民间文学博士，泉州本地人。蟳埔村田野调查。</span><span data-en>PhD in Folklore, BNU. Quanzhou native. Xunpu Village fieldwork.</span></div></div>
+<div class="member"><div class="name">Richard老师</div><div class="bio"><span data-zh>北大硕士，台湾高雄寺庙第三代。宗教文化数字化。</span><span data-en>PKU MA. 3rd-gen Kaohsiung temple. Digital cultural heritage.</span></div></div>
+<div class="member"><div class="name">卢老师</div><div class="bio"><span data-zh>闽南人类学学者，妈祖文化研究</span><span data-en>Minnan anthropology scholar, Mazu studies</span></div></div>
+<div class="member"><div class="name">Hazel</div><div class="bio"><span data-zh>品牌管理咨询。澳门妈祖与圣母共生研究。</span><span data-en>Brand consulting. Macau Mazu-Madonna syncretism research.</span></div></div>
+</section>
+<section><div class="cat"><span data-zh>🎥 制作 · 技术</span><span data-en>🎥 Production</span></div>
+<div class="member"><div class="name">福秀</div><div class="bio"><span data-zh>上海智隽CTO，星辰StarLab上海负责人。红果S级制作方。</span><span data-en>Shanghai Zhijun CTO. StarLab Shanghai lead. Hongguo S-level producer.</span></div></div>
+<div class="member"><div class="name">Kevin孔老师</div><div class="bio"><span data-zh>上海拾多趣CEO，prompt factory AI视频制作</span><span data-en>CEO, Prompt Factory AI video production</span></div></div>
+<div class="member"><div class="name">陈星</div><div class="bio"><span data-zh>前新浪VR总经理。互动影游/AI短剧。《众神之战》制片人。</span><span data-en>Ex-Sina VR GM. Interactive film/AI drama. Producer.</span></div></div>
+<div class="member"><div class="name">丁一</div><div class="bio"><span data-zh>纪录片/AIGC创作。《赛博鹏哥》导演。</span><span data-en>Documentary/AIGC. Director.</span></div></div>
+<div class="member"><div class="name">月归</div><div class="bio"><span data-zh>全能创作者。导演/编剧/剪辑/AI工具。</span><span data-en>Versatile creator. Directing/writing/editing/AI tools.</span></div></div>
+<div class="member"><div class="name">Yuki</div><div class="bio"><span data-zh>纽大Tisch虚拟制作。联合国AIGC宣传片。入围国内外电影节。</span><span data-en>NYU Tisch virtual production. UN AIGC film. Film festival selections.</span></div></div>
+</section>
+<section><div class="cat"><span data-zh>🎨 设计 · 国风</span><span data-en>🎨 Design</span></div>
+<div class="member"><div class="name">静颜 & Elaine</div><div class="bio"><span data-zh>全栈设计师，AI古风/非遗创作。《骨生皮》制作中。</span><span data-en>Full-stack designer. AI Guofeng/heritage art.</span></div></div>
+<div class="member"><div class="name">小喵</div><div class="bio"><span data-zh>AEM美术总监，国风领域</span><span data-en>AEM Art Director, Guofeng</span></div></div>
+<div class="member"><div class="name">悠扬</div><div class="bio"><span data-zh>动画导演，706社区组织者。youyang.art</span><span data-en>Animation director, 706 community organizer</span></div></div>
+<div class="member"><div class="name">庞老师</div><div class="bio"><span data-zh>非遗数字艺术家</span><span data-en>Digital heritage artist</span></div></div>
+<div class="member"><div class="name">梁老师</div><div class="bio"><span data-zh>平面品牌设计师，福州人</span><span data-en>Brand designer, Fuzhou native</span></div></div>
+<div class="member"><div class="name">Limbo</div><div class="bio"><span data-zh>摄影，北电摄影系。道家文化影像。</span><span data-en>Photography, BFA. Daoist visual culture.</span></div></div>
+</section>
+<section><div class="cat"><span data-zh>🎵 音乐 · 声音</span><span data-en>🎵 Music</span></div>
+<div class="member"><div class="name">ringKo</div><div class="bio"><span data-zh>电子流行音乐人。南音采样×电子。</span><span data-en>Electronic pop musician. Nanyin × electronic.</span></div></div>
+<div class="member"><div class="name">冷斋</div><div class="bio"><span data-zh>仪式音乐田野工作。福州三坊七巷天后宫。</span><span data-en>Ritual music fieldwork. Fuzhou Tianhou Temple.</span></div></div>
+<div class="member"><div class="name">Jesse</div><div class="bio"><span data-zh>音频工程。声音后期，现场音响师。</span><span data-en>Audio engineering. Sound post-production.</span></div></div>
+</section>
+<section><div class="cat"><span data-zh>🤖 AI · 产品</span><span data-en>🤖 AI · Product</span></div>
+<div class="member"><div class="name">可歆</div><div class="bio"><span data-zh>智能传播研一，字节AI产品经理。多次黑客松获奖。</span><span data-en>MA Intelligent Communication. ByteDance AI PM. Hackathon winner.</span></div></div>
+<div class="member"><div class="name">黄鹏老师</div><div class="bio"><span data-zh>长三角高端产业促进中心AI专委会CMO</span><span data-en>Yangtze Delta Innovation Center AI Committee CMO</span></div></div>
+<div class="member"><div class="name">uke</div><div class="bio"><span data-zh>无人机设计师，博物学。运营深圳706。</span><span data-en>Drone designer, naturalist. Shenzhen 706.</span></div></div>
+</section>
+<section><div class="cat"><span data-zh>🌏 传播 · 全球</span><span data-en>🌏 Outreach</span></div>
+<div class="member"><div class="name">政老师</div><div class="bio"><span data-zh>星辰StarLab（全球OPC）组织者。AI短剧出海。</span><span data-en>StarLab global OPC organizer. AI drama global distribution.</span></div></div>
+<div class="member"><div class="name">706 · Woody</div><div class="bio"><span data-zh>全球社群运营。Hudson大中华区合伙人。</span><span data-en>Global community ops. Hudson Greater China partner.</span></div></div>
+<div class="member"><div class="name">齐飞</div><div class="bio"><span data-zh>33美术馆馆长，广美教授</span><span data-en>33 Art Museum director, GAFA professor</span></div></div>
+</section>
+<footer>
+<a href="mazu-recruit.html"><span data-zh>共创者招募</span><span data-en>Join Us</span></a> ·
+<a href="mazu-pitch.html"><span data-zh>合作碰撞</span><span data-en>Collaborate</span></a> ·
+<a href="mazu-voice.html"><span data-zh>有话说</span><span data-en>Speak</span></a>
+</footer>
+</article>
+<div class="poe-overlay" id="poe-overlay" onclick="closePoe()">
+<div class="poe-box" onclick="event.stopPropagation()">
+<div class="result" id="poe-result"></div>
+<div class="msg" id="poe-msg"></div>
+<button class="close-btn" onclick="closePoe()"><span data-zh>知道了</span><span data-en>OK</span></button>
+</div>
+</div>
+<button class="btt" aria-label="返回顶部">↑</button>
+<script>
+function setLang(lang) {
+document.documentElement.setAttribute('lang', lang);
+document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+localStorage.setItem('mazu-lang', lang);
+}
+var saved = localStorage.getItem('mazu-lang');
+if (saved) setLang(saved);
+// Mazu easter egg
+(function(){
+var el = document.querySelector('h1 span');
+if (!el) return;
+var clicks = 0, timer;
+el.addEventListener('click', function(){
+clicks++;
+el.style.transform = 'scale(1.08)'; el.style.color = 'var(--gold)';
+setTimeout(function(){ el.style.transform = ''; el.style.color = ''; }, 400);
+clearTimeout(timer); timer = setTimeout(function(){ clicks = 0; }, 1500);
+if (clicks >= 3){ clicks = 0; tossPoe(); }
+});
+})();
+function tossPoe(){
+var outcomes = [
+{r:'☯️', m:'<span data-zh>圣杯。妈祖说，可以。</span><span data-en>Sacred cup. Mazu says yes.</span>'},
+{r:'😊', m:'<span data-zh>笑杯。妈祖笑了。<br>她在听，只是不说。</span><span data-en>Laughing cup. She\'s listening.</span>'},
+{r:'🙏', m:'<span data-zh>圣杯。妈祖点头了。<br>去做吧。</span><span data-en>Sacred cup. Mazu nods. Go ahead.</span>'}
+];
+var o = outcomes[Math.floor(Math.random()*outcomes.length)];
+document.getElementById('poe-result').textContent = o.r;
+document.getElementById('poe-msg').innerHTML = o.m;
+document.getElementById('poe-overlay').classList.add('show');
+}
+function closePoe(){ document.getElementById('poe-overlay').classList.remove('show'); }
+// Tab title
+var T = document.title, msgs = ['还在吗？','妈祖记得你','海还在动','风没停'];
+document.addEventListener('visibilitychange', function(){
+if (document.hidden){ document.title = msgs[Math.floor(Math.random()*msgs.length)]; }
+else { document.title = '你回来了。'; setTimeout(function(){document.title=T;},2000); }
+});
+// Bottom blessing
+(function(){
+var b = document.createElement('div');
+b.style.cssText = 'text-align:center;font-size:12px;color:var(--faint);margin-top:12px;font-style:italic';
+b.innerHTML = ['<span data-zh>妈祖说：今天有风，但你会到岸的。</span><span data-en>There\'s wind today, but you\'ll reach shore.</span>','<span data-zh>妈祖说：你做的事，有人看见了。</span><span data-en>Someone saw what you did.</span>','<span data-zh>妈祖说：累了就坐一会儿。海又不会跑。</span><span data-en>Rest. The sea isn\'t going anywhere.</span>','<span data-zh>妈祖说：我记得你的名字。</span><span data-en>I remember your name.</span>'][Math.floor(Math.random()*4)];
+var f = document.querySelector('footer'); if (f) f.appendChild(b);
+})();
+// Progress + BTT
+(function(){
+var bar=document.querySelector('.progress');
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-window.innerHeight;bar.style.width=h>0?(window.scrollY/h*100)+'%':'0'},{passive:true});
+var btt=document.querySelector('.btt');
+btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+window.addEventListener('scroll',function(){btt.classList.toggle('visible',window.scrollY>400)},{passive:true});
+if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.style.scrollBehavior='auto';
+})();
+</script>
+</body>
+</html>
