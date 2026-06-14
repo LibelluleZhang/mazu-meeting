@@ -1,86 +1,118 @@
-1|1|<!DOCTYPE html>
-2|2|<html lang="zh-CN">
-3|3|<head>
-4|4|<meta charset="UTF-8">
-5|5|<meta name="viewport" content="width=device-width, initial-scale=1.0">
-6|6|<title>妈祖 · AI国风诗选短剧</title>
-7|7|<style>
-8|8|  :root{--bg:#efe2d4;--ink:#33302e;--soft:#6b625c;--faint:#8b827c;--accent:#2f6e64;--asoft:#5d9a90;--gold:#c4956a;--red:#c4706e;--hair:rgba(80,74,70,0.10);--card:rgba(255,253,250,0.45)}
-9|9|  *{margin:0;padding:0;box-sizing:border-box}
-10|10|  html{background:var(--bg);-webkit-text-size-adjust:100%}
-11|11|  body{color:var(--ink);font-family:"Noto Serif SC","Songti SC","STSong","Source Serif 4",Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.85}
-12|12|  article{max-width:560px;margin:0 auto;padding:64px 28px 80px}
-13|13|
-14|14|  header{text-align:center;margin-bottom:52px}
-15|15|  header .tag{display:inline-block;font-size:10px;letter-spacing:.15em;color:var(--asoft);border:1px solid var(--asoft);border-radius:20px;padding:4px 16px;margin-bottom:20px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-16|16|  header h1{font-size:clamp(26px,5vw,34px);font-weight:300;letter-spacing:.04em;line-height:1.45;margin-bottom:14px}
-17|17|  header h1 span{color:var(--accent);font-weight:400}
-18|18|  header .sub{font-size:14px;color:var(--soft);line-height:1.75}
-19|19|
-20|20|  .cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:40px}
-21|21|  a.card{display:block;padding:32px 24px;border:1px solid var(--hair);border-radius:12px;text-decoration:none;transition:all .3s cubic-bezier(.4,0,.2,1);background:var(--card);position:relative;overflow:hidden}
-22|22|  a.card::after{content:'';position:absolute;inset:0;background:var(--accent);opacity:0;transition:opacity .3s;z-index:0}
-23|23|  a.card:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,.06);border-color:var(--asoft)}
-24|24|  a.card:hover::after{opacity:.02}
-25|25|  .card>*{position:relative;z-index:1}
-26|26|  .card .icon{font-size:28px;margin-bottom:12px;display:block}
-27|27|  .card h2{font-size:18px;font-weight:500;color:var(--ink);letter-spacing:.02em;margin-bottom:4px}
-28|28|  .card .desc{font-size:12px;color:var(--soft);line-height:1.6;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-29|29|  .card .arrow{display:inline-block;margin-top:12px;font-size:11px;color:var(--accent);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;letter-spacing:.04em;transition:transform .2s}
-30|30|  a.card:hover .arrow{transform:translateX(4px)}
-31|31|
-32|32|  .links{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:36px}
-33|33|  .links a{font-size:12px;color:var(--soft);text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;transition:color .2s;padding:2px 0;border-bottom:1px solid transparent}
-34|34|  .links a:hover{color:var(--accent);border-color:var(--accent)}
-35|35|
-36|36|  .kpi-row{display:flex;justify-content:center;gap:32px;padding-top:28px;border-top:1px solid var(--hair);flex-wrap:wrap}
-37|37|  .kpi{text-align:center}
-38|38|  .kpi .num{font-size:24px;font-weight:300;color:var(--accent);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.1}
-39|39|  .kpi .label{font-size:10px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;letter-spacing:.06em;margin-top:3px;text-transform:uppercase}
-40|40|
-41|41|  
-44|44|    .kpi-row{gap:24px}
-45|45|  }
-46|46|</style>
-47|47|</head>
-48|48|<body>
-49|49|<article>
-50|50|
-51|51|<header>
-52|52|  <div class="tag">AI · 国风 · 诗选剧</div>
-53|53|  <h1><span>妈祖</span> · 被接住的瞬间</h1>
-54|54|  <p class="sub">1000年前，一个渔村少女开始站在崖边望海。<br>她只是在乎。这个项目想延续这份在乎。</p>
-55|55|</header>
-56|56|
-57|57|<div class="cards">
-58|58|  <a href="mazu-pitch.html" class="card">
-59|59|    <span class="icon">🤝</span>
-60|60|    <h2>合作策划案</h2>
-61|61|    <div class="desc">品牌合作 · 投资 · 资源对接<br>市场验证 · 五年路线 · 合作体系</div>
-62|62|    <span class="arrow">了解项目 →</span>
-63|63|  </a>
-64|64|  <a href="mazu-recruit.html" class="card">
-65|65|    <span class="icon">✍️</span>
-66|66|    <h2>共创者招募</h2>
-67|67|    <div class="desc">编剧 · 导演 · 艺术家 · 音乐人<br>69人社群等你加入</div>
-68|68|    <span class="arrow">加入共创 →</span>
-69|69|  </a>
-70|70|</div>
-71|71|
-72|72|<div class="links">
-73|73|  <a href="mazu-community.html">社群成员</a>
-74|74|  <a href="https://libellulezhang.github.io/mazu-knowledge/" target="_blank">知识库</a>
-75|75|  <a href="mazu-0614-meeting.html">6/14会议</a>
-76|76|  <a href="mazu-tinghai.html">妈祖听海</a>
-77|77|</div>
-78|78|
-79|79|<div class="kpi-row">
-80|80|  <div class="kpi"><div class="num">69人</div><div class="label">社群</div></div>
-81|81|  <div class="kpi"><div class="num">24集</div><div class="label">3-5分/集</div></div>
-82|82|  <div class="kpi"><div class="num">1000年</div><div class="label">IP</div></div>
-83|83|  <div class="kpi"><div class="num">49国</div><div class="label">全球</div></div>
-84|84|</div>
-85|85|
-86|86|</article>
-87|87|</body>
-88|88|</html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>妈祖 · AI国风诗选短剧</title>
+<style>
+  :root{--bg:#efe2d4;--ink:#33302e;--soft:#6b625c;--faint:#8b827c;--accent:#2f6e64;--asoft:#5d9a90;--gold:#c4956a;--red:#c4706e;--hair:rgba(80,74,70,0.10);--card:rgba(255,253,250,0.45)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{background:var(--bg);-webkit-text-size-adjust:100%}
+  body{color:var(--ink);font-family:"Noto Serif SC","Songti SC","STSong","Source Serif 4",Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.85}
+  article{max-width:560px;margin:0 auto;padding:64px 28px 80px}
+
+  header{text-align:center;margin-bottom:52px}
+  header .tag{display:inline-block;font-size:10px;letter-spacing:.15em;color:var(--asoft);border:1px solid var(--asoft);border-radius:20px;padding:4px 16px;margin-bottom:20px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+  header h1{font-size:clamp(26px,5vw,34px);font-weight:300;letter-spacing:.04em;line-height:1.45;margin-bottom:14px}
+  header h1 span{color:var(--accent);font-weight:400}
+  header .sub{font-size:14px;color:var(--soft);line-height:1.75}
+
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:40px}
+  a.card{display:block;padding:32px 24px;border:1px solid var(--hair);border-radius:12px;text-decoration:none;transition:all .3s cubic-bezier(.4,0,.2,1);background:var(--card);position:relative;overflow:hidden}
+  a.card::after{content:'';position:absolute;inset:0;background:var(--accent);opacity:0;transition:opacity .3s;z-index:0}
+  a.card:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,.06);border-color:var(--asoft)}
+  a.card:hover::after{opacity:.02}
+  .card>*{position:relative;z-index:1}
+  .card .icon{font-size:28px;margin-bottom:12px;display:block}
+  .card h2{font-size:18px;font-weight:500;color:var(--ink);letter-spacing:.02em;margin-bottom:4px}
+  .card .desc{font-size:12px;color:var(--soft);line-height:1.6;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+  .card .arrow{display:inline-block;margin-top:12px;font-size:11px;color:var(--accent);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;letter-spacing:.04em;transition:transform .2s}
+  a.card:hover .arrow{transform:translateX(4px)}
+
+  .links{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:36px}
+  .links a{font-size:12px;color:var(--soft);text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;transition:color .2s;padding:2px 0;border-bottom:1px solid transparent}
+  .links a:hover{color:var(--accent);border-color:var(--accent)}
+
+  .kpi-row{display:flex;justify-content:center;gap:32px;padding-top:28px;border-top:1px solid var(--hair);flex-wrap:wrap}
+  .kpi{text-align:center}
+  .kpi .num{font-size:24px;font-weight:300;color:var(--accent);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.1}
+  .kpi .label{font-size:10px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;letter-spacing:.06em;margin-top:3px;text-transform:uppercase}
+
+  @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+  article{animation:fadeIn .6s cubic-bezier(.4,0,.2,1) both}
+  html{scroll-behavior:smooth}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+  @media(prefers-reduced-motion:reduce){article{animation:none}html{scroll-behavior:auto}}
+  .progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:100;width:0;transition:width .1s linear}
+  .btt{position:fixed;bottom:24px;right:24px;width:36px;height:36px;border-radius:50%;background:var(--card);border:1px solid var(--hair);color:var(--accent);font-size:16px;cursor:pointer;opacity:0;transform:translateY(12px);transition:all .3s cubic-bezier(.4,0,.2,1);z-index:50;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,sans-serif;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+  .btt.visible{opacity:1;transform:translateY(0)}
+  .btt:hover{background:var(--accent);color:#fff;border-color:var(--accent);transform:translateY(-2px);box-shadow:0 4px 16px rgba(47,110,100,.15)}
+  a.card:active{transform:scale(.98)}
+  a[href]:not(.card){background:linear-gradient(var(--accent),var(--accent)) 0 100%/0 1px no-repeat;transition:background-size .3s}
+  a[href]:not(.card):hover{background-size:100% 1px}
+
+  @media(max-width:500px){
+    article{padding:40px 16px 60px}
+    header{margin-bottom:40px}
+    header h1{font-size:24px}
+    header .sub{font-size:13px}
+    .cards{grid-template-columns:1fr}
+    .kpi-row{gap:20px}
+    .num-item .n{font-size:20px}
+    .btt{bottom:16px;right:16px;width:32px;height:32px;font-size:14px}
+  }
+</style>
+</head>
+<body>
+<div class="progress"></div>
+<article>
+
+<header>
+  <div class="tag">AI · 国风 · 诗选剧</div>
+  <h1><span>妈祖</span> · 被接住的瞬间</h1>
+  <p class="sub">1000年前，一个渔村少女开始站在崖边望海。<br>她只是在乎。这个项目想延续这份在乎。</p>
+</header>
+
+<div class="cards">
+  <a href="mazu-recruit.html" class="card">
+    <span class="icon">✍️</span>
+    <h2>共创者招募</h2>
+    <div class="desc">编剧 · 导演 · 艺术家 · 音乐人<br>69人社群等你加入</div>
+    <span class="arrow">加入共创 →</span>
+  </a>
+  <a href="mazu-pitch.html" class="card">
+    <span class="icon">🤝</span>
+    <h2>合作碰撞</h2>
+    <div class="desc">品牌 · 投资 · 机构 · 平台<br>一起让故事被更多人看见</div>
+    <span class="arrow">了解项目 →</span>
+  </a>
+</div>
+
+<div class="links">
+  <a href="mazu-community.html">社群成员</a>
+  <a href="https://libellulezhang.github.io/mazu-knowledge/" target="_blank">知识库</a>
+  <a href="mazu-0614-meeting.html">6/14会议</a>
+  <a href="mazu-tinghai.html">妈祖听海</a>
+</div>
+
+<div class="kpi-row">
+  <div class="kpi"><div class="num">69人</div><div class="label">社群</div></div>
+  <div class="kpi"><div class="num">24集</div><div class="label">3-5分/集</div></div>
+  <div class="kpi"><div class="num">1000年</div><div class="label">IP</div></div>
+  <div class="kpi"><div class="num">49国</div><div class="label">全球</div></div>
+</div>
+
+</article>
+<button class="btt" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var bar=document.querySelector('.progress');
+  window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-window.innerHeight;bar.style.width=h>0?(window.scrollY/h*100)+'%':'0'},{passive:true});
+  var btt=document.querySelector('.btt');
+  btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+  window.addEventListener('scroll',function(){btt.classList.toggle('visible',window.scrollY>400)},{passive:true});
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){document.documentElement.style.scrollBehavior='auto'}
+})();
+</script>
+</body>
+</html>
