@@ -1,266 +1,233 @@
-1|1|<!DOCTYPE html>
-2|2|<html lang="zh-CN">
-3|3|<head>
-4|4|<meta charset="UTF-8">
-5|5|<meta name="viewport" content="width=device-width, initial-scale=1.0">
-6|6|<title>妈祖 · 合作碰撞</title>
-7|7|<style>
-8|8|  :root{--bg:#efe2d4;--ink:#33302e;--soft:#6b625c;--faint:#8b827c;--accent:#2f6e64;--asoft:#5d9a90;--gold:#c4956a;--hair:rgba(80,74,70,0.10);--card:rgba(255,253,250,0.45)}
-9|9|  *{margin:0;padding:0;box-sizing:border-box}
-10|10|  html{background:var(--bg);-webkit-text-size-adjust:100%}
-11|11|  body{color:var(--ink);font-family:"Noto Serif SC","Songti SC","STSong","Source Serif 4",Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.9}
-12|12|  article{max-width:580px;margin:0 auto;padding:40px 28px 80px}
-13|13|
-14|14|  .top-bar{display:flex;justify-content:flex-end;margin-bottom:28px}
-15|15|  .lang-switch{display:flex;gap:0;border:1px solid var(--hair);border-radius:6px;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-16|16|  .lang-switch button{padding:3px 10px;font-size:10px;border:none;background:transparent;color:var(--faint);cursor:pointer;letter-spacing:.04em;transition:all .2s}
-17|17|  .lang-switch button.active{background:var(--accent);color:#fff}
-18|18|  .lang-switch button:hover:not(.active){color:var(--accent)}
-19|19|  [data-en]{display:none}
-20|20|  html[lang="en"] [data-zh]{display:none}
-21|21|  html[lang="en"] [data-en]{display:inline}
-22|22|  html[lang="zh"] [data-en]{display:none}
-23|23|  html[lang="zh"] [data-zh]{display:inline}
-24|24|
-25|25|  nav{margin-bottom:28px;font-size:12px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-26|26|  nav a{color:var(--soft);text-decoration:none;transition:all .2s;padding:2px 0;border-bottom:1px solid transparent}
-27|27|  nav a:hover{color:var(--accent);border-color:var(--accent)}
-28|28|  nav span{color:var(--faint);margin:0 6px}
-29|29|
-30|30|  header{text-align:center;margin-bottom:48px}
-31|31|  header h1{font-size:clamp(24px,5vw,30px);font-weight:300;letter-spacing:.04em;line-height:1.45;margin-bottom:14px}
-32|32|  header h1 span{color:var(--accent);font-weight:400}
-33|33|  header p{font-size:15px;color:var(--soft);line-height:1.75;max-width:440px;margin:0 auto}
-34|34|
-35|35|  section{margin-bottom:56px}
-36|36|  h2{font-size:19px;font-weight:400;color:var(--accent);letter-spacing:.02em;margin-bottom:20px;padding-bottom:8px;border-bottom:1px solid var(--hair)}
-37|37|  p{font-size:15px;margin-bottom:14px;line-height:1.95}
-38|38|
-39|39|  .callout{padding:22px 26px;border-left:4px solid var(--accent);background:rgba(47,110,100,.04);margin:24px 0;font-size:15px;line-height:1.85;border-radius:0 8px 8px 0}
-40|40|  .big-text{font-size:18px;line-height:1.85;color:var(--ink);font-weight:300;letter-spacing:.02em;text-align:center;padding:28px 0;margin:28px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
-41|41|
-42|42|  .way{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid var(--hair);align-items:flex-start;transition:all .2s}
-43|43|  .way:last-child{border-bottom:none}
-44|44|  .way:hover{background:rgba(255,253,250,.3)}
-45|45|  .way .icon{font-size:22px;min-width:36px;text-align:center;line-height:1.4}
-46|46|  .way .body{flex:1}
-47|47|  .way .title{font-weight:600;font-size:15px;margin-bottom:2px}
-48|48|  .way .desc{font-size:13px;color:var(--soft);line-height:1.7}
-49|49|
-50|50|  .people{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:7px;margin:14px 0}
-51|51|  .person{word-break:break-all;padding:9px 12px;background:var(--card);border:1px solid var(--hair);border-radius:8px;font-size:13px;transition:all .2s}
-52|52|  .person:hover{border-color:var(--asoft)}
-53|53|  .person .pn{font-weight:600;font-size:13px}
-54|54|  .person .pr{font-size:10px;color:var(--soft);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-55|55|
-56|56|  .quote{text-align:center;padding:32px 20px;margin:28px 0;background:var(--card);border-radius:10px;font-size:16px;font-weight:300;line-height:1.8;color:var(--accent);letter-spacing:.02em}
-57|57|
-58|58|  footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--hair);text-align:center;font-size:11px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-59|59|  footer a{color:var(--soft);text-decoration:none;transition:all .2s;padding:2px 0;border-bottom:1px solid transparent}
-60|60|  footer a:hover{color:var(--accent);border-color:var(--accent)}
-61|61|
-62|62|  @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-63|63|  article{animation:fadeIn .6s cubic-bezier(.4,0,.2,1) both}
-64|64|  html{scroll-behavior:smooth}
-65|65|  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
-66|66|  @media(prefers-reduced-motion:reduce){article{animation:none}html{scroll-behavior:auto}}
-67|67|  .progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:100;width:0;transition:width .1s linear}
-68|68|  .btt{position:fixed;bottom:24px;right:24px;width:36px;height:36px;border-radius:50%;background:var(--card);border:1px solid var(--hair);color:var(--accent);font-size:16px;cursor:pointer;opacity:0;transform:translateY(12px);transition:all .3s cubic-bezier(.4,0,.2,1);z-index:50;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,sans-serif;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-69|69|  .btt.visible{opacity:1;transform:translateY(0)}
-70|70|  .btt:hover{background:var(--accent);color:#fff;border-color:var(--accent);transform:translateY(-2px)}
-71|71|  .poe-overlay{position:fixed;inset:0;background:rgba(51,48,46,.3);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
-72|72|  .poe-overlay.show{opacity:1;pointer-events:auto}
-73|73|  .poe-box{background:var(--bg);border-radius:16px;padding:32px 24px;text-align:center;max-width:280px;width:90%;animation:popIn .4s cubic-bezier(.34,1.56,.64,1)}
-74|74|  @keyframes popIn{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
-75|75|  .poe-box .result{font-size:48px;animation:toss .6s ease}
-76|76|  @keyframes toss{0%{transform:rotate(0) scale(0);opacity:0}50%{transform:rotate(180deg) scale(1.2);opacity:1}100%{transform:rotate(360deg) scale(1);opacity:1}}
-77|77|  .poe-box .msg{margin-top:12px;font-size:15px;color:var(--ink);line-height:1.6}
-78|78|  .poe-box .close-btn{margin-top:16px;font-size:12px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer;border:none;background:none}
-79|79|
-80|80|  @media(max-width:600px){article{padding:24px 14px 56px}header{margin-bottom:32px}header h1{font-size:22px}header p{font-size:13px}.big-text{font-size:16px;padding:20px 0}.way{gap:10px}.people{grid-template-columns:1fr 1fr}}
-81|81|  @media(max-width:380px){.people{grid-template-columns:1fr}}
-82|82|</style>
-83|83|</head>
-84|84|<body>
-85|85|<div class="progress"></div>
-86|86|<article>
-87|87|
-88|88|<div class="top-bar">
-89|89|  <div class="lang-switch">
-90|90|    <button onclick="setLang('zh')" class="active" id="btn-zh">中文</button>
-91|91|    <button onclick="setLang('en')" id="btn-en">EN</button>
-92|92|  </div>
-93|93|</div>
-94|94|
-95|95|<nav><a href="mazu-intro.html">← <span data-zh>首页</span><span data-en>Home</span></a><span>/</span><span data-zh>合作碰撞</span><span data-en>Collaborate</span></nav>
-96|96|
-97|97|<header>
-98|98|  <h1>让这件事<br><span>变得更值得</span></h1>
-99|99|  <p><span data-zh>一个项目能走多远，不取决于谁发起的，取决于多少人觉得它值得。</span><span data-en>How far a project goes depends not on who started it, but on how many people feel it's worth it.</span></p>
-100|100|</header>
-101|101|
-102|102|<section>
-103|103|  <h2><span data-zh>一件事的内核</span><span data-en>What This Is About</span></h2>
-104|104|  <p><span data-zh>妈祖不是商业 IP。1000 年来人们走向她，不是因为她是非遗，是因为心里有事。孩子出海没回来，自己不知道该不该离开这份工作。点一炷香，不是程序，是需要有人听见。</span><span data-en>Mazu is not a commercial IP. For a thousand years, people have come to her not because she's cultural heritage — but because something weighs on their heart.</span></p>
-105|105|  <p><span data-zh>这个项目想延续的，就是这种在乎。</span><span data-en>What this project wants to carry forward is that care.</span></p>
-106|106|  <p><span data-zh>每集故事来自真实的人类瞬间。不编造，不说教。让看的人在那个瞬间感觉自己被接住了，哪怕只有三分钟。每一帧都对得起妈祖这个名字。</span><span data-en>Every story comes from a real human moment. No fabrication, no moralizing. To let someone feel held, even for just three minutes.</span></p>
-107|107|  <p><span data-zh>AI 让这种在乎可以低成本地拍出来，传出去。但技术永远是手段。最终的目的只有一个，让一个人在看剧的三分钟里，感觉生活还可以变好一点点。</span><span data-en>AI makes this care affordable to capture and share. But technology is only the means. The only purpose: to let someone feel, in those three minutes, that life can get a little better.</span></p>
-108|108|
-109|109|  <div class="big-text">
-110|110|    <span data-zh>不是付费墙，是妈祖点头。<br>不是宣传片，是作品。<br>让人类更好。让生活更好。让别人更好。</span>
-111|111|    <span data-en>Not a paywall. Mazu's nod.<br>Not a promo. A work.<br>For humanity. For life. For others.</span>
-112|112|  </div>
-113|113|</section>
-114|114|
-115|115|<section>
-116|116|  <h2><span data-zh>你可以怎么参与</span><span data-en>Ways to Be Part of It</span></h2>
-117|117|
-118|118|  <div class="way">
-119|119|    <div class="icon">🌏</div>
-120|120|    <div class="body">
-121|121|      <div class="title"><span data-zh>让你的品牌出现在对的地方</span><span data-en>Put your brand where it belongs</span></div>
-122|122|      <div class="desc"><span data-zh>不是贴片广告，不是口播植入。是你的品牌和被接住的瞬间站在一起。文旅、茶、香薰、家居、海洋环保——如果你的产品本身就让人感觉被在乎，那它本来就属于这个故事。</span><span data-en>Not product placement. Your brand standing alongside a moment of being held. Travel, tea, fragrance, home, ocean conservation — if your product makes people feel cared for, it already belongs in this story.</span></div>
-123|123|    </div>
-124|124|  </div>
-125|125|
-126|126|  <div class="way">
-127|127|    <div class="icon">🤝</div>
-128|128|    <div class="body">
-129|129|      <div class="title"><span data-zh>成为传播节点</span><span data-en>Be a node in the network</span></div>
-130|130|      <div class="desc"><span data-zh>你有社群，有平台，有线下空间。可以一起让故事抵达该抵达的人。</span><span data-en>You have a community, a platform, a physical space. Together we can help the story reach the people it's meant for.</span></div>
-131|131|    </div>
-132|132|  </div>
-133|133|
-134|134|  <div class="way">
-135|135|    <div class="icon">💡</div>
-136|136|    <div class="body">
-137|137|      <div class="title"><span data-zh>资源共创</span><span data-en>Resource co-creation</span></div>
-138|138|      <div class="desc"><span data-zh>你有拍摄场地，有声音设备，有 AI 算力，有学术资源。这些都能让故事更完整。不是赞助，是一起做。</span><span data-en>You have a location, sound equipment, AI compute, academic resources. All of this can make the story fuller. Not sponsorship — making it together.</span></div>
-139|139|    </div>
-140|140|  </div>
-141|141|
-142|142|  <div class="way">
-143|143|    <div class="icon">🎯</div>
-144|144|    <div class="body">
-145|145|      <div class="title"><span data-zh>长期同行</span><span data-en>Walk together</span></div>
-146|146|      <div class="desc"><span data-zh>如果你看到了更远的可能性——院线电影、全球巡展、UNESCO 案例——我们可以坐下来聊一个更长的故事。</span><span data-en>If you see further possibilities — a feature film, a global tour, a UNESCO case — let's sit down and talk about a longer story.</span></div>
-147|147|    </div>
-148|148|  </div>
-149|149|</section>
-150|150|
-151|151|<section>
-152|152|  <h2><span data-zh>已经同行的伙伴</span><span data-en>Already Walking With Us</span></h2>
-153|153|  <div class="people">
-154|154|    <div class="person"><div class="pn">妈祖文化协会</div><div class="pr"><span data-zh>指导单位</span><span data-en>Guiding Institution</span></div></div>
-155|155|    <div class="person"><div class="pn">莆田文旅局</div><div class="pr"><span data-zh>指导单位</span><span data-en>Guiding Institution</span></div></div>
-156|156|    <div class="person"><div class="pn">上海浦东科创协会</div><div class="pr"><span data-zh>科创+文化</span><span data-en>Tech + Culture</span></div></div>
-157|157|    <div class="person"><div class="pn"><span data-zh>长三角高端产业促进中心</span><span data-en>Yangtze Delta Innovation Center</span></div><div class="pr">AI</div></div>
-158|158|    <div class="person"><div class="pn">星辰 StarLab</div><div class="pr">OPC</div></div>
-159|159|    <div class="person"><div class="pn">waytoAGI</div><div class="pr"><span data-zh>AI创作者社区</span><span data-en>AI Creator Community</span></div></div>
-160|160|    <div class="person"><div class="pn">706</div><div class="pr"><span data-zh>全球青年社群</span><span data-en>Global Youth Community</span></div></div>
-161|161|    <div class="person"><div class="pn">33美术馆</div><div class="pr"><span data-zh>广美教授</span><span data-en>GAFA Professor</span></div></div>
-162|162|    <div class="person"><div class="pn">纽约AIGC</div><div class="pr"><span data-zh>国际传播</span><span data-en>Global Reach</span></div></div>
-163|163|    <div class="person"><div class="pn"><span data-zh>北电/厦大/台大</span><span data-en>BFA / XMU / NTU</span></div><div class="pr"><span data-zh>高校网络</span><span data-en>University Network</span></div></div>
-164|164|    <div class="person"><div class="pn"><span data-zh>高雄寺庙</span><span data-en>Kaohsiung Temple</span></div><div class="pr"><span data-zh>台湾在地</span><span data-en>Taiwan Local</span></div></div>
-165|165|  </div>
-166|166|</section>
-167|167|
-168|168|<section>
-169|169|  <h2><span data-zh>导演说</span><span data-en>The Director Says</span></h2>
-170|170|  <div class="quote">
-171|171|    <span data-zh>妈祖不是神。在故事里，她只是渔村少女。能望海，能听风，能记住每个人名字。神性来自，她比任何人更在乎每一个具体的人。</span>
-172|172|    <span data-en>Mazu is not a goddess. In our story, she's just a girl from a fishing village. She can watch the sea, listen to the wind, remember everyone's name. Her divinity comes from caring more about each person than anyone else.</span>
-173|173|    <p style="text-align:right;font-size:12px;color:var(--faint);margin-top:14px">郁斌 · giulianoooooo</p>
-174|174|  </div>
-175|175|</section>
-176|176|
-177|177|<footer>
-178|178|  <a href="mazu-recruit.html"><span data-zh>共创者招募</span><span data-en>Join Us</span></a> ·
-179|179|  <a href="mazu-community.html"><span data-zh>社群成员</span><span data-en>Community</span></a> ·
-180|180|  <a href="mazu-voice.html"><span data-zh>有话说</span><span data-en>Speak</span></a>
-181|181|</footer>
-182|182|
-183|183|</article>
-184|184|
-185|185|<div class="poe-overlay" id="poe-overlay" onclick="closePoe()">
-186|186|  <div class="poe-box" onclick="event.stopPropagation()">
-187|187|    <div class="result" id="poe-result"></div>
-188|188|    <div class="msg" id="poe-msg"></div>
-189|189|    <button class="close-btn" onclick="closePoe()"><span data-zh>知道了</span><span data-en>OK</span></button>
-190|190|  </div>
-191|191|</div>
-192|192|
-193|193|<button class="btt" aria-label="返回顶部">↑</button>
-194|194|
-195|195|<script>
-196|196|function setLang(lang) {
-197|197|  document.documentElement.setAttribute('lang', lang);
-198|198|  document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
-199|199|  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-200|200|  localStorage.setItem('mazu-lang', lang);
-201|201|}
-202|202|var saved = localStorage.getItem('mazu-lang');
-203|203|if (saved) setLang(saved);
-204|204|
-205|205|// Mazu easter egg
-206|206|(function(){
-207|207|  var el = document.querySelector('h1 span');
-208|208|  if (!el) return;
-209|209|  var clicks = 0, timer;
-210|210|  el.addEventListener('click', function(){
-211|211|    clicks++;
-212|212|    el.style.transform = 'scale(1.08)'; el.style.color = 'var(--gold)';
-213|213|    setTimeout(function(){ el.style.transform = ''; el.style.color = ''; }, 400);
-214|214|    clearTimeout(timer);
-215|215|    timer = setTimeout(function(){ clicks = 0; }, 1500);
-216|216|    if (clicks >= 3){ clicks = 0; tossPoe(); }
-217|217|  });
-218|218|})();
-219|219|
-220|220|function tossPoe(){
-221|221|  var outcomes = [
-222|222|    {r:'☯️', m:'<span data-zh>圣杯。妈祖说，可以。</span><span data-en>Sacred cup. Mazu says yes.</span>'},
-223|223|    {r:'😊', m:'<span data-zh>笑杯。妈祖笑了。<br>她在听，只是不说。</span><span data-en>Laughing cup. She\'s listening.</span>'},
-224|224|    {r:'🙏', m:'<span data-zh>圣杯。妈祖点头了。<br>去做吧。</span><span data-en>Sacred cup. Mazu nods. Go ahead.</span>'}
-225|225|  ];
-226|226|  var o = outcomes[Math.floor(Math.random()*outcomes.length)];
-227|227|  document.getElementById('poe-result').textContent = o.r;
-228|228|  document.getElementById('poe-msg').innerHTML = o.m;
-229|229|  document.getElementById('poe-overlay').classList.add('show');
-230|230|}
-231|231|function closePoe(){ document.getElementById('poe-overlay').classList.remove('show'); }
-232|232|
-233|233|// Tab title
-234|234|var T = document.title, msgs = ['还在吗？','妈祖记得你','海还在动','风没停'];
-235|235|document.addEventListener('visibilitychange', function(){
-236|236|  if (document.hidden){ document.title = msgs[Math.floor(Math.random()*msgs.length)]; }
-237|237|  else { document.title = '你回来了。'; setTimeout(function(){document.title=T;},2000); }
-238|238|});
-239|239|
-240|240|// Bottom blessing
-241|241|(function(){
-242|242|  var b = document.createElement('div');
-243|243|  b.style.cssText = 'text-align:center;font-size:12px;color:var(--faint);margin-top:12px;font-style:italic';
-244|244|  var bl = [
-245|245|    '<span data-zh>妈祖说：今天有风，但你会到岸的。</span><span data-en>Mazu says: There\'s wind today, but you\'ll reach shore.</span>',
-246|246|    '<span data-zh>妈祖说：你做的事，有人看见了。</span><span data-en>Mazu says: Someone saw what you did.</span>',
-247|247|    '<span data-zh>妈祖说：累了就坐一会儿。海又不会跑。</span><span data-en>Mazu says: Rest. The sea isn\'t going anywhere.</span>',
-248|248|    '<span data-zh>妈祖说：我记得你的名字。</span><span data-en>Mazu says: I remember your name.</span>'
-249|249|  ];
-250|250|  b.innerHTML = bl[Math.floor(Math.random()*bl.length)];
-251|251|  var f = document.querySelector('footer');
-252|252|  if (f) f.appendChild(b);
-253|253|})();
-254|254|
-255|255|// Progress + BTT
-256|256|(function(){
-257|257|  var bar=document.querySelector('.progress');
-258|258|  window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-window.innerHeight;bar.style.width=h>0?(window.scrollY/h*100)+'%':'0'},{passive:true});
-259|259|  var btt=document.querySelector('.btt');
-260|260|  btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
-261|261|  window.addEventListener('scroll',function(){btt.classList.toggle('visible',window.scrollY>400)},{passive:true});
-262|262|  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.style.scrollBehavior='auto';
-263|263|})();
-264|264|</script>
-265|265|</body>
-266|266|</html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>妈祖 · 合作碰撞</title>
+<style>
+:root{--bg:#efe2d4;--ink:#33302e;--soft:#6b625c;--faint:#8b827c;--accent:#2f6e64;--asoft:#5d9a90;--gold:#c4956a;--hair:rgba(80,74,70,0.10);--card:rgba(255,253,250,0.45)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--bg);-webkit-text-size-adjust:100%}
+body{color:var(--ink);font-family:"Noto Serif SC","Songti SC","STSong","Source Serif 4",Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.9}
+article{max-width:580px;margin:0 auto;padding:40px 28px 80px}
+.top-bar{display:flex;justify-content:flex-end;margin-bottom:28px}
+.lang-switch{display:flex;gap:0;border:1px solid var(--hair);border-radius:6px;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+.lang-switch button{padding:3px 10px;font-size:10px;border:none;background:transparent;color:var(--faint);cursor:pointer;letter-spacing:.04em;transition:all .2s}
+.lang-switch button.active{background:var(--accent);color:#fff}
+.lang-switch button:hover:not(.active){color:var(--accent)}
+[data-en]{display:none}
+html[lang="en"] [data-zh]{display:none}
+html[lang="en"] [data-en]{display:inline}
+html[lang="zh"] [data-en]{display:none}
+html[lang="zh"] [data-zh]{display:inline}
+nav{margin-bottom:28px;font-size:12px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+nav a{color:var(--soft);text-decoration:none;transition:all .2s;padding:2px 0;border-bottom:1px solid transparent}
+nav a:hover{color:var(--accent);border-color:var(--accent)}
+nav span{color:var(--faint);margin:0 6px}
+header{text-align:center;margin-bottom:48px}
+header h1{font-size:clamp(24px,5vw,30px);font-weight:300;letter-spacing:.04em;line-height:1.45;margin-bottom:14px}
+header h1 span{color:var(--accent);font-weight:400}
+header p{font-size:15px;color:var(--soft);line-height:1.75;max-width:440px;margin:0 auto}
+section{margin-bottom:56px}
+h2{font-size:19px;font-weight:400;color:var(--accent);letter-spacing:.02em;margin-bottom:20px;padding-bottom:8px;border-bottom:1px solid var(--hair)}
+p{font-size:15px;margin-bottom:14px;line-height:1.95}
+.callout{padding:22px 26px;border-left:4px solid var(--accent);background:rgba(47,110,100,.04);margin:24px 0;font-size:15px;line-height:1.85;border-radius:0 8px 8px 0}
+.big-text{font-size:18px;line-height:1.85;color:var(--ink);font-weight:300;letter-spacing:.02em;text-align:center;padding:28px 0;margin:28px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.way{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid var(--hair);align-items:flex-start;transition:all .2s}
+.way:last-child{border-bottom:none}
+.way:hover{background:rgba(255,253,250,.3)}
+.way .icon{font-size:22px;min-width:36px;text-align:center;line-height:1.4}
+.way .body{flex:1}
+.way .title{font-weight:600;font-size:15px;margin-bottom:2px}
+.way .desc{font-size:13px;color:var(--soft);line-height:1.7}
+.people{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:7px;margin:14px 0}
+.person{word-break:break-all;padding:9px 12px;background:var(--card);border:1px solid var(--hair);border-radius:8px;font-size:13px;transition:all .2s}
+.person:hover{border-color:var(--asoft)}
+.person .pn{font-weight:600;font-size:13px}
+.person .pr{font-size:10px;color:var(--soft);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+.quote{text-align:center;padding:32px 20px;margin:28px 0;background:var(--card);border-radius:10px;font-size:16px;font-weight:300;line-height:1.8;color:var(--accent);letter-spacing:.02em}
+footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--hair);text-align:center;font-size:11px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+footer a{color:var(--soft);text-decoration:none;transition:all .2s;padding:2px 0;border-bottom:1px solid transparent}
+footer a:hover{color:var(--accent);border-color:var(--accent)}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+article{animation:fadeIn .6s cubic-bezier(.4,0,.2,1) both}
+html{scroll-behavior:smooth}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+@media(prefers-reduced-motion:reduce){article{animation:none}html{scroll-behavior:auto}}
+.progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:100;width:0;transition:width .1s linear}
+.btt{position:fixed;bottom:24px;right:24px;width:36px;height:36px;border-radius:50%;background:var(--card);border:1px solid var(--hair);color:var(--accent);font-size:16px;cursor:pointer;opacity:0;transform:translateY(12px);transition:all .3s cubic-bezier(.4,0,.2,1);z-index:50;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,sans-serif;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.btt.visible{opacity:1;transform:translateY(0)}
+.btt:hover{background:var(--accent);color:#fff;border-color:var(--accent);transform:translateY(-2px)}
+.poe-overlay{position:fixed;inset:0;background:rgba(51,48,46,.3);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.poe-overlay.show{opacity:1;pointer-events:auto}
+.poe-box{background:var(--bg);border-radius:16px;padding:32px 24px;text-align:center;max-width:280px;width:90%;animation:popIn .4s cubic-bezier(.34,1.56,.64,1)}
+@keyframes popIn{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
+.poe-box .result{font-size:48px;animation:toss .6s ease}
+@keyframes toss{0%{transform:rotate(0) scale(0);opacity:0}50%{transform:rotate(180deg) scale(1.2);opacity:1}100%{transform:rotate(360deg) scale(1);opacity:1}}
+.poe-box .msg{margin-top:12px;font-size:15px;color:var(--ink);line-height:1.6}
+.poe-box .close-btn{margin-top:16px;font-size:12px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer;border:none;background:none}
+@media(max-width:600px){article{padding:24px 14px 56px}header{margin-bottom:32px}header h1{font-size:22px}header p{font-size:13px}.big-text{font-size:16px;padding:20px 0}.way{gap:10px}.people{grid-template-columns:1fr 1fr}}
+@media(max-width:380px){.people{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="progress"></div>
+<article>
+<div class="top-bar">
+<div class="lang-switch">
+<button onclick="setLang('zh')" class="active" id="btn-zh">中文</button>
+<button onclick="setLang('en')" id="btn-en">EN</button>
+</div>
+</div>
+<nav><a href="mazu-intro.html">← <span data-zh>首页</span><span data-en>Home</span></a><span>/</span><span data-zh>合作碰撞</span><span data-en>Collaborate</span></nav>
+<header>
+<h1>让这件事<br><span>变得更值得</span></h1>
+<p><span data-zh>一个项目能走多远，不取决于谁发起的，取决于多少人觉得它值得。</span><span data-en>How far a project goes depends not on who started it, but on how many people feel it's worth it.</span></p>
+</header>
+<section>
+<h2><span data-zh>一件事的内核</span><span data-en>What This Is About</span></h2>
+<p><span data-zh>妈祖不是商业 IP。1000 年来人们走向她，不是因为她是非遗，是因为心里有事。孩子出海没回来，自己不知道该不该离开这份工作。点一炷香，不是程序，是需要有人听见。</span><span data-en>Mazu is not a commercial IP. For a thousand years, people have come to her not because she's cultural heritage — but because something weighs on their heart.</span></p>
+<p><span data-zh>这个项目想延续的，就是这种在乎。</span><span data-en>What this project wants to carry forward is that care.</span></p>
+<p><span data-zh>每集故事来自真实的人类瞬间。不编造，不说教。让看的人在那个瞬间感觉自己被接住了，哪怕只有三分钟。每一帧都对得起妈祖这个名字。</span><span data-en>Every story comes from a real human moment. No fabrication, no moralizing. To let someone feel held, even for just three minutes.</span></p>
+<p><span data-zh>AI 让这种在乎可以低成本地拍出来，传出去。但技术永远是手段。最终的目的只有一个，让一个人在看剧的三分钟里，感觉生活还可以变好一点点。</span><span data-en>AI makes this care affordable to capture and share. But technology is only the means. The only purpose: to let someone feel, in those three minutes, that life can get a little better.</span></p>
+<div class="big-text">
+<span data-zh>不是付费墙，是妈祖点头。<br>不是宣传片，是作品。<br>让人类更好。让生活更好。让别人更好。</span>
+<span data-en>Not a paywall. Mazu's nod.<br>Not a promo. A work.<br>For humanity. For life. For others.</span>
+</div>
+</section>
+<section>
+<h2><span data-zh>你可以怎么参与</span><span data-en>Ways to Be Part of It</span></h2>
+<div class="way">
+<div class="icon">🌏</div>
+<div class="body">
+<div class="title"><span data-zh>让你的品牌出现在对的地方</span><span data-en>Put your brand where it belongs</span></div>
+<div class="desc"><span data-zh>不是贴片广告，不是口播植入。是你的品牌和被接住的瞬间站在一起。文旅、茶、香薰、家居、海洋环保——如果你的产品本身就让人感觉被在乎，那它本来就属于这个故事。</span><span data-en>Not product placement. Your brand standing alongside a moment of being held. Travel, tea, fragrance, home, ocean conservation — if your product makes people feel cared for, it already belongs in this story.</span></div>
+</div>
+</div>
+<div class="way">
+<div class="icon">🤝</div>
+<div class="body">
+<div class="title"><span data-zh>成为传播节点</span><span data-en>Be a node in the network</span></div>
+<div class="desc"><span data-zh>你有社群，有平台，有线下空间。可以一起让故事抵达该抵达的人。</span><span data-en>You have a community, a platform, a physical space. Together we can help the story reach the people it's meant for.</span></div>
+</div>
+</div>
+<div class="way">
+<div class="icon">💡</div>
+<div class="body">
+<div class="title"><span data-zh>资源共创</span><span data-en>Resource co-creation</span></div>
+<div class="desc"><span data-zh>你有拍摄场地，有声音设备，有 AI 算力，有学术资源。这些都能让故事更完整。不是赞助，是一起做。</span><span data-en>You have a location, sound equipment, AI compute, academic resources. All of this can make the story fuller. Not sponsorship — making it together.</span></div>
+</div>
+</div>
+<div class="way">
+<div class="icon">🎯</div>
+<div class="body">
+<div class="title"><span data-zh>长期同行</span><span data-en>Walk together</span></div>
+<div class="desc"><span data-zh>如果你看到了更远的可能性——院线电影、全球巡展、UNESCO 案例——我们可以坐下来聊一个更长的故事。</span><span data-en>If you see further possibilities — a feature film, a global tour, a UNESCO case — let's sit down and talk about a longer story.</span></div>
+</div>
+</div>
+</section>
+<section>
+<h2><span data-zh>已经同行的伙伴</span><span data-en>Already Walking With Us</span></h2>
+<div class="people">
+<div class="person"><div class="pn">妈祖文化协会</div><div class="pr"><span data-zh>指导单位</span><span data-en>Guiding Institution</span></div></div>
+<div class="person"><div class="pn">莆田文旅局</div><div class="pr"><span data-zh>指导单位</span><span data-en>Guiding Institution</span></div></div>
+<div class="person"><div class="pn">上海浦东科创协会</div><div class="pr"><span data-zh>科创+文化</span><span data-en>Tech + Culture</span></div></div>
+<div class="person"><div class="pn"><span data-zh>长三角高端产业促进中心</span><span data-en>Yangtze Delta Innovation Center</span></div><div class="pr">AI</div></div>
+<div class="person"><div class="pn">星辰 StarLab</div><div class="pr">OPC</div></div>
+<div class="person"><div class="pn">waytoAGI</div><div class="pr"><span data-zh>AI创作者社区</span><span data-en>AI Creator Community</span></div></div>
+<div class="person"><div class="pn">706</div><div class="pr"><span data-zh>全球青年社群</span><span data-en>Global Youth Community</span></div></div>
+<div class="person"><div class="pn">33美术馆</div><div class="pr"><span data-zh>广美教授</span><span data-en>GAFA Professor</span></div></div>
+<div class="person"><div class="pn">纽约AIGC</div><div class="pr"><span data-zh>国际传播</span><span data-en>Global Reach</span></div></div>
+<div class="person"><div class="pn"><span data-zh>北电/厦大/台大</span><span data-en>BFA / XMU / NTU</span></div><div class="pr"><span data-zh>高校网络</span><span data-en>University Network</span></div></div>
+<div class="person"><div class="pn"><span data-zh>高雄寺庙</span><span data-en>Kaohsiung Temple</span></div><div class="pr"><span data-zh>台湾在地</span><span data-en>Taiwan Local</span></div></div>
+</div>
+</section>
+<section>
+<h2><span data-zh>导演说</span><span data-en>The Director Says</span></h2>
+<div class="quote">
+<span data-zh>妈祖不是神。在故事里，她只是渔村少女。能望海，能听风，能记住每个人名字。神性来自，她比任何人更在乎每一个具体的人。</span>
+<span data-en>Mazu is not a goddess. In our story, she's just a girl from a fishing village. She can watch the sea, listen to the wind, remember everyone's name. Her divinity comes from caring more about each person than anyone else.</span>
+<p style="text-align:right;font-size:12px;color:var(--faint);margin-top:14px">郁斌 · giulianoooooo</p>
+</div>
+</section>
+<footer>
+<a href="mazu-recruit.html"><span data-zh>共创者招募</span><span data-en>Join Us</span></a> ·
+<a href="mazu-community.html"><span data-zh>社群成员</span><span data-en>Community</span></a> ·
+<a href="mazu-voice.html"><span data-zh>有话说</span><span data-en>Speak</span></a>
+</footer>
+</article>
+<div class="poe-overlay" id="poe-overlay" onclick="closePoe()">
+<div class="poe-box" onclick="event.stopPropagation()">
+<div class="result" id="poe-result"></div>
+<div class="msg" id="poe-msg"></div>
+<button class="close-btn" onclick="closePoe()"><span data-zh>知道了</span><span data-en>OK</span></button>
+</div>
+</div>
+<button class="btt" aria-label="返回顶部">↑</button>
+<script>
+function setLang(lang) {
+document.documentElement.setAttribute('lang', lang);
+document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+localStorage.setItem('mazu-lang', lang);
+}
+var saved = localStorage.getItem('mazu-lang');
+if (saved) setLang(saved);
+// Mazu easter egg
+(function(){
+var el = document.querySelector('h1 span');
+if (!el) return;
+var clicks = 0, timer;
+el.addEventListener('click', function(){
+clicks++;
+el.style.transform = 'scale(1.08)'; el.style.color = 'var(--gold)';
+setTimeout(function(){ el.style.transform = ''; el.style.color = ''; }, 400);
+clearTimeout(timer);
+timer = setTimeout(function(){ clicks = 0; }, 1500);
+if (clicks >= 3){ clicks = 0; tossPoe(); }
+});
+})();
+function tossPoe(){
+var outcomes = [
+{r:'☯️', m:'<span data-zh>圣杯。妈祖说，可以。</span><span data-en>Sacred cup. Mazu says yes.</span>'},
+{r:'😊', m:'<span data-zh>笑杯。妈祖笑了。<br>她在听，只是不说。</span><span data-en>Laughing cup. She\'s listening.</span>'},
+{r:'🙏', m:'<span data-zh>圣杯。妈祖点头了。<br>去做吧。</span><span data-en>Sacred cup. Mazu nods. Go ahead.</span>'}
+];
+var o = outcomes[Math.floor(Math.random()*outcomes.length)];
+document.getElementById('poe-result').textContent = o.r;
+document.getElementById('poe-msg').innerHTML = o.m;
+document.getElementById('poe-overlay').classList.add('show');
+}
+function closePoe(){ document.getElementById('poe-overlay').classList.remove('show'); }
+// Tab title
+var T = document.title, msgs = ['还在吗？','妈祖记得你','海还在动','风没停'];
+document.addEventListener('visibilitychange', function(){
+if (document.hidden){ document.title = msgs[Math.floor(Math.random()*msgs.length)]; }
+else { document.title = '你回来了。'; setTimeout(function(){document.title=T;},2000); }
+});
+// Bottom blessing
+(function(){
+var b = document.createElement('div');
+b.style.cssText = 'text-align:center;font-size:12px;color:var(--faint);margin-top:12px;font-style:italic';
+var bl = [
+'<span data-zh>妈祖说：今天有风，但你会到岸的。</span><span data-en>Mazu says: There\'s wind today, but you\'ll reach shore.</span>',
+'<span data-zh>妈祖说：你做的事，有人看见了。</span><span data-en>Mazu says: Someone saw what you did.</span>',
+'<span data-zh>妈祖说：累了就坐一会儿。海又不会跑。</span><span data-en>Mazu says: Rest. The sea isn\'t going anywhere.</span>',
+'<span data-zh>妈祖说：我记得你的名字。</span><span data-en>Mazu says: I remember your name.</span>'
+];
+b.innerHTML = bl[Math.floor(Math.random()*bl.length)];
+var f = document.querySelector('footer');
+if (f) f.appendChild(b);
+})();
+// Progress + BTT
+(function(){
+var bar=document.querySelector('.progress');
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-window.innerHeight;bar.style.width=h>0?(window.scrollY/h*100)+'%':'0'},{passive:true});
+var btt=document.querySelector('.btt');
+btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+window.addEventListener('scroll',function(){btt.classList.toggle('visible',window.scrollY>400)},{passive:true});
+if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.style.scrollBehavior='auto';
+})();
+</script>
+</body>
+</html>
