@@ -5,88 +5,88 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>妈祖 · 共创者招募</title>
 <style>
-  :root{--bg:#efe2d4;--ink:#33302e;--soft:#6b625c;--faint:#8b827c;--accent:#2f6e64;--asoft:#5d9a90;--gold:#c4956a;--red:#c4706e;--hair:rgba(80,74,70,0.10);--card:rgba(255,253,250,0.45)}
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{background:var(--bg);-webkit-text-size-adjust:100%}
-  body{color:var(--ink);font-family:"Noto Serif SC","Songti SC","STSong","Source Serif 4",Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.9}
-  article{max-width:580px;margin:0 auto;padding:40px 28px 80px}
+:root{--bg:#efe2d4;--ink:#33302e;--soft:#6b625c;--faint:#8b827c;--accent:#2f6e64;--asoft:#5d9a90;--gold:#c4956a;--red:#c4706e;--hair:rgba(80,74,70,0.10);--card:rgba(255,253,250,0.45)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--bg);-webkit-text-size-adjust:100%}
+body{color:var(--ink);font-family:"Noto Serif SC","Songti SC","STSong","Source Serif 4",Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.9}
+article{max-width:580px;margin:0 auto;padding:40px 28px 80px}
 
-  .top-bar{display:flex;justify-content:flex-end;margin-bottom:28px}
-  .lang-switch{display:flex;gap:0;border:1px solid var(--hair);border-radius:6px;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-  .lang-switch button{padding:3px 10px;font-size:10px;border:none;background:transparent;color:var(--faint);cursor:pointer;letter-spacing:.04em;transition:all .2s}
-  .lang-switch button.active{background:var(--accent);color:#fff}
-  .lang-switch button:hover:not(.active){color:var(--accent)}
+.top-bar{display:flex;justify-content:flex-end;margin-bottom:28px}
+.lang-switch{display:flex;gap:0;border:1px solid var(--hair);border-radius:6px;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+.lang-switch button{padding:3px 10px;font-size:10px;border:none;background:transparent;color:var(--faint);cursor:pointer;letter-spacing:.04em;transition:all .2s}
+.lang-switch button.active{background:var(--accent);color:#fff}
+.lang-switch button:hover:not(.active){color:var(--accent)}
 
-  [data-en]{display:none}
-  html[lang="en"] [data-zh]{display:none}
-  html[lang="en"] [data-en]{display:inline}
-  html[lang="en"] [data-en-block]{display:block}
-  html[lang="zh"] [data-en]{display:none}
-  html[lang="zh"] [data-zh]{display:inline}
-  html[lang="zh"] [data-en-block]{display:none}
+[data-en]{display:none}
+html[lang="en"] [data-zh]{display:none}
+html[lang="en"] [data-en]{display:inline}
+html[lang="en"] [data-en-block]{display:block}
+html[lang="zh"] [data-en]{display:none}
+html[lang="zh"] [data-zh]{display:inline}
+html[lang="zh"] [data-en-block]{display:none}
 
-  nav{margin-bottom:28px;font-size:12px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-  nav a{color:var(--soft);text-decoration:none;transition:all .2s;padding:2px 0;border-bottom:1px solid transparent}
-  nav a:hover{color:var(--accent);border-color:var(--accent)}
-  nav span{color:var(--faint);margin:0 6px}
+nav{margin-bottom:28px;font-size:12px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+nav a{color:var(--soft);text-decoration:none;transition:all .2s;padding:2px 0;border-bottom:1px solid transparent}
+nav a:hover{color:var(--accent);border-color:var(--accent)}
+nav span{color:var(--faint);margin:0 6px}
 
-  header{margin-bottom:44px;text-align:center}
-  header .tag{display:inline-block;font-size:10px;letter-spacing:.15em;color:var(--asoft);border:1px solid var(--asoft);border-radius:20px;padding:4px 16px;margin-bottom:24px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-  header .hook{font-size:clamp(22px,5vw,28px);font-weight:300;line-height:1.55;letter-spacing:.04em;margin-bottom:18px}
-  header .hook em{font-style:italic;color:var(--accent)}
-  header .sub{font-size:14px;color:var(--soft);max-width:460px;margin:0 auto;line-height:1.7}
+header{margin-bottom:44px;text-align:center}
+header .tag{display:inline-block;font-size:10px;letter-spacing:.15em;color:var(--asoft);border:1px solid var(--asoft);border-radius:20px;padding:4px 16px;margin-bottom:24px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+header .hook{font-size:clamp(22px,5vw,28px);font-weight:300;line-height:1.55;letter-spacing:.04em;margin-bottom:18px}
+header .hook em{font-style:italic;color:var(--accent)}
+header .sub{font-size:14px;color:var(--soft);max-width:460px;margin:0 auto;line-height:1.7}
 
-  section{margin-bottom:48px}
-  h2{font-size:19px;font-weight:400;color:var(--accent);letter-spacing:.02em;margin-bottom:18px;padding-bottom:8px;border-bottom:1px solid var(--hair)}
-  p{font-size:15px;margin-bottom:12px;line-height:1.95}
+section{margin-bottom:48px}
+h2{font-size:19px;font-weight:400;color:var(--accent);letter-spacing:.02em;margin-bottom:18px;padding-bottom:8px;border-bottom:1px solid var(--hair)}
+p{font-size:15px;margin-bottom:12px;line-height:1.95}
 
-  .moment{padding:14px 18px;margin-bottom:5px;background:var(--card);border-left:3px solid var(--asoft);border-radius:0 6px 6px 0;transition:border-color .2s;opacity:0;transform:translateY(20px)}
-  .moment.revealed{opacity:1;transform:translateY(0);transition:all .6s cubic-bezier(.4,0,.2,1)}
-  .moment:hover{border-color:var(--accent)}
-  .moment .mn{font-weight:600;font-size:14px;display:inline;margin-right:6px}
-  .moment .md{font-size:14px;color:var(--soft);display:inline;line-height:1.7}
+.moment{padding:14px 18px;margin-bottom:5px;background:var(--card);border-left:3px solid var(--asoft);border-radius:0 6px 6px 0;transition:border-color .2s;opacity:0;transform:translateY(20px)}
+.moment.revealed{opacity:1;transform:translateY(0);transition:all .6s cubic-bezier(.4,0,.2,1)}
+.moment:hover{border-color:var(--accent)}
+.moment .mn{font-weight:600;font-size:14px;display:inline;margin-right:6px}
+.moment .md{font-size:14px;color:var(--soft);display:inline;line-height:1.7}
 
-  .do{font-size:14px;padding:7px 0 7px 18px;border-left:3px solid var(--asoft);margin-bottom:4px;color:var(--soft)}
-  .dont{font-size:14px;padding:7px 0 7px 18px;border-left:3px solid var(--red);margin-bottom:4px;color:var(--soft)}
+.do{font-size:14px;padding:7px 0 7px 18px;border-left:3px solid var(--asoft);margin-bottom:4px;color:var(--soft)}
+.dont{font-size:14px;padding:7px 0 7px 18px;border-left:3px solid var(--red);margin-bottom:4px;color:var(--soft)}
 
-  .roles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0}
-  .role-card{padding:20px 12px;text-align:center;border:1px solid var(--hair);border-radius:10px;background:var(--card);transition:all .25s}
-  .role-card:hover{border-color:var(--asoft);transform:translateY(-2px)}
-  .role-card .icon{font-size:22px;margin-bottom:6px;display:block}
-  .role-card .rn{font-weight:600;font-size:13px;margin-bottom:2px}
-  .role-card .rd{font-size:10px;color:var(--soft);line-height:1.5;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+.roles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0}
+.role-card{padding:20px 12px;text-align:center;border:1px solid var(--hair);border-radius:10px;background:var(--card);transition:all .25s}
+.role-card:hover{border-color:var(--asoft);transform:translateY(-2px)}
+.role-card .icon{font-size:22px;margin-bottom:6px;display:block}
+.role-card .rn{font-weight:600;font-size:13px;margin-bottom:2px}
+.role-card .rd{font-size:10px;color:var(--soft);line-height:1.5;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
 
-  .people{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:6px;margin:12px 0}
-  .person{padding:9px 12px;background:var(--card);border:1px solid var(--hair);border-radius:8px;font-size:13px;transition:border-color .2s}
-  .person:hover{border-color:var(--asoft)}
-  .person .pn{font-weight:600;font-size:13px}
-  .person .pr{font-size:10px;color:var(--soft);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+.people{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:6px;margin:12px 0}
+.person{padding:9px 12px;background:var(--card);border:1px solid var(--hair);border-radius:8px;font-size:13px;transition:border-color .2s}
+.person:hover{border-color:var(--asoft)}
+.person .pn{font-weight:600;font-size:13px}
+.person .pr{font-size:10px;color:var(--soft);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
 
-  .quote-block{text-align:center;padding:28px 18px;margin:24px 0;border:1px solid var(--hair);border-radius:10px;background:var(--card);font-size:17px;font-weight:300;line-height:1.75;color:var(--accent);letter-spacing:.02em}
-  .callout{padding:20px 24px;border-left:4px solid var(--accent);background:rgba(47,110,100,.04);margin:20px 0;font-size:15px;line-height:1.85;border-radius:0 8px 8px 0}
+.quote-block{text-align:center;padding:28px 18px;margin:24px 0;border:1px solid var(--hair);border-radius:10px;background:var(--card);font-size:17px;font-weight:300;line-height:1.75;color:var(--accent);letter-spacing:.02em}
+.callout{padding:20px 24px;border-left:4px solid var(--accent);background:rgba(47,110,100,.04);margin:20px 0;font-size:15px;line-height:1.85;border-radius:0 8px 8px 0}
 
-  .cta{text-align:center;padding:32px;margin-top:40px;border:2px solid var(--accent);border-radius:12px;background:rgba(47,110,100,.03)}
-  .cta h3{font-size:18px;color:var(--accent);margin-bottom:8px;font-weight:300}
-  .cta p{font-size:13px;color:var(--soft);margin-bottom:14px}
-  .cta .btn{display:inline-block;font-size:13px;background:var(--accent);color:#fff;padding:10px 26px;border-radius:6px;text-decoration:none;letter-spacing:.03em;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;transition:background .2s}
-  .cta .btn:hover{background:#265a52}
+.cta{text-align:center;padding:32px;margin-top:40px;border:2px solid var(--accent);border-radius:12px;background:rgba(47,110,100,.03)}
+.cta h3{font-size:18px;color:var(--accent);margin-bottom:8px;font-weight:300}
+.cta p{font-size:13px;color:var(--soft);margin-bottom:14px}
+.cta .btn{display:inline-block;font-size:13px;background:var(--accent);color:#fff;padding:10px 26px;border-radius:6px;text-decoration:none;letter-spacing:.03em;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;transition:background .2s}
+.cta .btn:hover{background:#265a52}
 
-  footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--hair);text-align:center;font-size:11px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-  footer a{color:var(--soft);text-decoration:none;transition:all .2s;padding:2px 0;border-bottom:1px solid transparent}
-  footer a:hover{color:var(--accent);border-color:var(--accent)}
+footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--hair);text-align:center;font-size:11px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+footer a{color:var(--soft);text-decoration:none;transition:all .2s;padding:2px 0;border-bottom:1px solid transparent}
+footer a:hover{color:var(--accent);border-color:var(--accent)}
 
-  @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-  article{animation:fadeIn .6s cubic-bezier(.4,0,.2,1) both}
-  html{scroll-behavior:smooth}
-  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
-  @media(prefers-reduced-motion:reduce){article{animation:none}html{scroll-behavior:auto}}
-  .progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:100;width:0;transition:width .1s linear}
-  .btt{position:fixed;bottom:24px;right:24px;width:36px;height:36px;border-radius:50%;background:var(--card);border:1px solid var(--hair);color:var(--accent);font-size:16px;cursor:pointer;opacity:0;transform:translateY(12px);transition:all .3s cubic-bezier(.4,0,.2,1);z-index:50;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,sans-serif;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-  .btt.visible{opacity:1;transform:translateY(0)}
-  .btt:hover{background:var(--accent);color:#fff;border-color:var(--accent);transform:translateY(-2px)}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+article{animation:fadeIn .6s cubic-bezier(.4,0,.2,1) both}
+html{scroll-behavior:smooth}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+@media(prefers-reduced-motion:reduce){article{animation:none}html{scroll-behavior:auto}}
+.progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:100;width:0;transition:width .1s linear}
+.btt{position:fixed;bottom:24px;right:24px;width:36px;height:36px;border-radius:50%;background:var(--card);border:1px solid var(--hair);color:var(--accent);font-size:16px;cursor:pointer;opacity:0;transform:translateY(12px);transition:all .3s cubic-bezier(.4,0,.2,1);z-index:50;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,sans-serif;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.btt.visible{opacity:1;transform:translateY(0)}
+.btt:hover{background:var(--accent);color:#fff;border-color:var(--accent);transform:translateY(-2px)}
 
-  @media(max-width:600px){article{padding:24px 14px 56px}.roles{grid-template-columns:1fr 1fr;gap:6px}.people{grid-template-columns:1fr 1fr}.quote-block{font-size:14px;padding:20px 14px}.moment{padding:12px 14px}.moment .mn{font-size:13px}.moment .md{font-size:12px}}
-  @media(max-width:380px){.roles{grid-template-columns:1fr}.people{grid-template-columns:1fr}}
+@media(max-width:600px){article{padding:24px 14px 56px}.roles{grid-template-columns:1fr 1fr;gap:6px}.people{grid-template-columns:1fr 1fr}.quote-block{font-size:14px;padding:20px 14px}.moment{padding:12px 14px}.moment .mn{font-size:13px}.moment .md{font-size:12px}}
+@media(max-width:380px){.roles{grid-template-columns:1fr}.people{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -94,201 +94,197 @@
 <article>
 
 <div class="top-bar">
-  <div class="lang-switch">
-    <button onclick="setLang('zh')" class="active" id="btn-zh">中文</button>
-    <button onclick="setLang('en')" id="btn-en">EN</button>
-  </div>
+<div class="lang-switch">
+<button onclick="setLang('zh')" class="active" id="btn-zh">中文</button>
+<button onclick="setLang('en')" id="btn-en">EN</button>
+</div>
 </div>
 
 <nav><a href="mazu-intro.html">← <span data-zh>首页</span><span data-en>Home</span></a><span>/</span><span data-zh>共创者招募</span><span data-en>Join Us</span></nav>
 
 <header>
-  <div class="tag"><span data-zh>Creator Community · 常年开放</span><span data-en>Creator Community · Always Open</span></div>
-  <div class="hook"><span data-zh>你人生中哪个瞬间，<br>感觉自己<em>被什么东西接住了</em>？</span><span data-en>Was there a moment in your life<br>when you felt <em>something caught you</em>?</span></div>
-  <p class="sub"><span data-zh>我们在找能被这个瞬间击中的人。不看简历，看一段字。</span><span data-en>We're looking for people who are moved by that question. Not resumes. A paragraph.</span></p>
+<div class="tag"><span data-zh>Creator Community · 常年开放</span><span data-en>Creator Community · Always Open</span></div>
+<div class="hook"><span data-zh>你人生中哪个瞬间，<br>感觉自己<em>被什么东西接住了</em>？</span><span data-en>Was there a moment in your life<br>when you felt <em>something caught you</em>?</span></div>
+<p class="sub"><span data-zh>我们在找能被这个瞬间击中的人。不看简历，看一段字。</span><span data-en>We're looking for people who are moved by that question. Not resumes. A paragraph.</span></p>
 </header>
 
 <section>
-  <h2><span data-zh>我们在做什么</span><span data-en>What We're Building</span></h2>
-  <p><span data-zh>首部AI国风诗选短剧。叫妈祖，但镜头始终对着每一个具体的人。</span><span data-en>The first AI-powered Guofeng anthology series. It's called Mazu, but every frame is about ordinary people.</span></p>
-  <p><span data-zh>妈祖最动人的地方不是她能飞天遁海，是她记得所有人的名字。一个渔村少女，16岁开始站在崖边望海。不是因为有人要求她，是因为她在乎。</span><span data-en>What makes Mazu extraordinary isn't that she could command the seas — it's that she remembered everyone's name. A girl from a fishing village, standing at the cliff's edge at sixteen. Not because anyone told her to. Because she cared.</span></p>
-  <p><span data-zh>这种在乎就是我们要拍的东西。不是神迹，不是法力，是一个人看见另一个人。</span><span data-en>That caring is what we want to capture. Not miracles. Not divine power. Just one person seeing another.</span></p>
+<h2><span data-zh>我们在做什么</span><span data-en>What We're Building</span></h2>
+<p><span data-zh>首部AI国风诗选短剧。叫妈祖，但镜头始终对着每一个具体的人。</span><span data-en>The first AI-powered Guofeng anthology series. It's called Mazu, but every frame is about ordinary people.</span></p>
+<p><span data-zh>妈祖最动人的地方不是她能飞天遁海，是她记得所有人的名字。一个渔村少女，16岁开始站在崖边望海。不是因为有人要求她，是因为她在乎。</span><span data-en>What makes Mazu extraordinary isn't that she could command the seas — it's that she remembered everyone's name. A girl from a fishing village, standing at the cliff's edge at sixteen. Not because anyone told her to. Because she cared.</span></p>
+<p><span data-zh>这种在乎就是我们要拍的东西。不是神迹，不是法力，是一个人看见另一个人。</span><span data-en>That caring is what we want to capture. Not miracles. Not divine power. Just one person seeing another.</span></p>
 </section>
 
 <section>
-  <h2><span data-zh>七种人类共通的瞬间</span><span data-en>Seven Universal Moments</span></h2>
-  <div class="moment"><span class="mn"><span data-zh>被看见</span><span data-en>Being Seen</span></span><span class="md"><span data-zh>所有人都在看风暴，只有她看见你在发抖</span><span data-en>Everyone watches the storm. Only she notices you trembling.</span></span></div>
-  <div class="moment"><span class="mn"><span data-zh>被接住</span><span data-en>Being Caught</span></span><span class="md"><span data-zh>你以为要摔下去，有人什么都没说，伸手了</span><span data-en>You thought you'd fall. Someone reached out without a word.</span></span></div>
-  <div class="moment"><span class="mn"><span data-zh>沉默的理解</span><span data-en>Silent Understanding</span></span><span class="md"><span data-zh>你哭了，她没问为什么，只是坐在旁边</span><span data-en>You cried. She didn't ask why. She just sat beside you.</span></span></div>
-  <div class="moment"><span class="mn"><span data-zh>明知不能但还是做了</span><span data-en>Doing It Anyway</span></span><span class="md"><span data-zh>渔民烧了一炷香，他知道平息不了风暴</span><span data-en>The fisherman lit incense. He knew it wouldn't calm the storm.</span></span></div>
-  <div class="moment"><span class="mn"><span data-zh>最小的事</span><span data-en>The Smallest Thing</span></span><span class="md"><span data-zh>茶杯端起来放了三次，一碗味道不对的卤面</span><span data-en>A teacup lifted and set down three times. A bowl of noodles that didn't taste right.</span></span></div>
-  <div class="moment"><span class="mn"><span data-zh>回不去的瞬间</span><span data-en>Can't Go Back</span></span><span class="md"><span data-zh>你以为还能再见，不能了</span><span data-en>You thought you'd meet again. You won't.</span></span></div>
-  <div class="moment"><span class="mn"><span data-zh>陌生人的温度</span><span data-en>A Stranger's Warmth</span></span><span class="md"><span data-zh>你不认识她，但她记得你孩子的名字</span><span data-en>You don't know her, but she remembers your child's name.</span></span></div>
+<h2><span data-zh>七种人类共通的瞬间</span><span data-en>Seven Universal Moments</span></h2>
+<div class="moment"><span class="mn"><span data-zh>被看见</span><span data-en>Being Seen</span></span><span class="md"><span data-zh>所有人都在看风暴，只有她看见你在发抖</span><span data-en>Everyone watches the storm. Only she notices you trembling.</span></span></div>
+<div class="moment"><span class="mn"><span data-zh>被接住</span><span data-en>Being Caught</span></span><span class="md"><span data-zh>你以为要摔下去，有人什么都没说，伸手了</span><span data-en>You thought you'd fall. Someone reached out without a word.</span></span></div>
+<div class="moment"><span class="mn"><span data-zh>沉默的理解</span><span data-en>Silent Understanding</span></span><span class="md"><span data-zh>你哭了，她没问为什么，只是坐在旁边</span><span data-en>You cried. She didn't ask why. She just sat beside you.</span></span></div>
+<div class="moment"><span class="mn"><span data-zh>明知不能但还是做了</span><span data-en>Doing It Anyway</span></span><span class="md"><span data-zh>渔民烧了一炷香，他知道平息不了风暴</span><span data-en>The fisherman lit incense. He knew it wouldn't calm the storm.</span></span></div>
+<div class="moment"><span class="mn"><span data-zh>最小的事</span><span data-en>The Smallest Thing</span></span><span class="md"><span data-zh>茶杯端起来放了三次，一碗味道不对的卤面</span><span data-en>A teacup lifted and set down three times. A bowl of noodles that didn't taste right.</span></span></div>
+<div class="moment"><span class="mn"><span data-zh>回不去的瞬间</span><span data-en>Can't Go Back</span></span><span class="md"><span data-zh>你以为还能再见，不能了</span><span data-en>You thought you'd meet again. You won't.</span></span></div>
+<div class="moment"><span class="mn"><span data-zh>陌生人的温度</span><span data-en>A Stranger's Warmth</span></span><span class="md"><span data-zh>你不认识她，但她记得你孩子的名字</span><span data-en>You don't know her, but she remembers your child's name.</span></span></div>
 </section>
 
 <section>
-  <h2><span data-zh>我们的创作边界</span><span data-en>Our Creative Boundaries</span></h2>
-  <p style="font-size:14px;color:var(--soft);margin-bottom:14px"><span data-zh>这些方向让我们兴奋</span><span data-en>What excites us</span></p>
-  <div class="do"><span data-zh>人物是具体的。情感是安静的。改变是看不见的。</span><span data-en>Characters are specific. Emotions are quiet. Change is invisible.</span></div>
-  <div class="do"><span data-zh>妈祖作为精神符号，出发的勇气，归航的慰藉。不直接出场。</span><span data-en>Mazu as a spiritual anchor — courage to depart, comfort in return. Never appears directly.</span></div>
-  <div class="do"><span data-zh>海洋文明：包容不确定性，鼓励冒险突破。</span><span data-en>Maritime civilization: embracing uncertainty, encouraging boldness.</span></div>
-  <div class="do"><span data-zh>活态信仰：泉州浔埔村，福州天后宫。鲜活的人的信仰。</span><span data-en>Living faith: Xunpu Village in Quanzhou, Tianhou Temple in Fuzhou. Belief as people actually live it.</span></div>
+<h2><span data-zh>我们的创作边界</span><span data-en>Our Creative Boundaries</span></h2>
+<p style="font-size:14px;color:var(--soft);margin-bottom:14px"><span data-zh>这些方向让我们兴奋</span><span data-en>What excites us</span></p>
+<div class="do"><span data-zh>人物是具体的。情感是安静的。改变是看不见的。</span><span data-en>Characters are specific. Emotions are quiet. Change is invisible.</span></div>
+<div class="do"><span data-zh>妈祖作为精神符号，出发的勇气，归航的慰藉。不直接出场。</span><span data-en>Mazu as a spiritual anchor — courage to depart, comfort in return. Never appears directly.</span></div>
+<div class="do"><span data-zh>海洋文明：包容不确定性，鼓励冒险突破。</span><span data-en>Maritime civilization: embracing uncertainty, encouraging boldness.</span></div>
+<div class="do"><span data-zh>活态信仰：泉州浔埔村，福州天后宫。鲜活的人的信仰。</span><span data-en>Living faith: Xunpu Village in Quanzhou, Tianhou Temple in Fuzhou. Belief as people actually live it.</span></div>
 
-  <p style="font-size:14px;color:var(--soft);margin:20px 0 14px"><span data-zh>我们避开这些</span><span data-en>What we avoid</span></p>
-  <div class="dont"><span data-zh>妈祖显灵救了所有人。神迹里观众找不到自己。</span><span data-en>Mazu performs a miracle and saves everyone. Spectacle leaves no room for the viewer.</span></div>
-  <div class="dont"><span data-zh>「我学到了妈祖的伟大」。说教。</span><span data-en>"I learned the greatness of Mazu." Moralizing.</span></div>
-  <div class="dont"><span data-zh>主角顿悟、痛哭、跪拜。廉价。真正的改变是安静的。</span><span data-en>Epiphanies, weeping, kneeling. Cheap. Real change is quiet.</span></div>
-  <div class="dont"><span data-zh>景区化标准庙宇叙事。</span><span data-en>Sanitized, tourist-brochure temple narratives.</span></div>
+<p style="font-size:14px;color:var(--soft);margin:20px 0 14px"><span data-zh>我们避开这些</span><span data-en>What we avoid</span></p>
+<div class="dont"><span data-zh>妈祖显灵救了所有人。神迹里观众找不到自己。</span><span data-en>Mazu performs a miracle and saves everyone. Spectacle leaves no room for the viewer.</span></div>
+<div class="dont"><span data-zh>「我学到了妈祖的伟大」。说教。</span><span data-en>"I learned the greatness of Mazu." Moralizing.</span></div>
+<div class="dont"><span data-zh>主角顿悟、痛哭、跪拜。廉价。真正的改变是安静的。</span><span data-en>Epiphanies, weeping, kneeling. Cheap. Real change is quiet.</span></div>
+<div class="dont"><span data-zh>景区化标准庙宇叙事。</span><span data-en>Sanitized, tourist-brochure temple narratives.</span></div>
 </section>
 
 <section>
-  <h2><span data-zh>在找谁</span><span data-en>Who We're Looking For</span></h2>
-  <div class="roles">
-    <div class="role-card"><span class="icon">✍️</span><div class="rn"><span data-zh>编剧</span><span data-en>Writers</span></div><div class="rd"><span data-zh>不看写过什么<br>看你被什么击中</span><span data-en>Not what you've written<br>What moves you</span></div></div>
-    <div class="role-card"><span class="icon">🎨</span><div class="rn"><span data-zh>视觉</span><span data-en>Visual</span></div><div class="rd"><span data-zh>AI/3D/手绘/摄影<br>国风美学</span><span data-en>AI/3D/Illustration<br>Guofeng aesthetic</span></div></div>
-    <div class="role-card"><span class="icon">🎵</span><div class="rn"><span data-zh>音乐</span><span data-en>Music</span></div><div class="rd"><span data-zh>南音/电子/环境音<br>声音叙事</span><span data-en>Nanyin/Electronic<br>Sound storytelling</span></div></div>
-    <div class="role-card"><span class="icon">📚</span><div class="rn"><span data-zh>研究</span><span data-en>Research</span></div><div class="rd"><span data-zh>民俗/人类学/历史<br>田野调查</span><span data-en>Folklore/Anthropology<br>Fieldwork</span></div></div>
-    <div class="role-card"><span class="icon">🤖</span><div class="rn">AI</div><div class="rd"><span data-zh>视频管线/提示词<br>角色一致性</span><span data-en>Video pipeline/Prompt<br>Character consistency</span></div></div>
-    <div class="role-card"><span class="icon">🌏</span><div class="rn"><span data-zh>传播</span><span data-en>Outreach</span></div><div class="rd"><span data-zh>社群/多平台<br>海外传播</span><span data-en>Community/Multi-platform<br>Global reach</span></div></div>
-  </div>
+<h2><span data-zh>在找谁</span><span data-en>Who We're Looking For</span></h2>
+<div class="roles">
+<div class="role-card"><span class="icon">✍️</span><div class="rn"><span data-zh>编剧</span><span data-en>Writers</span></div><div class="rd"><span data-zh>不看写过什么<br>看你被什么击中</span><span data-en>Not what you've written<br>What moves you</span></div></div>
+<div class="role-card"><span class="icon">🎨</span><div class="rn"><span data-zh>视觉</span><span data-en>Visual</span></div><div class="rd"><span data-zh>AI/3D/手绘/摄影<br>国风美学</span><span data-en>AI/3D/Illustration<br>Guofeng aesthetic</span></div></div>
+<div class="role-card"><span class="icon">🎵</span><div class="rn"><span data-zh>音乐</span><span data-en>Music</span></div><div class="rd"><span data-zh>南音/电子/环境音<br>声音叙事</span><span data-en>Nanyin/Electronic<br>Sound storytelling</span></div></div>
+<div class="role-card"><span class="icon">📚</span><div class="rn"><span data-zh>研究</span><span data-en>Research</span></div><div class="rd"><span data-zh>民俗/人类学/历史<br>田野调查</span><span data-en>Folklore/Anthropology<br>Fieldwork</span></div></div>
+<div class="role-card"><span class="icon">🤖</span><div class="rn">AI</div><div class="rd"><span data-zh>视频管线/提示词<br>角色一致性</span><span data-en>Video pipeline/Prompt<br>Character consistency</span></div></div>
+<div class="role-card"><span class="icon">🌏</span><div class="rn"><span data-zh>传播</span><span data-en>Outreach</span></div><div class="rd"><span data-zh>社群/多平台<br>海外传播</span><span data-en>Community/Multi-platform<br>Global reach</span></div></div>
+</div>
 </section>
 
 <section>
-  <h2><span data-zh>与谁同行</span><span data-en>Who You'd Work With</span></h2>
-  <div class="people">
-    <div class="person"><div class="pn">郁斌</div><div class="pr"><span data-zh>导演 · 数字艺术家</span><span data-en>Director · Digital Artist</span></div></div>
-    <div class="person"><div class="pn">布布 · Libi</div><div class="pr"><span data-zh>社群发起人</span><span data-en>Community Founder</span></div></div>
-    <div class="person"><div class="pn">阿娟</div><div class="pr"><span data-zh>月亮装置艺术家</span><span data-en>Lunar Installation Artist</span></div></div>
-    <div class="person"><div class="pn">Booker</div><div class="pr"><span data-zh>民俗学博士</span><span data-en>Folklore PhD</span></div></div>
-    <div class="person"><div class="pn">长风</div><div class="pr"><span data-zh>写作者</span><span data-en>Writer</span></div></div>
-    <div class="person"><div class="pn">ringKo</div><div class="pr"><span data-zh>电子音乐</span><span data-en>Electronic Music</span></div></div>
-    <div class="person"><div class="pn">冷斋</div><div class="pr"><span data-zh>仪式音乐田野</span><span data-en>Ritual Music Fieldwork</span></div></div>
-    <div class="person"><div class="pn">Richard</div><div class="pr"><span data-zh>高雄寺庙</span><span data-en>Kaohsiung Temple</span></div></div>
-    <div class="person"><div class="pn">Yuki</div><div class="pr"><span data-zh>纽大Tisch</span><span data-en>NYU Tisch</span></div></div>
-    <div class="person"><div class="pn">可歆</div><div class="pr"><span data-zh>字节AI产品</span><span data-en>ByteDance AI PM</span></div></div>
-    <div class="person"><div class="pn">悠扬</div><div class="pr"><span data-zh>动画导演</span><span data-en>Animation Director</span></div></div>
-    <div class="person"><div class="pn">庞老师</div><div class="pr"><span data-zh>非遗数字艺术</span><span data-en>Digital Heritage Art</span></div></div>
-  </div>
-  <p style="font-size:12px;color:var(--faint);margin-top:6px"><a href="mazu-community.html" style="color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent)"><span data-zh>查看全部成员 →</span><span data-en>All Members →</span></a></p>
+<h2><span data-zh>与谁同行</span><span data-en>Who You'd Work With</span></h2>
+<div class="people">
+<div class="person"><div class="pn">郁斌</div><div class="pr"><span data-zh>导演 · 数字艺术家</span><span data-en>Director · Digital Artist</span></div></div>
+<div class="person"><div class="pn">布布 · Libi</div><div class="pr"><span data-zh>社群发起人</span><span data-en>Community Founder</span></div></div>
+<div class="person"><div class="pn">阿娟</div><div class="pr"><span data-zh>月亮装置艺术家</span><span data-en>Lunar Installation Artist</span></div></div>
+<div class="person"><div class="pn">Booker</div><div class="pr"><span data-zh>民俗学博士</span><span data-en>Folklore PhD</span></div></div>
+<div class="person"><div class="pn">长风</div><div class="pr"><span data-zh>写作者</span><span data-en>Writer</span></div></div>
+<div class="person"><div class="pn">ringKo</div><div class="pr"><span data-zh>电子音乐</span><span data-en>Electronic Music</span></div></div>
+<div class="person"><div class="pn">冷斋</div><div class="pr"><span data-zh>仪式音乐田野</span><span data-en>Ritual Music Fieldwork</span></div></div>
+<div class="person"><div class="pn">Richard</div><div class="pr"><span data-zh>高雄寺庙</span><span data-en>Kaohsiung Temple</span></div></div>
+<div class="person"><div class="pn">Yuki</div><div class="pr"><span data-zh>纽大Tisch</span><span data-en>NYU Tisch</span></div></div>
+<div class="person"><div class="pn">可歆</div><div class="pr"><span data-zh>字节AI产品</span><span data-en>ByteDance AI PM</span></div></div>
+<div class="person"><div class="pn">悠扬</div><div class="pr"><span data-zh>动画导演</span><span data-en>Animation Director</span></div></div>
+<div class="person"><div class="pn">庞老师</div><div class="pr"><span data-zh>非遗数字艺术</span><span data-en>Digital Heritage Art</span></div></div>
+</div>
+<p style="font-size:12px;color:var(--faint);margin-top:6px"><a href="mazu-community.html" style="color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent)"><span data-zh>查看全部成员 →</span><span data-en>All Members →</span></a></p>
 </section>
 
 <section>
-  <h2><span data-zh>如何加入</span><span data-en>How to Join</span></h2>
-  <p><span data-zh>写一段文字发过来。500字以内，写一个妈祖在场的瞬间。她不显灵，不开口，不直接拯救。写画面，不写道理。</span><span data-en>Send us a paragraph. Under 500 words. A moment with Mazu present. She doesn't perform miracles. She doesn't speak. She doesn't directly save anyone. Show us the scene, not the lesson.</span></p>
-  <p style="font-size:13px;color:var(--soft)"><span data-zh>对的人被限制吸引，不对的人被限制吓跑。这句话本身是第一层筛选。</span><span data-en>The right people are drawn in by constraints. The wrong people are scared off. That sentence is the first filter.</span></p>
+<h2><span data-zh>如何加入</span><span data-en>How to Join</span></h2>
+<p><span data-zh>写一段文字发过来。500字以内，写一个妈祖在场的瞬间。她不显灵，不开口，不直接拯救。写画面，不写道理。</span><span data-en>Send us a paragraph. Under 500 words. A moment with Mazu present. She doesn't perform miracles. She doesn't speak. She doesn't directly save anyone. Show us the scene, not the lesson.</span></p>
+<p style="font-size:13px;color:var(--soft)"><span data-zh>对的人被限制吸引，不对的人被限制吓跑。这句话本身是第一层筛选。</span><span data-en>The right people are drawn in by constraints. The wrong people are scared off. That sentence is the first filter.</span></p>
 
-  <div class="quote-block">
-    <span data-zh>妈祖不显灵，不开口，不直接拯救。<br>500字。写一个她在场的瞬间。</span>
-    <span data-en>Mazu doesn't appear. She doesn't speak. She doesn't save.<br>500 words. A moment with her in it.</span>
-  </div>
+<div class="quote-block">
+<span data-zh>妈祖不显灵，不开口，不直接拯救。<br>500字。写一个她在场的瞬间。</span>
+<span data-en>Mazu doesn't appear. She doesn't speak. She doesn't save.<br>500 words. A moment with her in it.</span>
+</div>
 </section>
 
 <section>
-  <h2><span data-zh>导演说</span><span data-en>The Director Says</span></h2>
-  <div class="callout">
-    <span data-zh>妈祖不是神。在故事里，她只是渔村少女。能望海，能听风，能记住每个人名字。神性来自，她比任何人更在乎每一个具体的人。</span>
-    <span data-en>Mazu is not a goddess. In our story, she's just a girl from a fishing village. She can watch the sea. She can listen to the wind. She remembers everyone's name. Her divinity comes from caring more about each person than anyone else.</span>
-    <p style="text-align:right;font-size:12px;color:var(--faint);margin-top:12px">郁斌 · giulianoooooo</p>
-  </div>
+<h2><span data-zh>导演说</span><span data-en>The Director Says</span></h2>
+<div class="callout">
+<span data-zh>妈祖不是神。在故事里，她只是渔村少女。能望海，能听风，能记住每个人名字。神性来自，她比任何人更在乎每一个具体的人。</span>
+<span data-en>Mazu is not a goddess. In our story, she's just a girl from a fishing village. She can watch the sea. She can listen to the wind. She remembers everyone's name. Her divinity comes from caring more about each person than anyone else.</span>
+<p style="text-align:right;font-size:12px;color:var(--faint);margin-top:12px">郁斌 · giulianoooooo</p>
+</div>
 </section>
 
 <div class="cta">
-  <h3><span data-zh>被接住的瞬间，你在哪里</span><span data-en>Where were you when you were caught?</span></h3>
-  <p><span data-zh>社群等你加入</span><span data-en>The community is waiting.</span></p>
-  <a href="https://libellulezhang.github.io/mazu-knowledge/" class="btn" target="_blank"><span data-zh>先看知识库</span><span data-en>Knowledge Base →</span></a>
+<h3><span data-zh>被接住的瞬间，你在哪里</span><span data-en>Where were you when you were caught?</span></h3>
+<p><span data-zh>社群等你加入</span><span data-en>The community is waiting.</span></p>
+<a href="https://libellulezhang.github.io/mazu-knowledge/" class="btn" target="_blank"><span data-zh>先看知识库</span><span data-en>Knowledge Base →</span></a>
 </div>
 
 <footer>
-  <a href="mazu-pitch.html"><span data-zh>合作碰撞</span><span data-en>Collaborate</span></a> ·
-  <a href="mazu-community.html"><span data-zh>社群成员</span><span data-en>Community</span></a> ·
-  <a href="mazu-voice.html"><span data-zh>有话说</span><span data-en>Speak</span></a>
+<a href="mazu-pitch.html"><span data-zh>合作碰撞</span><span data-en>Collaborate</span></a> ·
+<a href="mazu-community.html"><span data-zh>社群成员</span><span data-en>Community</span></a> ·
+<a href="mazu-voice.html"><span data-zh>有话说</span><span data-en>Speak</span></a>
 </footer>
 
 </article>
 <button class="btt" aria-label="返回顶部">↑</button>
 <script>
 function setLang(lang) {
-  document.documentElement.setAttribute('lang', lang);
-  document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
-  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-  localStorage.setItem('mazu-lang', lang);
+document.documentElement.setAttribute('lang', lang);
+document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+localStorage.setItem('mazu-lang', lang);
 }
 var saved = localStorage.getItem('mazu-lang');
 if (saved) setLang(saved);
 
 (function(){
-  var bar=document.querySelector('.progress');
-  window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-window.innerHeight;bar.style.width=h>0?(window.scrollY/h*100)+'%':'0'},{passive:true});
-  var btt=document.querySelector('.btt');
-  btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
-  window.addEventListener('scroll',function(){btt.classList.toggle('visible',window.scrollY>400)},{passive:true});
-  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.style.scrollBehavior='auto';
-226|226|
-227|227|// Mazu easter egg
-228|228|(function(){
-229|229|  var el = document.querySelector('h1 span');
-230|230|  if (!el) return;
-231|231|  var clicks = 0, timer;
-232|232|  el.addEventListener('click', function(){
-233|233|    clicks++;
-234|234|    el.style.transform = 'scale(1.08)'; el.style.color = 'var(--gold)';
-235|235|    setTimeout(function(){ el.style.transform = ''; el.style.color = ''; }, 400);
-236|236|    clearTimeout(timer);
-237|237|    timer = setTimeout(function(){ clicks = 0; }, 1500);
-238|238|    if (clicks >= 3){ clicks = 0; tossPoe(); }
-239|239|  });
-240|240|})();
-241|241|
-242|242|function tossPoe(){
-243|243|  var outcomes = [
-244|244|    {r:'☯️', m:'<span data-zh>圣杯。妈祖说，可以。</span><span data-en>Sacred cup. Mazu says yes.</span>'},
-245|245|    {r:'😊', m:'<span data-zh>笑杯。妈祖笑了。<br>她在听，只是不说。</span><span data-en>Laughing cup. She's listening.</span>'},
-246|246|    {r:'🙏', m:'<span data-zh>圣杯。妈祖点头了。<br>去做吧。</span><span data-en>Sacred cup. Mazu nods. Go ahead.</span>'}
-247|247|  ];
-248|248|  var o = outcomes[Math.floor(Math.random()*outcomes.length)];
-249|249|  document.getElementById('poe-result').textContent = o.r;
-250|250|  document.getElementById('poe-msg').innerHTML = o.m;
-251|251|  document.getElementById('poe-overlay').classList.add('show');
-252|252|}
-253|253|function closePoe(){ document.getElementById('poe-overlay').classList.remove('show'); }
-254|254|
-255|255|// Bottom blessing
-256|256|(function(){
-257|257|  var b = document.createElement('div');
-258|258|  b.style.cssText = 'text-align:center;font-size:12px;color:var(--faint);margin-top:12px;font-style:italic';
-259|259|  var bl = [
-260|260|    '<span data-zh>妈祖说：今天有风，但你会到岸的。</span><span data-en>Mazu says: There's wind today, but you'll reach shore.</span>',
-261|261|    '<span data-zh>妈祖说：你做的事，有人看见了。</span><span data-en>Mazu says: Someone saw what you did.</span>',
-262|262|    '<span data-zh>妈祖说：累了就坐一会儿。海又不会跑。</span><span data-en>Mazu says: Rest. The sea isn't going anywhere.</span>',
-263|263|    '<span data-zh>妈祖说：我记得你的名字。</span><span data-en>Mazu says: I remember your name.</span>'
-264|264|  ];
-265|265|  b.innerHTML = bl[Math.floor(Math.random()*bl.length)];
-266|266|  var f = document.querySelector('footer');
-267|267|  if (f) f.appendChild(b);
-268|268|})();
-269|269|
+var bar=document.querySelector('.progress');
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-window.innerHeight;bar.style.width=h>0?(window.scrollY/h*100)+'%':'0'},{passive:true});
+var btt=document.querySelector('.btt');
+btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+window.addEventListener('scroll',function(){btt.classList.toggle('visible',window.scrollY>400)},{passive:true});
+if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.style.scrollBehavior='auto';
+// Mazu easter egg
+(function(){
+var el = document.querySelector('h1 span');
+if (!el) return;
+var clicks = 0, timer;
+el.addEventListener('click', function(){
+clicks++;
+el.style.transform = 'scale(1.08)'; el.style.color = 'var(--gold)';
+setTimeout(function(){ el.style.transform = ''; el.style.color = ''; }, 400);
+clearTimeout(timer);
+timer = setTimeout(function(){ clicks = 0; }, 1500);
+if (clicks >= 3){ clicks = 0; tossPoe(); }
+});
+})();
+function tossPoe(){
+var outcomes = [
+{r:'☯️', m:'<span data-zh>圣杯。妈祖说，可以。</span><span data-en>Sacred cup. Mazu says yes.</span>'},
+{r:'😊', m:'<span data-zh>笑杯。妈祖笑了。<br>她在听，只是不说。</span><span data-en>Laughing cup. She's listening.</span>'},
+{r:'🙏', m:'<span data-zh>圣杯。妈祖点头了。<br>去做吧。</span><span data-en>Sacred cup. Mazu nods. Go ahead.</span>'}
+];
+var o = outcomes[Math.floor(Math.random()*outcomes.length)];
+document.getElementById('poe-result').textContent = o.r;
+document.getElementById('poe-msg').innerHTML = o.m;
+document.getElementById('poe-overlay').classList.add('show');
+}
+function closePoe(){ document.getElementById('poe-overlay').classList.remove('show'); }
+// Bottom blessing
+(function(){
+var b = document.createElement('div');
+b.style.cssText = 'text-align:center;font-size:12px;color:var(--faint);margin-top:12px;font-style:italic';
+var bl = [
+'<span data-zh>妈祖说：今天有风，但你会到岸的。</span><span data-en>Mazu says: There's wind today, but you'll reach shore.</span>',
+'<span data-zh>妈祖说：你做的事，有人看见了。</span><span data-en>Mazu says: Someone saw what you did.</span>',
+'<span data-zh>妈祖说：累了就坐一会儿。海又不会跑。</span><span data-en>Mazu says: Rest. The sea isn't going anywhere.</span>',
+'<span data-zh>妈祖说：我记得你的名字。</span><span data-en>Mazu says: I remember your name.</span>'
+];
+b.innerHTML = bl[Math.floor(Math.random()*bl.length)];
+var f = document.querySelector('footer');
+if (f) f.appendChild(b);
+})();
 })();
 
 // Staggered moment reveals
 (function(){
-  var moments = document.querySelectorAll('.moment');
-  if (!moments.length) return;
-  var obs = new IntersectionObserver(function(entries){
-    entries.forEach(function(e,i){
-      if (e.isIntersecting){
-        setTimeout(function(){ e.target.classList.add('revealed'); }, i * 120);
-        obs.unobserve(e.target);
-      }
-    });
-  }, {threshold: 0.2});
-  moments.forEach(function(m){ obs.observe(m); });
+var moments = document.querySelectorAll('.moment');
+if (!moments.length) return;
+var obs = new IntersectionObserver(function(entries){
+entries.forEach(function(e,i){
+if (e.isIntersecting){
+setTimeout(function(){ e.target.classList.add('revealed'); }, i * 120);
+obs.unobserve(e.target);
+}
+});
+}, {threshold: 0.2});
+moments.forEach(function(m){ obs.observe(m); });
 })();
 
 // Tab title
 var T = document.title;
 document.addEventListener('visibilitychange', function(){
-  document.title = document.hidden ? '还在吗？' : '你回来了。';
-  if (!document.hidden) setTimeout(function(){ document.title = T; }, 2000);
+document.title = document.hidden ? '还在吗？' : '你回来了。';
+if (!document.hidden) setTimeout(function(){ document.title = T; }, 2000);
 });
 </script>
 </body>
