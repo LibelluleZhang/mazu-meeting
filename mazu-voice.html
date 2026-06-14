@@ -8,33 +8,33 @@
   :root{--bg:#efe2d4;--ink:#33302e;--soft:#6b625c;--faint:#8b827c;--accent:#2f6e64;--asoft:#5d9a90;--gold:#c4956a;--hair:rgba(80,74,70,0.10);--card:rgba(255,253,250,0.45)}
   *{margin:0;padding:0;box-sizing:border-box}
   html{background:var(--bg);-webkit-text-size-adjust:100%}
-  body{color:var(--ink);font-family:"Noto Serif SC","Songti SC","STSong","Source Serif 4",Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.85}
-  article{max-width:560px;margin:0 auto;padding:56px 28px 80px}
+  body{color:var(--ink);font-family:"Noto Serif SC","Songti SC","STSong","Source Serif 4",Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.9}
+  article{max-width:520px;margin:0 auto;padding:64px 28px 80px}
 
-  nav{margin-bottom:32px;font-size:12px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+  nav{margin-bottom:36px;font-size:12px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
   nav a{color:var(--soft);text-decoration:none;transition:all .2s;padding:2px 0;border-bottom:1px solid transparent}
   nav a:hover{color:var(--accent);border-color:var(--accent)}
   nav span{color:var(--faint);margin:0 6px}
 
-  header{margin-bottom:40px;text-align:center}
-  header .tag{display:inline-block;font-size:10px;letter-spacing:.15em;color:var(--asoft);border:1px solid var(--asoft);border-radius:20px;padding:4px 16px;margin-bottom:20px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-  header h1{font-size:clamp(24px,5vw,30px);font-weight:300;letter-spacing:.04em;line-height:1.4;margin-bottom:12px}
+  header{margin-bottom:48px;text-align:center}
+  header .tag{display:inline-block;font-size:10px;letter-spacing:.15em;color:var(--asoft);border:1px solid var(--asoft);border-radius:20px;padding:4px 16px;margin-bottom:24px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+  header h1{font-size:clamp(24px,5vw,30px);font-weight:300;letter-spacing:.04em;line-height:1.45}
   header h1 span{color:var(--accent);font-weight:400}
-  header p{font-size:14px;color:var(--soft);line-height:1.7}
 
-  .note{padding:20px 24px;background:var(--card);border-radius:10px;border:1px solid var(--hair);margin-bottom:32px;font-size:13px;color:var(--soft);line-height:1.8;text-align:center}
-  .note strong{color:var(--ink)}
+  .message{text-align:center;font-size:16px;line-height:2;color:var(--soft);margin-bottom:48px}
+  .message strong{color:var(--ink)}
 
-  form{background:var(--card);border:1px solid var(--hair);border-radius:12px;padding:28px 24px}
-  .field{margin-bottom:20px}
-  .field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--ink)}
-  .field .hint{font-size:11px;color:var(--faint);margin-bottom:6px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-  .field input,.field textarea{width:100%;padding:10px 14px;border:1px solid var(--hair);border-radius:8px;font-size:14px;font-family:inherit;background:var(--bg);color:var(--ink);transition:border-color .2s;resize:vertical}
-  .field input:focus,.field textarea:focus{outline:none;border-color:var(--accent)}
-  .field textarea{min-height:120px;line-height:1.7}
-  button[type="submit"]{display:block;width:100%;padding:12px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:15px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;cursor:pointer;letter-spacing:.03em;transition:background .2s}
-  button[type="submit"]:hover{background:#265a52}
-  .thanks{display:none;text-align:center;padding:40px 20px;font-size:18px;color:var(--accent);font-weight:300;letter-spacing:.03em}
+  .divider{width:40px;height:1px;background:var(--hair);margin:40px auto}
+
+  .way{padding:24px;margin-bottom:12px;background:var(--card);border:1px solid var(--hair);border-radius:10px;text-align:center;transition:all .2s}
+  .way:hover{border-color:var(--asoft)}
+  .way .icon{font-size:24px;margin-bottom:8px}
+  .way .title{font-weight:600;font-size:15px;margin-bottom:4px}
+  .way .desc{font-size:13px;color:var(--soft);line-height:1.7}
+
+  .closing{text-align:center;margin-top:44px;padding-top:36px;border-top:1px solid var(--hair)}
+  .closing p{font-size:15px;color:var(--soft);line-height:1.9}
+  .closing .heart{color:var(--accent);font-size:20px;margin-top:12px}
 
   footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--hair);text-align:center;font-size:11px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
   footer a{color:var(--soft);text-decoration:none;transition:all .2s;padding:2px 0;border-bottom:1px solid transparent}
@@ -43,7 +43,7 @@
   @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
   article{animation:fadeIn .6s cubic-bezier(.4,0,.2,1) both}
   html{scroll-behavior:smooth}
-  a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
   @media(prefers-reduced-motion:reduce){article{animation:none}html{scroll-behavior:auto}}
   .progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:100;width:0;transition:width .1s linear}
   .btt{position:fixed;bottom:24px;right:24px;width:36px;height:36px;border-radius:50%;background:var(--card);border:1px solid var(--hair);color:var(--accent);font-size:16px;cursor:pointer;opacity:0;transform:translateY(12px);transition:all .3s cubic-bezier(.4,0,.2,1);z-index:50;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,sans-serif;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
@@ -52,6 +52,7 @@
 
   @media(max-width:600px){
     article{padding:40px 16px 80px}
+    .message{font-size:15px}
   }
 </style>
 </head>
@@ -62,38 +63,40 @@
 <nav><a href="mazu-intro.html">← 首页</a><span>/</span>社区声音</nav>
 
 <header>
-  <div class="tag">Community Voice · 不公开</div>
-  <h1><span>社区声音</span></h1>
-  <p>想法、建议、灵感——这里只有我们看得到。</p>
+  <div class="tag">No Form · No Process</div>
+  <h1><span>有话说</span>，就直接说</h1>
 </header>
 
-<div class="note">
-  <strong>这个地方是私密的。</strong><br>你写下的每个字，只有项目组会读到。不会被公开，不会被引用。<br>想说就说，不需要想太多。
+<div class="message">
+  <p>69个人，每天都在群里聊。</p>
+  <p>对故事有想法，发现了好素材，觉得哪里可以不一样——<strong>不需要填表，不需要走流程。</strong></p>
+  <p>群里喊一声就行。私聊也行。路过湄洲岛的时候当面聊，也行。</p>
 </div>
 
-<!-- 金数据表单接入点 — 替换 action 为你的金数据表单地址 -->
-<form id="voice-form" action="https://jinshuju.net/f/__YOUR_FORM_ID__" method="POST" target="hidden-frame">
-  <div class="field">
-    <label>怎么称呼你</label>
-    <div class="hint">可以留空，也可以写名字/昵称</div>
-    <input type="text" name="field_1" placeholder="你的名字或昵称">
-  </div>
-  <div class="field">
-    <label>你想说什么</label>
-    <div class="hint">对故事的想法、发现的有趣素材、觉得哪里可以更好——任何你觉得值得说的</div>
-    <textarea name="field_2" placeholder="写下来……" required></textarea>
-  </div>
-  <div class="field">
-    <label>联系方式（选填）</label>
-    <div class="hint">如果你想收到回复，留个微信或邮箱</div>
-    <input type="text" name="field_3" placeholder="微信/邮箱">
-  </div>
-  <button type="submit">发送 →</button>
-</form>
+<div class="divider"></div>
 
-<div class="thanks" id="thanks">收到了。谢谢你。</div>
+<div class="way">
+  <div class="icon">💬</div>
+  <div class="title">在群里说</div>
+  <div class="desc">随便什么时候，@布布 或者直接发。大家都会看见。</div>
+</div>
 
-<iframe name="hidden-frame" style="display:none"></iframe>
+<div class="way">
+  <div class="icon">✉️</div>
+  <div class="title">私聊布布</div>
+  <div class="desc">有些话可能只想说给一个人听。直接找布布。</div>
+</div>
+
+<div class="way">
+  <div class="icon">🌊</div>
+  <div class="title">见面聊</div>
+  <div class="desc">泉州、上海、深圳、纽约——社群散在各地。如果在同一个城市，约杯茶。</div>
+</div>
+
+<div class="closing">
+  <p>不需要工具来收集。<br>需要的是在乎这件事的人，<br>觉得自己<strong>被听见了</strong>。</p>
+  <div class="heart">—</div>
+</div>
 
 <footer>
   <a href="mazu-intro.html">首页</a> ·
@@ -104,15 +107,7 @@
 
 </article>
 <button class="btt" aria-label="返回顶部">↑</button>
-
 <script>
-// Show thank-you after submit (via iframe target)
-var frame = document.querySelector('iframe[name="hidden-frame"]');
-frame.addEventListener('load', function() {
-  document.getElementById('voice-form').style.display = 'none';
-  document.getElementById('thanks').style.display = 'block';
-});
-
 (function(){
   var bar=document.querySelector('.progress');
   window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-window.innerHeight;bar.style.width=h>0?(window.scrollY/h*100)+'%':'0'},{passive:true});
