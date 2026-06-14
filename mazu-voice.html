@@ -3,99 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>妈祖 · 社区声音</title>
+<title>妈祖 · 有话说</title>
 <style>
-  :root{--bg:#efe2d4;--ink:#33302e;--soft:#6b625c;--faint:#8b827c;--accent:#2f6e64;--asoft:#5d9a90;--gold:#c4956a;--hair:rgba(80,74,70,0.10);--card:rgba(255,253,250,0.45)}
+  :root{--bg:#efe2d4;--ink:#33302e;--soft:#6b625c;--faint:#8b827c;--accent:#2f6e64;--asoft:#5d9a90;--hair:rgba(80,74,70,0.10);--card:rgba(255,253,250,0.45)}
   *{margin:0;padding:0;box-sizing:border-box}
   html{background:var(--bg);-webkit-text-size-adjust:100%}
   body{color:var(--ink);font-family:"Noto Serif SC","Songti SC","STSong","Source Serif 4",Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.9}
   article{max-width:520px;margin:0 auto;padding:64px 28px 80px}
-
   nav{margin-bottom:36px;font-size:12px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
   nav a{color:var(--soft);text-decoration:none;transition:all .2s;padding:2px 0;border-bottom:1px solid transparent}
   nav a:hover{color:var(--accent);border-color:var(--accent)}
   nav span{color:var(--faint);margin:0 6px}
-
-  header{margin-bottom:48px;text-align:center}
-  header .tag{display:inline-block;font-size:10px;letter-spacing:.15em;color:var(--asoft);border:1px solid var(--asoft);border-radius:20px;padding:4px 16px;margin-bottom:24px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+  header{text-align:center;margin-bottom:48px}
   header h1{font-size:clamp(24px,5vw,30px);font-weight:300;letter-spacing:.04em;line-height:1.45}
   header h1 span{color:var(--accent);font-weight:400}
-
-  .message{text-align:center;font-size:16px;line-height:2;color:var(--soft);margin-bottom:48px}
-  .message strong{color:var(--ink)}
-
-  .divider{width:40px;height:1px;background:var(--hair);margin:40px auto}
-
-  .way{padding:24px;margin-bottom:12px;background:var(--card);border:1px solid var(--hair);border-radius:10px;text-align:center;transition:all .2s}
-  .way:hover{border-color:var(--asoft)}
-  .way .icon{font-size:24px;margin-bottom:8px}
-  .way .title{font-weight:600;font-size:15px;margin-bottom:4px}
-  .way .desc{font-size:13px;color:var(--soft);line-height:1.7}
-
-  .closing{text-align:center;margin-top:44px;padding-top:36px;border-top:1px solid var(--hair)}
-  .closing p{font-size:15px;color:var(--soft);line-height:1.9}
-  .closing .heart{color:var(--accent);font-size:20px;margin-top:12px}
-
-  footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--hair);text-align:center;font-size:11px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+  .text{text-align:center;font-size:16px;line-height:2.1;color:var(--soft)}
+  .text strong{color:var(--ink)}
+  .divider{width:30px;height:1px;background:var(--hair);margin:44px auto}
+  footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--hair);text-align:center;font-size:11px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
   footer a{color:var(--soft);text-decoration:none;transition:all .2s;padding:2px 0;border-bottom:1px solid transparent}
   footer a:hover{color:var(--accent);border-color:var(--accent)}
-
   @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
   article{animation:fadeIn .6s cubic-bezier(.4,0,.2,1) both}
-  html{scroll-behavior:smooth}
-  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
-  @media(prefers-reduced-motion:reduce){article{animation:none}html{scroll-behavior:auto}}
-  .progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:100;width:0;transition:width .1s linear}
-  .btt{position:fixed;bottom:24px;right:24px;width:36px;height:36px;border-radius:50%;background:var(--card);border:1px solid var(--hair);color:var(--accent);font-size:16px;cursor:pointer;opacity:0;transform:translateY(12px);transition:all .3s cubic-bezier(.4,0,.2,1);z-index:50;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,sans-serif;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-  .btt.visible{opacity:1;transform:translateY(0)}
-  .btt:hover{background:var(--accent);color:#fff;border-color:var(--accent);transform:translateY(-2px)}
-
-  @media(max-width:600px){
-    article{padding:40px 16px 80px}
-    .message{font-size:15px}
-  }
+  @media(prefers-reduced-motion:reduce){article{animation:none}}
+  @media(max-width:600px){article{padding:40px 16px 80px}.text{font-size:15px}}
 </style>
 </head>
 <body>
-<div class="progress"></div>
 <article>
 
-<nav><a href="mazu-intro.html">← 首页</a><span>/</span>社区声音</nav>
+<nav><a href="mazu-intro.html">← 首页</a><span>/</span>有话说</nav>
 
 <header>
-  <div class="tag">No Form · No Process</div>
   <h1><span>有话说</span>，就直接说</h1>
 </header>
 
-<div class="message">
-  <p>69个人，每天都在群里聊。</p>
-  <p>对故事有想法，发现了好素材，觉得哪里可以不一样——<strong>不需要填表，不需要走流程。</strong></p>
-  <p>群里喊一声就行。私聊也行。路过湄洲岛的时候当面聊，也行。</p>
+<div class="text">
+  <p>对故事有想法。<br>发现了好的素材。<br>觉得哪里可以不一样。</p>
+  <p><strong>不需要填表。不需要走流程。</strong></p>
+  <p>群里喊一声。<br>私聊也行。<br>见面聊也行。</p>
 </div>
 
 <div class="divider"></div>
 
-<div class="way">
-  <div class="icon">💬</div>
-  <div class="title">在群里说</div>
-  <div class="desc">随便什么时候，@布布 或者直接发。大家都会看见。</div>
-</div>
-
-<div class="way">
-  <div class="icon">✉️</div>
-  <div class="title">私聊布布</div>
-  <div class="desc">有些话可能只想说给一个人听。直接找布布。</div>
-</div>
-
-<div class="way">
-  <div class="icon">🌊</div>
-  <div class="title">见面聊</div>
-  <div class="desc">泉州、上海、深圳、纽约——社群散在各地。如果在同一个城市，约杯茶。</div>
-</div>
-
-<div class="closing">
-  <p>不需要工具来收集。<br>需要的是在乎这件事的人，<br>觉得自己<strong>被听见了</strong>。</p>
-  <div class="heart">—</div>
+<div class="text">
+  <p>需要的不是工具。</p>
+  <p>是<strong>被听见</strong>。</p>
 </div>
 
 <footer>
@@ -106,16 +59,5 @@
 </footer>
 
 </article>
-<button class="btt" aria-label="返回顶部">↑</button>
-<script>
-(function(){
-  var bar=document.querySelector('.progress');
-  window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-window.innerHeight;bar.style.width=h>0?(window.scrollY/h*100)+'%':'0'},{passive:true});
-  var btt=document.querySelector('.btt');
-  btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
-  window.addEventListener('scroll',function(){btt.classList.toggle('visible',window.scrollY>400)},{passive:true});
-  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){document.documentElement.style.scrollBehavior='auto'}
-})();
-</script>
 </body>
 </html>
