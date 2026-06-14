@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>妈祖 · AI国风诗选短剧 | 项目介绍</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=Inter:wght@400;500;600&display=swap');
+  :root{--bg:#efe2d4;--ink:#33302e;--soft:#736a64;--faint:#867c75;--accent:#2f6e64;--asoft:#5d9a90;--red:#CC3F28;--gold:#c4956a;--hair:rgba(80,74,70,0.12);--serif:"Source Serif 4","Noto Serif SC","Songti SC","STSong",Georgia,serif;--sans:"Inter",-apple-system,sans-serif}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{background:var(--bg)}
+  body{color:var(--ink);font-family:var(--serif);line-height:1.95;-webkit-font-smoothing:antialiased;font-size:16px}
+  article{max-width:720px;margin:0 auto;padding:64px 28px 100px}
+  
+  /* Hero */
+  .hero{text-align:center;padding:48px 0 56px;margin-bottom:40px;border-bottom:1px solid var(--hair)}
+  .hero .tag{display:inline-block;font-family:var(--sans);font-size:11px;letter-spacing:.12em;color:var(--accent);border:1px solid var(--accent);border-radius:20px;padding:4px 16px;margin-bottom:20px;text-transform:uppercase}
+  .hero h1{font-size:38px;font-weight:300;letter-spacing:.04em;line-height:1.4;margin-bottom:12px}
+  .hero h1 span{color:var(--accent);font-weight:400}
+  .hero .sub{font-size:17px;color:var(--soft);max-width:480px;margin:0 auto;line-height:1.7}
+  .hero .meta-row{display:flex;justify-content:center;gap:32px;margin-top:24px;font-size:13px;color:var(--faint);font-family:var(--sans)}
+  .hero .meta-row span strong{color:var(--ink);font-family:var(--serif);font-size:15px}
+  
+  /* Sections */
+  section{margin-bottom:64px}
+  h2{font-size:24px;font-weight:400;color:var(--accent);letter-spacing:.03em;margin-bottom:24px;padding-bottom:8px;border-bottom:1px solid var(--hair)}
+  h3{font-size:18px;font-weight:600;margin:28px 0 12px;color:var(--ink)}
+  p{font-size:16px;margin-bottom:14px;line-height:1.85}
+  
+  /* Cards / boxes */
+  .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;margin:24px 0}
+  .stat-card{background:rgba(255,253,250,.5);border:1px solid var(--hair);border-radius:8px;padding:20px;text-align:center}
+  .stat-card .num{font-size:28px;font-weight:300;color:var(--accent);font-family:var(--sans)}
+  .stat-card .label{font-size:12px;color:var(--soft);margin-top:4px;font-family:var(--sans);letter-spacing:.05em}
+  
+  .insight-box{background:rgba(255,253,250,.5);border-left:3px solid var(--accent);padding:20px 24px;margin:24px 0;font-style:italic;color:var(--soft);line-height:1.8;font-size:15px}
+  
+  /* Tables */
+  table{width:100%;border-collapse:collapse;margin:20px 0 28px;font-size:14px}
+  th,td{padding:10px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--hair)}
+  th{font-weight:600;color:var(--soft);font-size:11px;letter-spacing:.07em;font-family:var(--sans);text-transform:uppercase}
+  tr:first-child td{border-color:transparent}
+  
+  /* Teams */
+  .team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:20px 0}
+  .team-item{padding:12px 16px;background:rgba(255,253,250,.4);border-radius:6px;border:1px solid var(--hair)}
+  .team-item .name{font-size:15px;font-weight:600}
+  .team-item .role{font-size:12px;color:var(--soft);margin-top:2px;font-family:var(--sans)}
+  
+  ul{list-style:none;padding:0;margin:14px 0 24px}
+  ul li{padding:6px 0 6px 18px;position:relative;font-size:15px}
+  ul li::before{content:'—';position:absolute;left:0;color:var(--asoft);font-size:11px}
+  
+  /* Partner tiers */
+  .tier-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:20px 0}
+  .tier-card{background:rgba(255,253,250,.5);border:1px solid var(--hair);border-radius:8px;padding:20px}
+  .tier-card .tier-name{font-size:16px;font-weight:600;margin-bottom:4px}
+  .tier-card .tier-slots{font-size:12px;color:var(--asoft);font-family:var(--sans)}
+  .tier-card .tier-desc{font-size:13px;color:var(--soft);margin-top:8px;line-height:1.6}
+  
+  .highlight{color:var(--accent);font-weight:500}
+  .cta{text-align:center;padding:40px 0;margin-top:48px;border-top:1px solid var(--hair)}
+  .cta p{font-size:17px;color:var(--soft);margin-bottom:16px}
+  .cta .btn{display:inline-block;font-family:var(--sans);font-size:14px;background:var(--accent);color:#fff;padding:10px 28px;border-radius:6px;text-decoration:none;letter-spacing:.03em;margin:0 6px}
+  .cta .btn:hover{background:#265a52}
+  .cta .btn-outline{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+  .cta .btn-outline:hover{background:rgba(47,110,100,.06)}
+  
+  hr{border:none;border-top:1px solid var(--hair);margin:48px 0}
+  
+  footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--hair);font-size:12px;color:var(--faint);text-align:center;font-family:var(--sans)}
+  footer a{color:var(--soft);text-decoration:none}
+  footer a:hover{color:var(--accent)}
+  
+  @media(max-width:600px){
+    article{padding:40px 18px 80px}
+    .hero h1{font-size:28px}
+    .hero .sub{font-size:15px}
+    .stat-grid{grid-template-columns:repeat(2,1fr)}
+    .team-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<article>
+
+<!-- ══════════ HERO ══════════ -->
+<div class="hero">
+  <div class="tag">AI · 国风 · 诗选剧</div>
+  <h1><span>妈祖</span> — AI国风诗选短剧</h1>
+  <p class="sub">首部AI国风诗选短剧。24集×3-5分钟。妈祖是观察者，每集一个独立人间故事。千年IP，当代表达。</p>
+  <div class="meta-row">
+    <span><strong>24</strong> 集</span>
+    <span><strong>25</strong> 人团队</span>
+    <span><strong>1000</strong> 年IP</span>
+    <span><strong>4亿</strong> 信众</span>
+  </div>
+</div>
+
+<!-- ══════════ 一句话 ══════════ -->
+<div class="insight-box">
+  不是讲妈祖，是讲每一个人。<br>
+  不是宣传片，是作品。<br>
+  不是付费墙，是妈祖点头。
+</div>
+
+<!-- ══════════ 项目状态 ══════════ -->
+<section>
+  <h2>📍 当前状态</h2>
+  
+  <table>
+    <tr><th>维度</th><th>进展</th></tr>
+    <tr><td>备案</td><td>✅ 已通过国家广电备案，名称「妈祖」</td></tr>
+    <tr><td>剧本</td><td>🔄 编剧共创组合确认中。6/14四场深度共创会完成</td></tr>
+    <tr><td>制作</td><td>✅ 制作团队已完善。AI管线就绪。8月初完成</td></tr>
+    <tr><td>核心共识</td><td>✅ 锁定：林默「凡人→神」顿悟弧光。三重主题（女性主义/两岸联结/海外认同）叠加</td></tr>
+    <tr><td>市场验证</td><td>🔥 企业HR主动问价。「卖给我」「没货」——需求强烈</td></tr>
+  </table>
+  
+  <p style="margin-top:16px"><strong>关键时间线：</strong>6月底预告片发布 → 7月「被接住的瞬间」征集上线 → 8月初完成制作</p>
+</section>
+
+<!-- ══════════ 项目团队 ══════════ -->
+<section>
+  <h2>👥 核心团队</h2>
+  
+  <div class="team-grid">
+    <div class="team-item">
+      <div class="name">Libi · 布布</div>
+      <div class="role">制片 / 发起人 · 商业化</div>
+    </div>
+    <div class="team-item">
+      <div class="name">郁斌 · giulianoooooo</div>
+      <div class="role">导演 · 数字艺术家 · 莆田籍</div>
+    </div>
+    <div class="team-item">
+      <div class="name">北电编剧组</div>
+      <div class="role">电影文学系 · 腾讯S级 · 宗教文化博士</div>
+    </div>
+    <div class="team-item">
+      <div class="name">Booker</div>
+      <div class="role">民俗学者 · 北师大博士 · 泉州浔埔田野</div>
+    </div>
+    <div class="team-item">
+      <div class="name">AhJuan 阿娟</div>
+      <div class="role">月亮装置艺术家 · 女性叙事 · 伦敦国王学院</div>
+    </div>
+    <div class="team-item">
+      <div class="name">长风</div>
+      <div class="role">写作者 · IT/金融跨界 · 历史架空</div>
+    </div>
+    <div class="team-item">
+      <div class="name">ringKo</div>
+      <div class="role">电子流行音乐人 · 南音采样×电子</div>
+    </div>
+    <div class="team-item">
+      <div class="name">Limbo</div>
+      <div class="role">摄影 · 北电影系 · 道家文化影像</div>
+    </div>
+    <div class="team-item">
+      <div class="name">文化顾问组</div>
+      <div class="role">北电影系博士 · CCTV《跟着书本去旅行》</div>
+    </div>
+    <div class="team-item">
+      <div class="name">全球节点</div>
+      <div class="role">纽约Artemis · 斯坦福AGO · 南美驻地 · 智利</div>
+    </div>
+    <div class="team-item">
+      <div class="name">706 · Woody</div>
+      <div class="role">全球社群运营 · Hudson大中华区</div>
+    </div>
+    <div class="team-item">
+      <div class="name">齐飞</div>
+      <div class="role">33美术馆馆长 · 广美教授</div>
+    </div>
+  </div>
+  
+  <p style="margin-top:12px;font-size:13px;color:var(--soft)">25人团队，另有8位6/14新加入共创者</p>
+</section>
+
+<!-- ══════════ 创意核心 ══════════ -->
+<section>
+  <h2>🎬 创作核心</h2>
+  
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="num">诗选剧</div>
+      <div class="label">每集独立成篇</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">3-5分钟</div>
+      <div class="label">× 24集</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">3D写实</div>
+      <div class="label">AI生成画面</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">全球舞台</div>
+      <div class="label">莆田→台北→吉隆坡→旧金山</div>
+    </div>
+  </div>
+  
+  <h3>创作北极星（6/14 锁定）</h3>
+  <div class="insight-box">
+    不做传统神话复刻。聚焦林默从人到神的<strong>顿悟过程</strong>。三重主题（女性主义/两岸联结/海外认同）叠加。用现代视角串线，妈祖作为精神符号——出发的勇气、归航的慰藉。
+  </div>
+  
+  <h3>七种人类共通的瞬间</h3>
+  <ul>
+    <li><strong>被看见</strong> — 所有人都在看风暴，只有她看见你在发抖</li>
+    <li><strong>被接住</strong> — 你以为要摔下去，有人什么都没说，伸手了</li>
+    <li><strong>沉默的理解</strong> — 你哭了，她没问为什么，只是坐在旁边</li>
+    <li><strong>明知不能但还是做了</strong> — 渔民烧了一炷香，他知道平息不了风暴</li>
+    <li><strong>最小的事</strong> — 茶杯端起来放了三次，一碗味道不对的卤面</li>
+    <li><strong>回不去的瞬间</strong> — 你以为还能再见，不能了</li>
+    <li><strong>陌生人的温度</strong> — 你不认识她，但她记得你孩子的名字</li>
+  </ul>
+  
+  <h3>差异化亮点</h3>
+  <ul>
+    <li>打破妈祖单一柔美印象 — <strong>战神属性</strong>：黑脸形态、郑成功舰队史实关联</li>
+    <li>优先挖掘<strong>活态信仰生态</strong>（泉州浔埔村为第一案例），避免景区化标准庙宇叙事</li>
+    <li>海洋文明特质 — 「包容不确定性、鼓励冒险突破」，呼应闽南「人生海海」</li>
+  </ul>
+</section>
+
+<!-- ══════════ 互动系统 ══════════ -->
+<section>
+  <h2>🎯 互动系统（已上线）</h2>
+  
+  <table>
+    <tr><th>产品</th><th>状态</th><th>说明</th></tr>
+    <tr><td>掷圣杯</td><td>✅ 已上线</td><td>3D筊杯翻转动画。圣杯/笑杯/阴杯三种结果。在线体验</td></tr>
+    <tr><td>有缘机制</td><td>🔄 设计中</td><td>圣杯解锁剧集。充值可选但「有缘人」永远有免费路径</td></tr>
+    <tr><td>圣码·日签</td><td>✅ 已上线</td><td>每日情绪碎片仪式。晨启日签+暮合星图+妈祖听海</td></tr>
+    <tr><td>共创征集</td><td>🔄 7月上线</td><td>「被接住的瞬间」故事征集。三单元：种子/分镜/AI成片</td></tr>
+  </table>
+</section>
+
+<!-- ══════════ 品牌合作 ══════════ -->
+<section>
+  <h2>🤝 品牌合作体系</h2>
+  
+  <p>理念：品牌帮故事被更多人看见，同时成为故事的一部分。不卖硬广，不贴片，不做口播植入。</p>
+  
+  <div class="tier-grid">
+    <div class="tier-card" style="border-color:var(--gold);border-width:2px">
+      <div class="tier-name" style="color:var(--gold)">🥇 文化守护者</div>
+      <div class="tier-slots">1-2席</div>
+      <div class="tier-desc">联合发起署名 · 全季片尾 · 线下冠名 · 联名周边</div>
+    </div>
+    <div class="tier-card">
+      <div class="tier-name">🥈 共创伙伴</div>
+      <div class="tier-slots">3-5席</div>
+      <div class="tier-desc">单集片尾 · 线下联合呈现</div>
+    </div>
+    <div class="tier-card">
+      <div class="tier-name">🥉 支持品牌</div>
+      <div class="tier-slots">不限</div>
+      <div class="tier-desc">物料露出 · 周边赞助</div>
+    </div>
+  </div>
+  
+  <p style="margin-top:16px"><strong>适合品类：</strong>文旅/目的地 · 茶文化 · 香薰/香氛 · 家居/睡眠 · 海洋环保 · 科技/AI · 出行/旅行 · 文创/设计</p>
+</section>
+
+<!-- ══════════ 合作方 ══════════ -->
+<section>
+  <h2>🌐 已有合作方 & 潜在伙伴</h2>
+  
+  <h3>指导单位</h3>
+  <div class="team-grid">
+    <div class="team-item"><div class="name">妈祖文化协会</div><div class="role">指导单位</div></div>
+    <div class="team-item"><div class="name">莆田文旅局</div><div class="role">指导单位</div></div>
+  </div>
+  
+  <h3>机构 & 平台</h3>
+  <div class="team-grid">
+    <div class="team-item"><div class="name">上海浦东科创协会</div><div class="role">潜在合作 · 科创+文化跨界</div></div>
+    <div class="team-item"><div class="name">waytoAGI</div><div class="role">潜在合作 · AI创作者社区</div></div>
+    <div class="team-item"><div class="name">706 · Woody</div><div class="role">全球社群运营 · 青年空间网络</div></div>
+    <div class="team-item"><div class="name">星辰 StarLab</div><div class="role">潜在合作</div></div>
+    <div class="team-item"><div class="name">33美术馆 · 齐飞</div><div class="role">学术背书 · 展览合作 · 广美教授</div></div>
+    <div class="team-item"><div class="name">红果 · 福秀</div><div class="role">S级制作方 · 平台发行资源</div></div>
+    <div class="team-item"><div class="name">斯坦福湾区 · AGO</div><div class="role">湾区华人社群 · 硅谷影响力</div></div>
+    <div class="team-item"><div class="name">纽约AIGC电影 · Artemis</div><div class="role">海外华人视角 · 国际传播</div></div>
+    <div class="team-item"><div class="name">南美驻地艺术家</div><div class="role">拉美华人社群连接</div></div>
+    <div class="team-item"><div class="name">智利 · 李老师（80岁）</div><div class="role">跨代际创作者</div></div>
+    <div class="team-item"><div class="name">北电 / 厦大 / 台大</div><div class="role">高校定点邀请 · 人才输送</div></div>
+    <div class="team-item"><div class="name">昆山杜克</div><div class="role">杜克（艺术疗愈）· 潜在合作</div></div>
+  </div>
+</section>
+
+<!-- ══════════ 长期运营 ══════════ -->
+<section>
+  <h2>📅 五年路线图</h2>
+  
+  <table>
+    <tr><th>年份</th><th>主题</th><th>核心产出</th><th>收入来源</th></tr>
+    <tr><td>2026</td><td><strong>破土</strong></td><td>第一季24集上线 · 预告片发布 · 征集活动启动</td><td>平台分账 · 莆田文旅</td></tr>
+    <tr><td>2027</td><td><strong>扎根</strong></td><td>第二季 · AI工具包开源 · 有缘机制上线 · 周边</td><td>分账+周边+线下+文旅</td></tr>
+    <tr><td>2028</td><td><strong>出海</strong></td><td>第三季 · 全球妈祖巡展 · UNESCO案例</td><td>授权+巡展+文旅</td></tr>
+    <tr><td>第4-5年</td><td><strong>IP化</strong></td><td>院线电影 · IP授权体系 · 数字庙宇</td><td>票房+授权+衍生</td></tr>
+  </table>
+  
+  <h3>长期运营支柱</h3>
+  <ul>
+    <li><strong>内容引擎</strong>：诗选剧模式 — 每集独立，可持续产出。编剧共创社群持续供血</li>
+    <li><strong>互动系统</strong>：掷圣杯+有缘机制+圣码日签 — 从「观看」到「参与」的转化漏斗</li>
+    <li><strong>共创生态</strong>：「被接住的瞬间」征集 — UGC反哺PGC。开放性降低内容成本</li>
+    <li><strong>品牌联动</strong>：三层合作体系 — 从文化守护者到支持品牌，适配不同体量</li>
+    <li><strong>公益反哺</strong>：从第一天起有公益基因。平台分账→公庙捐赠。联名周边→海洋保护</li>
+    <li><strong>全球节点</strong>：纽约/湾区/南美/智利/706 — 物理分布式传播网络</li>
+  </ul>
+</section>
+
+<!-- ══════════ 关于创始人 ══════════ -->
+<section>
+  <h2>💡 发起人说</h2>
+  
+  <div class="insight-box">
+    「我以前太想把这东西变成我的，所以开发不出来。我现在放开——这东西不是我的，是社会的。大家一起来做，利益共享。我负责我最擅长的：商业化、销售、对接企业CXO级客户。创意和内容，找最好的伙伴一起做。」
+  </div>
+  <p style="font-size:14px;color:var(--faint);text-align:right">—— Libi · 布布，项目发起人</p>
+  
+  <div class="insight-box" style="margin-top:20px">
+    「妈祖不是神。在故事里，她只是渔村少女。能望海、能听风、能记住每个人名字。神性来自——她比任何人更在乎每一个具体的人。」
+  </div>
+  <p style="font-size:14px;color:var(--faint);text-align:right">—— 郁斌 · giulianoooooo，导演</p>
+</section>
+
+<!-- ══════════ CTA ══════════ -->
+<div class="cta">
+  <p>共创、合作、投资——欢迎来聊</p>
+  <a href="https://libellulezhang.github.io/mazu-knowledge/" class="btn" target="_blank">📚 知识库</a>
+  <a href="https://libellulezhang.github.io/mazu-meeting/mazu-0614-meeting.html" class="btn btn-outline" target="_blank">📋 6/14会议纪要</a>
+</div>
+
+<footer>
+  <p>妈祖AI国风诗选短剧 · 2026年6月</p>
+  <p>
+    <a href="https://libellulezhang.github.io/mazu-knowledge/" target="_blank">知识库</a> ·
+    <a href="https://github.com/LibelluleZhang/mazu-meeting" target="_blank">GitHub</a> ·
+    <a href="https://mazu-throw.surge.sh" target="_blank">掷圣杯</a> ·
+    <a href="https://libellulezhang.github.io/mazu-meeting/mazu-tinghai.html" target="_blank">妈祖听海</a>
+  </p>
+</footer>
+
+</article>
+</body>
+</html>
