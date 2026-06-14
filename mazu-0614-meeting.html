@@ -474,16 +474,17 @@ window.addEventListener('scroll',()=>{
   });
 });
 
-// ── 阅读完成彩蛋 ──
-let toasted=false;
-window.addEventListener('scroll',()=>{
-  if(toasted)return;
-  if((window.innerHeight+window.scrollY)>=document.documentElement.scrollHeight-200){
-    document.getElementById('doneToast').classList.add('show');
-    setTimeout(()=>document.getElementById('doneToast').classList.remove('show'),3500);
-    toasted=true;
-  }
-});
+// ── 阅读完成彩蛋（IntersectionObserver，不怕快滑）──
+const doneToast=document.getElementById('doneToast');
+const footer=document.querySelector('footer');
+if(footer){
+  new IntersectionObserver((entries)=>{
+    if(entries[0].isIntersecting){
+      doneToast.classList.add('show');
+      setTimeout(()=>doneToast.classList.remove('show'),3500);
+    }
+  },{threshold:.5}).observe(footer);
+}
 
 // ── 手机端底部导航自动隐藏 ──
 let lastScroll=0;
