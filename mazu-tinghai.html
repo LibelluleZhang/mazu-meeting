@@ -160,7 +160,9 @@ function startWaves(){
     waveAudio={ctx,src,gain};
   }catch(e){}
 }
-document.addEventListener('click',()=>{if(!waveAudio)startWaves();},{once:true});
+function ensureAudio(){if(!waveAudio)startWaves();else waveAudio.ctx.resume();}
+let audioStarted=false;
+['click','touchstart'].forEach(e=>document.addEventListener(e,()=>{if(!audioStarted){audioStarted=true;ensureAudio();}}));
 
 // Counter
 let offerCount=parseInt(localStorage.getItem('mazu_count')||'0');
