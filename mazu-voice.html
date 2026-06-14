@@ -1,212 +1,210 @@
-1|<!DOCTYPE html>
-2|<html lang="zh-CN">
-3|<head>
-4|<meta charset="UTF-8">
-5|<meta name="viewport" content="width=device-width, initial-scale=1.0">
-6|<title>妈祖 · 有话说</title>
-7|<style>
-8|  :root{--bg:#efe2d4;--ink:#33302e;--soft:#6b625c;--faint:#8b827c;--accent:#2f6e64;--asoft:#5d9a90;--hair:rgba(80,74,70,0.10);--card:rgba(255,253,250,0.45)}
-9|  *{margin:0;padding:0;box-sizing:border-box}
-10|  html{background:var(--bg);-webkit-text-size-adjust:100%;overflow-x:hidden}
-11|  body{color:var(--ink);font-family:"Noto Serif SC","Songti SC","STSong","Source Serif 4",Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.9}
-12|  article{max-width:520px;margin:0 auto;padding:40px 28px 60px}
-13|
-14|  .top-bar{display:flex;justify-content:flex-end;margin-bottom:28px}
-15|  .lang-switch{display:flex;gap:0;border:1px solid var(--hair);border-radius:6px;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-16|  .lang-switch button{padding:4px 12px;font-size:11px;border:none;background:transparent;color:var(--faint);cursor:pointer;letter-spacing:.04em;transition:all .2s}
-17|  .lang-switch button.active{background:var(--accent);color:#fff}
-18|  .lang-switch button:hover:not(.active){color:var(--accent)}
-19|
-20|  [data-en]{display:none}
-21|  html[lang="en"] [data-zh]{display:none}
-22|  html[lang="en"] [data-en]{display:inline}
-23|  html[lang="zh"] [data-en]{display:none}
-24|  html[lang="zh"] [data-zh]{display:inline}
-25|
-26|  nav{margin-bottom:28px;font-size:12px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-27|  nav a{color:var(--soft);text-decoration:none;transition:all .2s;padding:2px 0;border-bottom:1px solid transparent}
-28|  nav a:hover{color:var(--accent);border-color:var(--accent)}
-29|  nav span{color:var(--faint);margin:0 6px}
-30|
-31|  header{text-align:center;margin-bottom:36px}
-32|  header h1{font-size:clamp(24px,5vw,28px);font-weight:300;letter-spacing:.04em;line-height:1.45}
-33|  header h1 span{color:var(--accent);font-weight:400}
-34|
-35|  .text{text-align:center;font-size:16px;line-height:2.1;color:var(--soft);margin-bottom:32px}
-36|  .text strong{color:var(--ink)}
-37|
-38|  .sea{position:relative;min-height:160px;margin:0 -28px 32px;overflow:hidden}
-39|  .sea canvas{display:block;width:100%;height:160px}
-40|  .floating-word{position:absolute;font-size:18px;color:var(--accent);pointer-events:none;font-family:inherit;font-weight:300;letter-spacing:.03em;animation:driftUp 3s cubic-bezier(.25,.46,.45,.94) forwards;white-space:nowrap}
-41|
-42|  @keyframes driftUp{
-43|    0%{opacity:0;transform:translateY(40px) scale(.8) rotate(-3deg)}
-44|    15%{opacity:1}
-45|    70%{opacity:.7;transform:translateY(-80px) scale(1.05) rotate(2deg)}
-46|    100%{opacity:0;transform:translateY(-160px) scale(.9) rotate(0deg)}
-47|  }
-48|
-49|  .throw-area{text-align:center}
-50|  .throw-area .hint{font-size:12px;color:var(--faint);margin-bottom:10px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-51|  .throw-area form{display:flex;justify-content:center;gap:8px}
-52|  .throw-area input{padding:10px 16px;border:1px solid var(--hair);border-radius:24px;font-size:15px;font-family:inherit;background:var(--bg);color:var(--ink);width:180px;text-align:center;transition:border-color .2s}
-53|  .throw-area input:focus{outline:none;border-color:var(--accent)}
-54|  .throw-area button{width:40px;height:40px;border-radius:50%;border:1px solid var(--hair);background:var(--card);color:var(--accent);font-size:18px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
-55|  .throw-area button:hover{background:var(--accent);color:#fff;border-color:var(--accent);transform:scale(1.1)}
-56|
-57|  footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--hair);text-align:center;font-size:11px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-58|  footer a{color:var(--soft);text-decoration:none;transition:all .2s;padding:2px 0;border-bottom:1px solid transparent}
-59|  footer a:hover{color:var(--accent);border-color:var(--accent)}
-60|
-61|  @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-62|  article{animation:fadeIn .6s cubic-bezier(.4,0,.2,1) both}
-63|  html{scroll-behavior:smooth}
-64|  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
-65|  @media(prefers-reduced-motion:reduce){.floating-word{animation:none!important}article{animation:none}html{scroll-behavior:auto}}
-66|  .progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:100;width:0;transition:width .1s linear}
-67|  .btt{position:fixed;bottom:24px;right:24px;width:36px;height:36px;border-radius:50%;background:var(--card);border:1px solid var(--hair);color:var(--accent);font-size:16px;cursor:pointer;opacity:0;transform:translateY(12px);transition:all .3s cubic-bezier(.4,0,.2,1);z-index:50;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,sans-serif;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-68|  .btt.visible{opacity:1;transform:translateY(0)}
-69|  .btt:hover{background:var(--accent);color:#fff;border-color:var(--accent);transform:translateY(-2px)}
-70|
-71|  @media(max-width:600px){article{padding:32px 16px 60px}.sea{margin:0 -16px 32px}}
-72|</style>
-73|</head>
-74|<body>
-75|<div class="sea" id="sea"><canvas id="waves"></canvas></div>
-76|<div class="progress"></div>
-77|<article>
-78|
-79|<div class="top-bar">
-80|  <div class="lang-switch">
-81|    <button onclick="setLang('zh')" class="active" id="btn-zh">中文</button>
-82|    <button onclick="setLang('en')" id="btn-en">EN</button>
-83|  </div>
-84|</div>
-85|
-86|<nav><a href="mazu-intro.html">← <span data-zh>首页</span><span data-en>Home</span></a><span>/</span><span data-zh>有话说</span><span data-en>Speak</span></nav>
-87|
-88|<header>
-89|  <h1><span data-zh>有话说</span><span data-en>Speak</span><span data-zh>，就直接说</span></h1>
-90|</header>
-91|
-92|<div class="text">
-93|  <p><span data-zh>对故事有想法。<br>发现了好的素材。<br>觉得哪里可以不一样。</span><span data-en>An idea for a story.<br>Good material you found.<br>Something that could be different.</span></p>
-94|  <p><span data-zh>群里喊一声。<br>私聊也行。<br>见面聊也行。</span><span data-en>Say it in the group.<br>Or DM.<br>Or in person.</span></p>
-95|  <p><span data-zh>需要的只是<strong>被听见</strong>。</span><span data-en>All that's needed is to <strong>be heard</strong>.</span></p>
-96|</div>
-97|
-98|<div class="throw-area">
-99|  <p class="hint"><span data-zh>丢一个词进去。它会自己消失。</span><span data-en>Throw a word. It disappears on its own.</span></p>
-100|  <form onsubmit="throwWord(event)">
-101|    <input type="text" id="word-input" maxlength="12" placeholder="" autocomplete="off">
-102|    <button type="submit" aria-label="丢">🌊</button>
-103|  </form>
-104|</div>
-105|
-106|<footer>
-107|  <a href="mazu-intro.html"><span data-zh>首页</span><span data-en>Home</span></a> ·
-108|  <a href="mazu-recruit.html"><span data-zh>共创者招募</span><span data-en>Join Us</span></a> ·
-109|  <a href="mazu-pitch.html"><span data-zh>合作碰撞</span><span data-en>Collaborate</span></a> ·
-110|  <a href="mazu-community.html"><span data-zh>社群成员</span><span data-en>Community</span></a>
-111|</footer>
-112|
-113|</article>
-114|<button class="btt" aria-label="返回顶部">↑</button>
-115|<script>
-116|function setLang(lang) {
-117|  document.documentElement.setAttribute('lang', lang);
-118|  document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
-119|  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-120|  localStorage.setItem('mazu-lang', lang);
-121|}
-122|var saved = localStorage.getItem('mazu-lang');
-123|if (saved) setLang(saved);
-124|
-125|// Waves
-126|(function(){
-127|  var c = document.getElementById('waves');
-128|  if (!c) return;
-129|  var ctx = c.getContext('2d');
-130|  var W, H;
-131|  function resize(){ W = c.width = c.parentNode.offsetWidth; H = c.height = 160; }
-132|  resize(); window.addEventListener('resize', resize);
-133|  var t = 0;
-134|  function draw(){
-135|    ctx.clearRect(0,0,W,H);
-136|    ctx.fillStyle = '#5d9a90';
-137|    ctx.globalAlpha = 0.12;
-138|    ctx.beginPath();
-139|    ctx.moveTo(0, H);
-140|    for (var x = 0; x <= W; x += 3){
-141|      var y = H - 40 + Math.sin(x * 0.015 + t) * 12 + Math.sin(x * 0.03 + t * 1.3) * 8 + Math.sin(x * 0.008 + t * 0.6) * 18;
-142|      ctx.lineTo(x, y);
-143|    }
-144|    ctx.lineTo(W, H);
-145|    ctx.closePath();
-146|    ctx.fill();
-147|    ctx.globalAlpha = 0.08;
-148|    ctx.beginPath();
-149|    ctx.moveTo(0, H);
-150|    for (var x = 0; x <= W; x += 3){
-151|      var y = H - 28 + Math.sin(x * 0.02 + t * 0.8 + 1) * 10 + Math.sin(x * 0.04 + t * 1.1) * 6;
-152|      ctx.lineTo(x, y);
-153|    }
-154|    ctx.lineTo(W, H);
-155|    ctx.closePath();
-156|    ctx.fill();
-157|    ctx.globalAlpha = 1;
-158|    t += 0.02;
-159|    requestAnimationFrame(draw);
-160|  }
-161|  draw();
-162|})();
-163|
-164|// Throw a word
-165|function throwWord(e){
-166|  e.preventDefault();
-167|  var input = document.getElementById('word-input');
-168|  var word = input.value.trim();
-169|  if (!word) return;
-170|  
-171|  var sea = document.getElementById('sea');
-172|  var el = document.createElement('span');
-173|  el.className = 'floating-word';
-174|  el.textContent = word;
-175|  
-176|  var x = 20 + Math.random() * (sea.offsetWidth - 120);
-177|  var dur = 2.5 + Math.random() * 2;
-178|  el.style.left = x + 'px';
-179|  el.style.bottom = '20px';
-180|  el.style.animationDuration = dur + 's';
-181|  if (Math.random() > 0.5) el.style.fontStyle = 'italic';
-182|  
-183|  sea.appendChild(el);
-184|  input.value = '';
-185|  input.placeholder = ['嗯', '好', '在', '等', '想', '谢', '……'][Math.floor(Math.random() * 7)];
-186|  
-187|  setTimeout(function(){ el.remove(); }, dur * 1000 + 200);
-188|}
-189|
-190|// Tab title
-191|var T = document.title;
-192|var msgs = ['还在吗？', '妈祖记得你', '海还在动', '风没停'];
-193|document.addEventListener('visibilitychange', function(){
-194|  if (document.hidden) {
-195|    document.title = msgs[Math.floor(Math.random() * msgs.length)];
-196|  } else {
-197|    document.title = '你回来了。';
-198|    setTimeout(function(){ document.title = T; }, 2000);
-199|  }
-200|});
-201|
-202|// Progress + BTT
-203|(function(){
-204|  var bar=document.querySelector('.progress');
-205|  window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-window.innerHeight;bar.style.width=h>0?(window.scrollY/h*100)+'%':'0'},{passive:true});
-206|  var btt=document.querySelector('.btt');
-207|  btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
-208|  window.addEventListener('scroll',function(){btt.classList.toggle('visible',window.scrollY>400)},{passive:true});
-209|  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.style.scrollBehavior='auto';
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>妈祖 · 有话说</title>
+<style>
+  :root{--bg:#efe2d4;--ink:#33302e;--soft:#6b625c;--faint:#8b827c;--accent:#2f6e64;--asoft:#5d9a90;--gold:#c4956a;--hair:rgba(80,74,70,0.10);--card:rgba(255,253,250,0.45)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{background:var(--bg);-webkit-text-size-adjust:100%;overflow-x:hidden}
+  body{color:var(--ink);font-family:"Noto Serif SC","Songti SC","STSong","Source Serif 4",Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.9}
+  article{max-width:520px;margin:0 auto;padding:40px 28px 60px;animation:fadeIn .6s cubic-bezier(.4,0,.2,1) both}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+  .top-bar{display:flex;justify-content:flex-end;margin-bottom:28px}
+  .lang-switch{display:flex;gap:0;border:1px solid var(--hair);border-radius:6px;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+  .lang-switch button{padding:4px 12px;font-size:11px;border:none;background:transparent;color:var(--faint);cursor:pointer;letter-spacing:.04em;transition:all .2s}
+  .lang-switch button.active{background:var(--accent);color:#fff}
+  .lang-switch button:hover:not(.active){color:var(--accent)}
+  [data-en]{display:none}
+  html[lang="en"] [data-zh]{display:none}
+  html[lang="en"] [data-en]{display:inline}
+  html[lang="zh"] [data-en]{display:none}
+  html[lang="zh"] [data-zh]{display:inline}
+
+  nav{margin-bottom:28px;font-size:12px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+  nav a{color:var(--soft);text-decoration:none;transition:all .2s;padding:2px 0;border-bottom:1px solid transparent}
+  nav a:hover{color:var(--accent);border-color:var(--accent)}
+  nav span{color:var(--faint);margin:0 6px}
+
+  header{text-align:center;margin-bottom:36px}
+  header h1{font-size:clamp(24px,5vw,28px);font-weight:300;letter-spacing:.04em;line-height:1.45}
+  header h1 span{color:var(--accent);font-weight:400}
+
+  .text{text-align:center;font-size:16px;line-height:2.2;color:var(--soft);margin-bottom:36px}
+  .text strong{color:var(--ink)}
+
+  .sea{position:relative;min-height:140px;margin:0 -28px 32px;overflow:hidden}
+  .sea canvas{display:block;width:100%;height:140px}
+  
+  .floating-word{position:absolute;font-size:18px;color:var(--accent);pointer-events:none;font-family:inherit;font-weight:300;letter-spacing:.03em;animation:driftUp 3.5s cubic-bezier(.25,.46,.45,.94) forwards;white-space:nowrap}
+  @keyframes driftUp{0%{opacity:0;transform:translateY(30px) scale(.7) rotate(-5deg)}12%{opacity:.9}60%{opacity:.5;transform:translateY(-90px) scale(1.08) rotate(2deg)}100%{opacity:0;transform:translateY(-170px) scale(.85) rotate(-1deg)}}
+
+  .ghost-word{position:absolute;font-size:22px;color:var(--accent);pointer-events:none;font-family:inherit;font-weight:300;opacity:.12;animation:ghostFloat 8s ease-in-out infinite;white-space:nowrap}
+  @keyframes ghostFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-30px) rotate(2deg)}}
+
+  .throw-area{text-align:center}
+  .throw-area .hint{font-size:12px;color:var(--faint);margin-bottom:10px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+  .throw-area form{display:flex;justify-content:center;gap:8px}
+  .throw-area input{padding:10px 16px;border:1px solid var(--hair);border-radius:24px;font-size:15px;font-family:inherit;background:var(--bg);color:var(--ink);width:180px;text-align:center;transition:border-color .2s}
+  .throw-area input:focus{outline:none;border-color:var(--accent)}
+  .throw-area button{width:40px;height:40px;border-radius:50%;border:1px solid var(--hair);background:var(--card);color:var(--accent);font-size:18px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
+  .throw-area button:hover{background:var(--accent);color:#fff;border-color:var(--accent);transform:scale(1.1)}
+
+  footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--hair);text-align:center;font-size:11px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+  footer a{color:var(--soft);text-decoration:none;transition:all .2s;padding:2px 0;border-bottom:1px solid transparent}
+  footer a:hover{color:var(--accent);border-color:var(--accent)}
+
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+  @media(prefers-reduced-motion:reduce){.floating-word,.ghost-word{animation:none!important}article{animation:none}}
+  .progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:100;width:0;transition:width .1s linear}
+  .btt{position:fixed;bottom:24px;right:24px;width:36px;height:36px;border-radius:50%;background:var(--card);border:1px solid var(--hair);color:var(--accent);font-size:16px;cursor:pointer;opacity:0;transform:translateY(12px);transition:all .3s cubic-bezier(.4,0,.2,1);z-index:50;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,sans-serif;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+  .btt.visible{opacity:1;transform:translateY(0)}
+  .btt:hover{background:var(--accent);color:#fff;border-color:var(--accent);transform:translateY(-2px)}
+  .poe-overlay{position:fixed;inset:0;background:rgba(51,48,46,.3);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+  .poe-overlay.show{opacity:1;pointer-events:auto}
+  .poe-box{background:var(--bg);border-radius:16px;padding:32px 24px;text-align:center;max-width:280px;width:90%;animation:popIn .4s cubic-bezier(.34,1.56,.64,1)}
+  @keyframes popIn{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
+  .poe-box .result{font-size:48px;animation:toss .6s ease}
+  @keyframes toss{0%{transform:rotate(0) scale(0);opacity:0}50%{transform:rotate(180deg) scale(1.2);opacity:1}100%{transform:rotate(360deg) scale(1);opacity:1}}
+  .poe-box .msg{margin-top:12px;font-size:15px;color:var(--ink);line-height:1.6}
+  .poe-box .close-btn{margin-top:16px;font-size:12px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer;border:none;background:none}
+
+  @media(max-width:600px){article{padding:32px 16px 60px}.sea{margin:0 -16px 32px}}
+</style>
+</head>
+<body>
+<div class="sea" id="sea"><canvas id="waves"></canvas></div>
+<div class="progress"></div>
+<article>
+
+<div class="top-bar">
+  <div class="lang-switch">
+    <button onclick="setLang('zh')" class="active" id="btn-zh">中文</button>
+    <button onclick="setLang('en')" id="btn-en">EN</button>
+  </div>
+</div>
+
+<nav><a href="mazu-intro.html">← <span data-zh>首页</span><span data-en>Home</span></a><span>/</span><span data-zh>有话说</span><span data-en>Speak</span></nav>
+
+<header>
+  <h1><span data-zh>有话说</span><span data-en>Speak</span><span data-zh>，就直接说</span></h1>
+</header>
+
+<div class="text">
+  <p><span data-zh>对故事有想法。<br>发现了好的素材。<br>觉得哪里可以不一样。</span><span data-en>An idea for a story.<br>Good material you found.<br>Something that could be different.</span></p>
+  <p><span data-zh>群里喊一声。私聊也行。见面聊也行。</span><span data-en>Say it in the group. Or DM. Or in person.</span></p>
+  <p><span data-zh>需要的只是<strong>被听见</strong>。</span><span data-en>All that's needed is to <strong>be heard</strong>.</span></p>
+</div>
+
+<div class="throw-area">
+  <p class="hint"><span data-zh>或者，丢一个词到海里。</span><span data-en>Or throw a word into the sea.</span></p>
+  <form onsubmit="throwWord(event)">
+    <input type="text" id="word-input" maxlength="12" autocomplete="off">
+    <button type="submit" aria-label="丢">🌊</button>
+  </form>
+</div>
+
+<footer>
+  <a href="mazu-intro.html"><span data-zh>首页</span><span data-en>Home</span></a> ·
+  <a href="mazu-recruit.html"><span data-zh>共创者招募</span><span data-en>Join Us</span></a> ·
+  <a href="mazu-pitch.html"><span data-zh>合作碰撞</span><span data-en>Collaborate</span></a> ·
+  <a href="mazu-community.html"><span data-zh>社群成员</span><span data-en>Community</span></a>
+</footer>
+
+</article>
+
+<div class="poe-overlay" id="poe-overlay" onclick="closePoe()">
+  <div class="poe-box" onclick="event.stopPropagation()">
+    <div class="result" id="poe-result"></div>
+    <div class="msg" id="poe-msg"></div>
+    <button class="close-btn" onclick="closePoe()"><span data-zh>知道了</span><span data-en>OK</span></button>
+  </div>
+</div>
+
+<button class="btt" aria-label="返回顶部">↑</button>
+
+<script>
+function setLang(lang) {
+  document.documentElement.setAttribute('lang', lang);
+  document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  localStorage.setItem('mazu-lang', lang);
+}
+var saved = localStorage.getItem('mazu-lang');
+if (saved) setLang(saved);
+
+// Waves
+(function(){
+  var c = document.getElementById('waves');
+  if (!c) return;
+  var ctx = c.getContext('2d'), W, H, t = 0;
+  function resize(){ W = c.width = c.parentNode.offsetWidth; H = c.height = 140; }
+  resize(); window.addEventListener('resize', resize);
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle = '#5d9a90';
+    ctx.globalAlpha = 0.12;
+    ctx.beginPath(); ctx.moveTo(0, H);
+    for (var x = 0; x <= W; x += 3){
+      var y = H - 35 + Math.sin(x * 0.015 + t) * 12 + Math.sin(x * 0.03 + t * 1.3) * 8 + Math.sin(x * 0.008 + t * 0.6) * 18;
+      ctx.lineTo(x, y);
+    }
+    ctx.lineTo(W, H); ctx.closePath(); ctx.fill();
+    ctx.globalAlpha = 0.08;
+    ctx.beginPath(); ctx.moveTo(0, H);
+    for (var x = 0; x <= W; x += 3){
+      var y = H - 24 + Math.sin(x * 0.02 + t * 0.8 + 1) * 10 + Math.sin(x * 0.04 + t * 1.1) * 6;
+      ctx.lineTo(x, y);
+    }
+    ctx.lineTo(W, H); ctx.closePath(); ctx.fill();
+    ctx.globalAlpha = 1; t += 0.02;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// Throw word
+var ghostWords = [];
+function throwWord(e){
+  e.preventDefault();
+  var input = document.getElementById('word-input');
+  var word = input.value.trim();
+  if (!word) return;
+  
+  var sea = document.getElementById('sea');
+  var el = document.createElement('span');
+  el.className = 'floating-word';
+  el.textContent = word;
+  el.style.left = (20 + Math.random() * (sea.offsetWidth - 120)) + 'px';
+  el.style.bottom = '20px';
+  el.style.animationDuration = (2.5 + Math.random() * 2) + 's';
+  if (Math.random() > 0.5) el.style.fontStyle = 'italic';
+  sea.appendChild(el);
+  
+  ghostWords.push(word);
+  if (ghostWords.length > 5) ghostWords.shift();
+  updateGhosts();
+  
+  input.value = '';
+  input.placeholder = ['嗯','好','在','等','想','谢','……','安','静','海'][Math.floor(Math.random()*10)];
+  setTimeout(function(){ el.remove(); }, 4000);
+}
+
+function updateGhosts(){
+  var sea = document.getElementById('sea');
+  sea.querySelectorAll('.ghost-word').forEach(function(g){ g.remove(); });
+  ghostWords.forEach(function(w, i){
+    var g = document.createElement('span');
+    g.className = 'ghost-word';
+    g.textContent = w;
+    g.style.left = (40 + i * 80 + Math.random() * 60) + 'px';
+    g.style.top = (20 + Math.random() * 60) + 'px';
+    g.style.animationDelay = (i * 0.5) + 's';
+    sea.appendChild(g);
+  });
+}
 
 // Mazu easter egg
 (function(){
@@ -217,8 +215,7 @@
     clicks++;
     el.style.transform = 'scale(1.08)'; el.style.color = 'var(--gold)';
     setTimeout(function(){ el.style.transform = ''; el.style.color = ''; }, 400);
-    clearTimeout(timer);
-    timer = setTimeout(function(){ clicks = 0; }, 1500);
+    clearTimeout(timer); timer = setTimeout(function(){ clicks = 0; }, 1500);
     if (clicks >= 3){ clicks = 0; tossPoe(); }
   });
 })();
@@ -226,7 +223,7 @@
 function tossPoe(){
   var outcomes = [
     {r:'☯️', m:'<span data-zh>圣杯。妈祖说，可以。</span><span data-en>Sacred cup. Mazu says yes.</span>'},
-    {r:'😊', m:'<span data-zh>笑杯。妈祖笑了。<br>她在听，只是不说。</span><span data-en>Laughing cup. She's listening.</span>'},
+    {r:'😊', m:'<span data-zh>笑杯。妈祖笑了。<br>她在听，只是不说。</span><span data-en>Laughing cup. She\'s listening.</span>'},
     {r:'🙏', m:'<span data-zh>圣杯。妈祖点头了。<br>去做吧。</span><span data-en>Sacred cup. Mazu nods. Go ahead.</span>'}
   ];
   var o = outcomes[Math.floor(Math.random()*outcomes.length)];
@@ -236,22 +233,30 @@ function tossPoe(){
 }
 function closePoe(){ document.getElementById('poe-overlay').classList.remove('show'); }
 
+// Tab title
+var T = document.title, msgs = ['还在吗？','妈祖记得你','海还在动','风没停'];
+document.addEventListener('visibilitychange', function(){
+  if (document.hidden){ document.title = msgs[Math.floor(Math.random()*msgs.length)]; }
+  else { document.title = '你回来了。'; setTimeout(function(){document.title=T;},2000); }
+});
+
 // Bottom blessing
 (function(){
   var b = document.createElement('div');
   b.style.cssText = 'text-align:center;font-size:12px;color:var(--faint);margin-top:12px;font-style:italic';
-  var bl = [
-    '<span data-zh>妈祖说：今天有风，但你会到岸的。</span><span data-en>Mazu says: There's wind today, but you'll reach shore.</span>',
-    '<span data-zh>妈祖说：你做的事，有人看见了。</span><span data-en>Mazu says: Someone saw what you did.</span>',
-    '<span data-zh>妈祖说：累了就坐一会儿。海又不会跑。</span><span data-en>Mazu says: Rest. The sea isn't going anywhere.</span>',
-    '<span data-zh>妈祖说：我记得你的名字。</span><span data-en>Mazu says: I remember your name.</span>'
-  ];
-  b.innerHTML = bl[Math.floor(Math.random()*bl.length)];
-  var f = document.querySelector('footer');
-  if (f) f.appendChild(b);
+  b.innerHTML = ['<span data-zh>妈祖说：今天有风，但你会到岸的。</span><span data-en>There\'s wind today, but you\'ll reach shore.</span>','<span data-zh>妈祖说：你做的事，有人看见了。</span><span data-en>Someone saw what you did.</span>','<span data-zh>妈祖说：累了就坐一会儿。海又不会跑。</span><span data-en>Rest. The sea isn\'t going anywhere.</span>','<span data-zh>妈祖说：我记得你的名字。</span><span data-en>I remember your name.</span>'][Math.floor(Math.random()*4)];
+  var f = document.querySelector('footer'); if (f) f.appendChild(b);
 })();
 
-210|})();
-211|</script>
-212|</body>
-213|</html>
+// Progress + BTT
+(function(){
+  var bar=document.querySelector('.progress');
+  window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-window.innerHeight;bar.style.width=h>0?(window.scrollY/h*100)+'%':'0'},{passive:true});
+  var btt=document.querySelector('.btt');
+  btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+  window.addEventListener('scroll',function(){btt.classList.toggle('visible',window.scrollY>400)},{passive:true});
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.style.scrollBehavior='auto';
+})();
+</script>
+</body>
+</html>
