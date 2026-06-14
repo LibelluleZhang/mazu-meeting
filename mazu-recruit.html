@@ -1,204 +1,203 @@
-1|1|1|1|1|<!DOCTYPE html>
-2|2|2|2|2|<html lang="zh-CN">
-3|3|3|3|3|<head>
-4|4|4|4|4|<meta charset="UTF-8">
-5|5|5|5|5|<meta name="viewport" content="width=device-width, initial-scale=1.0">
-6|6|6|6|6|<title>妈祖AI短剧 · 共创者招募</title>
-7|7|7|7|7|<style>
-8|8|8|8|8|  :root{--bg:#efe2d4;--ink:#33302e;--soft:#6b625c;--faint:#8b827c;--accent:#2f6e64;--asoft:#5d9a90;--gold:#c4956a;--red:#c4706e;--hair:rgba(80,74,70,0.10);--card:rgba(255,253,250,0.45)}
-9|9|9|9|9|  *{margin:0;padding:0;box-sizing:border-box}
-10|10|10|10|10|  html{background:var(--bg);-webkit-text-size-adjust:100%}
-11|11|11|11|11|  body{color:var(--ink);font-family:"Noto Serif SC","Songti SC","STSong","Source Serif 4",Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.85}
-12|12|12|12|12|  .sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-13|13|13|13|13|  article{max-width:640px;margin:0 auto;padding:56px 28px 96px}
-14|14|14|14|14|
-15|15|15|15|15|  nav{margin-bottom:44px;font-size:12px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-16|16|16|16|16|  nav a{color:var(--soft);text-decoration:none;transition:color .2s}
-17|17|17|17|17|  nav a:hover{color:var(--accent)}
-18|18|18|18|18|  nav span{color:var(--faint);margin:0 6px}
-19|19|19|19|19|
-20|20|20|20|20|  header{margin-bottom:48px;text-align:center}
-21|21|21|21|21|  header .tag{display:inline-block;font-size:10px;letter-spacing:.15em;color:var(--asoft);border:1px solid var(--asoft);border-radius:20px;padding:4px 16px;margin-bottom:24px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-22|22|22|22|22|  header .hook{font-size:clamp(22px,5vw,30px);font-weight:300;line-height:1.55;letter-spacing:.04em;margin-bottom:20px}
-23|23|23|23|23|  header .hook em{font-style:italic;color:var(--accent)}
-24|24|24|24|24|  header .sub{font-size:14px;color:var(--soft);max-width:460px;margin:0 auto;line-height:1.7}
-25|25|25|25|25|
-26|26|26|26|26|  .numbers{display:flex;justify-content:center;gap:36px;padding:26px 0;margin-bottom:44px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);flex-wrap:wrap}
-27|27|27|27|27|  .num-item{text-align:center}
-28|28|28|28|28|  .num-item .n{font-size:28px;font-weight:300;color:var(--accent);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.1}
-29|29|29|29|29|  .num-item .l{font-size:10px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;letter-spacing:.06em;margin-top:3px;text-transform:uppercase}
-30|30|30|30|30|
-31|31|31|31|31|  section{margin-bottom:60px}
-32|32|32|32|32|  h2{font-size:20px;font-weight:400;color:var(--accent);letter-spacing:.03em;margin-bottom:22px;padding-bottom:10px;border-bottom:1px solid var(--hair)}
-33|33|33|33|33|  h3{font-size:15px;font-weight:600;color:var(--ink);margin:24px 0 10px}
-34|34|34|34|34|  p{font-size:15px;margin-bottom:12px;line-height:1.85}
-35|35|35|35|35|
-36|36|36|36|36|  .moment{padding:16px 20px;margin-bottom:6px;background:var(--card);border-left:3px solid var(--asoft);border-radius:0 6px 6px 0;transition:border-color .2s}
-37|37|37|37|37|  .moment:hover{border-color:var(--accent)}
-38|38|38|38|38|  .moment .mn{font-weight:600;font-size:15px;display:inline;margin-right:8px}
-39|39|39|39|39|  .moment .md{font-size:14px;color:var(--soft);display:inline;line-height:1.7}
-40|40|40|40|40|
-41|41|41|41|41|  .do{font-size:14px;padding:8px 0 8px 20px;border-left:3px solid var(--asoft);margin-bottom:5px;color:var(--soft)}
-42|42|42|42|42|  .dont{font-size:14px;padding:8px 0 8px 20px;border-left:3px solid var(--red);margin-bottom:5px;color:var(--soft)}
-43|43|43|43|43|
-44|44|44|44|44|  .roles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}
-45|45|45|45|45|  .role-card{padding:22px 14px;text-align:center;border:1px solid var(--hair);border-radius:10px;background:var(--card);transition:all .25s}
-46|46|46|46|46|  .role-card:hover{border-color:var(--asoft);transform:translateY(-2px);box-shadow:0 4px 20px rgba(0,0,0,.04)}
-47|47|47|47|47|  .role-card .icon{font-size:24px;margin-bottom:8px;display:block}
-48|48|48|48|48|  .role-card .rn{font-weight:600;font-size:13px;margin-bottom:3px}
-49|49|49|49|49|  .role-card .rd{font-size:10px;color:var(--soft);line-height:1.5;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-50|50|50|50|50|
-51|51|51|51|51|  .people{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:7px;margin:12px 0}
-52|52|52|52|52|  .person{padding:10px 14px;background:var(--card);border:1px solid var(--hair);border-radius:8px;font-size:13px;transition:border-color .2s}
-53|53|53|53|53|  .person:hover{border-color:var(--asoft)}
-54|54|54|54|54|  .person .pn{font-weight:600;font-size:14px}
-55|55|55|55|55|  .person .pr{font-size:10px;color:var(--soft);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-56|56|56|56|56|
-57|57|57|57|57|  .quote-block{text-align:center;padding:32px 20px;margin:28px 0;border:1px solid var(--hair);border-radius:10px;background:var(--card);font-size:18px;font-weight:300;line-height:1.7;color:var(--accent);letter-spacing:.03em}
-58|58|58|58|58|
-59|59|59|59|59|  .callout{padding:22px 26px;border-left:4px solid var(--accent);background:rgba(47,110,100,.04);margin:22px 0;font-size:15px;line-height:1.85;border-radius:0 8px 8px 0}
-60|60|60|60|60|
-61|61|61|61|61|  .cta{text-align:center;padding:36px;margin-top:40px;border:2px solid var(--accent);border-radius:12px;background:rgba(47,110,100,.03)}
-62|62|62|62|62|  .cta h3{font-size:18px;color:var(--accent);margin-bottom:8px;font-weight:300}
-63|63|63|63|63|  .cta p{font-size:13px;color:var(--soft);margin-bottom:14px}
-64|64|64|64|64|  .cta .btn{display:inline-block;font-size:13px;background:var(--accent);color:#fff;padding:10px 26px;border-radius:6px;text-decoration:none;letter-spacing:.03em;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;transition:background .2s}
-65|65|65|65|65|  .cta .btn:hover{background:#265a52}
-66|66|66|66|66|
-67|67|67|67|67|  footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--hair);text-align:center;font-size:11px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-68|68|68|68|68|  footer a{color:var(--soft);text-decoration:none;transition:color .2s}
-69|69|69|69|69|  footer a:hover{color:var(--accent)}
-70|70|70|70|70|
-71|71|71|71|71|  
-72|72|74|74|74|    .people{grid-template-columns:1fr 1fr}
-73|73|75|75|75|    .numbers{gap:22px}
-74|74|76|76|76|    .num-item .n{font-size:22px}
-75|75|77|77|77|    .quote-block{font-size:15px}
-76|76|78|78|78|  }
-77|77|79|79|79|</style>
-78|78|80|80|80|</head>
-79|79|81|81|81|<body>
-80|80|82|82|82|<article>
-81|81|83|83|83|
-82|82|84|84|84|<nav><a href="mazu-intro.html">← 首页</a><span>/</span>共创者招募</nav>
-83|83|85|85|85|
-84|84|86|86|86|<header>
-85|85|87|87|87|  <div class="tag">Creator Community · 常年开放</div>
-86|86|88|88|88|  <div class="hook">你人生中哪个瞬间，<br>感觉自己<em>被什么东西接住了</em>？</div>
-87|87|89|89|89|  <p class="sub">我们在找能被这个瞬间击中的人。不看简历，看一段字。</p>
-88|88|90|90|90|</header>
-89|89|91|91|91|
-90|90|92|92|92|<div class="numbers">
-91|91|93|93|93|  <div class="num-item"><div class="n">69人</div><div class="l">社群</div></div>
-92|92|94|94|94|  <div class="num-item"><div class="n">24集</div><div class="l">3-5分钟</div></div>
-93|93|95|95|95|  <div class="num-item"><div class="n">1个</div><div class="l">被接住的瞬间</div></div>
-94|94|96|96|96|</div>
-95|95|97|97|97|
-96|96|98|98|98|<section>
-97|97|99|99|99|  <h2>我们在做什么</h2>
-98|98|100|100|100|  <p>首部AI国风诗选短剧。叫「妈祖」，但镜头始终对着<strong>每一个具体的人</strong>。</p>
-99|99|101|101|101|  <p>为什么？因为妈祖最动人的地方不是她能飞天遁海——是她记得所有人的名字。一个渔村少女，16岁开始站在崖边望海。不是因为有人要求她，是因为她<strong>在乎</strong>。</p>
-100|100|102|102|102|  <p>这种「在乎」就是我们要拍的东西。不是神迹，不是法力，是一个人看见另一个人。</p>
-101|101|103|103|103|  <p style="font-size:14px;color:var(--soft)"><strong>底层的核：真、善、美。</strong>真——故事是真诚的。善——妈祖的善意穿透每一帧。美——国风留白的杂志级质感。</p>
-102|102|104|104|104|
-103|103|105|105|105|  <div class="quote-block">
-104|104|106|106|106|    镜头对着每一个人。<br>这是作品，不是宣传片。<br>进入的门槛不是付费，是妈祖点头。
-105|105|107|107|107|  </div>
-106|106|108|108|108|</section>
-107|107|109|109|109|
-108|108|110|110|110|<section>
-109|109|111|111|111|  <h2>七种人类共通的瞬间</h2>
-110|110|112|112|112|  <div class="moment"><span class="mn">被看见</span><span class="md">所有人都在看风暴，只有她看见你在发抖</span></div>
-111|111|113|113|113|  <div class="moment"><span class="mn">被接住</span><span class="md">你以为要摔下去，有人什么都没说，伸手了</span></div>
-112|112|114|114|114|  <div class="moment"><span class="mn">沉默的理解</span><span class="md">你哭了，她没问为什么，只是坐在旁边</span></div>
-113|113|115|115|115|  <div class="moment"><span class="mn">明知不能但还是做了</span><span class="md">渔民烧了一炷香，他知道平息不了风暴</span></div>
-114|114|116|116|116|  <div class="moment"><span class="mn">最小的事</span><span class="md">茶杯端起来放了三次，一碗味道不对的卤面</span></div>
-115|115|117|117|117|  <div class="moment"><span class="mn">回不去的瞬间</span><span class="md">你以为还能再见，不能了</span></div>
-116|116|118|118|118|  <div class="moment"><span class="mn">陌生人的温度</span><span class="md">你不认识她，但她记得你孩子的名字</span></div>
-117|117|119|119|119|</section>
-118|118|120|120|120|
-119|119|121|121|121|<section>
-120|120|122|122|122|  <h2>我们的创作边界</h2>
-121|121|123|123|123|  <h3>✅ 要写</h3>
-122|122|124|124|124|  <div class="do">人物是具体的。情感是安静的。改变是看不见的</div>
-123|123|125|125|125|  <div class="do">妈祖作为<strong>精神符号</strong>——出发的勇气、归航的慰藉。不直接出场</div>
-124|124|126|126|126|  <div class="do"><strong>海洋文明</strong>：包容不确定性、鼓励冒险突破</div>
-125|125|127|127|127|  <div class="do"><strong>活态信仰</strong>：泉州浔埔村、福州天后宫。鲜活的人的信仰</div>
-126|126|128|128|128|  <div class="do"><strong>战神属性</strong>：打破柔美印象。黑脸形态。郑成功舰队史实</div>
-127|127|129|129|129|  <h3 style="margin-top:24px">❌ 我们避开这些</h3>
-128|128|130|130|130|  <div class="dont">妈祖显灵救了所有人 — 神迹，观众找不到自己</div>
-129|129|131|131|131|  <div class="dont">「我学到了妈祖的伟大」 — 说教</div>
-130|130|132|132|132|  <div class="dont">主角顿悟、痛哭、跪拜 — 廉价。真正的改变是安静的</div>
-131|131|133|133|133|  <div class="dont">悲剧为了悲而悲 — 悲不重要，值不值得才重要</div>
-132|132|134|134|134|  <div class="dont">景区化标准庙宇叙事</div>
-133|133|135|135|135|</section>
-134|134|136|136|136|
-135|135|137|137|137|<section>
-136|136|138|138|138|  <h2>在找谁</h2>
-137|137|139|139|139|  <div class="roles">
-138|138|140|140|140|    <div class="role-card"><span class="icon">✍️</span><div class="rn">编剧 / 写作者</div><div class="rd">不看写过什么<br>看你被什么击中</div></div>
-139|139|141|141|141|    <div class="role-card"><span class="icon">🎨</span><div class="rn">视觉创作者</div><div class="rd">AI/3D/手绘/摄影<br>国风美学</div></div>
-140|140|142|142|142|    <div class="role-card"><span class="icon">🎵</span><div class="rn">音乐人</div><div class="rd">南音/电子/环境音<br>声音叙事</div></div>
-141|141|143|143|143|    <div class="role-card"><span class="icon">📚</span><div class="rn">文化研究者</div><div class="rd">民俗学/人类学/历史<br>田野调查</div></div>
-142|142|144|144|144|    <div class="role-card"><span class="icon">🤖</span><div class="rn">AI / 技术</div><div class="rd">视频管线/提示词<br>角色一致性</div></div>
-143|143|145|145|145|    <div class="role-card"><span class="icon">🌏</span><div class="rn">传播 / 运营</div><div class="rd">社群/多平台分发<br>海外传播</div></div>
-144|144|146|146|146|  </div>
-145|145|147|147|147|</section>
-146|146|148|148|148|
-147|147|149|149|149|<section>
-148|148|150|150|150|  <h2>与谁同行</h2>
-149|149|151|151|151|  <div class="people">
-150|150|152|152|152|    <div class="person"><div class="pn">郁斌</div><div class="pr">导演 · 数字艺术家 · 莆田籍</div></div>
-151|151|153|153|153|    <div class="person"><div class="pn">布布 · Libi</div><div class="pr">社群发起人</div></div>
-152|152|154|154|154|    <div class="person"><div class="pn">阿娟</div><div class="pr">月亮装置艺术家 · 女性叙事</div></div>
-153|153|155|155|155|    <div class="person"><div class="pn">Booker</div><div class="pr">民俗学博士 · 浔埔田野</div></div>
-154|154|156|156|156|    <div class="person"><div class="pn">长风</div><div class="pr">写作者 · 文化研究</div></div>
-155|155|157|157|157|    <div class="person"><div class="pn">ringKo</div><div class="pr">电子音乐 · 南音×电子</div></div>
-156|156|158|158|158|    <div class="person"><div class="pn">冷斋</div><div class="pr">仪式音乐田野 · 天后宫</div></div>
-157|157|159|159|159|    <div class="person"><div class="pn">Richard</div><div class="pr">北大硕士 · 高雄寺庙</div></div>
-158|158|160|160|160|    <div class="person"><div class="pn">卢老师</div><div class="pr">闽南人类学学者</div></div>
-159|159|161|161|161|    <div class="person"><div class="pn">丁一</div><div class="pr">纪录片/AIGC导演</div></div>
-160|160|162|162|162|    <div class="person"><div class="pn">陈星</div><div class="pr">互动影游制片人</div></div>
-161|161|163|163|163|    <div class="person"><div class="pn">Yuki</div><div class="pr">纽大Tisch · 虚拟制作</div></div>
-162|162|164|164|164|    <div class="person"><div class="pn">可歆</div><div class="pr">字节AI产品经理</div></div>
-163|163|165|165|165|    <div class="person"><div class="pn">悠扬</div><div class="pr">动画导演 · 706</div></div>
-164|164|166|166|166|    <div class="person"><div class="pn">庞老师</div><div class="pr">非遗数字艺术家</div></div>
-165|165|167|167|167|    <div class="person"><div class="pn">木央</div><div class="pr">科幻作家 · Web4</div></div>
-166|166|168|168|168|  </div>
-167|167|169|169|169|  <p style="font-size:12px;color:var(--faint);margin-top:6px"><a href="mazu-community.html" style="color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent)">查看全部69位成员 →</a></p>
-168|168|170|170|170|</section>
-169|169|171|171|171|
-170|170|172|172|172|<section>
-171|171|173|173|173|  <h2>如何加入</h2>
-172|172|174|174|174|  <p><strong>这不是面试。这是共创。</strong></p>
-173|173|175|175|175|  <p>写一段文字发过来：500字以内，写一个妈祖在场的瞬间。她<strong>不显灵、不开口、不直接拯救</strong>。写画面，不写道理。</p>
-174|174|176|176|176|  <p style="font-size:13px;color:var(--soft)">对的人被限制吸引，不对的人被限制吓跑。这句话本身是第一层筛选。</p>
-175|175|177|177|177|
-176|176|178|178|178|  <div class="quote-block">
-177|177|179|179|179|    「妈祖不显灵，不开口，不直接拯救。<br>500字。写一个她在场的瞬间。」
-178|178|180|180|180|  </div>
-179|179|181|181|181|</section>
-180|180|182|182|182|
-181|181|183|183|183|<section>
-182|182|184|184|184|  <h2>导演说</h2>
-183|183|185|185|185|  <div class="callout">
-184|184|186|186|186|    「妈祖不是神。在故事里，她只是渔村少女。能望海、能听风、能记住每个人名字。神性来自——她比任何人更在乎每一个具体的人。」
-185|185|187|187|187|    <p style="text-align:right;font-size:12px;color:var(--faint);margin-top:12px">—— 郁斌 · giulianoooooo</p>
-186|186|188|188|188|  </div>
-187|187|189|189|189|</section>
-188|188|190|190|190|
-189|189|191|191|191|<div class="cta">
-190|190|192|192|192|  <h3>被接住的瞬间，你在哪里</h3>
-191|191|193|193|193|  <p>69人社群，缺你一个</p>
-192|192|194|194|194|  <a href="https://libellulezhang.github.io/mazu-knowledge/" class="btn" target="_blank">📚 先看知识库</a>
-193|193|195|195|195|</div>
-194|194|196|196|196|
-195|195|197|197|197|<footer>
-196|196|198|198|<a href="mazu-pitch.html">合作策划案</a> ·
-197|197|199|199|200|  <a href="mazu-community.html">社群成员</a> ·
-198|198|200|200|201|  <a href="mazu-0614-meeting.html">6/14会议</a> ·
-199|199|201|201|202|  <a href="mazu-tinghai.html">妈祖听海</a>
-200|200|202|202|203|</footer>
-201|201|203|203|204|
-202|202|204|204|205|</article>
-203|203|205|205|206|</body>
-204|204|206|206|207|</html>
+1|1|1|1|1|1|<!DOCTYPE html>
+2|2|2|2|2|2|<html lang="zh-CN">
+3|3|3|3|3|3|<head>
+4|4|4|4|4|4|<meta charset="UTF-8">
+5|5|5|5|5|5|<meta name="viewport" content="width=device-width, initial-scale=1.0">
+6|6|6|6|6|6|<title>妈祖AI短剧 · 共创者招募</title>
+7|7|7|7|7|7|<style>
+8|8|8|8|8|8|  :root{--bg:#efe2d4;--ink:#33302e;--soft:#6b625c;--faint:#8b827c;--accent:#2f6e64;--asoft:#5d9a90;--gold:#c4956a;--red:#c4706e;--hair:rgba(80,74,70,0.10);--card:rgba(255,253,250,0.45)}
+9|9|9|9|9|9|  *{margin:0;padding:0;box-sizing:border-box}
+10|10|10|10|10|10|  html{background:var(--bg);-webkit-text-size-adjust:100%}
+11|11|11|11|11|11|  body{color:var(--ink);font-family:"Noto Serif SC","Songti SC","STSong","Source Serif 4",Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.85}
+12|12|12|12|12|12|  .sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+13|13|13|13|13|13|  article{max-width:640px;margin:0 auto;padding:56px 28px 96px}
+14|14|14|14|14|14|
+15|15|15|15|15|15|  nav{margin-bottom:44px;font-size:12px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+16|16|16|16|16|16|  nav a{color:var(--soft);text-decoration:none;transition:color .2s}
+17|17|17|17|17|17|  nav a:hover{color:var(--accent)}
+18|18|18|18|18|18|  nav span{color:var(--faint);margin:0 6px}
+19|19|19|19|19|19|
+20|20|20|20|20|20|  header{margin-bottom:48px;text-align:center}
+21|21|21|21|21|21|  header .tag{display:inline-block;font-size:10px;letter-spacing:.15em;color:var(--asoft);border:1px solid var(--asoft);border-radius:20px;padding:4px 16px;margin-bottom:24px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+22|22|22|22|22|22|  header .hook{font-size:clamp(22px,5vw,30px);font-weight:300;line-height:1.55;letter-spacing:.04em;margin-bottom:20px}
+23|23|23|23|23|23|  header .hook em{font-style:italic;color:var(--accent)}
+24|24|24|24|24|24|  header .sub{font-size:14px;color:var(--soft);max-width:460px;margin:0 auto;line-height:1.7}
+25|25|25|25|25|25|
+26|26|26|26|26|26|  .numbers{display:flex;justify-content:center;gap:36px;padding:26px 0;margin-bottom:44px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);flex-wrap:wrap}
+27|27|27|27|27|27|  .num-item{text-align:center}
+28|28|28|28|28|28|  .num-item .n{font-size:28px;font-weight:300;color:var(--accent);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.1}
+29|29|29|29|29|29|  .num-item .l{font-size:10px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;letter-spacing:.06em;margin-top:3px;text-transform:uppercase}
+30|30|30|30|30|30|
+31|31|31|31|31|31|  section{margin-bottom:60px}
+32|32|32|32|32|32|  h2{font-size:20px;font-weight:400;color:var(--accent);letter-spacing:.03em;margin-bottom:22px;padding-bottom:10px;border-bottom:1px solid var(--hair)}
+33|33|33|33|33|33|  h3{font-size:15px;font-weight:600;color:var(--ink);margin:24px 0 10px}
+34|34|34|34|34|34|  p{font-size:15px;margin-bottom:12px;line-height:1.85}
+35|35|35|35|35|35|
+36|36|36|36|36|36|  .moment{padding:16px 20px;margin-bottom:6px;background:var(--card);border-left:3px solid var(--asoft);border-radius:0 6px 6px 0;transition:border-color .2s}
+37|37|37|37|37|37|  .moment:hover{border-color:var(--accent)}
+38|38|38|38|38|38|  .moment .mn{font-weight:600;font-size:15px;display:inline;margin-right:8px}
+39|39|39|39|39|39|  .moment .md{font-size:14px;color:var(--soft);display:inline;line-height:1.7}
+40|40|40|40|40|40|
+41|41|41|41|41|41|  .do{font-size:14px;padding:8px 0 8px 20px;border-left:3px solid var(--asoft);margin-bottom:5px;color:var(--soft)}
+42|42|42|42|42|42|  .dont{font-size:14px;padding:8px 0 8px 20px;border-left:3px solid var(--red);margin-bottom:5px;color:var(--soft)}
+43|43|43|43|43|43|
+44|44|44|44|44|44|  .roles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}
+45|45|45|45|45|45|  .role-card{padding:22px 14px;text-align:center;border:1px solid var(--hair);border-radius:10px;background:var(--card);transition:all .25s}
+46|46|46|46|46|46|  .role-card:hover{border-color:var(--asoft);transform:translateY(-2px);box-shadow:0 4px 20px rgba(0,0,0,.04)}
+47|47|47|47|47|47|  .role-card .icon{font-size:24px;margin-bottom:8px;display:block}
+48|48|48|48|48|48|  .role-card .rn{font-weight:600;font-size:13px;margin-bottom:3px}
+49|49|49|49|49|49|  .role-card .rd{font-size:10px;color:var(--soft);line-height:1.5;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+50|50|50|50|50|50|
+51|51|51|51|51|51|  .people{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:7px;margin:12px 0}
+52|52|52|52|52|52|  .person{padding:10px 14px;background:var(--card);border:1px solid var(--hair);border-radius:8px;font-size:13px;transition:border-color .2s}
+53|53|53|53|53|53|  .person:hover{border-color:var(--asoft)}
+54|54|54|54|54|54|  .person .pn{font-weight:600;font-size:14px}
+55|55|55|55|55|55|  .person .pr{font-size:10px;color:var(--soft);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+56|56|56|56|56|56|
+57|57|57|57|57|57|  .quote-block{text-align:center;padding:32px 20px;margin:28px 0;border:1px solid var(--hair);border-radius:10px;background:var(--card);font-size:18px;font-weight:300;line-height:1.7;color:var(--accent);letter-spacing:.03em}
+58|58|58|58|58|58|
+59|59|59|59|59|59|  .callout{padding:22px 26px;border-left:4px solid var(--accent);background:rgba(47,110,100,.04);margin:22px 0;font-size:15px;line-height:1.85;border-radius:0 8px 8px 0}
+60|60|60|60|60|60|
+61|61|61|61|61|61|  .cta{text-align:center;padding:36px;margin-top:40px;border:2px solid var(--accent);border-radius:12px;background:rgba(47,110,100,.03)}
+62|62|62|62|62|62|  .cta h3{font-size:18px;color:var(--accent);margin-bottom:8px;font-weight:300}
+63|63|63|63|63|63|  .cta p{font-size:13px;color:var(--soft);margin-bottom:14px}
+64|64|64|64|64|64|  .cta .btn{display:inline-block;font-size:13px;background:var(--accent);color:#fff;padding:10px 26px;border-radius:6px;text-decoration:none;letter-spacing:.03em;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;transition:background .2s}
+65|65|65|65|65|65|  .cta .btn:hover{background:#265a52}
+66|66|66|66|66|66|
+67|67|67|67|67|67|  footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--hair);text-align:center;font-size:11px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+68|68|68|68|68|68|  footer a{color:var(--soft);text-decoration:none;transition:color .2s}
+69|69|69|69|69|69|  footer a:hover{color:var(--accent)}
+70|70|70|70|70|70|
+71|71|71|71|71|71|  
+72|72|72|74|74|74|    .people{grid-template-columns:1fr 1fr}
+73|73|73|75|75|75|    .numbers{gap:22px}
+74|74|74|76|76|76|    .num-item .n{font-size:22px}
+75|75|75|77|77|77|    .quote-block{font-size:15px}
+76|76|76|78|78|78|  }
+77|77|77|79|79|79|</style>
+78|78|78|80|80|80|</head>
+79|79|79|81|81|81|<body>
+80|80|80|82|82|82|<article>
+81|81|81|83|83|83|
+82|82|82|84|84|84|<nav><a href="mazu-intro.html">← 首页</a><span>/</span>共创者招募</nav>
+83|83|83|85|85|85|
+84|84|84|86|86|86|<header>
+85|85|85|87|87|87|  <div class="tag">Creator Community · 常年开放</div>
+86|86|86|88|88|88|  <div class="hook">你人生中哪个瞬间，<br>感觉自己<em>被什么东西接住了</em>？</div>
+87|87|87|89|89|89|  <p class="sub">我们在找能被这个瞬间击中的人。不看简历，看一段字。</p>
+88|88|88|90|90|90|</header>
+89|89|89|91|91|91|
+90|90|90|92|92|92|<div class="numbers">
+91|91|91|93|93|93|  <div class="num-item"><div class="n">69人</div><div class="l">社群</div></div>
+92|92|92|94|94|94|  <div class="num-item"><div class="n">24集</div><div class="l">3-5分钟</div></div>
+93|93|93|95|95|95|  <div class="num-item"><div class="n">1个</div><div class="l">被接住的瞬间</div></div>
+94|94|94|96|96|96|</div>
+95|95|95|97|97|97|
+96|96|96|98|98|98|<section>
+97|97|97|99|99|99|  <h2>我们在做什么</h2>
+98|98|98|100|100|100|  <p>首部AI国风诗选短剧。叫「妈祖」，但镜头始终对着<strong>每一个具体的人</strong>。</p>
+99|99|99|101|101|101|  <p>为什么？因为妈祖最动人的地方不是她能飞天遁海——是她记得所有人的名字。一个渔村少女，16岁开始站在崖边望海。不是因为有人要求她，是因为她<strong>在乎</strong>。</p>
+100|100|100|102|102|102|  <p>这种「在乎」就是我们要拍的东西。不是神迹，不是法力，是一个人看见另一个人。</p>
+101|101|101|103|103|103|  <p style="font-size:14px;color:var(--soft)"><strong>底层的核：真、善、美。</strong>真——故事是真诚的。善——妈祖的善意穿透每一帧。美——国风留白的杂志级质感。</p>
+102|102|102|104|104|104|
+103|103|103|105|105|105|  <div class="quote-block">
+104|104|104|106|106|106|    镜头对着每一个人。<br>这是作品，不是宣传片。<br>进入的门槛不是付费，是妈祖点头。
+105|105|105|107|107|107|  </div>
+106|106|106|108|108|108|</section>
+107|107|107|109|109|109|
+108|108|108|110|110|110|<section>
+109|109|109|111|111|111|  <h2>七种人类共通的瞬间</h2>
+110|110|110|112|112|112|  <div class="moment"><span class="mn">被看见</span><span class="md">所有人都在看风暴，只有她看见你在发抖</span></div>
+111|111|111|113|113|113|  <div class="moment"><span class="mn">被接住</span><span class="md">你以为要摔下去，有人什么都没说，伸手了</span></div>
+112|112|112|114|114|114|  <div class="moment"><span class="mn">沉默的理解</span><span class="md">你哭了，她没问为什么，只是坐在旁边</span></div>
+113|113|113|115|115|115|  <div class="moment"><span class="mn">明知不能但还是做了</span><span class="md">渔民烧了一炷香，他知道平息不了风暴</span></div>
+114|114|114|116|116|116|  <div class="moment"><span class="mn">最小的事</span><span class="md">茶杯端起来放了三次，一碗味道不对的卤面</span></div>
+115|115|115|117|117|117|  <div class="moment"><span class="mn">回不去的瞬间</span><span class="md">你以为还能再见，不能了</span></div>
+116|116|116|118|118|118|  <div class="moment"><span class="mn">陌生人的温度</span><span class="md">你不认识她，但她记得你孩子的名字</span></div>
+117|117|117|119|119|119|</section>
+118|118|118|120|120|120|
+119|119|119|121|121|121|<section>
+120|120|120|122|122|122|  <h2>我们的创作边界</h2>
+121|121|121|123|123|123|  <h3>✅ 要写</h3>
+122|122|122|124|124|124|  <div class="do">人物是具体的。情感是安静的。改变是看不见的</div>
+123|123|123|125|125|125|  <div class="do">妈祖作为<strong>精神符号</strong>——出发的勇气、归航的慰藉。不直接出场</div>
+124|124|124|126|126|126|  <div class="do"><strong>海洋文明</strong>：包容不确定性、鼓励冒险突破</div>
+125|125|125|127|127|127|  <div class="do"><strong>活态信仰</strong>：泉州浔埔村、福州天后宫。鲜活的人的信仰</div>
+126|126|126|128|128|128|  <div class="do"><strong>战神属性</strong>：打破柔美印象。黑脸形态。郑成功舰队史实</div>
+127|127|127|129|129|129|  <h3 style="margin-top:24px">❌ 我们避开这些</h3>
+128|128|128|130|130|130|  <div class="dont">妈祖显灵救了所有人 — 神迹，观众找不到自己</div>
+129|129|129|131|131|131|  <div class="dont">「我学到了妈祖的伟大」 — 说教</div>
+130|130|130|132|132|132|  <div class="dont">主角顿悟、痛哭、跪拜 — 廉价。真正的改变是安静的</div>
+131|131|131|133|133|133|  <div class="dont">悲剧为了悲而悲 — 悲不重要，值不值得才重要</div>
+132|132|132|134|134|134|  <div class="dont">景区化标准庙宇叙事</div>
+133|133|133|135|135|135|</section>
+134|134|134|136|136|136|
+135|135|135|137|137|137|<section>
+136|136|136|138|138|138|  <h2>在找谁</h2>
+137|137|137|139|139|139|  <div class="roles">
+138|138|138|140|140|140|    <div class="role-card"><span class="icon">✍️</span><div class="rn">编剧 / 写作者</div><div class="rd">不看写过什么<br>看你被什么击中</div></div>
+139|139|139|141|141|141|    <div class="role-card"><span class="icon">🎨</span><div class="rn">视觉创作者</div><div class="rd">AI/3D/手绘/摄影<br>国风美学</div></div>
+140|140|140|142|142|142|    <div class="role-card"><span class="icon">🎵</span><div class="rn">音乐人</div><div class="rd">南音/电子/环境音<br>声音叙事</div></div>
+141|141|141|143|143|143|    <div class="role-card"><span class="icon">📚</span><div class="rn">文化研究者</div><div class="rd">民俗学/人类学/历史<br>田野调查</div></div>
+142|142|142|144|144|144|    <div class="role-card"><span class="icon">🤖</span><div class="rn">AI / 技术</div><div class="rd">视频管线/提示词<br>角色一致性</div></div>
+143|143|143|145|145|145|    <div class="role-card"><span class="icon">🌏</span><div class="rn">传播 / 运营</div><div class="rd">社群/多平台分发<br>海外传播</div></div>
+144|144|144|146|146|146|  </div>
+145|145|145|147|147|147|</section>
+146|146|146|148|148|148|
+147|147|147|149|149|149|<section>
+148|148|148|150|150|150|  <h2>与谁同行</h2>
+149|149|149|151|151|151|  <div class="people">
+150|150|150|152|152|152|    <div class="person"><div class="pn">郁斌</div><div class="pr">导演 · 数字艺术家 · 莆田籍</div></div>
+151|151|151|153|153|153|    <div class="person"><div class="pn">布布 · Libi</div><div class="pr">社群发起人</div></div>
+152|152|152|154|154|154|    <div class="person"><div class="pn">阿娟</div><div class="pr">月亮装置艺术家 · 女性叙事</div></div>
+153|153|153|155|155|155|    <div class="person"><div class="pn">Booker</div><div class="pr">民俗学博士 · 浔埔田野</div></div>
+154|154|154|156|156|156|    <div class="person"><div class="pn">长风</div><div class="pr">写作者 · 文化研究</div></div>
+155|155|155|157|157|157|    <div class="person"><div class="pn">ringKo</div><div class="pr">电子音乐 · 南音×电子</div></div>
+156|156|156|158|158|158|    <div class="person"><div class="pn">冷斋</div><div class="pr">仪式音乐田野 · 天后宫</div></div>
+157|157|157|159|159|159|    <div class="person"><div class="pn">Richard</div><div class="pr">北大硕士 · 高雄寺庙</div></div>
+158|158|158|160|160|160|    <div class="person"><div class="pn">卢老师</div><div class="pr">闽南人类学学者</div></div>
+159|159|159|161|161|161|    <div class="person"><div class="pn">丁一</div><div class="pr">纪录片/AIGC导演</div></div>
+160|160|160|162|162|162|    <div class="person"><div class="pn">陈星</div><div class="pr">互动影游制片人</div></div>
+161|161|161|163|163|163|    <div class="person"><div class="pn">Yuki</div><div class="pr">纽大Tisch · 虚拟制作</div></div>
+162|162|162|164|164|164|    <div class="person"><div class="pn">可歆</div><div class="pr">字节AI产品经理</div></div>
+163|163|163|165|165|165|    <div class="person"><div class="pn">悠扬</div><div class="pr">动画导演 · 706</div></div>
+164|164|164|166|166|166|    <div class="person"><div class="pn">庞老师</div><div class="pr">非遗数字艺术家</div></div>
+165|165|165|167|167|167|    <div class="person"><div class="pn">木央</div><div class="pr">科幻作家 · Web4</div></div>
+166|166|166|168|168|168|  </div>
+167|167|167|169|169|169|  <p style="font-size:12px;color:var(--faint);margin-top:6px"><a href="mazu-community.html" style="color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent)">查看全部69位成员 →</a></p>
+168|168|168|170|170|170|</section>
+169|169|169|171|171|171|
+170|170|170|172|172|172|<section>
+171|171|171|173|173|173|  <h2>如何加入</h2>
+172|172|172|174|174|174|  173|173|173|175|175|175|  <p>写一段文字发过来：500字以内，写一个妈祖在场的瞬间。她<strong>不显灵、不开口、不直接拯救</strong>。写画面，不写道理。</p>
+174|174|174|176|176|176|  <p style="font-size:13px;color:var(--soft)">对的人被限制吸引，不对的人被限制吓跑。这句话本身是第一层筛选。</p>
+175|175|175|177|177|177|
+176|176|176|178|178|178|  <div class="quote-block">
+177|177|177|179|179|179|    「妈祖不显灵，不开口，不直接拯救。<br>500字。写一个她在场的瞬间。」
+178|178|178|180|180|180|  </div>
+179|179|179|181|181|181|</section>
+180|180|180|182|182|182|
+181|181|181|183|183|183|<section>
+182|182|182|184|184|184|  <h2>导演说</h2>
+183|183|183|185|185|185|  <div class="callout">
+184|184|184|186|186|186|    「妈祖不是神。在故事里，她只是渔村少女。能望海、能听风、能记住每个人名字。神性来自——她比任何人更在乎每一个具体的人。」
+185|185|185|187|187|187|    <p style="text-align:right;font-size:12px;color:var(--faint);margin-top:12px">—— 郁斌 · giulianoooooo</p>
+186|186|186|188|188|188|  </div>
+187|187|187|189|189|189|</section>
+188|188|188|190|190|190|
+189|189|189|191|191|191|<div class="cta">
+190|190|190|192|192|192|  <h3>被接住的瞬间，你在哪里</h3>
+191|191|191|193|193|193|  <p>69人社群（持续增长中），缺你一个</p>
+192|192|192|194|194|194|  <a href="https://libellulezhang.github.io/mazu-knowledge/" class="btn" target="_blank">📚 先看知识库</a>
+193|193|193|195|195|195|</div>
+194|194|194|196|196|196|
+195|195|195|197|197|197|<footer>
+196|196|196|198|198|<a href="mazu-pitch.html">合作策划案</a> ·
+197|197|197|199|199|200|  <a href="mazu-community.html">社群成员</a> ·
+198|198|198|200|200|201|  <a href="mazu-0614-meeting.html">6/14会议</a> ·
+199|199|199|201|201|202|  <a href="mazu-tinghai.html">妈祖听海</a>
+200|200|200|202|202|203|</footer>
+201|201|201|203|203|204|
+202|202|202|204|204|205|</article>
+203|203|203|205|205|206|</body>
+204|204|204|206|206|207|</html>
