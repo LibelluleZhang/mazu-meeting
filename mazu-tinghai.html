@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>妈祖听海</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&display=swap');
+  @import url('https://fonts.font.im/css2?family=Noto+Serif+SC:wght@300;400;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1a2740;
+    font-family: 'Noto Serif SC', 'Songti SC', 'PingFang SC', serif;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 450px;
+    height: 100vh;
+    height: 100dvh;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #0d1b2a 0%, #1b2838 40%, #2a3f5f 100%);
+  }
+
+  /* --- Animated ocean background --- */
+  .ocean {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 45%;
+    overflow: hidden;
+  }
+  .wave {
+    position: absolute;
+    bottom: 0; left: -50%;
+    width: 200%;
+    height: 100%;
+    opacity: 0.3;
+  }
+  .wave:nth-child(1) {
+    background: radial-gradient(ellipse at 30% 100%, rgba(180,210,240,0.4) 0%, transparent 60%);
+    animation: wave1 8s ease-in-out infinite;
+  }
+  .wave:nth-child(2) {
+    background: radial-gradient(ellipse at 70% 100%, rgba(160,200,230,0.25) 0%, transparent 60%);
+    animation: wave2 11s ease-in-out infinite;
+  }
+  .wave:nth-child(3) {
+    background: radial-gradient(ellipse at 50% 100%, rgba(140,185,220,0.15) 0%, transparent 60%);
+    animation: wave3 14s ease-in-out infinite;
+  }
+  @keyframes wave1 { 0%,100%{transform:translateY(0)translateX(0)} 50%{transform:translateY(-8px)translateX(3%)} }
+  @keyframes wave2 { 0%,100%{transform:translateY(0)translateX(0)} 50%{transform:translateY(-5px)translateX(-2%)} }
+  @keyframes wave3 { 0%,100%{transform:translateY(0)translateX(0)} 50%{transform:translateY(-3px)translateX(1%)} }
+
+  /* --- Stars --- */
+  .stars {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 55%;
+    overflow: hidden;
+  }
+  .star {
+    position: absolute;
+    width: 2px; height: 2px;
+    background: #fff;
+    border-radius: 50%;
+    animation: twinkle 3s ease-in-out infinite;
+  }
+  @keyframes twinkle {
+    0%,100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  /* --- Moon reflection --- */
+  .moon-path {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px; height: 40px;
+    background: radial-gradient(circle, rgba(255,245,220,0.6) 0%, rgba(255,245,220,0.1) 50%, transparent 70%);
+    border-radius: 50%;
+  }
+  .moon-reflection {
+    position: absolute;
+    bottom: 35%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px; height: 4px;
+    background: linear-gradient(90deg, transparent, rgba(255,245,220,0.15), transparent);
+    border-radius: 2px;
+    animation: shimmer 4s ease-in-out infinite;
+  }
+  @keyframes shimmer {
+    0%,100% { opacity: 0.3; width: 60px; }
+    50% { opacity: 0.7; width: 100px; }
+  }
+
+  /* --- Content area --- */
+  .content {
+    position: relative;
+    z-index: 10;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 32px;
+    transition: all 0.8s ease;
+  }
+
+  /* --- Phase 1: Prompt --- */
+  .phase-prompt { text-align: center; }
+  .phase-prompt .title {
+    font-size: 22px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.15em;
+    margin-bottom: 8px;
+    line-height: 1.6;
+  }
+  .phase-prompt .subtitle {
+    font-size: 13px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.2em;
+  }
+  .input-wrap {
+    margin-top: 40px;
+    width: 100%;
+    position: relative;
+  }
+  .input-wrap input {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 2px;
+    padding: 16px 20px;
+    font-size: 17px;
+    font-family: inherit;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.08em;
+    outline: none;
+    transition: border-color 0.4s;
+    text-align: center;
+  }
+  .input-wrap input::placeholder {
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.1em;
+  }
+  .input-wrap input:focus {
+    border-color: rgba(255,255,255,0.35);
+  }
+  .submit-btn {
+    margin-top: 20px;
+    background: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.6);
+    padding: 12px 36px;
+    font-size: 14px;
+    font-family: inherit;
+    letter-spacing: 0.2em;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.4s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .submit-btn:hover, .submit-btn:active {
+    border-color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.9);
+  }
+  .counter-text {
+    margin-top: 50px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.1em;
+    transition: opacity 0.8s;
+  }
+
+  /* --- Phase 2: Dissolving --- */
+  .phase-dissolve {
+    display: none;
+    text-align: center;
+    width: 100%;
+  }
+  .dissolve-text {
+    font-size: 20px;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.15em;
+    animation: fadeDown 3s ease-in forwards;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+  }
+  @keyframes fadeDown {
+    0% { opacity: 0.7; transform: translate(-50%,-50%); }
+    30% { opacity: 0.4; transform: translate(-50%,-30%); }
+    100% { opacity: 0; transform: translate(-50%, 40%); }
+  }
+
+  /* --- Phase 3: Response --- */
+  .phase-response {
+    display: none;
+    text-align: center;
+  }
+  .response-icon {
+    font-size: 40px;
+    margin-bottom: 24px;
+    animation: gentlePulse 3s ease-in-out infinite;
+  }
+  @keyframes gentlePulse {
+    0%,100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.05); }
+  }
+  .response-line {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 0.12em;
+    line-height: 1.8;
+    margin-bottom: 40px;
+  }
+  .response-counter {
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.12em;
+    margin-bottom: 30px;
+  }
+  .again-btn {
+    background: none;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.4);
+    padding: 10px 28px;
+    font-size: 12px;
+    font-family: inherit;
+    letter-spacing: 0.2em;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.4s;
+  }
+  .again-btn:hover, .again-btn:active {
+    border-color: rgba(255,255,255,0.35);
+    color: rgba(255,255,255,0.7);
+  }
+
+  /* --- Mazu lantern in corner --- */
+  .lantern {
+    position: absolute;
+    top: 20px; right: 24px;
+    font-size: 22px;
+    opacity: 0.3;
+    animation: sway 4s ease-in-out infinite;
+  }
+  @keyframes sway {
+    0%,100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+  }
+
+  /* --- Closing hint --- */
+  .close-hint {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    color: rgba(255,255,255,0.15);
+    letter-spacing: 0.15em;
+    transition: opacity 0.8s;
+  }
+
+  /* Shared animation */
+  .fade-in {
+    animation: fadeIn 1.5s ease forwards;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="container" id="container">
+  <!-- Ocean -->
+  <div class="ocean">
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+  </div>
+
+  <!-- Stars -->
+  <div class="stars" id="stars"></div>
+
+  <!-- Moon -->
+  <div class="moon-path"></div>
+  <div class="moon-reflection"></div>
+
+  <!-- Lantern -->
+  <div class="lantern">🏮</div>
+
+  <!-- Content -->
+  <div class="content" id="content">
+
+    <!-- Phase 1: Prompt -->
+    <div class="phase-prompt fade-in" id="phase-prompt">
+      <div class="title">把今天不想带走的<br>留在这里</div>
+      <div class="subtitle">妈祖会听见</div>
+      <div class="input-wrap">
+        <input type="text" id="worry-input" placeholder="一个字就好……" maxlength="50" autocomplete="off">
+      </div>
+      <button class="submit-btn" id="submit-btn" onclick="offer()">投 入 海 中</button>
+      <div class="counter-text" id="counter-text">今夜已有 0 人把心事留在了海里</div>
+    </div>
+
+    <!-- Phase 3: Response (hidden) -->
+    <div class="phase-response" id="phase-response">
+      <div class="response-icon">🕯️</div>
+      <div class="response-line" id="response-line">妈祖收下了。<br>明天海面会很平。</div>
+      <div class="response-counter" id="response-counter">今夜已有 0 人把心事留在了海里</div>
+      <button class="again-btn" onclick="reset()">再留一件</button>
+    </div>
+
+  </div>
+
+  <div class="close-hint" id="close-hint">截屏分享 · 或直接关闭</div>
+</div>
+
+<script>
+  // Generate stars
+  (function() {
+    const starsEl = document.getElementById('stars');
+    const count = 40;
+    let html = '';
+    for (let i = 0; i < count; i++) {
+      const x = Math.random() * 100;
+      const y = Math.random() * 100;
+      const delay = Math.random() * 3;
+      const size = Math.random() * 1.5 + 0.5;
+      html += `<div class="star" style="left:${x}%;top:${y}%;width:${size}px;height:${size}px;animation-delay:${delay}s"></div>`;
+    }
+    starsEl.innerHTML = html;
+  })();
+
+  // Simple local counter (in production, use a server)
+  let offerCount = parseInt(localStorage.getItem('mazu_offer_count') || '0');
+  function updateCounter() {
+    offerCount++;
+    localStorage.setItem('mazu_offer_count', offerCount);
+    const display = offerCount + Math.floor(Math.random() * 5); // Add slight variance
+    document.getElementById('counter-text').textContent = '今夜已有 ' + display + ' 人把心事留在了海里';
+    document.getElementById('response-counter').textContent = '今夜已有 ' + display + ' 人把心事留在了海里';
+  }
+
+  // Mazu responses
+  const responses = [
+    '妈祖收下了。<br>明天海面会很平。',
+    '妈祖听见了。<br>海风会带走该走的。',
+    '妈祖看见了。<br>你不需要一个人扛。',
+    '妈祖说：<br>这个浪过了，下一个不会更高。',
+    '妈祖记下了。<br>潮水每天都是新的。',
+    '妈祖知道。<br>月亮不问你为什么难过，它只是照着。',
+    '妈祖收了。<br>天亮之前，海替你守着。',
+  ];
+
+  function offer() {
+    const input = document.getElementById('worry-input');
+    const text = input.value.trim();
+    if (!text) { input.placeholder = '写点什么吧……'; input.focus(); return; }
+
+    // Start dissolve animation
+    const container = document.getElementById('container');
+    const dissolveEl = document.createElement('div');
+    dissolveEl.className = 'dissolve-text';
+    dissolveEl.textContent = text.length > 10 ? text.substring(0, 10) + '…' : text;
+    container.appendChild(dissolveEl);
+
+    // Hide prompt
+    const phasePrompt = document.getElementById('phase-prompt');
+    phasePrompt.style.opacity = '0';
+    phasePrompt.style.transition = 'opacity 0.8s';
+
+    // Hide close hint temporarily
+    document.getElementById('close-hint').style.opacity = '0';
+
+    // Update counter
+    updateCounter();
+
+    // After dissolve, show response
+    setTimeout(() => {
+      dissolveEl.remove();
+      phasePrompt.style.display = 'none';
+
+      const response = document.getElementById('phase-response');
+      response.style.display = 'block';
+      response.classList.add('fade-in');
+
+      // Random response
+      const resp = responses[Math.floor(Math.random() * responses.length)];
+      document.getElementById('response-line').innerHTML = resp;
+
+      document.getElementById('close-hint').style.opacity = '1';
+    }, 2800);
+  }
+
+  function reset() {
+    const phasePrompt = document.getElementById('phase-prompt');
+    const phaseResponse = document.getElementById('phase-response');
+
+    phaseResponse.style.display = 'none';
+    phaseResponse.classList.remove('fade-in');
+
+    phasePrompt.style.display = 'block';
+    phasePrompt.style.opacity = '1';
+    document.getElementById('worry-input').value = '';
+    document.getElementById('worry-input').placeholder = '一个字就好……';
+  }
+
+  // Submit on Enter
+  document.getElementById('worry-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') offer();
+  });
+
+  // Init counter
+  document.getElementById('counter-text').textContent = '今夜已有 ' + offerCount + ' 人把心事留在了海里';
+</script>
+
+</body>
+</html>
