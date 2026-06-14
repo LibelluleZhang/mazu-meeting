@@ -1,244 +1,238 @@
-1|1|<!DOCTYPE html>
-2|2|<html lang="zh-CN">
-3|3|<head>
-4|4|<meta charset="UTF-8">
-5|5|<meta name="viewport" content="width=device-width, initial-scale=1.0">
-6|6|<title>妈祖AI短剧 · 合作策划案</title>
-7|7|<style>
-8|8|  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=Inter:wght@400;500;600&display=swap');
-9|9|  :root{--bg:#efe2d4;--ink:#33302e;--soft:#736a64;--faint:#867c75;--accent:#2f6e64;--asoft:#5d9a90;--gold:#c4956a;--red:#CC3F28;--hair:rgba(80,74,70,0.10);--serif:"Source Serif 4","Noto Serif SC","Songti SC","STSong",Georgia,serif;--sans:"Inter",-apple-system,sans-serif}
-10|10|  *{margin:0;padding:0;box-sizing:border-box}
-11|11|  html{background:var(--bg)}
-12|12|  body{color:var(--ink);font-family:var(--serif);-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.85}
-13|13|  article{max-width:680px;margin:0 auto;padding:64px 32px 100px}
-14|14|
-15|15|  nav{margin-bottom:48px;font-family:var(--sans);font-size:13px}
-16|16|  nav a{color:var(--soft);text-decoration:none}
-17|17|  nav a:hover{color:var(--accent)}
-18|18|  nav span{color:var(--faint);margin:0 8px}
-19|19|
-20|20|  header{margin-bottom:56px;text-align:center}
-21|21|  header .tag{display:inline-block;font-family:var(--sans);font-size:10px;letter-spacing:.14em;color:var(--asoft);border:1px solid var(--asoft);border-radius:20px;padding:3px 14px;margin-bottom:16px}
-22|22|  header h1{font-size:34px;font-weight:300;letter-spacing:.05em;line-height:1.4;margin-bottom:12px}
-23|23|  header h1 span{color:var(--accent)}
-24|24|  header p{font-size:15px;color:var(--soft);max-width:440px;margin:0 auto;line-height:1.7}
-25|25|
-26|26|  .numbers{display:flex;justify-content:center;gap:32px;padding:28px 0;margin-bottom:48px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
-27|27|  .num-item{text-align:center;min-width:80px}
-28|28|  .num-item .n{font-size:30px;font-weight:300;color:var(--accent);font-family:var(--sans);line-height:1.1}
-29|29|  .num-item .l{font-size:11px;color:var(--faint);font-family:var(--sans);letter-spacing:.06em;margin-top:2px}
-30|30|
-31|31|  section{margin-bottom:64px}
-32|32|  h2{font-size:20px;font-weight:400;color:var(--accent);letter-spacing:.03em;margin-bottom:24px;padding-bottom:10px;border-bottom:1px solid var(--hair)}
-33|33|  h3{font-size:16px;font-weight:600;color:var(--ink);margin:28px 0 10px}
-34|34|  p{font-size:15px;margin-bottom:14px;line-height:1.85}
-35|35|
-36|36|  table{width:100%;border-collapse:collapse;margin:20px 0 28px;font-size:14px}
-37|37|  th,td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--hair)}
-38|38|  th{font-weight:600;color:var(--soft);font-size:11px;letter-spacing:.07em;font-family:var(--sans);text-transform:uppercase;width:20%}
-39|39|
-40|40|  .callout{padding:22px 26px;border-left:4px solid var(--accent);background:rgba(47,110,100,.04);margin:24px 0;font-size:15px;line-height:1.8;border-radius:0 6px 6px 0}
-41|41|
-42|42|  .tier-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0}
-43|43|  .tier{padding:24px 20px;border:1px solid var(--hair);border-radius:8px;background:rgba(255,253,250,.3)}
-44|44|  .tier.featured{border:2px solid var(--gold);background:rgba(196,149,106,.04)}
-45|45|  .tier .tn{font-size:16px;font-weight:600;margin-bottom:2px}
-46|46|  .tier .ts{font-size:11px;color:var(--faint);font-family:var(--sans);margin-bottom:10px}
-47|47|  .tier .td{font-size:13px;color:var(--soft);line-height:1.7}
-48|48|
-49|49|  .partner-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:16px 0}
-50|50|  .partner-tag{padding:10px 14px;background:rgba(255,253,250,.3);border:1px solid var(--hair);border-radius:6px;font-size:13px}
-51|51|  .partner-tag .pn{font-weight:600;font-size:14px}
-52|52|  .partner-tag .pr{font-size:11px;color:var(--soft);font-family:var(--sans);margin-top:2px}
-53|53|
-54|54|  ul{list-style:none;padding:0;margin:12px 0 20px}
-55|55|  ul li{padding:5px 0 5px 18px;position:relative;font-size:14px}
-56|56|  ul li::before{content:'—';position:absolute;left:0;color:var(--asoft);font-size:11px}
-57|57|
-58|58|  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-59|59|
-60|60|  .cta{text-align:center;padding:40px;margin-top:40px;border:2px solid var(--accent);border-radius:10px;background:rgba(47,110,100,.03)}
-61|61|  .cta h3{font-size:18px;color:var(--accent);margin-bottom:6px}
-62|62|  .cta p{font-size:14px;color:var(--soft)}
-63|63|
-64|64|  footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--hair);text-align:center;font-family:var(--sans);font-size:12px;color:var(--faint)}
-65|65|  footer a{color:var(--soft);text-decoration:none}
-66|66|  footer a:hover{color:var(--accent)}
-67|67|
-68|68|  hr{border:none;border-top:1px solid var(--hair);margin:44px 0}
-69|69|
-70|70|  @media(max-width:600px){
-71|71|    article{padding:40px 18px 80px}
-72|72|    header h1{font-size:26px}
-73|73|    .numbers{gap:20px}
-74|74|    .num-item .n{font-size:22px}
-75|75|    .tier-row{grid-template-columns:1fr}
-76|76|    .grid-2{grid-template-columns:1fr}
-77|77|    .partner-grid{grid-template-columns:1fr 1fr}
-78|78|  }
-79|79|</style>
-80|80|</head>
-81|81|<body>
-82|82|<article>
-83|83|
-84|84|<nav><a href="mazu-intro.html">← 首页</a><span>/</span>合作策划案</nav>
-85|85|
-86|86|<header>
-87|87|  <div class="tag">Partnership · 2026</div>
-88|88|  <h1><span>妈祖</span> · AI国风诗选短剧</h1>
-89|89|  <p>首部AI国风诗选短剧。千年IP，4亿信众，5000+宫庙遍布49国。24集×3-5分钟。8月初完成制作。</p>
-90|90|</header>
-91|91|
-92|92|<div class="numbers">
-93|93|  <div class="num-item"><div class="n">1000年</div><div class="l">IP历史</div></div>
-94|94|  <div class="num-item"><div class="n">4亿</div><div class="l">全球信众</div></div>
-95|95|  <div class="num-item"><div class="n">5000+</div><div class="l">宫庙 · 49国</div></div>
-96|96|  <div class="num-item"><div class="n">69人</div><div class="l">社群</div></div>
-97|97|  <div class="num-item"><div class="n">24集</div><div class="l">3-5分/集</div></div>
-98|98|</div>
-99|99|
-100|100|<section>
-101|101|  <h2>为什么做</h2>
-102|102|  <div class="callout">
-103|103|    妈祖是<strong>善意的化身</strong>。1000年来，人们去拜她，不是因为她是「国家非遗」、不是因为她有4亿信众——是因为她让人感觉自己被在乎。
-104|104|  </div>
-105|105|  <p>这个项目的起点不是一个商业计划，是一个信念：<strong>在今天这个时代，人们比任何时候都更需要被接住的瞬间。</strong></p>
-106|106|  <p>焦虑、孤独、身份迷失——当代中国人的精神困境是真实的。妈祖能做的，不是显灵救人，是让人想起：有人在看着你，有人记得你的名字。</p>
-107|107|  <p>AI降低了制作门槛，让千年IP可以用当代表达触达更多人。但技术只是手段。<strong>底层的核始终是三个字：真、善、美。</strong>——让每一个看剧的人，在某一个瞬间，感觉自己被什么东西接住了。</p>
-108|108|</section>
-109|109|
-110|110|<section>
-111|111|  <h2>为什么是现在</h2>
-112|112|  <div class="grid-2">
-113|113|    <div>
-114|114|      <h3>市场信号</h3>
-115|115|      <ul>
-116|116|        <li>苏州路演：企业HR当场询价「卖给我」「没货」</li>
-117|117|        <li>国风AI短剧赛道零头部竞品</li>
-118|118|        <li>B站/小红书/抖音三平台内容缺口</li>
-119|119|      </ul>
-120|120|    </div>
-121|121|    <div>
-122|122|      <h3>制作状态</h3>
-123|123|      <ul>
-124|124|        <li>✅ 国家广电备案通过</li>
-125|125|        <li>✅ 导演+编剧组+文化顾问到位</li>
-126|126|        <li>✅ AI管线完备，6月预告片</li>
-127|127|        <li>🔄 69人社群持续增长</li>
-128|128|      </ul>
-129|129|    </div>
-130|130|  </div>
-131|131|
-132|132|  <table>
-133|133|    <tr><th>时间</th><th>里程碑</th></tr>
-134|134|    <tr><td>6月底</td><td>预告片五版本发布（B站/抖音/小红书/视频号/YouTube）</td></tr>
-135|135|    <tr><td>7月</td><td>「被接住的瞬间」全球征集上线</td></tr>
-136|136|    <tr><td>8月初</td><td>第一季24集完成制作</td></tr>
-137|137|    <tr><td>8月后</td><td>平台分发 · 有缘机制上线 · 周边开发</td></tr>
-138|138|  </table>
-139|139|</section>
-140|140|
-141|141|<section>
-142|142|  <h2>差异化</h2>
-143|143|  <table>
-144|144|    <tr><th></th><th>传统短剧</th><th>妈祖AI短剧</th></tr>
-145|145|    <tr><td>IP基础</td><td>从零建立</td><td>1000年 · 4亿信众 · 国家非遗</td></tr>
-146|146|    <tr><td>制作</td><td>真人 · 长周期 · 高成本</td><td>AI生成 · 3D写实 · 8月出片</td></tr>
-147|147|    <tr><td>内容形态</td><td>连续剧 · 沉没成本</td><td>诗选剧 · 每集独立 · 可续</td></tr>
-148|148|    <tr><td>受众</td><td>单一圈层</td><td>科技/设计/影视/海外华人/GenZ/跨文化</td></tr>
-149|149|    <tr><td>传播</td><td>依赖投流</td><td>信众自发 · 5000+宫庙线下网络</td></tr>
-150|150|  </table>
-151|151|
-152|152|  <div class="callout">
-153|153|    <strong>三重破圈主题：</strong>女性主义（妈祖作为智慧女性问题解决者）· 两岸联结（寻根/血脉自然流露）· 海外认同（掷圣杯解身份焦虑）
-154|154|  </div>
-155|155|</section>
-156|156|
-157|157|<section>
-158|158|  <h2>品牌合作</h2>
-159|159|  <p style="font-size:14px;color:var(--soft);margin-bottom:4px">不卖硬广，不贴片，不做口播。品牌帮故事被更多人看见，成为故事的一部分。</p>
-160|160|
-161|161|  <div class="tier-row">
-162|162|    <div class="tier featured">
-163|163|      <div class="tn" style="color:var(--gold)">🥇 文化守护者</div>
-164|164|      <div class="ts">仅 1-2 席</div>
-165|165|      <div class="td">联合发起署名 · 全季片尾 · 线下冠名 · 联名周边 · 知识库深度访问</div>
-166|166|    </div>
-167|167|    <div class="tier">
-168|168|      <div class="tn">🥈 共创伙伴</div>
-169|169|      <div class="ts">3-5 席</div>
-170|170|      <div class="td">单集片尾 · 线下联合呈现 · 周边推广</div>
-171|171|    </div>
-172|172|    <div class="tier">
-173|173|      <div class="tn">🥉 支持品牌</div>
-174|174|      <div class="ts">不限</div>
-175|175|      <div class="td">物料露出 · 赞助合作 · 社群活动</div>
-176|176|    </div>
-177|177|  </div>
-178|178|
-179|179|  <p style="font-size:13px;color:var(--soft)"><strong>适合：</strong>文旅 · 茶 · 香薰 · 家居 · 海洋环保 · 科技/AI · 出行 · 文创 · 女性生活方式</p>
-180|180|</section>
-181|181|
-182|182|<section>
-183|183|  <h2>已有合作方 & 潜在伙伴</h2>
-184|184|  <p style="font-size:12px;color:var(--faint);font-family:var(--sans);letter-spacing:.06em;margin-bottom:10px">指导单位</p>
-185|185|  <div class="partner-grid">
-186|186|    <div class="partner-tag"><div class="pn">妈祖文化协会</div><div class="pr">指导单位</div></div>
-187|187|    <div class="partner-tag"><div class="pn">莆田文旅局</div><div class="pr">指导单位</div></div>
-188|188|  </div>
-189|189|
-190|190|  <p style="font-size:12px;color:var(--faint);font-family:var(--sans);letter-spacing:.06em;margin:20px 0 10px">机构 & 平台</p>
-191|191|  <div class="partner-grid">
-192|192|    <div class="partner-tag"><div class="pn">上海浦东科创协会</div><div class="pr">科创+文化</div></div>
-193|193|    <div class="partner-tag"><div class="pn">长三角高端产业促进中心</div><div class="pr">AI专委会</div></div>
-194|194|    <div class="partner-tag"><div class="pn">星辰 StarLab</div><div class="pr">全球OPC</div></div>
-195|195|    <div class="partner-tag"><div class="pn">waytoAGI</div><div class="pr">AI创作者社区</div></div>
-196|196|    <div class="partner-tag"><div class="pn">706</div><div class="pr">全球青年社群</div></div>
-197|197|    <div class="partner-tag"><div class="pn">33美术馆 · 齐飞</div><div class="pr">广美教授</div></div>
-198|198|    <div class="partner-tag"><div class="pn">红果 · 福秀</div><div class="pr">S级制作方</div></div>
-199|199|    <div class="partner-tag"><div class="pn">斯坦福湾区 · AGO</div><div class="pr">硅谷华人</div></div>
-200|200|    <div class="partner-tag"><div class="pn">纽约AIGC · Artemis</div><div class="pr">国际传播</div></div>
-201|201|    <div class="partner-tag"><div class="pn">北电 / 厦大 / 台大</div><div class="pr">高校网络</div></div>
-202|202|    <div class="partner-tag"><div class="pn">高雄寺庙 · Richard</div><div class="pr">台湾在地</div></div>
-203|203|    <div class="partner-tag"><div class="pn">昆山杜克</div><div class="pr">艺术疗愈</div></div>
-204|204|  </div>
-205|205|</section>
-206|206|
-207|207|<section>
-208|208|  <h2>五年路线</h2>
-209|209|  <table>
-210|210|    <tr><th>年份</th><th>阶段</th><th>核心产出</th><th>收入模型</th></tr>
-211|211|    <tr><td>2026</td><td>破土</td><td>第一季24集 · 预告片 · 征集</td><td>分账 · 文旅</td></tr>
-212|212|    <tr><td>2027</td><td>扎根</td><td>第二季 · AI工具包开源 · 周边</td><td>分账+周边+线下</td></tr>
-213|213|    <tr><td>2028</td><td>出海</td><td>第三季 · 全球巡展 · UNESCO</td><td>授权+巡展</td></tr>
-214|214|    <tr><td>4-5年</td><td>IP化</td><td>院线电影 · IP授权 · 数字庙宇</td><td>票房+授权+衍生</td></tr>
-215|215|  </table>
-216|216|
-217|217|  <div class="callout">
-218|218|    <strong>核心引擎：</strong>诗选剧每集独立→无限续季。互动系统（掷圣杯+有缘机制）→从观看到参与。社群共创→降低内容成本。公益基因→品牌ESG价值。
-219|219|  </div>
-220|220|</section>
-221|221|
-222|222|<section>
-223|223|  <h2>社群发起人说</h2>
-224|224|  <div class="callout">
-225|225|    「我以前太想把这东西变成我的，所以开发不出来。我现在放开——大家一起来做，利益共享。我负责我最擅长的：商业化、销售、对接企业CXO级客户。创意和内容，找最好的伙伴一起做。」
-226|226|    <p style="text-align:right;font-size:13px;color:var(--faint);margin-top:12px">—— Libi · 布布</p>
-227|227|  </div>
-228|228|</section>
-229|229|
-230|230|<div class="cta">
-231|231|  <h3>合作洽谈</h3>
-232|232|  <p>品牌合作 · 投资 · 资源对接 · 全球推广</p>
-233|233|</div>
-234|234|
-235|235|<footer>
-236|236|  <a href="mazu-intro.html">首页</a> ·
-237|237|  <a href="mazu-recruit.html">共创者招募</a> ·
-238|238|  <a href="https://libellulezhang.github.io/mazu-knowledge/" target="_blank">知识库</a> ·
-239|239|  <a href="https://github.com/LibelluleZhang/mazu-meeting" target="_blank">GitHub</a>
-240|240|</footer>
-241|241|
-242|242|</article>
-243|243|</body>
-244|244|</html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>妈祖AI短剧 · 合作策划案</title>
+<style>
+  :root{--bg:#efe2d4;--ink:#33302e;--soft:#6b625c;--faint:#8b827c;--accent:#2f6e64;--asoft:#5d9a90;--gold:#c4956a;--red:#c4706e;--hair:rgba(80,74,70,0.10);--card:rgba(255,253,250,0.45)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{background:var(--bg);-webkit-text-size-adjust:100%}
+  body{color:var(--ink);font-family:"Noto Serif SC","Songti SC","STSong","Source Serif 4",Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.85}
+  .sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+  article{max-width:680px;margin:0 auto;padding:56px 28px 96px}
+
+  nav{margin-bottom:44px;font-size:12px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+  nav a{color:var(--soft);text-decoration:none;transition:color .2s}
+  nav a:hover{color:var(--accent)}
+  nav span{color:var(--faint);margin:0 6px}
+
+  header{margin-bottom:52px;text-align:center}
+  header .tag{display:inline-block;font-size:10px;letter-spacing:.15em;color:var(--asoft);border:1px solid var(--asoft);border-radius:20px;padding:4px 16px;margin-bottom:20px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+  header h1{font-size:clamp(24px,5vw,34px);font-weight:300;letter-spacing:.04em;line-height:1.4;margin-bottom:12px}
+  header h1 span{color:var(--accent);font-weight:400}
+  header p{font-size:14px;color:var(--soft);max-width:440px;margin:0 auto;line-height:1.7}
+
+  .numbers{display:flex;justify-content:center;gap:28px;padding:28px 0;margin-bottom:48px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);flex-wrap:wrap}
+  .num-item{text-align:center;min-width:70px}
+  .num-item .n{font-size:28px;font-weight:300;color:var(--accent);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.1}
+  .num-item .l{font-size:10px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;letter-spacing:.06em;margin-top:3px;text-transform:uppercase}
+
+  section{margin-bottom:60px}
+  h2{font-size:20px;font-weight:400;color:var(--accent);letter-spacing:.03em;margin-bottom:22px;padding-bottom:10px;border-bottom:1px solid var(--hair)}
+  h3{font-size:15px;font-weight:600;color:var(--ink);margin:24px 0 10px}
+  p{font-size:15px;margin-bottom:12px;line-height:1.85}
+  .soft{color:var(--soft);font-size:13px}
+
+  .callout{padding:22px 26px;border-left:4px solid var(--accent);background:rgba(47,110,100,.04);margin:22px 0;font-size:15px;line-height:1.85;border-radius:0 8px 8px 0}
+
+  table{width:100%;border-collapse:collapse;margin:18px 0 24px;font-size:13px}
+  th,td{padding:10px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--hair)}
+  th{font-weight:600;color:var(--soft);font-size:10px;letter-spacing:.08em;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;text-transform:uppercase;width:22%}
+
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+  .tier{padding:22px 20px;border:1px solid var(--hair);border-radius:10px;background:var(--card);transition:all .25s}
+  .tier:hover{border-color:var(--asoft);transform:translateY(-2px);box-shadow:0 4px 20px rgba(0,0,0,.04)}
+  .tier.featured{border:2px solid var(--gold);background:rgba(196,149,106,.05)}
+  .tier .tn{font-size:15px;font-weight:600;margin-bottom:2px}
+  .tier .ts{font-size:10px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;margin-bottom:10px}
+  .tier .td{font-size:12px;color:var(--soft);line-height:1.7}
+
+  .partners{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin:14px 0}
+  .ptag{padding:10px 14px;background:var(--card);border:1px solid var(--hair);border-radius:8px;font-size:13px;transition:border-color .2s}
+  .ptag:hover{border-color:var(--asoft)}
+  .ptag .pn{font-weight:600;font-size:14px}
+  .ptag .pr{font-size:10px;color:var(--soft);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;margin-top:2px}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+
+  ul{list-style:none;padding:0;margin:10px 0 18px}
+  ul li{padding:4px 0 4px 18px;position:relative;font-size:14px;line-height:1.7}
+  ul li::before{content:'—';position:absolute;left:0;color:var(--asoft);font-size:10px}
+
+  .cta{text-align:center;padding:36px;margin-top:40px;border:2px solid var(--accent);border-radius:12px;background:rgba(47,110,100,.03)}
+  .cta h3{font-size:18px;color:var(--accent);margin-bottom:6px;font-weight:300}
+  .cta p{font-size:13px;color:var(--soft)}
+
+  footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--hair);text-align:center;font-size:11px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+  footer a{color:var(--soft);text-decoration:none;transition:color .2s}
+  footer a:hover{color:var(--accent)}
+
+  @media(max-width:600px){
+    article{padding:40px 18px 80px}
+    .tiers{grid-template-columns:1fr}
+    .grid2{grid-template-columns:1fr}
+    .partners{grid-template-columns:1fr 1fr}
+    .numbers{gap:18px}
+    .num-item .n{font-size:22px}
+  }
+</style>
+</head>
+<body>
+<article>
+
+<nav><a href="mazu-intro.html">← 首页</a><span>/</span>合作策划案</nav>
+
+<header>
+  <div class="tag">Partnership · 2026</div>
+  <h1><span>妈祖</span> · AI国风诗选短剧</h1>
+  <p>首部AI国风诗选短剧。千年IP，当代表达。<br>24集×3-5分钟。8月初完成制作。</p>
+</header>
+
+<div class="numbers">
+  <div class="num-item"><div class="n">1000年</div><div class="l">IP历史</div></div>
+  <div class="num-item"><div class="n">4亿</div><div class="l">全球信众</div></div>
+  <div class="num-item"><div class="n">5000+</div><div class="l">宫庙·49国</div></div>
+  <div class="num-item"><div class="n">69人</div><div class="l">社群</div></div>
+  <div class="num-item"><div class="n">24集</div><div class="l">3-5分/集</div></div>
+</div>
+
+<section>
+  <h2>为什么做</h2>
+  <div class="callout">
+    妈祖是<strong>善意的化身</strong>。1000年来，人们去拜她，不是因为她是「国家非遗」——是因为她让人感觉自己被在乎。
+  </div>
+  <p>做这个项目不是因为AI短剧是风口。是因为一个问题一直在那里：<strong>在今天这个时代，人怎么感觉被在乎。</strong></p>
+  <p>你去拜妈祖的时候，不会想她是「国家级非物质文化遗产」。你是因为心里有事。可能是孩子出海没回来，可能是自己不知道该不该离开这份工作。你点一炷香，不是因为程序要求，是因为你需要有人听见。</p>
+  <p>这就是妈祖最底层的善意——<strong>她不用显灵，她在就够了。</strong>AI让这种「在场」可以被拍出来，被更多人看见。但技术只是手段。底层的核始终是三个字：真、善、美。</p>
+</section>
+
+<section>
+  <h2>为什么是现在</h2>
+  <div class="grid2">
+    <div>
+      <h3>市场信号</h3>
+      <ul>
+        <li>苏州路演：企业HR当场询价「卖给我」「没货」</li>
+        <li>国风AI短剧赛道尚无头部作品</li>
+        <li>B站/小红书/抖音三平台内容缺口</li>
+      </ul>
+    </div>
+    <div>
+      <h3>制作就绪</h3>
+      <ul>
+        <li>✅ 国家广电备案通过</li>
+        <li>✅ 导演+编剧组+文化顾问到位</li>
+        <li>✅ AI管线完备，6月底预告片</li>
+        <li>🔄 社群持续增长</li>
+      </ul>
+    </div>
+  </div>
+  <table>
+    <tr><th>时间</th><th>里程碑</th></tr>
+    <tr><td>6月底</td><td>预告片五版本发布（B站/抖音/小红书/视频号/YouTube）</td></tr>
+    <tr><td>7月</td><td>「被接住的瞬间」全球征集上线</td></tr>
+    <tr><td>8月初</td><td>第一季24集完成制作</td></tr>
+    <tr><td>8月后</td><td>平台分发 · 有缘机制上线 · 周边开发</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>差异化</h2>
+  <table>
+    <tr><th></th><th>传统短剧</th><th>妈祖AI短剧</th></tr>
+    <tr><td>IP基础</td><td>从零建立</td><td>1000年 · 4亿信众 · 国家非遗</td></tr>
+    <tr><td>制作</td><td>真人 · 长周期 · 高成本</td><td>AI生成 · 3D写实 · 8月出片</td></tr>
+    <tr><td>内容形态</td><td>连续剧 · 沉没成本</td><td>诗选剧 · 每集独立 · 可持续</td></tr>
+    <tr><td>受众</td><td>单一圈层</td><td>科技/设计/影视/海外华人/GenZ/跨文化</td></tr>
+    <tr><td>传播</td><td>依赖投流</td><td>信众自发 · 5000+宫庙线下触点</td></tr>
+  </table>
+  <div class="callout">
+    <strong>三重破圈主题：</strong>女性主义（妈祖作为智慧女性问题解决者）· 两岸联结（寻根/血脉自然流露）· 海外认同（掷圣杯解身份焦虑）
+  </div>
+</section>
+
+<section>
+  <h2>品牌合作</h2>
+  <p class="soft">不卖硬广，不贴片，不做口播。品牌帮故事被更多人看见，成为故事的一部分。</p>
+  <div class="tiers">
+    <div class="tier featured">
+      <div class="tn" style="color:var(--gold)">🥇 文化守护者</div>
+      <div class="ts">1-2 席</div>
+      <div class="td">联合发起署名 · 全季片尾 · 线下冠名 · 联名周边 · 知识库深度访问</div>
+    </div>
+    <div class="tier">
+      <div class="tn">🥈 共创伙伴</div>
+      <div class="ts">3-5 席</div>
+      <div class="td">单集片尾 · 线下联合呈现 · 周边推广</div>
+    </div>
+    <div class="tier">
+      <div class="tn">🥉 支持品牌</div>
+      <div class="ts">不限</div>
+      <div class="td">物料露出 · 赞助合作 · 社群活动</div>
+    </div>
+  </div>
+  <p class="soft"><strong>适合：</strong>文旅 · 茶 · 香薰 · 家居 · 海洋环保 · 科技/AI · 出行 · 文创 · 女性生活方式</p>
+</section>
+
+<section>
+  <h2>已有合作方 & 潜在伙伴</h2>
+  <p style="font-size:10px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;letter-spacing:.08em;margin-bottom:8px">指导单位</p>
+  <div class="partners">
+    <div class="ptag"><div class="pn">妈祖文化协会</div><div class="pr">指导单位</div></div>
+    <div class="ptag"><div class="pn">莆田文旅局</div><div class="pr">指导单位</div></div>
+  </div>
+  <p style="font-size:10px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;letter-spacing:.08em;margin:20px 0 8px">机构 & 平台</p>
+  <div class="partners">
+    <div class="ptag"><div class="pn">上海浦东科创协会</div><div class="pr">科创+文化</div></div>
+    <div class="ptag"><div class="pn">长三角高端产业促进中心</div><div class="pr">AI专委会</div></div>
+    <div class="ptag"><div class="pn">星辰 StarLab</div><div class="pr">全球OPC</div></div>
+    <div class="ptag"><div class="pn">waytoAGI</div><div class="pr">AI创作者社区</div></div>
+    <div class="ptag"><div class="pn">706</div><div class="pr">全球青年社群</div></div>
+    <div class="ptag"><div class="pn">33美术馆 · 齐飞</div><div class="pr">广美教授</div></div>
+    <div class="ptag"><div class="pn">红果 · 福秀</div><div class="pr">S级制作方</div></div>
+    <div class="ptag"><div class="pn">斯坦福湾区 · AGO</div><div class="pr">硅谷华人</div></div>
+    <div class="ptag"><div class="pn">纽约AIGC · Artemis</div><div class="pr">国际传播</div></div>
+    <div class="ptag"><div class="pn">北电 / 厦大 / 台大</div><div class="pr">高校网络</div></div>
+    <div class="ptag"><div class="pn">高雄寺庙 · Richard</div><div class="pr">台湾在地</div></div>
+    <div class="ptag"><div class="pn">昆山杜克</div><div class="pr">艺术疗愈</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>五年路线</h2>
+  <table>
+    <tr><th>年份</th><th>阶段</th><th>核心</th><th>收入模型</th></tr>
+    <tr><td>2026</td><td>破土</td><td>第一季24集 · 预告片 · 征集</td><td>分账 · 文旅</td></tr>
+    <tr><td>2027</td><td>扎根</td><td>第二季 · AI工具包开源 · 周边</td><td>分账+周边+线下</td></tr>
+    <tr><td>2028</td><td>出海</td><td>第三季 · 全球巡展 · UNESCO</td><td>授权+巡展</td></tr>
+    <tr><td>4-5年</td><td>IP化</td><td>院线电影 · IP授权 · 数字庙宇</td><td>票房+授权+衍生</td></tr>
+  </table>
+  <div class="callout">
+    <strong>核心引擎：</strong>诗选剧每集独立→无限续季。互动系统（掷圣杯+有缘机制）→从观看到参与。社群共创→降低内容成本。公益基因→品牌ESG价值。
+  </div>
+</section>
+
+<section>
+  <h2>导演说</h2>
+  <div class="callout">
+    「妈祖不是神。在故事里，她只是渔村少女。能望海、能听风、能记住每个人名字。神性来自——她比任何人更在乎每一个具体的人。」
+    <p style="text-align:right;font-size:12px;color:var(--faint);margin-top:12px">—— 郁斌 · giulianoooooo，导演 · 数字艺术家 · 莆田籍</p>
+  </div>
+</section>
+
+<div class="cta">
+  <h3>合作洽谈</h3>
+  <p>品牌合作 · 投资 · 资源对接 · 全球推广</p>
+</div>
+
+<footer>
+  <a href="mazu-intro.html">首页</a> ·
+  <a href="mazu-recruit.html">共创者招募</a> ·
+  <a href="mazu-community.html">社群成员</a> ·
+  <a href="https://libellulezhang.github.io/mazu-knowledge/" target="_blank">知识库</a>
+</footer>
+
+</article>
+</body>
+</html>
