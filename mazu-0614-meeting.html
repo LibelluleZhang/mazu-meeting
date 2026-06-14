@@ -424,15 +424,15 @@
 
 <nav class="mobile-nav" id="mobileNav">
   <button onclick="toggleDrawer()"><span class="nav-icon">☰</span>目录</button>
-  <button onclick="window.scrollTo({top:0,behavior:'smooth'})"><span class="nav-icon">↑</span>顶部</button>
-  <button onclick="sharePage()"><span class="nav-icon">↗</span>分享</button>
   <button onclick="window.open('https://libellulezhang.github.io/mazu-meeting/mazu-tinghai.html')"><span class="nav-icon">🌊</span>听海</button>
+  <button onclick="window.scrollTo({top:0,behavior:'smooth'})"><span class="nav-icon">↑</span>顶部</button>
 </nav>
 
 <div class="drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
 <div class="drawer" id="drawer">
   <div class="drawer-handle"></div>
   <nav id="drawerNav"></nav>
+  <a href="#" onclick="sharePage();return false" style="margin-top:8px;border-top:1px solid var(--hair);padding-top:12px;font-size:14px;color:var(--faint)">↗ 分享此页</a>
 </div>
 
 <div class="done-toast" id="doneToast">🎐 读完了。妈祖知道你来了。</div>
