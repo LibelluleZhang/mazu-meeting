@@ -95,25 +95,25 @@
   <div class="content" id="content">
 
     <div class="phase-prompt fade-in" id="phase-prompt">
-      <div class="title">把今天不想带走的<br>留在这里</div>
-      <div class="subtitle">妈祖会听见</div>
+      <div class="title">今天想对妈祖说的话</div>
+      <div class="subtitle">她都听着</div>
 
       <div class="chips" id="chips">
         <button class="chip" onclick="selectChip(this,'累')">累</button>
+        <button class="chip" onclick="selectChip(this,'想放下')">想放下</button>
+        <button class="chip" onclick="selectChip(this,'求平安')">求平安</button>
+        <button class="chip" onclick="selectChip(this,'想被接住')">想被接住</button>
         <button class="chip" onclick="selectChip(this,'焦虑')">焦虑</button>
-        <button class="chip" onclick="selectChip(this,'想家')">想家</button>
-        <button class="chip" onclick="selectChip(this,'不安')">不安</button>
-        <button class="chip" onclick="selectChip(this,'压力')">压力</button>
-        <button class="chip" onclick="selectChip(this,'迷茫')">迷茫</button>
-        <button class="chip" onclick="selectChip(this,'孤独')">孤独</button>
-        <button class="chip" onclick="selectChip(this,'委屈')">委屈</button>
+        <button class="chip" onclick="selectChip(this,'求勇气')">求勇气</button>
+        <button class="chip" onclick="selectChip(this,'想通了')">想通了</button>
+        <button class="chip" onclick="selectChip(this,'感恩')">感恩</button>
       </div>
 
       <div class="input-wrap">
-        <input type="text" id="worry-input" placeholder="或写你想留下的……" maxlength="50" autocomplete="off">
+        <input type="text" id="worry-input" placeholder="或写你想说的……" maxlength="50" autocomplete="off">
       </div>
-      <button class="submit-btn" id="submit-btn" onclick="offer()">投 入 海 中</button>
-      <div class="counter-text" id="counter-text">今夜已有 <span id="count-num">0</span> 人把心事留在了海里</div>
+      <button class="submit-btn" id="submit-btn" onclick="offer()">说给妈祖听</button>
+      <div class="counter-text" id="counter-text">今夜已有 <span id="count-num">0</span> 人向妈祖说了心事</div>
     </div>
 
     <div class="phase-response" id="phase-response">
@@ -144,7 +144,7 @@ function updateCounter(){
   offerCount++;localStorage.setItem('mazu_count',offerCount);
   const d=offerCount+Math.floor(Math.random()*7);
   document.getElementById('count-num').textContent=d;
-  document.getElementById('response-counter').textContent='今夜已有 '+d+' 人把心事留在了海里';
+  document.getElementById('response-counter').textContent='今夜已有 '+d+' 人向妈祖说了心事';
 }
 
 // Chip selection
