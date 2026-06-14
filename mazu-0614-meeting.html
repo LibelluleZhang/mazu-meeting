@@ -48,7 +48,37 @@
   .tinghai-card a{display:inline-block;color:var(--accent);text-decoration:none;font-size:15px;border-bottom:1px solid var(--accent);padding-bottom:2px;transition:all .2s}
   .tinghai-card a:hover{color:var(--ink);border-color:var(--ink)}
 
-  @media(max-width:600px){article{padding:48px 20px 80px}header h1{font-size:26px}h2{font-size:20px}p,li{font-size:15px}table{font-size:13px}th,td{padding:6px 8px}}</style>
+  @media(max-width:600px){article{padding:48px 20px 80px}header h1{font-size:26px}h2{font-size:20px}p,li{font-size:15px}table{font-size:13px}th,td{padding:6px 8px}}
+
+  /* ── 交互增强 ── */
+  html{scroll-behavior:smooth}
+  ::selection{background:rgba(47,110,100,.15)}
+
+  /* 阅读进度条 */
+  .progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:100;transition:width .1s linear}
+
+  /* 回顶部 */
+  .back-top{position:fixed;bottom:28px;right:28px;width:40px;height:40px;border:1px solid var(--hair);border-radius:50%;background:rgba(255,253,250,.8);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(12px);transition:all .3s;z-index:99;font-size:18px;color:var(--soft)}
+  .back-top.visible{opacity:1;transform:translateY(0)}
+  .back-top:hover{border-color:var(--accent);color:var(--accent)}
+
+  /* 折叠面板 */
+  .accordion-toggle{all:unset;display:flex;align-items:center;gap:8px;cursor:pointer;width:100%;text-align:left}
+  .accordion-toggle h2,.accordion-toggle h3{margin:0;padding:0;border:none;flex:1}
+  .accordion-toggle .arrow{font-size:14px;color:var(--faint);transition:transform .3s}
+  .accordion-toggle.open .arrow{transform:rotate(90deg)}
+  .accordion-body{overflow:hidden;transition:max-height .4s ease,opacity .3s ease}
+  .accordion-body.collapsed{max-height:0!important;opacity:0}
+
+  /* 目录浮窗 */
+  .toc-btn{position:fixed;bottom:28px;left:28px;width:40px;height:40px;border:1px solid var(--hair);border-radius:50%;background:rgba(255,253,250,.8);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:99;font-size:16px;color:var(--soft);transition:all .2s}
+  .toc-btn:hover{border-color:var(--accent);color:var(--accent)}
+  .toc-overlay{position:fixed;inset:0;background:rgba(0,0,0,.15);z-index:98;opacity:0;pointer-events:none;transition:opacity .3s}
+  .toc-overlay.show{opacity:1;pointer-events:auto}
+  .toc-panel{position:fixed;bottom:80px;left:28px;width:260px;max-height:60vh;overflow-y:auto;background:rgba(255,253,250,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--hair);border-radius:8px;padding:16px 0;z-index:99;opacity:0;transform:translateY(8px);pointer-events:none;transition:all .25s;box-shadow:0 4px 24px rgba(0,0,0,.06)}
+  .toc-panel.show{opacity:1;transform:translateY(0);pointer-events:auto}
+  .toc-panel a{display:block;padding:8px 20px;font-size:14px;color:var(--soft);text-decoration:none;transition:all .15s;border-left:2px solid transparent}
+  .toc-panel a:hover,.toc-panel a.active{color:var(--ink);border-left-color:var(--accent);background:rgba(47,110,100,.06)}</style>
 </head>
 <body>
 <article>
@@ -364,6 +394,46 @@
   本纪要为会议内容的忠实记录，不代表最终创作方向。具体创作方案仍在讨论中。
 </footer>
 
-</article>
+<div class="progress-bar" id="progress"></div>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="回顶部">↑</button>
+
+<div class="toc-overlay" id="tocOverlay" onclick="toggleToc()"></div>
+<button class="toc-btn" onclick="toggleToc()" title="目录">☰</button>
+<nav class="toc-panel" id="tocPanel"></nav>
+
+<script>
+// ── 阅读进度条 ──
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('progress').style.width=h>0?(window.scrollY/h*100)+'%':'0';
+  document.getElementById('backTop').classList.toggle('visible',window.scrollY>400);
+});
+
+// ── 目录浮窗 ──
+const toc=document.getElementById('tocPanel');
+document.querySelectorAll('section h2').forEach((h,i)=>{
+  const id='s'+i;h.id=id;
+  const a=document.createElement('a');a.href='#'+id;a.textContent=h.textContent;
+  a.onclick=()=>toggleToc();
+  toc.appendChild(a);
+});
+
+function toggleToc(){
+  const p=toc.classList.toggle('show');
+  document.getElementById('tocOverlay').classList.toggle('show',p);
+}
+
+// ── 目录高亮当前章节 ──
+const links=toc.querySelectorAll('a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  document.querySelectorAll('section h2').forEach(h=>{
+    if(h.getBoundingClientRect().top<120)cur=h.id;
+  });
+  links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+});
+</script>
+
 </body>
 </html>
