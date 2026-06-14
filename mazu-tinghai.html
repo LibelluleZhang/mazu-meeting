@@ -138,31 +138,31 @@
   s.innerHTML=h;
 })();
 
-// Ocean wave ambience
+// Ocean wave ambience — iOS needs synchronous AudioContext in touch handler
 let waveAudio=null;
 function startWaves(){
   try{
-    const ctx=new AudioContext();
-    const buflen=ctx.sampleRate*4;
+    const ctx=new(window.AudioContext||window.webkitAudioContext)();
+    const buflen=ctx.sampleRate*3;
     const buf=ctx.createBuffer(1,buflen,ctx.sampleRate);
-    const ch=buf.getChannelData(0);
-    let last=0;
-    for(let i=0;i<buflen;i++){
-      const white=Math.random()*2-1;
-      last=(last+(0.02*white))/1.02;
-      ch[i]=last*0.12*Math.sin(i*0.00003);
-    }
+    const ch=buf.getChannelData(0);let last=0;
+    for(let i=0;i<buflen;i++){const white=Math.random()*2-1;last=(last+(0.02*white))/1.02;ch[i]=last*0.12*Math.sin(i*0.00003)}
     const src=ctx.createBufferSource();src.buffer=buf;src.loop=true;
     const lp=ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=400;
     const gain=ctx.createGain();gain.gain.value=0.08;
-    src.connect(lp);lp.connect(gain);gain.connect(ctx.destination);
-    src.start();
+    src.connect(lp);lp.connect(gain);gain.connect(ctx.destination);src.start();
     waveAudio={ctx,src,gain};
   }catch(e){}
 }
-function ensureAudio(){if(!waveAudio)startWaves();else waveAudio.ctx.resume();}
-let audioStarted=false;
-['click','touchstart'].forEach(e=>document.addEventListener(e,()=>{if(!audioStarted){audioStarted=true;ensureAudio();}}));
+// Start on ANY touch/click — must be sync for iOS
+function touchStartAudio(e){
+  if(waveAudio){waveAudio.ctx.resume();return}
+  startWaves();
+  document.removeEventListener('touchstart',touchStartAudio);
+  document.removeEventListener('click',touchStartAudio);
+}
+document.addEventListener('touchstart',touchStartAudio);
+document.addEventListener('click',touchStartAudio);
 
 // Counter
 let offerCount=parseInt(localStorage.getItem('mazu_count')||'0');
