@@ -74,7 +74,7 @@
   section.visible{opacity:1;transform:translateY(0)}
 
   /* 阅读完成彩蛋 */
-  .done-toast{position:fixed;bottom:120px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);padding:10px 24px;border-radius:20px;font-size:14px;z-index:102;opacity:0;transition:all .4s;pointer-events:none;white-space:nowrap}
+  .done-toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);padding:12px 28px;border-radius:24px;font-size:15px;z-index:200;opacity:0;transition:all .5s;pointer-events:none;white-space:nowrap;box-shadow:0 4px 16px rgba(0,0,0,.15)}
   .done-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
   @media(min-width:769px){.mobile-nav{display:none}}</style>
@@ -115,13 +115,6 @@
   <p class="meta"><span>四场会议</span><span>2026年6月14日</span><span>约 4 小时</span></p>
   <p class="meta" style="margin-top:8px">基于腾讯会议转写逐字稿整理 · 智能纪要与原始录音互相校准</p>
 </header>
-
-<div class="tinghai-card">
-  <div class="th-icon">🌊</div>
-  <div class="th-title">妈祖听海</div>
-  <div class="th-desc">把今天不想带走的，留在这里。妈祖会听见。</div>
-  <a href="https://libellulezhang.github.io/mazu-meeting/mazu-tinghai.html" target="_blank">打开 →</a>
-</div>
 
 <!-- ====== OVERVIEW ====== -->
 <section>
@@ -292,6 +285,13 @@
   <h3>马老师：爱死机式的全球格式</h3>
   <p>不局限于任何一个民族或地区。妈祖概念可以关联二进制、数字化、现代科技。科学和神学的边界在今天已经模糊。格局放到全球——可能某几集根本没有妈祖，但一看就知道在讲妈祖。</p>
 </section>
+
+<div class="tinghai-card">
+  <div class="th-icon">🌊</div>
+  <div class="th-title">妈祖听海</div>
+  <div class="th-desc">把今天不想带走的，留在这里。妈祖会听见。</div>
+  <a href="https://libellulezhang.github.io/mazu-meeting/mazu-tinghai.html" target="_blank">打开 →</a>
+</div>
 
 <!-- ====== REAL STORIES ====== -->
 <section>
@@ -478,9 +478,9 @@ window.addEventListener('scroll',()=>{
 let toasted=false;
 window.addEventListener('scroll',()=>{
   if(toasted)return;
-  if((window.innerHeight+window.scrollY)>=document.documentElement.scrollHeight-80){
+  if((window.innerHeight+window.scrollY)>=document.documentElement.scrollHeight-200){
     document.getElementById('doneToast').classList.add('show');
-    setTimeout(()=>document.getElementById('doneToast').classList.remove('show'),2500);
+    setTimeout(()=>document.getElementById('doneToast').classList.remove('show'),3500);
     toasted=true;
   }
 });
