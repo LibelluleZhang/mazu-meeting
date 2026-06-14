@@ -138,38 +138,41 @@
   s.innerHTML=h;
 })();
 
-// Ocean wave ambience — iOS needs synchronous AudioContext in touch handler
+// Ocean wave ambience — HTML5 Audio for max compatibility
 let waveAudio=null;
 function startWaves(){
   try{
-    const ctx=new(window.AudioContext||window.webkitAudioContext)();
-    // Generate rhythmic ocean waves: slow swell + gentle foam
-    const dur=6,rate=ctx.sampleRate,len=rate*dur;
-    const buf=ctx.createBuffer(1,len,rate);
-    const ch=buf.getChannelData(0);
+    // Generate a 6-second wave audio as WAV base64
+    const rate=22050,dur=6,len=rate*dur;
+    const buf=new ArrayBuffer(44+len*2);
+    const v=new DataView(buf);
+    // WAV header
+    const w=(p,str)=>{for(let i=0;i<4;i++)v.setUint8(p+i,str.charCodeAt(i))};
+    w(0,'RIFF');v.setUint32(4,36+len*2,true);w(8,'WAVE');w(12,'fmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,rate,true);v.setUint32(28,rate*2,true);v.setUint16(32,2,true);v.setUint16(34,16,true);w(36,'data');v.setUint32(40,len*2,true);
     let last=0;
     for(let i=0;i<len;i++){
       const t=i/rate;
-      const swell=Math.sin(t*0.15)*0.5+0.5; // slow 7-second swell
+      const swell=Math.sin(t*0.15)*0.5+0.5;
       const white=Math.random()*2-1;
       last=(last+0.015*white)/1.015;
-      ch[i]=last*0.35*swell;
+      const s=Math.max(-1,Math.min(1,last*0.4*swell));
+      v.setInt16(44+i*2,s*32767,true);
     }
-    const src=ctx.createBufferSource();src.buffer=buf;src.loop=true;
-    const lp=ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=600;
-    const gain=ctx.createGain();gain.gain.value=0.22;
-    src.connect(lp);lp.connect(gain);gain.connect(ctx.destination);src.start();
-    waveAudio={ctx,src,gain};
-  }catch(e){console.log('audio:',e)}
+    const blob=new Blob([buf],{type:'audio/wav'});
+    const url=URL.createObjectURL(blob);
+    const a=new Audio(url);a.loop=true;a.volume=0.25;
+    a.play().catch(()=>{});
+    waveAudio={el:a,url};
+  }catch(e){}
 }
 function touchStartAudio(e){
-  if(waveAudio){waveAudio.ctx.resume();return}
+  if(waveAudio){waveAudio.el.play().catch(()=>{});return}
   startWaves();
   document.removeEventListener('touchstart',touchStartAudio);
   document.removeEventListener('click',touchStartAudio);
 }
-document.addEventListener('touchstart',touchStartAudio);
-document.addEventListener('click',touchStartAudio);
+document.addEventListener('touchstart',touchStartAudio,{passive:true});
+document.addEventListener('click',touchStartAudio,{passive:true});
 
 // Counter
 let offerCount=parseInt(localStorage.getItem('mazu_count')||'0');
