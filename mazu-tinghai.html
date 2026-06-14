@@ -5,437 +5,237 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>妈祖听海</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&display=swap');
-  @import url('https://fonts.font.im/css2?family=Noto+Serif+SC:wght@300;400;600;700&display=swap');
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: #1a2740;
-    font-family: 'Noto Serif SC', 'Songti SC', 'PingFang SC', serif;
-    height: 100vh;
-    height: 100dvh;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    -webkit-tap-highlight-color: transparent;
-    user-select: none;
-    -webkit-user-select: none;
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:#0d1b2a;font-family:"Songti SC","STSong","PingFang SC",serif;
+    height:100vh;height:100dvh;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+    -webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;
+  }
+  .container{
+    width:100%;max-width:450px;height:100vh;height:100dvh;position:relative;overflow:hidden;
+    background:linear-gradient(180deg,#0d1b2a 0%,#162438 35%,#1e3a5c 100%);
   }
 
-  .container {
-    width: 100%;
-    max-width: 450px;
-    height: 100vh;
-    height: 100dvh;
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(180deg, #0d1b2a 0%, #1b2838 40%, #2a3f5f 100%);
-  }
+  /* Ocean */
+  .ocean{position:absolute;bottom:0;left:0;right:0;height:40%;overflow:hidden}
+  .wave{position:absolute;bottom:0;left:-50%;width:200%;height:100%}
+  .wave:nth-child(1){background:radial-gradient(ellipse at 30% 100%,rgba(180,210,240,.35) 0%,transparent 55%);animation:wave1 9s ease-in-out infinite}
+  .wave:nth-child(2){background:radial-gradient(ellipse at 70% 100%,rgba(160,200,230,.2) 0%,transparent 55%);animation:wave2 12s ease-in-out infinite}
+  .wave:nth-child(3){background:radial-gradient(ellipse at 50% 100%,rgba(140,185,220,.12) 0%,transparent 55%);animation:wave3 15s ease-in-out infinite}
+  @keyframes wave1{0%,100%{transform:translateY(0)translateX(0)}50%{transform:translateY(-10px)translateX(3%)}}
+  @keyframes wave2{0%,100%{transform:translateY(0)translateX(0)}50%{transform:translateY(-6px)translateX(-2%)}}
+  @keyframes wave3{0%,100%{transform:translateY(0)translateX(0)}50%{transform:translateY(-4px)translateX(1%)}}
 
-  /* --- Animated ocean background --- */
-  .ocean {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 45%;
-    overflow: hidden;
-  }
-  .wave {
-    position: absolute;
-    bottom: 0; left: -50%;
-    width: 200%;
-    height: 100%;
-    opacity: 0.3;
-  }
-  .wave:nth-child(1) {
-    background: radial-gradient(ellipse at 30% 100%, rgba(180,210,240,0.4) 0%, transparent 60%);
-    animation: wave1 8s ease-in-out infinite;
-  }
-  .wave:nth-child(2) {
-    background: radial-gradient(ellipse at 70% 100%, rgba(160,200,230,0.25) 0%, transparent 60%);
-    animation: wave2 11s ease-in-out infinite;
-  }
-  .wave:nth-child(3) {
-    background: radial-gradient(ellipse at 50% 100%, rgba(140,185,220,0.15) 0%, transparent 60%);
-    animation: wave3 14s ease-in-out infinite;
-  }
-  @keyframes wave1 { 0%,100%{transform:translateY(0)translateX(0)} 50%{transform:translateY(-8px)translateX(3%)} }
-  @keyframes wave2 { 0%,100%{transform:translateY(0)translateX(0)} 50%{transform:translateY(-5px)translateX(-2%)} }
-  @keyframes wave3 { 0%,100%{transform:translateY(0)translateX(0)} 50%{transform:translateY(-3px)translateX(1%)} }
+  /* Stars */
+  .stars{position:absolute;top:0;left:0;right:0;height:60%}
+  .star{position:absolute;background:#fff;border-radius:50%;animation:twinkle 3s ease-in-out infinite}
+  @keyframes twinkle{0%,100%{opacity:.2}50%{opacity:.9}}
 
-  /* --- Stars --- */
-  .stars {
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 55%;
-    overflow: hidden;
-  }
-  .star {
-    position: absolute;
-    width: 2px; height: 2px;
-    background: #fff;
-    border-radius: 50%;
-    animation: twinkle 3s ease-in-out infinite;
-  }
-  @keyframes twinkle {
-    0%,100% { opacity: 0.3; }
-    50% { opacity: 1; }
-  }
+  /* Moon */
+  .moon{position:absolute;top:12%;left:50%;transform:translateX(-50%);width:48px;height:48px;background:radial-gradient(circle,rgba(255,245,220,.7) 0%,rgba(255,245,220,.15) 45%,transparent 65%);border-radius:50%;transition:all 1.2s ease}
+  .moon.brighter{box-shadow:0 0 40px rgba(255,245,220,.25),0 0 80px rgba(255,245,220,.1)}
+  .moon-reflection{position:absolute;bottom:32%;left:50%;transform:translateX(-50%);width:80px;height:4px;background:linear-gradient(90deg,transparent,rgba(255,245,220,.15),transparent);border-radius:2px;animation:shimmer 4s ease-in-out infinite}
+  @keyframes shimmer{0%,100%{opacity:.25;width:60px}50%{opacity:.6;width:100px}}
 
-  /* --- Moon reflection --- */
-  .moon-path {
-    position: absolute;
-    top: 15%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40px; height: 40px;
-    background: radial-gradient(circle, rgba(255,245,220,0.6) 0%, rgba(255,245,220,0.1) 50%, transparent 70%);
-    border-radius: 50%;
-  }
-  .moon-reflection {
-    position: absolute;
-    bottom: 35%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px; height: 4px;
-    background: linear-gradient(90deg, transparent, rgba(255,245,220,0.15), transparent);
-    border-radius: 2px;
-    animation: shimmer 4s ease-in-out infinite;
-  }
-  @keyframes shimmer {
-    0%,100% { opacity: 0.3; width: 60px; }
-    50% { opacity: 0.7; width: 100px; }
-  }
+  /* Flying lantern */
+  .lantern-fly{position:absolute;font-size:28px;z-index:20;pointer-events:none;animation:flyUp 4s ease-out forwards;opacity:0}
+  @keyframes flyUp{0%{opacity:.9;transform:translateY(0)scale(.6)}30%{opacity:1;transform:translateY(-80px)scale(1)}100%{opacity:0;transform:translateY(-300px)scale(.4)}}
 
-  /* --- Content area --- */
-  .content {
-    position: relative;
-    z-index: 10;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 32px;
-    transition: all 0.8s ease;
-  }
+  /* Content */
+  .content{position:relative;z-index:10;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 28px}
 
-  /* --- Phase 1: Prompt --- */
-  .phase-prompt { text-align: center; }
-  .phase-prompt .title {
-    font-size: 22px;
-    font-weight: 300;
-    color: rgba(255,255,255,0.85);
-    letter-spacing: 0.15em;
-    margin-bottom: 8px;
-    line-height: 1.6;
-  }
-  .phase-prompt .subtitle {
-    font-size: 13px;
-    color: rgba(255,255,255,0.35);
-    letter-spacing: 0.2em;
-  }
-  .input-wrap {
-    margin-top: 40px;
-    width: 100%;
-    position: relative;
-  }
-  .input-wrap input {
-    width: 100%;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 2px;
-    padding: 16px 20px;
-    font-size: 17px;
-    font-family: inherit;
-    color: rgba(255,255,255,0.85);
-    letter-spacing: 0.08em;
-    outline: none;
-    transition: border-color 0.4s;
-    text-align: center;
-  }
-  .input-wrap input::placeholder {
-    color: rgba(255,255,255,0.2);
-    letter-spacing: 0.1em;
-  }
-  .input-wrap input:focus {
-    border-color: rgba(255,255,255,0.35);
-  }
-  .submit-btn {
-    margin-top: 20px;
-    background: none;
-    border: 1px solid rgba(255,255,255,0.2);
-    color: rgba(255,255,255,0.6);
-    padding: 12px 36px;
-    font-size: 14px;
-    font-family: inherit;
-    letter-spacing: 0.2em;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: all 0.4s;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .submit-btn:hover, .submit-btn:active {
-    border-color: rgba(255,255,255,0.5);
-    color: rgba(255,255,255,0.9);
-  }
-  .counter-text {
-    margin-top: 50px;
-    font-size: 12px;
-    color: rgba(255,255,255,0.2);
-    letter-spacing: 0.1em;
-    transition: opacity 0.8s;
-  }
+  /* Phase 1 */
+  .phase-prompt{text-align:center;width:100%}
+  .phase-prompt .title{font-size:22px;font-weight:300;color:rgba(255,255,255,.85);letter-spacing:.12em;margin-bottom:6px;line-height:1.6}
+  .phase-prompt .subtitle{font-size:13px;color:rgba(255,255,255,.3);letter-spacing:.2em;margin-bottom:32px}
 
-  /* --- Phase 2: Dissolving --- */
-  .phase-dissolve {
-    display: none;
-    text-align: center;
-    width: 100%;
-  }
-  .dissolve-text {
-    font-size: 20px;
-    color: rgba(255,255,255,0.6);
-    letter-spacing: 0.15em;
-    animation: fadeDown 3s ease-in forwards;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    white-space: nowrap;
-  }
-  @keyframes fadeDown {
-    0% { opacity: 0.7; transform: translate(-50%,-50%); }
-    30% { opacity: 0.4; transform: translate(-50%,-30%); }
-    100% { opacity: 0; transform: translate(-50%, 40%); }
-  }
+  /* Quick-tap chips */
+  .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:20px}
+  .chip{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.55);padding:10px 18px;border-radius:20px;font-size:14px;font-family:inherit;cursor:pointer;transition:all .25s;letter-spacing:.05em;-webkit-tap-highlight-color:transparent}
+  .chip:active,.chip:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.85);transform:scale(1.04)}
+  .chip.selected{background:rgba(255,255,255,.15);border-color:rgba(255,245,220,.4);color:#fff}
 
-  /* --- Phase 3: Response --- */
-  .phase-response {
-    display: none;
-    text-align: center;
-  }
-  .response-icon {
-    font-size: 40px;
-    margin-bottom: 24px;
-    animation: gentlePulse 3s ease-in-out infinite;
-  }
-  @keyframes gentlePulse {
-    0%,100% { opacity: 0.5; transform: scale(1); }
-    50% { opacity: 0.8; transform: scale(1.05); }
-  }
-  .response-line {
-    font-size: 18px;
-    font-weight: 300;
-    color: rgba(255,255,255,0.8);
-    letter-spacing: 0.12em;
-    line-height: 1.8;
-    margin-bottom: 40px;
-  }
-  .response-counter {
-    font-size: 12px;
-    color: rgba(255,255,255,0.25);
-    letter-spacing: 0.12em;
-    margin-bottom: 30px;
-  }
-  .again-btn {
-    background: none;
-    border: 1px solid rgba(255,255,255,0.15);
-    color: rgba(255,255,255,0.4);
-    padding: 10px 28px;
-    font-size: 12px;
-    font-family: inherit;
-    letter-spacing: 0.2em;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: all 0.4s;
-  }
-  .again-btn:hover, .again-btn:active {
-    border-color: rgba(255,255,255,0.35);
-    color: rgba(255,255,255,0.7);
-  }
+  /* Input */
+  .input-wrap{margin-top:8px;width:100%;position:relative}
+  .input-wrap input{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:14px 20px;font-size:16px;font-family:inherit;color:rgba(255,255,255,.85);letter-spacing:.06em;outline:none;text-align:center;transition:border-color .3s}
+  .input-wrap input::placeholder{color:rgba(255,255,255,.18)}
+  .input-wrap input:focus{border-color:rgba(255,245,220,.35)}
 
-  /* --- Mazu lantern in corner --- */
-  .lantern {
-    position: absolute;
-    top: 20px; right: 24px;
-    font-size: 22px;
-    opacity: 0.3;
-    animation: sway 4s ease-in-out infinite;
-  }
-  @keyframes sway {
-    0%,100% { transform: rotate(-3deg); }
-    50% { transform: rotate(3deg); }
-  }
+  /* Submit */
+  .submit-btn{margin-top:16px;background:none;border:1px solid rgba(255,245,220,.25);color:rgba(255,245,220,.6);padding:12px 40px;font-size:15px;font-family:inherit;letter-spacing:.15em;border-radius:24px;cursor:pointer;transition:all .3s;-webkit-tap-highlight-color:transparent}
+  .submit-btn:active,.submit-btn:hover{border-color:rgba(255,245,220,.5);color:rgba(255,245,220,.9);background:rgba(255,245,220,.05)}
+  .counter-text{margin-top:36px;font-size:12px;color:rgba(255,255,255,.18);letter-spacing:.1em}
 
-  /* --- Closing hint --- */
-  .close-hint {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 11px;
-    color: rgba(255,255,255,0.15);
-    letter-spacing: 0.15em;
-    transition: opacity 0.8s;
-  }
+  /* Phase 3 */
+  .phase-response{display:none;text-align:center;width:100%}
+  .response-icon{font-size:44px;margin-bottom:20px;animation:gentlePulse 3s ease-in-out infinite}
+  @keyframes gentlePulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:.85;transform:scale(1.06)}}
+  .response-line{font-size:18px;font-weight:300;color:rgba(255,255,255,.8);letter-spacing:.1em;line-height:1.9;margin-bottom:36px}
+  .response-counter{font-size:12px;color:rgba(255,255,255,.22);letter-spacing:.1em;margin-bottom:24px}
+  .again-btn{background:none;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.35);padding:10px 28px;font-size:13px;font-family:inherit;letter-spacing:.15em;border-radius:20px;cursor:pointer;transition:all .3s}
+  .again-btn:active,.again-btn:hover{border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.65)}
 
-  /* Shared animation */
-  .fade-in {
-    animation: fadeIn 1.5s ease forwards;
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  /* Lantern icon */
+  .lantern-corner{position:absolute;top:20px;right:24px;font-size:22px;opacity:.25;animation:sway 4s ease-in-out infinite}
+  @keyframes sway{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+  .close-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-size:11px;color:rgba(255,255,255,.12);letter-spacing:.12em}
+  .fade-in{animation:fadeIn 1.2s ease forwards}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 <body>
-
 <div class="container" id="container">
-  <!-- Ocean -->
-  <div class="ocean">
-    <div class="wave"></div>
-    <div class="wave"></div>
-    <div class="wave"></div>
-  </div>
-
-  <!-- Stars -->
+  <div class="ocean"><div class="wave"></div><div class="wave"></div><div class="wave"></div></div>
   <div class="stars" id="stars"></div>
-
-  <!-- Moon -->
-  <div class="moon-path"></div>
+  <div class="moon" id="moon"></div>
   <div class="moon-reflection"></div>
+  <div class="lantern-corner">🏮</div>
 
-  <!-- Lantern -->
-  <div class="lantern">🏮</div>
-
-  <!-- Content -->
   <div class="content" id="content">
 
-    <!-- Phase 1: Prompt -->
     <div class="phase-prompt fade-in" id="phase-prompt">
       <div class="title">把今天不想带走的<br>留在这里</div>
       <div class="subtitle">妈祖会听见</div>
+
+      <div class="chips" id="chips">
+        <button class="chip" onclick="selectChip(this,'累')">累</button>
+        <button class="chip" onclick="selectChip(this,'焦虑')">焦虑</button>
+        <button class="chip" onclick="selectChip(this,'想家')">想家</button>
+        <button class="chip" onclick="selectChip(this,'不安')">不安</button>
+        <button class="chip" onclick="selectChip(this,'压力')">压力</button>
+        <button class="chip" onclick="selectChip(this,'迷茫')">迷茫</button>
+        <button class="chip" onclick="selectChip(this,'孤独')">孤独</button>
+        <button class="chip" onclick="selectChip(this,'委屈')">委屈</button>
+      </div>
+
       <div class="input-wrap">
-        <input type="text" id="worry-input" placeholder="一个字就好……" maxlength="50" autocomplete="off">
+        <input type="text" id="worry-input" placeholder="或写你想留下的……" maxlength="50" autocomplete="off">
       </div>
       <button class="submit-btn" id="submit-btn" onclick="offer()">投 入 海 中</button>
-      <div class="counter-text" id="counter-text">今夜已有 0 人把心事留在了海里</div>
+      <div class="counter-text" id="counter-text">今夜已有 <span id="count-num">0</span> 人把心事留在了海里</div>
     </div>
 
-    <!-- Phase 3: Response (hidden) -->
     <div class="phase-response" id="phase-response">
       <div class="response-icon">🕯️</div>
-      <div class="response-line" id="response-line">妈祖收下了。<br>明天海面会很平。</div>
-      <div class="response-counter" id="response-counter">今夜已有 0 人把心事留在了海里</div>
+      <div class="response-line" id="response-line"></div>
+      <div class="response-counter" id="response-counter"></div>
       <button class="again-btn" onclick="reset()">再留一件</button>
     </div>
 
   </div>
-
   <div class="close-hint" id="close-hint">截屏分享 · 或直接关闭</div>
 </div>
 
 <script>
-  // Generate stars
-  (function() {
-    const starsEl = document.getElementById('stars');
-    const count = 40;
-    let html = '';
-    for (let i = 0; i < count; i++) {
-      const x = Math.random() * 100;
-      const y = Math.random() * 100;
-      const delay = Math.random() * 3;
-      const size = Math.random() * 1.5 + 0.5;
-      html += `<div class="star" style="left:${x}%;top:${y}%;width:${size}px;height:${size}px;animation-delay:${delay}s"></div>`;
-    }
-    starsEl.innerHTML = html;
-  })();
-
-  // Simple local counter (in production, use a server)
-  let offerCount = parseInt(localStorage.getItem('mazu_offer_count') || '0');
-  function updateCounter() {
-    offerCount++;
-    localStorage.setItem('mazu_offer_count', offerCount);
-    const display = offerCount + Math.floor(Math.random() * 5); // Add slight variance
-    document.getElementById('counter-text').textContent = '今夜已有 ' + display + ' 人把心事留在了海里';
-    document.getElementById('response-counter').textContent = '今夜已有 ' + display + ' 人把心事留在了海里';
+// Stars
+(function(){
+  const s=document.getElementById('stars');let h='';
+  for(let i=0;i<45;i++){
+    const x=Math.random()*100,y=Math.random()*100,d=Math.random()*3,s=Math.random()*1.5+.4;
+    h+=`<div class="star" style="left:${x}%;top:${y}%;width:${s}px;height:${s}px;animation-delay:${d}s"></div>`;
   }
+  s.innerHTML=h;
+})();
 
-  // Mazu responses
-  const responses = [
-    '妈祖收下了。<br>明天海面会很平。',
-    '妈祖听见了。<br>海风会带走该走的。',
-    '妈祖看见了。<br>你不需要一个人扛。',
-    '妈祖说：<br>这个浪过了，下一个不会更高。',
-    '妈祖记下了。<br>潮水每天都是新的。',
-    '妈祖知道。<br>月亮不问你为什么难过，它只是照着。',
-    '妈祖收了。<br>天亮之前，海替你守着。',
-  ];
+// Counter
+let offerCount=parseInt(localStorage.getItem('mazu_count')||'0');
+function updateCounter(){
+  offerCount++;localStorage.setItem('mazu_count',offerCount);
+  const d=offerCount+Math.floor(Math.random()*7);
+  document.getElementById('count-num').textContent=d;
+  document.getElementById('response-counter').textContent='今夜已有 '+d+' 人把心事留在了海里';
+}
 
-  function offer() {
-    const input = document.getElementById('worry-input');
-    const text = input.value.trim();
-    if (!text) { input.placeholder = '写点什么吧……'; input.focus(); return; }
+// Chip selection
+let selectedChip=null;
+function selectChip(el,word){
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('selected'));
+  if(selectedChip===el){selectedChip=null;el.classList.remove('selected');return}
+  selectedChip=el;el.classList.add('selected');
+  document.getElementById('worry-input').value=word;
+}
 
-    // Start dissolve animation
-    const container = document.getElementById('container');
-    const dissolveEl = document.createElement('div');
-    dissolveEl.className = 'dissolve-text';
-    dissolveEl.textContent = text.length > 10 ? text.substring(0, 10) + '…' : text;
-    container.appendChild(dissolveEl);
+// Mazu responses
+const responses=[
+  '妈祖收下了。<br>明天海面会很平。',
+  '妈祖听见了。<br>潮水每天都是新的。',
+  '妈祖看见了。<br>你不需要一个人扛。',
+  '妈祖说：<br>这个浪过了，下一个不会更高。',
+  '妈祖记下了。<br>风会带走该走的。',
+  '妈祖知道。<br>月亮不问你为什么难过，它只是照着。',
+  '妈祖收了。<br>天亮之前，海替你守着。',
+  '妈祖听见了。<br>你比你以为的更勇敢。',
+];
 
-    // Hide prompt
-    const phasePrompt = document.getElementById('phase-prompt');
-    phasePrompt.style.opacity = '0';
-    phasePrompt.style.transition = 'opacity 0.8s';
+// Bell chime
+function chime(){
+  try{
+    const a=new AudioContext(),o=a.createOscillator(),g=a.createGain();
+    o.type='sine';o.frequency.setValueAtTime(880,a.currentTime);
+    o.frequency.setValueAtTime(1100,a.currentTime+.08);
+    g.gain.setValueAtTime(.15,a.currentTime);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+.6);
+    o.connect(g);g.connect(a.destination);o.start();o.stop(a.currentTime+.6);
+  }catch(e){}
+}
 
-    // Hide close hint temporarily
-    document.getElementById('close-hint').style.opacity = '0';
+// Floating lantern
+function launchLantern(text){
+  const l=document.createElement('div');
+  l.className='lantern-fly';
+  l.textContent='🏮';
+  l.style.left=(40+Math.random()*20)+'%';
+  l.style.bottom='30%';
+  document.getElementById('container').appendChild(l);
+  setTimeout(()=>l.remove(),4200);
+}
 
-    // Update counter
-    updateCounter();
+function offer(){
+  const input=document.getElementById('worry-input');
+  const text=input.value.trim();
+  if(!text){input.placeholder='写点什么吧…';input.focus();return}
 
-    // After dissolve, show response
-    setTimeout(() => {
-      dissolveEl.remove();
-      phasePrompt.style.display = 'none';
+  document.getElementById('phase-prompt').style.opacity='0';
+  document.getElementById('phase-prompt').style.transition='opacity .6s';
+  document.getElementById('close-hint').style.opacity='0';
 
-      const response = document.getElementById('phase-response');
-      response.style.display = 'block';
-      response.classList.add('fade-in');
+  // Dissolve text
+  const d=document.createElement('div');
+  d.style.cssText='position:absolute;top:38%;left:50%;transform:translate(-50%,-50%);font-size:20px;color:rgba(255,255,255,.5);letter-spacing:.12em;pointer-events:none;z-index:15;animation:dissolveAnim 2.5s ease-in forwards;white-space:nowrap';
+  d.textContent=text.length>12?text.substring(0,12)+'…':text;
 
-      // Random response
-      const resp = responses[Math.floor(Math.random() * responses.length)];
-      document.getElementById('response-line').innerHTML = resp;
+  const style=document.createElement('style');
+  style.textContent='@keyframes dissolveAnim{0%{opacity:.7;transform:translate(-50%,-50%)}40%{opacity:.3;transform:translate(-50%,-60%)}100%{opacity:0;transform:translate(-50%,80%)}}';
+  document.head.appendChild(style);
+  document.getElementById('container').appendChild(d);
 
-      document.getElementById('close-hint').style.opacity = '1';
-    }, 2800);
-  }
+  updateCounter();chime();
 
-  function reset() {
-    const phasePrompt = document.getElementById('phase-prompt');
-    const phaseResponse = document.getElementById('phase-response');
+  setTimeout(()=>{
+    d.remove();style.remove();
+    launchLantern(text);
+    document.getElementById('moon').classList.add('brighter');
 
-    phaseResponse.style.display = 'none';
-    phaseResponse.classList.remove('fade-in');
+    document.getElementById('phase-prompt').style.display='none';
+    const r=document.getElementById('phase-response');
+    r.style.display='block';r.classList.add('fade-in');
+    document.getElementById('response-line').innerHTML=responses[Math.floor(Math.random()*responses.length)];
+    updateCounter();document.getElementById('close-hint').style.opacity='1';
+  },2300);
+}
 
-    phasePrompt.style.display = 'block';
-    phasePrompt.style.opacity = '1';
-    document.getElementById('worry-input').value = '';
-    document.getElementById('worry-input').placeholder = '一个字就好……';
-  }
+function reset(){
+  const pp=document.getElementById('phase-prompt'),pr=document.getElementById('phase-response');
+  pr.style.display='none';pr.classList.remove('fade-in');
+  pp.style.display='block';pp.style.opacity='1';
+  document.getElementById('worry-input').value='';
+  document.getElementById('moon').classList.remove('brighter');
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('selected'));
+  selectedChip=null;
+}
 
-  // Submit on Enter
-  document.getElementById('worry-input').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') offer();
-  });
-
-  // Init counter
-  document.getElementById('counter-text').textContent = '今夜已有 ' + offerCount + ' 人把心事留在了海里';
+document.getElementById('worry-input').addEventListener('keydown',e=>{if(e.key==='Enter')offer()});
+updateCounter();
 </script>
-
 </body>
 </html>
