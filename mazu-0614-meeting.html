@@ -50,7 +50,34 @@
 
   @media(max-width:600px){article{padding:48px 20px 80px}header h1{font-size:26px}h2{font-size:20px}p,li{font-size:15px}table{font-size:13px}th,td{padding:6px 8px}}
 
-  /* ── 交互增强 ── */
+  /* ── 手机端交互增强 ── */
+  .mobile-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(255,253,250,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--hair);display:flex;justify-content:space-around;align-items:center;padding:8px 0 env(safe-area-inset-bottom,8px);z-index:99;transform:translateY(0);transition:transform .3s}
+  .mobile-nav.hidden{transform:translateY(100%)}
+  .mobile-nav button{all:unset;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;color:var(--faint);cursor:pointer;padding:4px 12px;transition:color .15s;-webkit-tap-highlight-color:transparent}
+  .mobile-nav button:active{color:var(--accent)}
+  .mobile-nav button .nav-icon{font-size:20px;transition:transform .2s}
+  .mobile-nav button:active .nav-icon{transform:scale(.9)}
+
+  /* 底部抽屉目录 */
+  .drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.2);z-index:100;opacity:0;pointer-events:none;transition:opacity .3s}
+  .drawer-overlay.show{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;bottom:0;left:0;right:0;max-height:65vh;background:rgba(255,253,250,.98);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:16px 16px 0 0;z-index:101;transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);padding:20px 0 env(safe-area-inset-bottom,20px);overflow-y:auto}
+  .drawer.show{transform:translateY(0)}
+  .drawer-handle{width:36px;height:4px;background:var(--hair);border-radius:2px;margin:0 auto 16px}
+  .drawer a{display:block;padding:12px 28px;font-size:15px;color:var(--soft);text-decoration:none;transition:all .15s;border-left:3px solid transparent}
+  .drawer a:hover,.drawer a:active{color:var(--ink);border-left-color:var(--accent);background:rgba(47,110,100,.05)}
+  .drawer a.completed{color:var(--asoft)}
+  .drawer a.completed::after{content:' ✓';font-size:12px}
+
+  /* 章节渐入 */
+  section{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+  section.visible{opacity:1;transform:translateY(0)}
+
+  /* 阅读完成彩蛋 */
+  .done-toast{position:fixed;bottom:120px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);padding:10px 24px;border-radius:20px;font-size:14px;z-index:102;opacity:0;transition:all .4s;pointer-events:none;white-space:nowrap}
+  .done-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  @media(min-width:769px){.mobile-nav{display:none}}</style>
   html{scroll-behavior:smooth}
   ::selection{background:rgba(47,110,100,.15)}
 
@@ -117,10 +144,9 @@
     <tr><td>Booker</td><td>民俗学者，泉州本地人<br>浔埔村田野调查</td><td>活态信仰生态分享、浔埔女资料、田野案例</td></tr>
     <tr><td>William（庞老师）</td><td>沉浸式戏剧装置艺术家<br>世界观设定经验10+年</td><td>潮汐模拟器创意、世界观搭建支持</td></tr>
     <tr><td>马老师</td><td>嘉宾</td><td>爱死机格式参考、全球传播视角、妈祖非宗教定位</td></tr>
-    <tr><td>Hazel</td><td>澳门读书生活经历</td><td>澳门妈祖与圣母共生的跨文化案例</td></tr>
+    <tr><td>Hazel</td><td>品牌咨询，澳门读书生活<br>澳门妈祖与圣母共生研究</td><td>澳门跨文化案例分享、品牌视角</td></tr>
     <tr><td>元庐</td><td>台湾朋友转述者</td><td>妈祖托梦、跨国显灵的真实故事分享</td></tr>
     <tr><td>肥诗</td><td>阿娟的朋友</td><td>对赛博/科幻后期部分感兴趣（未开麦）</td></tr>
-    <tr><td>韩之</td><td>品牌咨询，澳门妈祖研究</td><td>品牌视角（未开麦，后续联系）</td></tr>
     <tr><td>sing</td><td>旁听</td><td>全程在线</td></tr>
   </table>
 </section>
@@ -390,49 +416,90 @@
 
 <footer>
   基于腾讯会议逐字稿转写整理。四场会议原始录音共约4小时。<br>
-  参与人：Libellule、giulianoooooo、AhJuan阿娟、长风、Booker、William、马老师、Hazel、元庐、肥诗、韩之、sing<br>
+  参与人：Libellule、giulianoooooo、AhJuan阿娟、长风、Booker、William、马老师、Hazel、元庐、肥诗、sing<br>
   本纪要为会议内容的忠实记录，不代表最终创作方向。具体创作方案仍在讨论中。
 </footer>
 
 <div class="progress-bar" id="progress"></div>
 
-<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="回顶部">↑</button>
+<nav class="mobile-nav" id="mobileNav">
+  <button onclick="toggleDrawer()"><span class="nav-icon">☰</span>目录</button>
+  <button onclick="window.scrollTo({top:0,behavior:'smooth'})"><span class="nav-icon">↑</span>顶部</button>
+  <button onclick="sharePage()"><span class="nav-icon">↗</span>分享</button>
+  <button onclick="window.open('https://libellulezhang.github.io/mazu-meeting/mazu-tinghai.html')"><span class="nav-icon">🌊</span>听海</button>
+</nav>
 
-<div class="toc-overlay" id="tocOverlay" onclick="toggleToc()"></div>
-<button class="toc-btn" onclick="toggleToc()" title="目录">☰</button>
-<nav class="toc-panel" id="tocPanel"></nav>
+<div class="drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-handle"></div>
+  <nav id="drawerNav"></nav>
+</div>
+
+<div class="done-toast" id="doneToast">🎐 读完了。妈祖知道你来了。</div>
 
 <script>
 // ── 阅读进度条 ──
 window.addEventListener('scroll',()=>{
   const h=document.documentElement.scrollHeight-window.innerHeight;
   document.getElementById('progress').style.width=h>0?(window.scrollY/h*100)+'%':'0';
-  document.getElementById('backTop').classList.toggle('visible',window.scrollY>400);
 });
 
-// ── 目录浮窗 ──
-const toc=document.getElementById('tocPanel');
-document.querySelectorAll('section h2').forEach((h,i)=>{
-  const id='s'+i;h.id=id;
+// ── 章节渐入动画 ──
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.08});
+document.querySelectorAll('section').forEach(s=>observer.observe(s));
+// 首个 section 立即显示
+document.querySelector('section')?.classList.add('visible');
+
+// ── 底部抽屉目录 ──
+const drawer=document.getElementById('drawer');
+const drawerNav=document.getElementById('drawerNav');
+const sections=document.querySelectorAll('section h2');
+sections.forEach((h,i)=>{
+  const id='sec'+i;h.id=id;
   const a=document.createElement('a');a.href='#'+id;a.textContent=h.textContent;
-  a.onclick=()=>toggleToc();
-  toc.appendChild(a);
+  a.onclick=()=>toggleDrawer();
+  drawerNav.appendChild(a);
 });
-
-function toggleToc(){
-  const p=toc.classList.toggle('show');
-  document.getElementById('tocOverlay').classList.toggle('show',p);
+function toggleDrawer(){
+  const s=drawer.classList.toggle('show');
+  document.getElementById('drawerOverlay').classList.toggle('show',s);
 }
-
-// ── 目录高亮当前章节 ──
-const links=toc.querySelectorAll('a');
+// 目录中标记已读章节
 window.addEventListener('scroll',()=>{
-  let cur='';
-  document.querySelectorAll('section h2').forEach(h=>{
-    if(h.getBoundingClientRect().top<120)cur=h.id;
+  drawerNav.querySelectorAll('a').forEach((a,i)=>{
+    const h=document.getElementById('sec'+i);
+    if(h&&h.getBoundingClientRect().top<window.innerHeight*.5)a.classList.add('completed');
   });
-  links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
 });
+
+// ── 阅读完成彩蛋 ──
+let toasted=false;
+window.addEventListener('scroll',()=>{
+  if(toasted)return;
+  if((window.innerHeight+window.scrollY)>=document.documentElement.scrollHeight-80){
+    document.getElementById('doneToast').classList.add('show');
+    setTimeout(()=>document.getElementById('doneToast').classList.remove('show'),2500);
+    toasted=true;
+  }
+});
+
+// ── 手机端底部导航自动隐藏 ──
+let lastScroll=0;
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('mobileNav');
+  const cur=window.scrollY;
+  if(cur>lastScroll&&cur>400)nav.classList.add('hidden');
+  else nav.classList.remove('hidden');
+  lastScroll=cur;
+});
+
+// ── 分享 ──
+function sharePage(){
+  if(navigator.share){navigator.share({title:document.title,url:location.href}).catch(()=>{});}
+  else{navigator.clipboard.writeText(location.href).then(()=>alert('链接已复制'));}
+}
 </script>
 
 </body>
