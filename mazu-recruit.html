@@ -265,19 +265,34 @@ if (f) f.appendChild(b);
 })();
 })();
 
-// Staggered moment reveals
+// Staggered moment reveals (IntersectionObserver + DOMContentLoaded fallback)
 (function(){
 var moments = document.querySelectorAll('.moment');
 if (!moments.length) return;
-var obs = new IntersectionObserver(function(entries){
-entries.forEach(function(e,i){
-if (e.isIntersecting){
-setTimeout(function(){ e.target.classList.add('revealed'); }, i * 120);
-obs.unobserve(e.target);
-}
+var done = false;
+function revealAll() {
+if (done) return; done = true;
+moments.forEach(function(m, i) {
+setTimeout(function() { m.classList.add('revealed'); }, i * 120);
 });
-}, {threshold: 0.2});
-moments.forEach(function(m){ obs.observe(m); });
+}
+// Primary: IntersectionObserver
+if ('IntersectionObserver' in window) {
+var obs = new IntersectionObserver(function(entries) {
+var anyVisible = false;
+entries.forEach(function(e) { if (e.isIntersecting) anyVisible = true; });
+if (anyVisible) revealAll();
+}, {threshold: 0.15});
+moments.forEach(function(m) { obs.observe(m); });
+}
+// Fallback: DOMContentLoaded or immediate
+if (document.readyState === 'loading') {
+document.addEventListener('DOMContentLoaded', function() {
+setTimeout(revealAll, 300);
+});
+} else {
+setTimeout(revealAll, 100);
+}
 })();
 
 // Tab title
