@@ -277,7 +277,51 @@ a.hero-card:hover .arrow { transform: translateX(3px); }
 .step .what h3 { font-size: 16px; margin-bottom: 4px; }
 .step .what p { margin: 0; font-size: 13px; color: var(--soft); line-height: 1.7; font-family: var(--sans); }
 
-/* ══════════ 数据列 ══════════ */
+/* ══════════ 叙事步骤 ══════════ */
+.hk-flow { margin-top: 8px; }
+.hk-step {
+  display: flex; gap: 16px; padding: 18px 0;
+  border-bottom: 1px solid var(--hair2);
+}
+.hk-step:last-child { border-bottom: none; }
+.hk-step .n {
+  flex: 0 0 38px; height: 38px; width: 38px;
+  border-radius: 50%; border: 1.5px solid var(--gold);
+  color: var(--gold); font-family: var(--serif); font-size: 16px;
+  display: flex; align-items: center; justify-content: center; margin-top: 2px;
+}
+.hk-step .c h3 { font-size: 16px; margin: 4px 0 6px; font-family: var(--serif); }
+.hk-step .c p { margin: 0; font-size: 13px; color: #403a33; line-height: 1.7; font-family: var(--sans); }
+
+/* ══════════ 对比卡:有 vs 缺 ══════════ */
+.twin { display: grid; gap: 14px; }
+.panel {
+  background: var(--card); border: 1px solid var(--hair);
+  border-radius: 14px; padding: 24px 20px;
+}
+.panel .ph { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.panel .ph .tag {
+  font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+  font-weight: 600; padding: 3px 10px; border-radius: 999px;
+  font-family: var(--sans);
+}
+.panel.have .ph .tag { background: rgba(47,110,100,.1); color: var(--accent); }
+.panel.gap .ph .tag { background: rgba(196,149,106,.14); color: var(--gold); }
+.panel .ph h3 { margin: 0; font-size: 17px; }
+.panel ul { margin: 0; padding: 0; list-style: none; }
+.panel li {
+  position: relative; padding-left: 18px; margin-bottom: 10px;
+  font-size: 13px; line-height: 1.65; color: #403a33; font-family: var(--sans);
+}
+.panel li:last-child { margin-bottom: 0; }
+.panel.have li::before {
+  content: ""; position: absolute; left: 0; top: .6em;
+  width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+}
+.panel.gap li::before {
+  content: ""; position: absolute; left: 0; top: .55em;
+  width: 7px; height: 7px; border-radius: 2px; border: 1.5px solid var(--gold);
+}
 .stat-row {
   display: flex; justify-content: center; gap: 28px;
   padding: 10px 0 4px; flex-wrap: wrap;
@@ -437,6 +481,7 @@ footer .em { font-family: var(--latin); font-style: italic; color: #7d756a; font
 }
 @media (min-width: 700px) {
   .hero-cards { grid-template-columns: 1fr 1fr; }
+  .twin { grid-template-columns: 1fr 1fr; gap: 18px; }
 }
 
 /* ══════════ reduced-motion ══════════ */
@@ -533,20 +578,35 @@ footer .em { font-family: var(--latin); font-style: italic; color: #7d756a; font
 <section id="project">
   <div class="wrap reveal">
     <span class="eyebrow"><span data-zh>项目</span><span data-en>The Project</span></span>
-    <h2><span data-zh>AI 国风短剧，<br>爱死机式的民间哲学</span><span data-en>AI Guofeng Anthology<br>Folk Philosophy, Love Death + Robots style</span></h2>
+    <h2><span data-zh>24集 × 3–5分钟<br>3D写实画风 AI 短剧</span><span data-en>24 episodes × 3–5 min<br>3D photorealistic AI shorts</span></h2>
     <p class="lead">
-      <span data-zh>用今天的 AI，讲千年前那个站在崖边的女孩。不是传统动画，不是真人电影——是 AI 生成的国风视觉诗。可能某几集根本不提妈祖，但一看就知道在讲妈祖。</span>
-      <span data-en>Using today's AI to tell the story of a girl who stood at the cliff's edge. Not traditional animation, not live-action — AI-generated Guofeng visual poetry. Some episodes may never name Mazu, but you'll know it's about her.</span>
-    </p>
-    <p class="muted">
-      <span data-zh>参考《爱死机》的开放格式——每集独立，风格不一，不搞成信仰宣传片或神迹分享会。定位是「民间信仰 / 民间哲学」。聚焦林默<strong>从人到神的顿悟时刻</strong>——不是她有多厉害，而是她为什么选择成为那个站在崖边的人。</span>
-      <span data-en>Inspired by Love, Death &amp; Robots' open anthology format — each episode stands alone, styles vary, never preachy. Positioned as "folk belief / folk philosophy." Focus: Lin Mo's <strong>moment of awakening from mortal to divine</strong> — not how powerful she became, but why she chose to stand at the cliff's edge.</span>
+      <span data-zh>备案名称「妈祖」已通过国家广电。妈祖是<strong>唯一被允许展现神迹的中国神明</strong>——4亿信众的基础流量，不需要从零建认知。核心目标像《黑神话：悟空》那样：让不了解妈祖文化的人，看完第一集就想看第二集。</span>
+      <span data-en>Registered title "Mazu" cleared by China's NRTA. Mazu is the <strong>only Chinese deity permitted to display miracles on screen</strong> — 400-million-strong existing belief base means zero cold-start. Goal: like Black Myth: Wukong — make people who know nothing about Mazu culture finish episode one and need episode two.</span>
     </p>
 
+    <div class="twin" data-stagger style="margin-top:24px;">
+      <div class="panel have">
+        <div class="ph"><span class="tag">我们有</span><h3><span data-zh>官方背书</span><span data-en>Official Backing</span></h3></div>
+        <ul>
+          <li><span data-zh>中华妈祖协会指导（半官方，会长退休省委书记级）</span><span data-en>China Mazu Association guidance (semi-official, chair at retired provincial governor level)</span></li>
+          <li><span data-zh>泉州天后宫学术支持</span><span data-en>Quanzhou Tianhou Temple academic support</span></li>
+          <li><span data-zh>发行已定，制作方效率高</span><span data-en>Distribution secured, production partner highly efficient</span></li>
+          <li><span data-zh>AI 制作速度远快于传统真人短剧</span><span data-en>AI production speed far exceeds traditional live-action shorts</span></li>
+        </ul>
+      </div>
+      <div class="panel gap">
+        <div class="ph"><span class="tag">基准</span><h3><span data-zh>项目规格</span><span data-en>Specs</span></h3></div>
+        <ul>
+          <li><span data-zh>24集 × 3–5 分钟，3D写实画风</span><span data-en>24 eps × 3–5 min, 3D photorealistic</span></li>
+          <li><span data-zh>6月底确立世界观和框架</span><span data-en>Worldbuilding &amp; framework by end of June</span></li>
+          <li><span data-zh>8月初完成全部制作</span><span data-en>All production complete by early August</span></li>
+        </ul>
+      </div>
+    </div>
+
     <div class="quote">
-      <span data-zh>如果这部剧是体现妈祖有多厉害，就没意思了。<br>我们要做的是：让人感受到——有一个人在看着。</span>
-      <span data-en>If this series is about showing how powerful Mazu is, it's not interesting.<br>What we want: make people feel — someone is watching.</span>
-      <span class="by"><span data-zh>6.14 全体共创者共识</span><span data-en>Consensus from all co-creators, June 14</span></span>
+      <span data-zh>基调：<strong>真善美</strong>，符合现代人价值观。参考《爱死机》开放格式，定位「民间信仰 / 民间哲学」。不是宣传片——是让不了解妈祖的人产生兴趣。</span>
+      <span data-en>Tone: <strong>Truth, Goodness, Beauty</strong>, aligned with modern values. Love Death + Robots anthology format. Folk belief, not propaganda — make strangers curious, not converts.</span>
     </div>
   </div>
 </section>
@@ -625,10 +685,10 @@ footer .em { font-family: var(--latin); font-style: italic; color: #7d756a; font
       <div class="step">
         <div class="when"><span data-zh>页面</span><span data-en>Pages</span></div>
         <div class="what">
-          <h3><span data-zh>项目官网 + 共创页面上线</span><span data-en>Project website live</span></h3>
+          <h3><span data-zh>项目官网 + 备案通过</span><span data-en>Site live + regulatory clearance</span></h3>
           <p>
-            <span data-zh>总入口、招募页面、合作页面、社群页面、知识库——五页已全面上线。让对的人能找到我们，让来的每一个人都被在乎。</span>
-            <span data-en>Entry page, recruitment, collaboration, community, knowledge base — five pages live. So the right people can find us, and everyone who arrives feels cared for.</span>
+            <span data-zh>五页官网上线。备案名称「妈祖」已通过国家广电——妈祖是唯一被允许展现神迹的中国神明。中华妈祖协会指导，泉州天后宫学术支持。</span>
+            <span data-en>Five-page site live. Title "Mazu" cleared by NRTA — the only Chinese deity permitted to display miracles on screen. China Mazu Association guidance, Quanzhou Tianhou Temple academic support.</span>
           </p>
         </div>
       </div>
@@ -642,13 +702,33 @@ footer .em { font-family: var(--latin); font-style: italic; color: #7d756a; font
           </p>
         </div>
       </div>
+      <div class="step">
+        <div class="when"><span data-zh>6月底</span><span data-en>Late Jun</span></div>
+        <div class="what">
+          <h3><span data-zh>确立世界观和框架</span><span data-en>Worldbuilding &amp; framework</span></h3>
+          <p>
+            <span data-zh>整体世界观、叙事结构、视觉风格指南定稿。24集分镜脚本进入密集创作期。发行已定，制作方效率高——AI 制作速度远快于传统真人短剧。</span>
+            <span data-en>Complete worldbuilding, narrative structure, visual style guide finalized. 24-episode storyboard enters intensive creation. Distribution secured, production partner efficient — AI speed far exceeds traditional live-action.</span>
+          </p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="when"><span data-zh>8月初</span><span data-en>Early Aug</span></div>
+        <div class="what">
+          <h3><span data-zh>完成全部制作</span><span data-en>Production complete</span></h3>
+          <p>
+            <span data-zh>24集全部制作完成，进入发行排期。后续开放二创赛道——让妈祖从一个剧变成一个「可以参与的世界」。</span>
+            <span data-en>All 24 episodes complete, entering distribution scheduling. Post-launch: open fan creation track — transform Mazu from a series into a world you can participate in.</span>
+          </p>
+        </div>
+      </div>
     </div>
 
     <!-- 数据 -->
     <div class="stat-row" style="margin-top:36px;padding-top:24px;border-top:1px solid var(--hair2);">
       <div class="stat-cell">
-        <div class="num" data-target="100" data-suffix="+">0</div>
-        <div class="cap"><span data-zh>社群</span><span data-en>Community</span></div>
+        <div class="num" data-target="400" data-suffix="M">0</div>
+        <div class="cap"><span data-zh>全球信众</span><span data-en>Believers Worldwide</span></div>
       </div>
       <div class="stat-cell">
         <div class="num" data-target="24">0</div>
@@ -657,6 +737,10 @@ footer .em { font-family: var(--latin); font-style: italic; color: #7d756a; font
       <div class="stat-cell">
         <div class="num" data-target="49">0</div>
         <div class="cap"><span data-zh>国 全球信仰</span><span data-en>Countries</span></div>
+      </div>
+      <div class="stat-cell">
+        <div class="num" data-target="100" data-suffix="+">0</div>
+        <div class="cap"><span data-zh>共创社群</span><span data-en>Co-creators</span></div>
       </div>
     </div>
   </div>
@@ -717,6 +801,42 @@ footer .em { font-family: var(--latin); font-style: italic; color: #7d756a; font
         <div class="acc-body"><div class="inner">
           <p><span data-zh>不局限于任何一个民族或地区。妈祖概念可以关联二进制、数字化、现代科技——科学和神学的边界在今天已经模糊。格局放到全球，可能某几集根本没有妈祖，但一看就知道在讲妈祖。</span><span data-en>Not bound to any single ethnicity or region. Mazu's concept can connect to binary code, digitalization, modern tech — the boundary between science and theology is blurred today. Global scope: some episodes may never name Mazu, but you'll know it's about her.</span></p>
         </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 叙事结构 ══════════ -->
+<section id="structure">
+  <div class="wrap reveal">
+    <span class="eyebrow"><span data-zh>叙事结构</span><span data-en>Narrative Structure</span></span>
+    <h2><span data-zh>妈祖人间分身串联<br>每3–5集一个独立故事</span><span data-en>A mortal avatar of Mazu anchors the series<br>Every 3–5 episodes = one standalone story</span></h2>
+    <p class="lead">
+      <span data-zh>不是流水账也不是单元剧——妈祖以人间分身贯穿全季，像一条线串起珍珠。每3–5集构成一个完整故事单元，可以独立观看，合在一起又是一条成长的弧光。</span>
+      <span data-en>Not a chronology, not disconnected shorts — Mazu's mortal avatar threads through the entire season, like a string through pearls. Every 3–5 episodes form a complete story unit, watchable standalone, yet together they trace an arc of growth.</span>
+    </p>
+
+    <div class="hk-flow" data-stagger style="margin-top:20px;">
+      <div class="hk-step">
+        <div class="n">01</div>
+        <div class="c">
+          <h3><span data-zh>分身串联</span><span data-en>Avatar Thread</span></h3>
+          <p><span data-zh>妈祖以人间分身贯穿24集——她可能是不同时代的不同身份，但始终在做同一件事：站在需要的人身边。分身是锚点，独立故事是浪。</span><span data-en>Mazu appears through a mortal avatar across 24 episodes — different eras, different identities, but always the same mission: standing beside those in need. The avatar is the anchor; standalone stories are the waves.</span></p>
+        </div>
+      </div>
+      <div class="hk-step">
+        <div class="n">02</div>
+        <div class="c">
+          <h3><span data-zh>3–5集故事单元</span><span data-en>3–5 Episode Story Blocks</span></h3>
+          <p><span data-zh>每3–5集构成一个独立故事。快节奏，剧情密度高——看完一个单元就是一个完整的「被接住」体验。参考短剧的爽感节奏，但用电影级审美来拍。</span><span data-en>Every 3–5 episodes form one complete story. Fast-paced, dense narrative — finish a block and you've experienced a full "being held" journey. Short-drama pacing, cinematic aesthetic.</span></p>
+        </div>
+      </div>
+      <div class="hk-step">
+        <div class="n">03</div>
+        <div class="c">
+          <h3><span data-zh>二创赛道</span><span data-en>Fan Creation Track</span></h3>
+          <p><span data-zh>后续开放——不是做完就结束。世界观和 IP 一旦立住，开放二创：同人故事、平行宇宙、角色前传。让妈祖从一个剧变成一个「可以参与的世界」。</span><span data-en>Post-launch phase: once the world and IP are established, open fan creation — side stories, parallel universes, character prequels. Transform Mazu from a series into a "world you can participate in."</span></p>
+        </div>
       </div>
     </div>
   </div>
