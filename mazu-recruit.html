@@ -40,7 +40,8 @@ section{margin-bottom:48px}
 h2{font-size:19px;font-weight:400;color:var(--accent);letter-spacing:.02em;margin-bottom:18px;padding-bottom:8px;border-bottom:1px solid var(--hair)}
 p{font-size:15px;margin-bottom:12px;line-height:1.95}
 
-.moment{padding:14px 18px;margin-bottom:5px;background:var(--card);border-left:3px solid var(--asoft);border-radius:0 6px 6px 0;transition:border-color .2s;opacity:0;transform:translateY(20px)}
+.moment{padding:14px 18px;margin-bottom:5px;background:var(--card);border-left:3px solid var(--asoft);border-radius:0 6px 6px 0;transition:border-color .2s}
+.moment.anim-in{opacity:0;transform:translateY(20px)}
 .moment.revealed{opacity:1;transform:translateY(0);transition:all .6s cubic-bezier(.4,0,.2,1)}
 .moment:hover{border-color:var(--accent)}
 .moment .mn{font-weight:600;font-size:14px;display:inline;margin-right:6px}
@@ -269,6 +270,8 @@ if (f) f.appendChild(b);
 (function(){
 var moments = document.querySelectorAll('.moment');
 if (!moments.length) return;
+// Add animation class to enable opacity:0 → 1 reveal
+moments.forEach(function(m) { m.classList.add('anim-in'); });
 var done = false;
 function revealAll() {
 if (done) return; done = true;
