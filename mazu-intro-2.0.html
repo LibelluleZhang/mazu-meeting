@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>妈祖 · Mazu</title>
+<style>
+:root {
+  --sand: #efe2d4;        /* 暖沙底 */
+  --ink: #33302e;         /* 暖墨 */
+  --soft: #6b625c;        /* 次要文字 */
+  --faint: #8b827c;       /* 极淡 */
+  --accent: #2f6e64;      /* 青绿 主强调 */
+  --asoft: #5d9a90;       /* 浅青绿 */
+  --gold: #c4956a;        /* 暖金 */
+  --card: rgba(255,253,250,0.55);
+  --hair: rgba(80,74,70,0.10);
+  --hair2: rgba(80,74,70,0.06);
+  --serif: "Noto Serif SC","Songti SC","STSong","Source Serif 4",Georgia,"Times New Roman",serif;
+  --sans: -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  --latin: Georgia,"Times New Roman",serif;
+  --maxw: 600px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html {
+  background: var(--sand);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── 纸张颗粒 ── */
+.grain {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .035;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── 阅读进度 ── */
+.progress {
+  position: fixed; top: 0; left: 0; height: 2px; width: 0;
+  background: linear-gradient(90deg, var(--accent), var(--gold));
+  z-index: 100; transition: width .12s linear;
+}
+
+/* ── 返回顶部 ── */
+.btt {
+  position: fixed; bottom: 24px; right: 24px; width: 38px; height: 38px;
+  border-radius: 50%; background: var(--card); border: 1px solid var(--hair);
+  color: var(--accent); font-size: 16px; cursor: pointer;
+  opacity: 0; transform: translateY(12px);
+  transition: all .3s cubic-bezier(.4,0,.2,1); z-index: 50;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--sans); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+.btt.visible { opacity: 1; transform: translateY(0); }
+.btt:hover { background: var(--accent); color: #fff; border-color: var(--accent); transform: translateY(-2px); }
+
+/* ── 语言切换 ── */
+.top-bar {
+  display: flex; justify-content: flex-end;
+  max-width: var(--maxw); margin: 0 auto; padding: 16px 22px 0;
+}
+.lang-switch {
+  display: flex; gap: 0; border: 1px solid var(--hair);
+  border-radius: 6px; overflow: hidden; font-family: var(--sans);
+  background: var(--card);
+}
+.lang-switch button {
+  padding: 4px 12px; font-size: 11px; border: none;
+  background: transparent; color: var(--faint); cursor: pointer;
+  letter-spacing: .04em; transition: all .2s;
+}
+.lang-switch button.active { background: var(--accent); color: #fff; }
+.lang-switch button:hover:not(.active) { color: var(--accent); }
+
+/* ── 双语控制 ── */
+[data-en] { display: none; }
+html[lang="en"] [data-zh] { display: none; }
+html[lang="en"] [data-en] { display: inline; }
+html[lang="zh"] [data-en] { display: none; }
+html[lang="zh"] [data-zh] { display: inline; }
+
+/* ── EYEBROW ── */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 20px; font-weight: 600;
+  font-family: var(--sans);
+}
+.eyebrow::before {
+  content: ""; width: 20px; height: 1px; background: var(--gold);
+  display: inline-block;
+}
+
+/* ── TYPO ── */
+h1, h2, h3 { font-weight: 400; line-height: 1.35; letter-spacing: .01em; }
+h2 { font-size: clamp(23px, 5vw, 30px); margin: 0 0 16px; }
+h3 { font-size: 18px; margin: 0 0 8px; }
+p { margin: 0 0 16px; }
+.lead { font-size: clamp(16px, 2.2vw, 18px); color: #3d3834; margin-bottom: 22px; }
+.muted { color: var(--soft); }
+small { font-size: 13px; color: var(--faint); line-height: 1.7; display: block; }
+
+/* ── 区块 ── */
+main { position: relative; z-index: 2; }
+section { padding: 68px 22px; }
+.wrap { max-width: var(--maxw); margin: 0 auto; }
+.alt { background: rgba(255,253,250,0.35); }
+
+/* ── 滚动渐显 ── */
+.reveal {
+  opacity: 0; transform: translateY(28px); filter: blur(4px);
+  transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1), filter .9s ease;
+}
+.reveal.in { opacity: 1; transform: none; filter: blur(0); }
+
+/* ── 子项错峰 ── */
+[data-stagger] > * {
+  opacity: 0; transform: translateY(22px); filter: blur(4px);
+  transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1), filter .8s ease;
+}
+[data-stagger].in > * { opacity: 1; transform: none; filter: blur(0); }
+
+/* ══════════ HERO ══════════ */
+.hero {
+  padding: 20px 22px 64px;
+  position: relative; overflow: hidden;
+  text-align: center;
+}
+.hero-inner { max-width: var(--maxw); margin: 0 auto; position: relative; z-index: 2; }
+
+/* 环境光晕 */
+.aura {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+}
+.aura span {
+  position: absolute; border-radius: 50%; filter: blur(70px);
+}
+.aura .a1 {
+  width: 50vw; height: 50vw; max-width: 520px; max-height: 520px;
+  left: -12%; top: -30%;
+  background: radial-gradient(circle, rgba(47,110,100,.35), transparent 60%);
+  animation: drift1 20s ease-in-out infinite;
+}
+.aura .a2 {
+  width: 44vw; height: 44vw; max-width: 480px; max-height: 480px;
+  right: -10%; top: -5%;
+  background: radial-gradient(circle, rgba(196,149,106,.3), transparent 60%);
+  animation: drift2 24s ease-in-out infinite;
+}
+@keyframes drift1 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(3%,5%) scale(1.08); }
+}
+@keyframes drift2 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(-4%,3%) scale(1.1); }
+}
+
+.hero .tag {
+  display: inline-block; font-size: 10px; letter-spacing: .14em;
+  color: var(--asoft); border: 1px solid var(--asoft); border-radius: 20px;
+  padding: 5px 18px; margin-bottom: 24px;
+  font-family: var(--sans);
+  opacity: 0; animation: fadeUp .5s .2s forwards;
+}
+
+/* HERO 逐行遮罩 */
+.hmask { position: relative; }
+.hmask .ln {
+  display: block; overflow: hidden; padding-bottom: .03em;
+}
+.hmask .ln > i {
+  display: block; font-style: inherit;
+  transform: translateY(112%);
+  transition: transform 1.05s cubic-bezier(.16,1,.3,1);
+}
+.hmask.in .ln > i { transform: translateY(0); }
+.hmask.in .ln:nth-child(2) > i { transition-delay: .1s; }
+.hmask.in .ln:nth-child(3) > i { transition-delay: .2s; }
+
+.hero h1 {
+  font-size: clamp(32px, 8vw, 52px); font-weight: 300;
+  letter-spacing: .03em; line-height: 1.25; margin-bottom: 18px;
+}
+.hero h1 .accent { color: var(--accent); font-weight: 400; }
+
+.hero .sub {
+  font-size: clamp(14px, 2vw, 16px); color: var(--soft);
+  line-height: 1.85; max-width: 440px; margin: 0 auto;
+  opacity: 0; animation: fadeUp .5s .55s forwards;
+}
+
+/* HERO 卡片导航 */
+.hero-cards {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  margin-top: 36px; max-width: 440px;
+  margin-left: auto; margin-right: auto;
+  opacity: 0; animation: fadeUp .5s .7s forwards;
+}
+a.hero-card {
+  display: block; padding: 24px 18px;
+  border: 1px solid var(--hair); border-radius: 14px;
+  text-decoration: none; transition: all .3s cubic-bezier(.4,0,.2,1);
+  background: var(--card); position: relative; overflow: hidden;
+}
+a.hero-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0,0,0,.05);
+  border-color: var(--asoft);
+}
+.hero-card .ic { font-size: 24px; margin-bottom: 8px; display: block; }
+.hero-card h3 { font-size: 16px; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+.hero-card .desc {
+  font-size: 11px; color: var(--soft); line-height: 1.5;
+  font-family: var(--sans);
+}
+.hero-card .arrow {
+  display: inline-block; margin-top: 10px; font-size: 11px;
+  color: var(--accent); font-family: var(--sans); letter-spacing: .04em;
+  transition: transform .2s;
+}
+a.hero-card:hover .arrow { transform: translateX(3px); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ══════════ 引语 ══════════ */
+.quote {
+  font-family: var(--serif); font-size: clamp(19px, 3.8vw, 24px);
+  line-height: 1.55; color: var(--accent);
+  border-left: 2px solid var(--gold); padding: 4px 0 4px 20px;
+  margin: 30px 0; letter-spacing: .01em;
+}
+.quote .by {
+  display: block; margin-top: 10px; font-family: var(--sans);
+  font-size: 12px; color: var(--faint); letter-spacing: .04em;
+}
+
+/* ══════════ 妈祖精神 三柱 ══════════ */
+.pillars {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 12px;
+  margin-top: 8px;
+}
+.pillar {
+  background: var(--card); border: 1px solid var(--hair);
+  border-radius: 14px; padding: 28px 18px 22px; text-align: center;
+  transition: transform .25s, box-shadow .25s;
+}
+.pillar:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,.05); }
+.pillar .pi { font-size: 32px; margin-bottom: 10px; display: block; }
+.pillar h3 { font-size: 16px; margin-bottom: 6px; color: var(--accent); }
+.pillar p { font-size: 13px; color: var(--soft); font-family: var(--sans); line-height: 1.65; margin: 0; }
+
+/* ══════════ 进展时间标 ══════════ */
+.steps { margin-top: 6px; }
+.step {
+  display: flex; gap: 18px; padding: 20px 0;
+  border-bottom: 1px solid var(--hair2);
+}
+.step:last-child { border-bottom: none; }
+.step .when {
+  flex: 0 0 90px; font-family: var(--serif); font-size: 14px;
+  color: var(--accent); line-height: 1.4; padding-top: 2px;
+}
+.step .what h3 { font-size: 16px; margin-bottom: 4px; }
+.step .what p { margin: 0; font-size: 13px; color: var(--soft); line-height: 1.7; font-family: var(--sans); }
+
+/* ══════════ 数据列 ══════════ */
+.stat-row {
+  display: flex; justify-content: center; gap: 28px;
+  padding: 10px 0 4px; flex-wrap: wrap;
+}
+.stat-cell { text-align: center; }
+.stat-cell .num {
+  font-family: var(--serif); font-size: clamp(30px,7vw,40px);
+  font-weight: 300; color: var(--accent); line-height: 1.1;
+}
+.stat-cell .num .u { font-size: .42em; color: var(--gold); margin-left: 1px; }
+.stat-cell .cap {
+  margin-top: 6px; font-size: 10px; color: var(--faint);
+  font-family: var(--sans); letter-spacing: .06em;
+}
+
+/* ══════════ 可展开卡片 ══════════ */
+.acc { margin-top: 6px; border-top: 1px solid var(--hair); }
+.acc-item { border-bottom: 1px solid var(--hair); }
+.acc-head {
+  width: 100%; background: transparent; border: none; cursor: pointer;
+  text-align: left; display: flex; align-items: center; gap: 14px;
+  padding: 20px 4px; font-family: var(--serif); color: var(--ink);
+  font-size: 16px; font-weight: 500;
+}
+.acc-head .n {
+  font-family: var(--latin); font-style: italic; font-size: 13px;
+  color: var(--gold); flex: 0 0 24px;
+}
+.acc-head .ac {
+  flex: 0 0 22px; width: 22px; height: 22px; position: relative;
+}
+.acc-head .ac::before, .acc-head .ac::after {
+  content: ""; position: absolute; background: var(--accent); border-radius: 2px;
+  transition: transform .35s ease, opacity .35s ease;
+}
+.acc-head .ac::before { top: 10px; left: 3px; width: 16px; height: 2px; }
+.acc-head .ac::after { top: 3px; left: 10px; width: 2px; height: 16px; }
+.acc-item.open .ac::after { opacity: 0; transform: scaleY(0); }
+.acc-body {
+  max-height: 0; overflow: hidden; transition: max-height .42s ease;
+}
+.acc-body .inner {
+  padding: 0 4px 22px 42px;
+  font-size: 14px; color: #403a33; line-height: 1.78;
+  font-family: var(--sans);
+}
+.acc-body .inner p { margin: 0 0 8px; }
+.acc-body .inner p:last-child { margin: 0; }
+
+/* ══════════ 在找谁 角色卡 ══════════ */
+.roles { display: grid; gap: 12px; margin-top: 4px; }
+.role {
+  background: var(--card); border: 1px solid var(--hair);
+  border-radius: 14px; padding: 22px 20px; position: relative;
+  overflow: hidden; transition: transform .25s, box-shadow .25s;
+}
+.role:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,.04); }
+.role .rn {
+  font-family: var(--latin); font-style: italic; font-size: 12px;
+  color: var(--gold); margin-bottom: 4px; display: block;
+}
+.role h3 { font-size: 17px; margin: 4px 0 8px; }
+.role p { font-size: 13px; color: #403a33; line-height: 1.7; font-family: var(--sans); margin: 0; }
+
+/* ══════════ 筊杯弹窗 ══════════ */
+.poe-overlay {
+  position: fixed; inset: 0; background: rgba(51,48,46,.3);
+  z-index: 200; display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity .3s;
+}
+.poe-overlay.show { opacity: 1; pointer-events: auto; }
+.poe-box {
+  background: var(--sand); border-radius: 16px; padding: 36px 28px;
+  text-align: center; max-width: 280px; width: 90%;
+  box-shadow: 0 20px 60px rgba(0,0,0,.12);
+  animation: popIn .4s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes popIn {
+  from { transform: scale(.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.poe-box .result { font-size: 52px; animation: toss .7s ease; }
+@keyframes toss {
+  0% { transform: rotate(0) scale(0); opacity: 0; }
+  50% { transform: rotate(180deg) scale(1.2); opacity: 1; }
+  100% { transform: rotate(360deg) scale(1); opacity: 1; }
+}
+.poe-box .msg { margin-top: 14px; font-size: 15px; color: var(--ink); line-height: 1.7; }
+.poe-box .close-btn {
+  margin-top: 18px; font-size: 12px; color: var(--faint);
+  font-family: var(--sans); cursor: pointer; border: none; background: none;
+}
+
+/* ══════════ CTA 底 ══════════ */
+.closer {
+  background: var(--accent); color: #e4ede8; text-align: center;
+}
+.closer .wrap { max-width: 480px; }
+.closer .eyebrow { color: #a0c4b8; }
+.closer .eyebrow::before { background: var(--gold); }
+.closer h2 { color: #fbf8f2; }
+.closer p { color: #c2d6cd; font-family: var(--sans); font-size: 14px; }
+.closer .big {
+  font-family: var(--serif); font-size: clamp(20px, 4vw, 26px);
+  line-height: 1.55; color: #fbf8f2; margin: 24px 0 8px;
+}
+
+/* ══════════ 底部链接 ══════════ */
+.foot-links {
+  display: flex; justify-content: center; gap: 22px; flex-wrap: wrap;
+  margin-top: 20px;
+}
+.foot-links a {
+  font-size: 12px; color: #b2cbc0; text-decoration: none;
+  font-family: var(--sans); transition: color .2s;
+  padding: 2px 0; border-bottom: 1px solid transparent;
+}
+.foot-links a:hover { color: #fbf8f2; border-color: var(--gold); }
+
+/* ══════════ FOOTER ══════════ */
+footer {
+  background: var(--ink); color: #9a9183; padding: 32px 22px; text-align: center;
+  font-family: var(--sans);
+}
+footer .wrap { max-width: 480px; }
+footer p { margin: 0 0 6px; font-size: 12px; line-height: 1.7; }
+footer .em { font-family: var(--latin); font-style: italic; color: #7d756a; font-size: 12px; }
+
+/* ══════════ Mazu 名称 pulse ══════════ */
+#mazu-click {
+  cursor: pointer; position: relative; transition: all .3s;
+  display: inline;
+}
+#mazu-click.pulse { animation: softPulse .6s ease; }
+@keyframes softPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); color: var(--gold); }
+  100% { transform: scale(1); }
+}
+
+/* ══════════ 底部签文 ══════════ */
+.blessing {
+  text-align: center; font-size: 12px; color: var(--faint);
+  margin-top: 28px; font-style: italic;
+  opacity: 0; animation: fadeUp .5s 1s forwards;
+  font-family: var(--serif);
+}
+
+/* ══════════ RESPONSIVE ══════════ */
+@media (max-width: 560px) {
+  section { padding: 52px 14px; }
+  .hero { padding: 12px 14px 48px; }
+  .hero-cards { grid-template-columns: 1fr; }
+  .pillars { grid-template-columns: 1fr; }
+  .hero h1 { font-size: clamp(28px,7vw,38px); }
+  .stat-row { gap: 18px; }
+}
+@media (min-width: 700px) {
+  .hero-cards { grid-template-columns: 1fr 1fr; }
+}
+
+/* ══════════ reduced-motion ══════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0s !important; animation-delay: 0s !important;
+    transition-duration: 0s !important;
+  }
+  .reveal, [data-stagger] > *, .hmask .ln > i,
+  .hero .tag, .hero .sub, .hero-cards, .blessing {
+    opacity: 1 !important; transform: none !important; filter: none !important;
+  }
+  .aura { display: none !important; }
+}
+
+/* ══════════ PRINT ══════════ */
+@media print {
+  .progress, .btt, .top-bar, .aura, .grain { display: none !important; }
+  body { font-size: 13px; line-height: 1.6; }
+  section { padding: 28px 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<!-- 语言切换 -->
+<div class="top-bar">
+  <div class="lang-switch">
+    <button onclick="setLang('zh')" class="active" id="btn-zh">中文</button>
+    <button onclick="setLang('en')" id="btn-en">EN</button>
+  </div>
+</div>
+
+<main>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero" id="top">
+  <div class="aura" aria-hidden="true"><span class="a1"></span><span class="a2"></span></div>
+  <div class="hero-inner">
+    <div class="tag"><span data-zh>AI · 国风 · 诗选剧</span><span data-en>AI · Guofeng · Anthology</span></div>
+
+    <h1 class="hmask" id="heroH1">
+      <span class="ln"><i><span id="mazu-click">Mazu</span> · <span data-zh>被接住的瞬间</span><span data-en>The Moment You Are Held</span></i></span>
+    </h1>
+
+    <div class="sub">
+      <span data-zh>1000年前，一个渔村少女站在崖边望海。她只是在乎。<br>这个项目想延续这份在乎——用今天的语言，把善意讲给你听。</span>
+      <span data-en>A thousand years ago, a girl from a fishing village stood at the cliff's edge, watching the sea. She simply cared.<br>This project carries that caring forward — telling stories of compassion for today.</span>
+    </div>
+
+    <div class="hero-cards">
+      <a href="mazu-recruit.html" class="hero-card">
+        <span class="ic">✍️</span>
+        <h3><span data-zh>共创者招募</span><span data-en>Join Us</span></h3>
+        <div class="desc"><span data-zh>编剧 · 导演 · 艺术家 · 音乐人<br>社群等你加入</span><span data-en>Writers · Directors · Artists · Musicians</span></div>
+        <span class="arrow"><span data-zh>加入共创 →</span><span data-en>Learn more →</span></span>
+      </a>
+      <a href="mazu-pitch.html" class="hero-card">
+        <span class="ic">🤝</span>
+        <h3><span data-zh>合作碰撞</span><span data-en>Collaborate</span></h3>
+        <div class="desc"><span data-zh>品牌 · 投资 · 机构 · 平台<br>一起让故事被更多人看见</span><span data-en>Brands · Investment · Institutions</span></div>
+        <span class="arrow"><span data-zh>了解项目 →</span><span data-en>Explore →</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 缘起 ══════════ -->
+<section class="alt" id="origin">
+  <div class="wrap reveal">
+    <span class="eyebrow"><span data-zh>缘起</span><span data-en>Origin</span></span>
+    <h2><span data-zh>她站在崖边，只是在乎</span><span data-en>She stood at the cliff's edge, and simply cared</span></h2>
+    <p class="lead">
+      <span data-zh>北宋年间，福建莆田湄洲岛，一个叫林默的渔村少女开始在崖边望海。她不是英雄，不呼风唤雨。她只是站在那里，为出海的人守着那条回家的海路。人们说，被她接住的人，说不清怎么得救的，只说「有人在看着」。</span>
+      <span data-en>In the Northern Song dynasty, on Meizhou Island off the coast of Fujian, a young woman named Lin Mo began watching the sea from the cliffs. She was no hero — she didn't command the waves. She simply stood there, keeping watch so fishermen could find their way home. Those she saved couldn't explain how — they only said, "Someone was watching."</span>
+    </p>
+    <p class="muted">
+      <span data-zh>一千年后，林默变成了妈祖——全球数亿人信仰的海上守护神。但剥离所有神性和香火，那个最初的她只是一个「在乎」的人。这份在乎，是中国人骨子里的东西：不需要轰轰烈烈，只是在别人需要的时候，站在你能站到的地方。</span>
+      <span data-en>A thousand years later, Lin Mo became Mazu — the sea goddess worshipped by hundreds of millions worldwide. But stripped of divinity and incense, she was simply a person who <em>cared</em>. This caring is something deeply Chinese: it doesn't require grand gestures — just being where you're needed, when you're needed.</span>
+    </p>
+
+    <div class="quote">
+      <span data-zh>每个人都做过被接住的人。你生命里，一定也有一个"妈祖时刻"——不需要拯救世界，只是在将要跌倒的时候，有一双手托了你一下。</span>
+      <span data-en>We've all been held at some point. You have a "Mazu moment" too — not a world-saving miracle, just a hand that caught you when you were about to fall.</span>
+      <span class="by"><span data-zh>这不是关于神的故事。这是关于「被接住」的故事。</span><span data-en>This isn't a story about a goddess. It's about being held.</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 项目 ══════════ -->
+<section id="project">
+  <div class="wrap reveal">
+    <span class="eyebrow"><span data-zh>项目</span><span data-en>The Project</span></span>
+    <h2><span data-zh>AI 国风诗选短剧，<br>3分钟×N集</span><span data-en>AI-Generated Guofeng Anthology<br>3 minutes × N episodes</span></h2>
+    <p class="lead">
+      <span data-zh>用今天的 AI，讲千年前那个女孩的善意。不是传统动画，不是真人电影——是 AI 生成的国风视觉诗，每一集都是一个独立的「被接住」的故事。</span>
+      <span data-en>Using today's AI to tell the story of a girl's compassion from a thousand years ago. Not traditional animation, not live-action — AI-generated Guofeng visual poetry. Each episode is a standalone story of being held.</span>
+    </p>
+    <p class="muted">
+      <span data-zh>我们已经有了明确的分镜脚本体系、AI 视频生成管线、音乐制作方案。第一季 24 集，从妈祖的不同侧面展开——她看见渔民、看见商人、看见远航的人、看见回家的人。诗，不是讲道理，是让你感受到。</span>
+      <span data-en>We have a complete storyboard framework, AI video generation pipeline, and music production plan. Season one: 24 episodes, each exploring a different facet of Mazu — seeing the fishermen, the merchants, those sailing far, and those coming home. Poetry doesn't explain — it makes you feel.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ 妈祖精神 ══════════ -->
+<section class="alt" id="spirit">
+  <div class="wrap reveal">
+    <span class="eyebrow"><span data-zh>妈祖精神</span><span data-en>The Spirit</span></span>
+    <h2><span data-zh>真、善、美</span><span data-en>Truth, Goodness, Beauty</span></h2>
+    <p class="muted">
+      <span data-zh>这是项目最核心的三个字。不是喊口号，是创作上每一次选择的指导思想——</span>
+      <span data-en>These three words guide every creative decision in this project —</span>
+    </p>
+
+    <div class="pillars" data-stagger>
+      <div class="pillar">
+        <span class="pi">真</span>
+        <h3><span data-zh>真</span><span data-en>Truth</span></h3>
+        <p>
+          <span data-zh>不编造，不煽情。每一个故事都从真实的人性出发——被接住的人是真实的，接住别人的人也是真实的。</span>
+          <span data-en>No fabrication, no sentimentality. Every story is grounded in real humanity — those held and those holding are both real.</span>
+        </p>
+      </div>
+      <div class="pillar">
+        <span class="pi">善</span>
+        <h3><span data-zh>善</span><span data-en>Goodness</span></h3>
+        <p>
+          <span data-zh>不指责，不审判。妈祖的善意是温和的——不是拯救者俯视众生，而是一个人在你能站的地方，做你能做的事。</span>
+          <span data-en>No judgment, no condescension. Mazu's kindness is gentle — not a savior looking down, but a person doing what they can, where they stand.</span>
+        </p>
+      </div>
+      <div class="pillar">
+        <span class="pi">美</span>
+        <h3><span data-zh>美</span><span data-en>Beauty</span></h3>
+        <p>
+          <span data-zh>国风的诗意，AI 与人的共创。画面要有呼吸感，像一幅可以走进去的宋画——不是堆砌特效，是留白里的动人。</span>
+          <span data-en>The poetry of Guofeng, created by AI and humans together. Breathing compositions, like walking into a Song dynasty painting — beauty found in what's left unsaid.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 进展 ══════════ -->
+<section id="progress">
+  <div class="wrap reveal">
+    <span class="eyebrow"><span data-zh>进展</span><span data-en>Progress</span></span>
+    <h2><span data-zh>我们已经在做的事</span><span data-en>What we're already doing</span></h2>
+
+    <div class="steps">
+      <div class="step">
+        <div class="when"><span data-zh>社群</span><span data-en>Community</span></div>
+        <div class="what">
+          <h3><span data-zh>69 人核心社群</span><span data-en>69-person core community</span></h3>
+          <p>
+            <span data-zh>一群认可妈祖精神的人已经聚在一起。不是围观，是共创——编剧、导演、艺术家、音乐人，每个人带着自己的专业进来。</span>
+            <span data-en>A group of people who believe in Mazu's spirit have gathered. Not spectators — co-creators. Writers, directors, artists, musicians, each bringing their craft.</span>
+          </p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="when"><span data-zh>分镜</span><span data-en>Storyboard</span></div>
+        <div class="what">
+          <h3><span data-zh>24 集分镜脚本体系</span><span data-en>24-episode storyboard framework</span></h3>
+          <p>
+            <span data-zh>不是拍脑袋写剧本。已建立完整的分镜→提示词→生成→剪辑→配乐管线，AI 视频生产技术路径已验证。</span>
+            <span data-en>Not improvised scripts. A complete storyboard → prompt → generation → editing → scoring pipeline is established, with a proven AI video production pathway.</span>
+          </p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="when"><span data-zh>页面</span><span data-en>Pages</span></div>
+        <div class="what">
+          <h3><span data-zh>项目官网 + 共创页面上线</span><span data-en>Project website live</span></h3>
+          <p>
+            <span data-zh>总入口、招募页面、合作页面、社群页面、知识库——五页已全面上线。让对的人能找到我们，让来的每一个人都被在乎。</span>
+            <span data-en>Entry page, recruitment, collaboration, community, knowledge base — five pages live. So the right people can find us, and everyone who arrives feels cared for.</span>
+          </p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="when"><span data-zh>知识库</span><span data-en>KB</span></div>
+        <div class="what">
+          <h3><span data-zh>妈祖知识库</span><span data-en>Mazu knowledge base</span></h3>
+          <p>
+            <span data-zh>从妈祖信仰的起源到全球传播、从林默娘到海上丝绸之路——系统整理了妈祖文化的研究资料，为创作提供扎实的知识地基。</span>
+            <span data-en>From origins to global reach, from Lin Mo to the Maritime Silk Road — a systematically researched knowledge base grounding our creative work.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 数据 -->
+    <div class="stat-row" style="margin-top:36px;padding-top:24px;border-top:1px solid var(--hair2);">
+      <div class="stat-cell">
+        <div class="num" data-target="69" data-suffix="+">0</div>
+        <div class="cap"><span data-zh>社群</span><span data-en>Community</span></div>
+      </div>
+      <div class="stat-cell">
+        <div class="num" data-target="24">0</div>
+        <div class="cap"><span data-zh>集 第一季</span><span data-en>Episodes S1</span></div>
+      </div>
+      <div class="stat-cell">
+        <div class="num" data-target="49">0</div>
+        <div class="cap"><span data-zh>国 全球信仰</span><span data-en>Countries</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 共创方向 ══════════ -->
+<section class="alt" id="directions">
+  <div class="wrap reveal">
+    <span class="eyebrow"><span data-zh>共创方向</span><span data-en>Directions</span></span>
+    <h2><span data-zh>你想从哪里开始？</span><span data-en>Where would you like to start?</span></h2>
+    <p class="muted" style="margin-bottom:10px;">
+      <span data-zh>我们开放了多个共创入口——不是要一个「给 idea 的人」，而是要真正动手做事的人。每一个方向，都有具体的产出标准和已有的地基。</span>
+      <span data-en>Multiple entry points are open — we're not looking for people who just give ideas, but people who create. Every direction has clear deliverables and an existing foundation.</span>
+    </p>
+
+    <div class="acc" id="acc">
+      <div class="acc-item">
+        <button class="acc-head">
+          <span class="n">01</span>
+          <span data-zh>编剧 × 分镜</span><span data-en>Writing × Storyboard</span>
+          <span class="ac" aria-hidden="true"></span>
+        </button>
+        <div class="acc-body"><div class="inner">
+          <p><span data-zh>把「被接住」的核心概念，变成 3 分钟的叙事。不是写论文，是写诗——用 AI 能理解的提示词语言，构建有呼吸感的国风画面。</span><span data-en>Turn "being held" into 3-minute narratives. Not essays — poetry. Use prompt language AI can understand to build breathing Guofeng visuals.</span></p>
+          <p><span data-zh>已有完整的 24 集分镜框架和风格指南。你不需要从零开始——但需要能在这个体系里注入你自己的语言。</span><span data-en>A complete 24-episode framework and style guide exists. You don't start from scratch — but you need to inject your own voice into it.</span></p>
+        </div></div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-head">
+          <span class="n">02</span>
+          <span data-zh>导演 × AI 视频</span><span data-en>Directing × AI Video</span>
+          <span class="ac" aria-hidden="true"></span>
+        </button>
+        <div class="acc-body"><div class="inner">
+          <p><span data-zh>你不是传统导演——你是用 AI 工具「拍摄」的导演。分镜交到你手里，你来决定光、节奏、构图。像王家卫那样在乎每一帧，但用 AI 来实现。</span><span data-en>You're not a traditional director — you direct using AI tools. Storyboards come to you, and you decide the light, rhythm, composition. Care about every frame like Wong Kar-wai, but make it with AI.</span></p>
+          <p><span data-zh>已有验证的 AI 视频生产管线（提示词→生成→剪辑→配乐），导演郁斌在前。你要做的，是把画面拍出诗意。</span><span data-en>A proven AI video pipeline exists (prompt → generate → edit → score), with director Yu Bin at the helm. Your job: make the frames poetic.</span></p>
+        </div></div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-head">
+          <span class="n">03</span>
+          <span data-zh>艺术家 × 视觉</span><span data-en>Artists × Visuals</span>
+          <span class="ac" aria-hidden="true"></span>
+        </button>
+        <div class="acc-body"><div class="inner">
+          <p><span data-zh>不管是传统水墨、数字插画、还是 AI 辅助创作——你负责让妈祖的世界「被看见」。角色设定、场景概念、视觉风格——这些不是外包，是共创。</span><span data-en>Whether traditional ink, digital illustration, or AI-assisted — you make Mazu's world visible. Character design, scene concepts, visual style — not outsourced, co-created.</span></p>
+        </div></div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-head">
+          <span class="n">04</span>
+          <span data-zh>音乐人 × 配乐</span><span data-en>Musicians × Scoring</span>
+          <span class="ac" aria-hidden="true"></span>
+        </button>
+        <div class="acc-body"><div class="inner">
+          <p><span data-zh>国风配乐不是贴一个古筝就了事。我们需要的是能理解「留白」的声音——潮汐、风声、远钟，和 3 分钟叙事一起呼吸的配乐。AI 辅助是手段，审美是核心。</span><span data-en>Guofeng scoring isn't just pasting a guzheng track. We need sound that understands negative space — tides, wind, distant bells, a score that breathes with the 3-minute narrative. AI assists, but taste leads.</span></p>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 在找谁 ══════════ -->
+<section id="team">
+  <div class="wrap reveal">
+    <span class="eyebrow"><span data-zh>在找谁</span><span data-en>Who We Need</span></span>
+    <h2><span data-zh>放下「我执」，<br>一起把它做出来</span><span data-en>Letting go,<br>building together</span></h2>
+    <p class="lead">
+      <span data-zh>这东西不是「我的」——是社会的。社群发起人在前做连接、导演在前做创作。我们要的是能长期一起深耕的人，不是丢一个 idea 就走的人。</span>
+      <span data-en>This isn't "mine" — it belongs to society. The community initiator connects, the director creates. We're looking for people who can commit long-term, not those who drop an idea and disappear.</span>
+    </p>
+
+    <div class="roles" data-stagger>
+      <div class="role">
+        <span class="rn">01</span>
+        <h3><span data-zh>编剧</span><span data-en>Writer</span></h3>
+        <p>
+          <span data-zh>能写 3 分钟的叙事诗——不是长文，是浓缩。理解国风美学，更重要的是理解「被接住」的情感。最好有剧本或短篇写作经验。</span>
+          <span data-en>Can write 3-minute narrative poetry — concise, not long. Understands Guofeng aesthetics, and more importantly, the emotion of "being held." Script or short-form experience preferred.</span>
+        </p>
+      </div>
+      <div class="role">
+        <span class="rn">02</span>
+        <h3><span data-zh>导演 / AI 视觉艺术家</span><span data-en>Director / AI Visual Artist</span></h3>
+        <p>
+          <span data-zh>用 AI 工具创作，但有导演的审美——懂光、构图、节奏。会 ComfyUI / Runway / 等工具是基础，有电影感审美是核心。</span>
+          <span data-en>Creates with AI tools but has a director's eye — light, composition, rhythm. ComfyUI / Runway etc. are basics; a cinematic aesthetic is the core.</span>
+        </p>
+      </div>
+      <div class="role">
+        <span class="rn">03</span>
+        <h3><span data-zh>音乐人</span><span data-en>Musician</span></h3>
+        <p>
+          <span data-zh>能做国风配乐或 AI 辅助作曲。不追逐「炸裂」「燃爆」——要的是安静里有余韵。理解潮汐声、风声、留白的重量。</span>
+          <span data-en>Can create Guofeng scoring or AI-assisted composition. Not chasing "epic" or "hype" — we want quiet resonance. Understands the weight of tides, wind, and silence.</span>
+        </p>
+      </div>
+      <div class="role">
+        <span class="rn">04</span>
+        <h3><span data-zh>长期共创伙伴</span><span data-en>Long-term Co-creator</span></h3>
+        <p>
+          <span data-zh>不限具体角色。你认可妈祖的真善美，愿意长期投入，有自己能贡献的专业——就来。我们在做的不是一次性的项目，是一个可以持续生长的 IP。</span>
+          <span data-en>Any role. You believe in Mazu's truth, goodness, and beauty, you're willing to commit long-term, and you have real craft to contribute — come. This isn't a one-off project; it's a living, growing IP.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CTA ══════════ -->
+<section class="closer" id="join">
+  <div class="wrap reveal">
+    <span class="eyebrow"><span data-zh>下一步</span><span data-en>Next Step</span></span>
+    <h2><span data-zh>把善意，讲成一个好故事</span><span data-en>Turn compassion into a good story</span></h2>
+    <p>
+      <span data-zh>我们不急。好故事需要时间，对的人需要缘分。先加入社群，看看我们在做什么，看看你是不是那个能把某一块接过去的人。</span>
+      <span data-en>We're not in a hurry. Good stories take time, the right people need the right moment. Join the community first. See what we're doing. See if you're the one who can take a piece and make it yours.</span>
+    </p>
+    <p class="big">
+      <span data-zh>不用拯救世界。<br>站在你能站的地方，做你能做的事。</span>
+      <span data-en>You don't need to save the world.<br>Stand where you can, do what you can.</span>
+    </p>
+
+    <div class="foot-links">
+      <a href="mazu-recruit.html">✍️ <span data-zh>加入共创</span><span data-en>Join Us</span></a>
+      <a href="mazu-pitch.html">🤝 <span data-zh>合作碰撞</span><span data-en>Collaborate</span></a>
+      <a href="mazu-community.html"><span data-zh>社群成员</span><span data-en>Community</span></a>
+      <a href="https://libellulezhang.github.io/mazu-knowledge/" target="_blank"><span data-zh>知识库</span><span data-en>Knowledge Base</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><span data-zh>妈祖AI国风诗选短剧 · 社群发起人 Libi · 导演 郁斌</span><span data-en>Mazu AI Guofeng Anthology · Community Initiator: Libi · Director: Yu Bin</span></p>
+    <p class="em"><span data-zh>真善美</span><span data-en>Truth · Goodness · Beauty</span></p>
+    <p class="blessing" id="blessing">
+      <span data-zh>妈祖说：你做的事，有人看见了。</span>
+      <span data-en>Mazu says: Someone saw what you did.</span>
+    </p>
+  </div>
+</footer>
+
+<!-- 筊杯弹窗 -->
+<div class="poe-overlay" id="poe-overlay" onclick="closePoe()">
+  <div class="poe-box" onclick="event.stopPropagation()">
+    <div class="result" id="poe-result"></div>
+    <div class="msg" id="poe-msg"></div>
+    <button class="close-btn" onclick="closePoe()"><span data-zh>知道了</span><span data-en>OK</span></button>
+  </div>
+</div>
+
+<button class="btt" aria-label="返回顶部">↑</button>
+
+<script>
+(function(){
+  "use strict";
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── 语言切换 ── */
+  window.setLang = function(lang) {
+    document.documentElement.setAttribute('lang', lang);
+    document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    localStorage.setItem('mazu-lang', lang);
+  };
+  var saved = localStorage.getItem('mazu-lang');
+  if (saved) setLang(saved);
+
+  /* ── 阅读进度 ── */
+  var bar = document.getElementById('progress');
+  function onScroll() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.width = max > 0 ? (h.scrollTop / max * 100) + '%' : '0';
+  }
+  window.addEventListener('scroll', onScroll, {passive: true}); onScroll();
+
+  /* ── 返回顶部 ── */
+  var btt = document.querySelector('.btt');
+  btt.addEventListener('click', function() { window.scrollTo({top:0,behavior:'smooth'}); });
+  window.addEventListener('scroll', function() {
+    btt.classList.toggle('visible', window.scrollY > 400);
+  }, {passive: true});
+
+  /* ── 滚动渐显 ── */
+  if (!reduceMotion) {
+    var revs = document.querySelectorAll('.reveal');
+    var stags = document.querySelectorAll('[data-stagger]');
+    stags.forEach(function(g) {
+      Array.prototype.forEach.call(g.children, function(ch, i) {
+        ch.style.transitionDelay = (i * 90) + 'ms';
+      });
+    });
+
+    if ('IntersectionObserver' in window) {
+      var io1 = new IntersectionObserver(function(es) {
+        es.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('in'); io1.unobserve(e.target); } });
+      }, {threshold: .12, rootMargin: '0px 0px -8% 0px'});
+      revs.forEach(function(r) { io1.observe(r); });
+
+      var io2 = new IntersectionObserver(function(es) {
+        es.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('in'); io2.unobserve(e.target); } });
+      }, {threshold: .2, rootMargin: '0px 0px -10% 0px'});
+      stags.forEach(function(g) { io2.observe(g); });
+    } else {
+      revs.forEach(function(r) { r.classList.add('in'); });
+      stags.forEach(function(g) { g.classList.add('in'); });
+    }
+  }
+
+  /* ── HERO 入场 ── */
+  function fireLoad() {
+    document.body.classList.add('loaded');
+    var h1 = document.getElementById('heroH1');
+    if (h1) {
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() { h1.classList.add('in'); });
+      });
+    }
+  }
+  if (document.readyState === 'complete') fireLoad();
+  else window.addEventListener('load', fireLoad);
+  setTimeout(fireLoad, 500);
+
+  /* ── 手风琴 ── */
+  var accItems = document.querySelectorAll('.acc-item');
+  accItems.forEach(function(it) {
+    var head = it.querySelector('.acc-head'),
+        body = it.querySelector('.acc-body');
+    head.addEventListener('click', function() {
+      var isOpen = it.classList.contains('open');
+      accItems.forEach(function(o) {
+        o.classList.remove('open');
+        o.querySelector('.acc-body').style.maxHeight = null;
+      });
+      if (!isOpen) {
+        it.classList.add('open');
+        body.style.maxHeight = body.scrollHeight + 'px';
+      }
+    });
+  });
+  window.addEventListener('resize', function() {
+    var open = document.querySelector('.acc-item.open');
+    if (open) { var b = open.querySelector('.acc-body'); b.style.maxHeight = b.scrollHeight + 'px'; }
+  });
+
+  /* ── 数字滚动 ── */
+  var counted = false;
+  function runCounters() {
+    if (counted) return; counted = true;
+    document.querySelectorAll('[data-target]').forEach(function(el) {
+      var to = parseInt(el.getAttribute('data-target'), 10);
+      var suffix = el.getAttribute('data-suffix') || '';
+      var dur = 1300, step = to / (dur / 16), start = 0;
+      function tick() {
+        start += step;
+        if (start >= to) { el.textContent = to + suffix; return; }
+        el.textContent = Math.floor(start);
+        requestAnimationFrame(tick);
+      }
+      tick();
+    });
+  }
+
+  var row = document.querySelector('.stat-row');
+  if (row && 'IntersectionObserver' in window) {
+    var ioc = new IntersectionObserver(function(es) {
+      es.forEach(function(e) { if (e.isIntersecting) { runCounters(); ioc.disconnect(); } });
+    }, {threshold: .4});
+    ioc.observe(row);
+  } else { runCounters(); }
+
+  /* ── 筊杯彩蛋 (3 clicks on Mazu) ── */
+  (function() {
+    var el = document.getElementById('mazu-click');
+    if (!el) return;
+    var clicks = 0, timer;
+    el.addEventListener('click', function() {
+      clicks++;
+      el.classList.add('pulse');
+      setTimeout(function() { el.classList.remove('pulse'); }, 600);
+      clearTimeout(timer);
+      timer = setTimeout(function() { clicks = 0; }, 1500);
+      if (clicks >= 3) { clicks = 0; tossPoe(); }
+    });
+  })();
+
+  function tossPoe() {
+    var outcomes = [
+      {r: '☯️', m: '<span data-zh>圣杯。妈祖说，可以。</span><span data-en>Sacred cup. Mazu says yes.</span>'},
+      {r: '😊', m: '<span data-zh>笑杯。妈祖笑了。<br>她在听，只是不说。</span><span data-en>Laughing cup. She\'s listening, just not saying.</span>'},
+      {r: '🙏', m: '<span data-zh>圣杯。妈祖点头了。<br>去做吧。</span><span data-en>Sacred cup. Mazu nods. Go ahead.</span>'}
+    ];
+    var o = outcomes[Math.floor(Math.random() * outcomes.length)];
+    document.getElementById('poe-result').textContent = o.r;
+    document.getElementById('poe-msg').innerHTML = o.m;
+    document.getElementById('poe-overlay').classList.add('show');
+  }
+  window.closePoe = function() {
+    document.getElementById('poe-overlay').classList.remove('show');
+  };
+
+  /* ── 底部签文 ── */
+  (function() {
+    var b = document.getElementById('blessing');
+    if (!b) return;
+    var blessings = [
+      '<span data-zh>妈祖说：今天有风，但你会到岸的。</span><span data-en>Mazu says: There\'s wind today, but you\'ll reach shore.</span>',
+      '<span data-zh>妈祖说：你做的事，有人看见了。</span><span data-en>Mazu says: Someone saw what you did.</span>',
+      '<span data-zh>妈祖说：累了就坐一会儿。海又不会跑。</span><span data-en>Mazu says: Rest if you\'re tired. The sea isn\'t going anywhere.</span>',
+      '<span data-zh>妈祖说：我记得你的名字。</span><span data-en>Mazu says: I remember your name.</span>'
+    ];
+    b.innerHTML = blessings[Math.floor(Math.random() * blessings.length)];
+  })();
+
+  /* ── Tab title easter egg ── */
+  (function() {
+    var T = document.title;
+    var msgs = ['还在吗？', '妈祖记得你', '海还在动', '风没停'];
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        document.title = msgs[Math.floor(Math.random() * msgs.length)];
+      } else {
+        document.title = '你回来了。';
+        setTimeout(function() { document.title = T; }, 2000);
+      }
+    });
+  })();
+
+  /* ── HERO 轻微视差 ── */
+  if (!reduceMotion) {
+    var aura = document.querySelector('.aura'), ticking = false;
+    window.addEventListener('scroll', function() {
+      if (ticking) return; ticking = true;
+      requestAnimationFrame(function() {
+        var y = window.pageYOffset || 0;
+        if (y < 900 && aura) {
+          aura.style.transform = 'translateY(' + (y * 0.1) + 'px)';
+        }
+        ticking = false;
+      });
+    }, {passive: true});
+  }
+
+})();
+</script>
+
+</body>
+</html>
