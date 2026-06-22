@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>妈祖项目管理 · 6月22日</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --bg:#efe2d4;
+  --ink:#33302e;
+  --soft:#6b625c;
+  --faint:#8b827c;
+  --gold:#c4956a;
+  --teal:#2f6e64;
+  --red:#c4706e;
+  --hair:rgba(80,74,70,0.08);
+  --card:rgba(255,253,250,0.5);
+}
+
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Noto Serif SC","Songti SC","STSong",Georgia,serif;
+  padding:64px 40px 120px;
+  -webkit-font-smoothing:antialiased;
+}
+article{max-width:860px;margin:0 auto}
+
+/* ═══════════ TOP BAR ═══════════ */
+.topbar{
+  display:flex;align-items:baseline;justify-content:space-between;
+  margin-bottom:48px;flex-wrap:wrap;gap:12px;
+}
+.topbar h1{font-size:22px;font-weight:300;letter-spacing:5px}
+.topbar .countdown{
+  font-size:12px;color:var(--red);letter-spacing:2px;
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
+  padding:4px 14px;border:1px solid var(--red);border-radius:20px;
+}
+
+/* ═══════════ SECTIONS ═══════════ */
+.sec{margin-bottom:40px}
+.sec-label{
+  font-size:9px;color:var(--faint);letter-spacing:5px;
+  margin-bottom:12px;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
+}
+
+/* ═══════════ PULSE ═══════════ */
+.pulse-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.pcard{
+  background:var(--card);padding:16px;border-radius:2px;
+  border-left:2px solid var(--hair);
+}
+.pcard.r{border-left-color:var(--red)}
+.pcard.g{border-left-color:var(--teal)}
+.pcard.a{border-left-color:var(--gold)}
+.pcard .picon{font-size:15px;margin-bottom:6px}
+.pcard .pt{font-size:13px;font-weight:500;margin-bottom:4px}
+.pcard .pd{font-size:10px;color:var(--faint);line-height:1.6;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif}
+
+/* ═══════════ TIMELINE ═══════════ */
+.tl{position:relative;padding-left:28px}
+.tl::before{content:'';position:absolute;left:6px;top:8px;bottom:8px;width:1px;background:var(--hair)}
+.ph{margin-bottom:3px;position:relative}
+.ph::before{content:'';position:absolute;left:-23px;top:10px;width:7px;height:7px;border-radius:50%;background:var(--bg);border:2px solid var(--hair)}
+.ph.now::before{background:var(--red);border-color:var(--red);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(196,112,110,0.1)}50%{box-shadow:0 0 0 8px rgba(196,112,110,0.05)}}
+.ph-row{display:flex;align-items:baseline;gap:8px;padding:6px 0}
+.ph-num{font-size:10px;color:var(--faint);min-width:28px;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif}
+.ph-name{font-size:13px}
+.ph-date{font-size:10px;color:var(--faint);margin-left:auto;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif}
+.ph-detail{font-size:11px;color:var(--soft);line-height:1.8;padding:0 0 8px 36px}
+
+/* ═══════════ PEOPLE ═══════════ */
+.ppl{display:flex;gap:8px;flex-wrap:wrap}
+.ppl span{
+  background:var(--card);padding:7px 14px;border-radius:20px;
+  font-size:12px;border:1px solid var(--hair);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
+}
+.ppl span .r{font-size:10px;color:var(--faint);margin-left:3px}
+
+/* ═══════════ KANBAN ═══════════ */
+.kb{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.kcol{background:var(--card);padding:14px;border-radius:2px}
+.kcol .kh{font-size:10px;color:var(--faint);letter-spacing:2px;margin-bottom:8px;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif}
+.ki{font-size:11px;color:var(--soft);padding:4px 0 4px 10px;border-left:1px solid var(--hair);margin-bottom:2px;line-height:1.6}
+.ki.done{color:var(--teal)}
+.ki strong{font-weight:500;color:var(--ink)}
+
+/* ═══════════ RISK ═══════════ */
+.risks{display:flex;gap:8px;flex-wrap:wrap}
+.risk{
+  font-size:11px;padding:5px 12px;border-radius:20px;background:var(--card);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
+}
+.risk.r{background:rgba(196,112,110,0.06);color:var(--red)}
+.risk.y{background:rgba(196,149,106,0.06);color:var(--gold)}
+
+/* ═══════════ PRINCIPLES ═══════════ */
+.pgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.pcard2{
+  background:var(--card);padding:14px;border-radius:2px;
+  border-top:2px solid var(--gold);font-size:11px;color:var(--soft);line-height:1.7;
+}
+.pcard2 .pt{font-size:12px;color:var(--ink);margin-bottom:6px}
+
+/* ═══════════ LOG ═══════════ */
+.log{margin-top:56px;padding-top:40px;border-top:1px solid var(--hair)}
+.log h2{
+  font-size:14px;font-weight:300;letter-spacing:3px;margin-bottom:24px;
+  color:var(--ink);
+}
+.day{
+  margin-bottom:24px;padding:20px;background:var(--card);border-radius:2px;
+}
+.day .dhead{
+  display:flex;align-items:baseline;gap:12px;margin-bottom:12px;
+}
+.day .dhead .date{
+  font-size:16px;font-weight:500;
+}
+.day .dhead .title{
+  font-size:11px;color:var(--faint);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
+}
+.day .ditems{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.day .di{
+  font-size:11px;color:var(--soft);line-height:1.7;
+  padding-left:14px;border-left:1px solid var(--hair);
+}
+
+/* ═══════════ FUTURE ═══════════ */
+.future{opacity:0.45;margin-top:24px}
+.future-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.fcard{
+  background:var(--card);padding:12px 14px;border-radius:2px;
+  font-size:11px;color:var(--soft);
+}
+.fcard .ft{font-size:10px;color:var(--faint);margin-bottom:3px;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif}
+.fcard .fn{color:var(--ink);margin-bottom:3px}
+
+/* ═══════════ SEPARATOR ═══════════ */
+hr{border:none;border-top:1px solid var(--hair);margin:0 0 36px}
+
+@media(max-width:640px){
+  body{padding:40px 20px}
+  .pulse-grid{grid-template-columns:1fr 1fr}
+  .kb,.pgrid,.day .ditems,.future-grid{grid-template-columns:1fr}
+}
+
+/* ═══════════ FADE ═══════════ */
+.fade{opacity:0;transform:translateY(12px);animation:fadeIn 0.6s ease forwards}
+.fade.d1{animation-delay:0.05s}.fade.d2{animation-delay:0.15s}.fade.d3{animation-delay:0.25s}.fade.d4{animation-delay:0.35s}
+@keyframes fadeIn{to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+<article>
+
+<!-- ═══════════ TOP ═══════════ -->
+<div class="topbar fade d1">
+  <h1>妈祖项目管理</h1>
+  <div class="countdown">距 6.26 开机 4 天</div>
+</div>
+
+<!-- ═══════════ PULSE ═══════════ -->
+<div class="sec fade d2">
+  <div class="sec-label">今日 · 6月22日 周日</div>
+  <div class="pulse-grid">
+    <div class="pcard r">
+      <div class="picon">🎬</div>
+      <div class="pt">MV预告片 3min</div>
+      <div class="pd">6.24出第一版 · 6.26交付<br>分镜+画面+配音推进中</div>
+    </div>
+    <div class="pcard g">
+      <div class="picon">🎨</div>
+      <div class="pt">风格定调 ✅</div>
+      <div class="pd">3D仿真人+CG渲染<br>统一提示词 · 下午跑图</div>
+    </div>
+    <div class="pcard a">
+      <div class="picon">✒️</div>
+      <div class="pt">书法字体</div>
+      <div class="pd">吴老师对接外部书法大家<br>「妈祖」片名字体</div>
+    </div>
+    <div class="pcard">
+      <div class="picon">🏛</div>
+      <div class="pt">开机仪式统筹</div>
+      <div class="pd">流程/物料/宣发就位<br>15条渠道已确认14条</div>
+    </div>
+  </div>
+</div>
+
+<hr class="fade d3">
+
+<!-- ═══════════ TIMELINE ═══════════ -->
+<div class="sec fade d3">
+  <div class="sec-label">节奏 · 6.26 → 8.15</div>
+  <div class="tl">
+    <div class="ph now">
+      <div class="ph-row"><span class="ph-num">一</span><span class="ph-name">收口</span><span class="ph-date">→ 6.26</span></div>
+      <div class="ph-detail">MV预告片 · 开机仪式 · 风格/角色/人物定稿</div>
+    </div>
+    <div class="ph">
+      <div class="ph-row"><span class="ph-num">二</span><span class="ph-name">剧本</span><span class="ph-date">6.27 → 7.5</span></div>
+      <div class="ph-detail">边写边查边跑 · 定稿 → 协会 7.12</div>
+    </div>
+    <div class="ph">
+      <div class="ph-row"><span class="ph-num">三</span><span class="ph-name">分镜+风格</span><span class="ph-date">7.6 → 7.12</span></div>
+      <div class="ph-detail">全片分镜 · 样片确认 · 音乐 demo</div>
+    </div>
+    <div class="ph">
+      <div class="ph-row"><span class="ph-num">四</span><span class="ph-name">制作</span><span class="ph-date">7.13 → 7.26</span></div>
+      <div class="ph-detail">画面批量生成 14天 · 广电报送</div>
+    </div>
+    <div class="ph">
+      <div class="ph-row"><span class="ph-num">五</span><span class="ph-name">初剪+合成</span><span class="ph-date">7.27 → 7.30</span></div>
+      <div class="ph-detail">初剪 · 音乐合成 · 内部审片</div>
+    </div>
+    <div class="ph">
+      <div class="ph-row"><span class="ph-num">六</span><span class="ph-name">精修</span><span class="ph-date">8.5 → 8.10</span></div>
+      <div class="ph-detail">修改 · 混音调色 · 字幕定稿</div>
+    </div>
+    <div class="ph">
+      <div class="ph-row"><span class="ph-num">七</span><span class="ph-name">终审+交付</span><span class="ph-date">8.11 → 8.15</span></div>
+      <div class="ph-detail">许老师终审 8.13 · 成片+海报+预告 8.15</div>
+    </div>
+  </div>
+</div>
+
+<hr class="fade d3">
+
+<!-- ═══════════ PEOPLE ═══════════ -->
+<div class="sec fade d3">
+  <div class="sec-label">核心团队</div>
+  <div class="ppl">
+    <span>许老师<span class="r">出品人</span></span>
+    <span>郁斌<span class="r">导演</span></span>
+    <span>吴老师<span class="r">制作负责人</span></span>
+    <span>Bzzb黄老师<span class="r">妈祖像+妖怪角色</span></span>
+    <span>躲在山里看烟火<span class="r">场景氛围</span></span>
+    <span>长风<span class="r">编剧组长</span></span>
+    <span>陈晶晶<span class="r">文化顾问/六日上人</span></span>
+    <span>小田老师<span class="r">配音·女声声线</span></span>
+    <span>布布<span class="r">制片</span></span>
+  </div>
+</div>
+
+<!-- ═══════════ KANBAN ═══════════ -->
+<div class="sec fade d4">
+  <div class="sec-label">工作看板</div>
+  <div class="kb">
+    <div class="kcol">
+      <div class="kh">MV 预告片</div>
+      <div class="ki"><strong>6.23</strong> 分镜终稿</div>
+      <div class="ki"><strong>6.24</strong> 第一版画面</div>
+      <div class="ki"><strong>6.26</strong> 交付 3min</div>
+      <div class="ki" style="font-size:10px;color:var(--faint)">配音：小田老师 · 点题词：吴老师</div>
+    </div>
+    <div class="kcol">
+      <div class="kh">风格 · 人物</div>
+      <div class="ki done">✅ 3D仿真人+CG</div>
+      <div class="ki done">✅ 分工+五官</div>
+      <div class="ki">书法字体 · 吴老师对接</div>
+    </div>
+    <div class="kcol">
+      <div class="kh">声音 · 音乐</div>
+      <div class="ki">闽南语策略</div>
+      <div class="ki">共创收集 · 大合唱</div>
+      <div class="ki">实地收音 · 游神场景</div>
+      <div class="ki"><strong>7.10</strong> demo</div>
+    </div>
+    <div class="kcol">
+      <div class="kh">剧情 · 编剧</div>
+      <div class="ki done">✅ 框架定稿</div>
+      <div class="ki"><strong>7.5</strong> 剧本定稿</div>
+      <div class="ki">长风 · 编剧部群</div>
+    </div>
+    <div class="kcol">
+      <div class="kh">宣发 · 6.26</div>
+      <div class="ki done">✅ 官媒9条确认</div>
+      <div class="ki">⏳ 新华社港澳办</div>
+      <div class="ki">3000宫庙+台湾媒体</div>
+    </div>
+    <div class="kcol">
+      <div class="kh">审核</div>
+      <div class="ki"><strong>7.12</strong> 协会审核</div>
+      <div class="ki"><strong>7.26</strong> 广电报送</div>
+      <div class="ki">陈晶晶</div>
+    </div>
+  </div>
+</div>
+
+<hr class="fade d4">
+
+<!-- ═══════════ RISK ═══════════ -->
+<div class="sec fade d4">
+  <div class="sec-label">关注点</div>
+  <div class="risks">
+    <div class="risk r">MV 6.26 · 6.24 未出第一版 → 备选方案</div>
+    <div class="risk">HiShorts · 会已完成，跟进626出席</div>
+    <div class="risk y">官媒宣发 · 新华社暂定，其余就位</div>
+    <div class="risk y">音乐 · AI或待定，声音共创进行中</div>
+  </div>
+</div>
+
+<!-- ═══════════ PRINCIPLES ═══════════ -->
+<div class="sec fade d4">
+  <div class="sec-label">协作原则</div>
+  <div class="pgrid">
+    <div class="pcard2">
+      <div class="pt">6/26 后方向收敛</div>
+      之前风格讨论尽量充分。之后重心转到执行。大的方向调整优先考虑放到下一季。
+    </div>
+    <div class="pcard2">
+      <div class="pt">各自领域各自判断</div>
+      钱→许老师 · 画面→郁斌 吴老师执行 · 剧本→长风 · 文化→陈晶晶 · 进度→布布
+    </div>
+    <div class="pcard2">
+      <div class="pt">关注信号</div>
+      MV未出第一版 · 7/5剧本仍在讨论 · 7/26画面进度偏慢 → 布布拉许老师+郁斌快速对齐
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ DAILY LOG ═══════════ -->
+<div class="log fade d4">
+  <h2>更新记录</h2>
+
+  <div class="day">
+    <div class="dhead"><span class="date">6.22</span><span class="title">周日 · 距开机4天</span></div>
+    <div class="ditems">
+      <div class="di">🎨 人物资产风格确定为 <b>3D仿真人+CG渲染</b>。统一提示词确保风格一致，氛围感优先</div>
+      <div class="di">👤 按擅长领域分工商定：Bzzb黄老师负责妈祖像+妖怪角色，躲在山里看烟火负责场景氛围</div>
+      <div class="di">🎵 音乐方向讨论：含「妈祖」唱段可改闽南语；开放声音共创收集，追求大合唱质感；实地收录妈祖游神场景环境声</div>
+      <div class="di">📡 6.26宣发15条渠道确认14条。官媒9条就位，新华社港澳办暂定。3000宫庙+台湾媒体就位</div>
+      <div class="di">✒️ 妈祖片名书法字由吴老师对接外部书法大家</div>
+      <div class="di">🎙 MV配音：邀请小田老师做女声声线采集，吴老师配点题词</div>
+      <div class="di">⏱ 排期调整：8.1 → 8.15，七段每段留缓冲。剧本/分镜/画面/精修各自独立成段</div>
+      <div class="di">👥 15人制作组分工明确，吴老师统筹</div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="dhead"><span class="date">6.21</span><span class="title">周六 · 四场会密集推进</span></div>
+    <div class="ditems">
+      <div class="di">📖 剧情大纲定稿：10传+焚屋引航为素材，单元剧，灯锚双线，海燕公反派，亲情线为主不设爱情线，双版开篇报批</div>
+      <div class="di">👤 全部角色形象定稿：妈祖林默/成仙双形象，六日上人，千里眼顺风耳，四条闽台龙王，宠物小黄小白</div>
+      <div class="di">🎬 MV预告片框架定稿：郑和持圣杯→签化金光→妈祖法相。画面策略：局部增强张力</div>
+      <div class="di">🖋 伏笔设计讨论：海燕公非至恶，阿拉伯商人线，拉片《Enemy》学习，多季铺垫规划</div>
+      <div class="di">🤝 HiShorts王小曼线上会完成，发企划书+跟进626出席</div>
+      <div class="di">📋 编剧招募体系建立：招募信、参与步骤、碰撞灵感、征选机制四份文档</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════ FUTURE ═══════════ -->
+<div class="future">
+  <div class="future-grid">
+    <div class="fcard"><div class="ft">Q3 · 8–9月</div><div class="fn">全季剧本 + 商务</div>24集剧本 · 平台对接 · 节展报送</div>
+    <div class="fcard"><div class="ft">Q4 · 10–12月</div><div class="fn">全季制作 + 定档</div>制作 · 后期 · 音乐全季</div>
+    <div class="fcard"><div class="ft">2027 Q1</div><div class="fn">全季上线 + 影展</div>全季上线 · 番外/二创</div>
+  </div>
+</div>
+
+</article>
+</body>
+</html>
