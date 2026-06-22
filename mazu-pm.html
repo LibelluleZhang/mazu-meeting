@@ -20,7 +20,7 @@
 }
 
 body{
-  background:var(--bg);
+  background:linear-gradient(180deg,#efe2d4 0%,#f2e6da 50%,#efe2d4 100%);
   color:var(--ink);
   font-family:"Noto Serif SC","Songti SC","STSong",Georgia,serif;
   padding:64px 40px 120px;
@@ -28,16 +28,43 @@ body{
 }
 article{max-width:860px;margin:0 auto}
 
-/* ═══════════ TOP BAR ═══════════ */
+/* ═══════════ TOP ═══════════ */
 .topbar{
   display:flex;align-items:baseline;justify-content:space-between;
-  margin-bottom:48px;flex-wrap:wrap;gap:12px;
+  margin-bottom:8px;flex-wrap:wrap;gap:12px;
 }
 .topbar h1{font-size:22px;font-weight:300;letter-spacing:5px}
-.topbar .countdown{
-  font-size:12px;color:var(--red);letter-spacing:2px;
+.topbar .badges{display:flex;gap:10px;flex-wrap:wrap}
+.badge{
+  font-size:11px;padding:4px 14px;border-radius:20px;
   font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
-  padding:4px 14px;border:1px solid var(--red);border-radius:20px;
+  letter-spacing:1px;
+}
+.badge.red{color:var(--red);border:1px solid var(--red)}
+.badge.teal{color:var(--teal);border:1px solid var(--teal)}
+
+/* ═══════════ PROGRESS BAR ═══════════ */
+.progress-wrap{margin-bottom:44px}
+.progress-track{
+  height:2px;background:var(--hair);border-radius:1px;
+  position:relative;margin-top:20px;
+}
+.progress-fill{
+  height:100%;background:linear-gradient(90deg,var(--teal),var(--gold));
+  border-radius:1px;transition:width 0.8s ease;
+  position:relative;
+}
+.progress-dot{
+  position:absolute;right:-4px;top:-5px;
+  width:10px;height:10px;border-radius:50%;
+  background:var(--gold);
+  animation:dotPulse 2.5s ease-in-out infinite;
+}
+@keyframes dotPulse{0%,100%{box-shadow:0 0 0 0 rgba(196,149,106,0.4)}50%{box-shadow:0 0 0 8px rgba(196,149,106,0)}}
+.progress-labels{
+  display:flex;justify-content:space-between;
+  font-size:9px;color:var(--faint);margin-top:6px;
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
 }
 
 /* ═══════════ SECTIONS ═══════════ */
@@ -50,9 +77,11 @@ article{max-width:860px;margin:0 auto}
 /* ═══════════ PULSE ═══════════ */
 .pulse-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .pcard{
-  background:var(--card);padding:16px;border-radius:2px;
+  background:var(--card);padding:16px;border-radius:3px;
   border-left:2px solid var(--hair);
+  transition:transform 0.2s ease,box-shadow 0.2s ease;
 }
+.pcard:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(80,74,70,0.06)}
 .pcard.r{border-left-color:var(--red)}
 .pcard.g{border-left-color:var(--teal)}
 .pcard.a{border-left-color:var(--gold)}
@@ -63,10 +92,12 @@ article{max-width:860px;margin:0 auto}
 /* ═══════════ TIMELINE ═══════════ */
 .tl{position:relative;padding-left:28px}
 .tl::before{content:'';position:absolute;left:6px;top:8px;bottom:8px;width:1px;background:var(--hair)}
-.ph{margin-bottom:3px;position:relative}
+.ph{margin-bottom:3px;position:relative;transition:opacity 0.3s}
 .ph::before{content:'';position:absolute;left:-23px;top:10px;width:7px;height:7px;border-radius:50%;background:var(--bg);border:2px solid var(--hair)}
-.ph.now::before{background:var(--red);border-color:var(--red);animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(196,112,110,0.1)}50%{box-shadow:0 0 0 8px rgba(196,112,110,0.05)}}
+.ph.now{background:linear-gradient(90deg,rgba(255,253,250,0.3),transparent);border-radius:2px;margin-left:-28px;padding-left:28px}
+.ph.now::before{background:var(--red);border-color:var(--red);animation:phasePulse 2s ease-in-out infinite}
+@keyframes phasePulse{0%,100%{box-shadow:0 0 0 3px rgba(196,112,110,0.12)}50%{box-shadow:0 0 0 8px rgba(196,112,110,0.04)}}
+.ph.future{opacity:0.35}
 .ph-row{display:flex;align-items:baseline;gap:8px;padding:6px 0}
 .ph-num{font-size:10px;color:var(--faint);min-width:28px;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif}
 .ph-name{font-size:13px}
@@ -79,12 +110,18 @@ article{max-width:860px;margin:0 auto}
   background:var(--card);padding:7px 14px;border-radius:20px;
   font-size:12px;border:1px solid var(--hair);
   font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
+  transition:transform 0.2s ease,box-shadow 0.2s ease;
 }
+.ppl span:hover{transform:translateY(-2px);box-shadow:0 3px 10px rgba(80,74,70,0.05)}
 .ppl span .r{font-size:10px;color:var(--faint);margin-left:3px}
 
 /* ═══════════ KANBAN ═══════════ */
 .kb{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.kcol{background:var(--card);padding:14px;border-radius:2px}
+.kcol{
+  background:var(--card);padding:14px;border-radius:3px;
+  transition:transform 0.2s ease,box-shadow 0.2s ease;
+}
+.kcol:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(80,74,70,0.06)}
 .kcol .kh{font-size:10px;color:var(--faint);letter-spacing:2px;margin-bottom:8px;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif}
 .ki{font-size:11px;color:var(--soft);padding:4px 0 4px 10px;border-left:1px solid var(--hair);margin-bottom:2px;line-height:1.6}
 .ki.done{color:var(--teal)}
@@ -102,9 +139,11 @@ article{max-width:860px;margin:0 auto}
 /* ═══════════ PRINCIPLES ═══════════ */
 .pgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 .pcard2{
-  background:var(--card);padding:14px;border-radius:2px;
+  background:var(--card);padding:14px;border-radius:3px;
   border-top:2px solid var(--gold);font-size:11px;color:var(--soft);line-height:1.7;
+  transition:transform 0.2s ease;
 }
+.pcard2:hover{transform:translateY(-2px)}
 .pcard2 .pt{font-size:12px;color:var(--ink);margin-bottom:6px}
 
 /* ═══════════ LOG ═══════════ */
@@ -114,45 +153,49 @@ article{max-width:860px;margin:0 auto}
   color:var(--ink);
 }
 .day{
-  margin-bottom:24px;padding:20px;background:var(--card);border-radius:2px;
+  margin-bottom:24px;padding:20px;background:var(--card);border-radius:3px;
+  border-left:2px solid var(--hair);
+  transition:transform 0.2s ease;
 }
-.day .dhead{
-  display:flex;align-items:baseline;gap:12px;margin-bottom:12px;
-}
-.day .dhead .date{
-  font-size:16px;font-weight:500;
-}
-.day .dhead .title{
-  font-size:11px;color:var(--faint);
-  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
-}
+.day:hover{transform:translateY(-2px)}
+.day.latest{border-left-color:var(--gold)}
+.day .dhead{display:flex;align-items:baseline;gap:12px;margin-bottom:12px}
+.day .dhead .date{font-size:16px;font-weight:500}
+.day .dhead .title{font-size:11px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif}
 .day .ditems{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.day .di{
-  font-size:11px;color:var(--soft);line-height:1.7;
-  padding-left:14px;border-left:1px solid var(--hair);
-}
+.day .di{font-size:11px;color:var(--soft);line-height:1.7;padding-left:14px;border-left:1px solid var(--hair)}
 
 /* ═══════════ FUTURE ═══════════ */
-.future{opacity:0.45;margin-top:24px}
+.future{opacity:0.35;margin-top:24px}
 .future-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 .fcard{
-  background:var(--card);padding:12px 14px;border-radius:2px;
+  background:var(--card);padding:12px 14px;border-radius:3px;
   font-size:11px;color:var(--soft);
 }
 .fcard .ft{font-size:10px;color:var(--faint);margin-bottom:3px;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif}
 .fcard .fn{color:var(--ink);margin-bottom:3px}
 
-/* ═══════════ SEPARATOR ═══════════ */
+/* ═══════════ RHYTHM ═══════════ */
+.rgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ritem{font-size:12px;color:var(--soft);padding:6px 0;line-height:1.6}
+.ritem b{color:var(--ink);font-weight:500}
+
 hr{border:none;border-top:1px solid var(--hair);margin:0 0 36px}
 
 @media(max-width:640px){
   body{padding:40px 20px}
   .pulse-grid{grid-template-columns:1fr 1fr}
-  .kb,.pgrid,.day .ditems,.future-grid{grid-template-columns:1fr}
+  .kb,.pgrid,.day .ditems,.future-grid,.rgrid{grid-template-columns:1fr}
+  .topbar{flex-direction:column}
+  .collapsible-header{cursor:pointer;user-select:none}
+  .collapsible-header::after{content:' +';font-size:14px;color:var(--faint);margin-left:auto}
+  .collapsible-header.open::after{content:' −'}
+  .collapsible-body{display:none}
+  .collapsible-body.open{display:block}
 }
 
 /* ═══════════ FADE ═══════════ */
-.fade{opacity:0;transform:translateY(12px);animation:fadeIn 0.6s ease forwards}
+.fade{opacity:0;transform:translateY(16px);animation:fadeIn 0.7s ease forwards}
 .fade.d1{animation-delay:0.05s}.fade.d2{animation-delay:0.15s}.fade.d3{animation-delay:0.25s}.fade.d4{animation-delay:0.35s}
 @keyframes fadeIn{to{opacity:1;transform:translateY(0)}}
 </style>
@@ -163,7 +206,19 @@ hr{border:none;border-top:1px solid var(--hair);margin:0 0 36px}
 <!-- ═══════════ TOP ═══════════ -->
 <div class="topbar fade d1">
   <h1>妈祖项目管理</h1>
-  <div class="countdown">距 6.26 开机 4 天</div>
+  <div class="badges">
+    <span class="badge red">距 6.26 开机 4 天</span>
+    <span class="badge teal">距 8.15 交付 54 天</span>
+  </div>
+</div>
+
+<div class="progress-wrap fade d1">
+  <div class="progress-track">
+    <div class="progress-fill" style="width:5%"><div class="progress-dot"></div></div>
+  </div>
+  <div class="progress-labels">
+    <span>6.21</span><span>6.26 开机</span><span>7.21 剧本</span><span>8.6 制作</span><span>8.15 交付</span>
+  </div>
 </div>
 
 <!-- ═══════════ PULSE ═══════════ -->
@@ -207,23 +262,23 @@ hr{border:none;border-top:1px solid var(--hair);margin:0 0 36px}
       <div class="ph-row"><span class="ph-num">二</span><span class="ph-name">剧本</span><span class="ph-date">6.27 → 7.21</span></div>
       <div class="ph-detail">边写边查边跑 · 定稿 → 协会 7.28</div>
     </div>
-    <div class="ph">
+    <div class="ph future">
       <div class="ph-row"><span class="ph-num">三</span><span class="ph-name">分镜+风格</span><span class="ph-date">7.15 → 7.25</span></div>
       <div class="ph-detail">与剧本后期重叠 · 全片分镜 · 样片 · 音乐 demo</div>
     </div>
-    <div class="ph">
+    <div class="ph future">
       <div class="ph-row"><span class="ph-num">四</span><span class="ph-name">制作</span><span class="ph-date">7.26 → 8.6</span></div>
       <div class="ph-detail">画面批量生成 12天 · 广电报送</div>
     </div>
-    <div class="ph">
+    <div class="ph future">
       <div class="ph-row"><span class="ph-num">五</span><span class="ph-name">初剪+合成</span><span class="ph-date">8.7 → 8.9</span></div>
       <div class="ph-detail">初剪 · 音乐合成 · 内部审片</div>
     </div>
-    <div class="ph">
+    <div class="ph future">
       <div class="ph-row"><span class="ph-num">六</span><span class="ph-name">精修</span><span class="ph-date">8.10 → 8.12</span></div>
       <div class="ph-detail">修改 · 混音调色 · 字幕定稿</div>
     </div>
-    <div class="ph">
+    <div class="ph future">
       <div class="ph-row"><span class="ph-num">七</span><span class="ph-name">终审+交付</span><span class="ph-date">8.13 → 8.15</span></div>
       <div class="ph-detail">许老师终审 8.13 · 成片+海报+预告 8.15</div>
     </div>
@@ -249,8 +304,9 @@ hr{border:none;border-top:1px solid var(--hair);margin:0 0 36px}
 </div>
 
 <!-- ═══════════ KANBAN ═══════════ -->
-<div class="sec fade d4">
-  <div class="sec-label">工作看板</div>
+<div class="sec fade d4 collapsible-section">
+  <div class="sec-label collapsible-header open">工作看板</div>
+  <div class="collapsible-body open">
   <div class="kb">
     <div class="kcol">
       <div class="kh">MV 预告片</div>
@@ -291,6 +347,7 @@ hr{border:none;border-top:1px solid var(--hair);margin:0 0 36px}
       <div class="ki">陈晶晶</div>
     </div>
   </div>
+  </div>
 </div>
 
 <hr class="fade d4">
@@ -307,8 +364,9 @@ hr{border:none;border-top:1px solid var(--hair);margin:0 0 36px}
 </div>
 
 <!-- ═══════════ PRINCIPLES ═══════════ -->
-<div class="sec fade d4">
-  <div class="sec-label">协作原则</div>
+<div class="sec fade d4 collapsible-section">
+  <div class="sec-label collapsible-header">协作原则</div>
+  <div class="collapsible-body">
   <div class="pgrid">
     <div class="pcard2">
       <div class="pt">6/26 后方向收敛</div>
@@ -323,13 +381,27 @@ hr{border:none;border-top:1px solid var(--hair);margin:0 0 36px}
       MV未出第一版 · 7/21剧本仍在讨论 · 8/6画面进度偏慢 → 布布拉许老师+郁斌快速对齐
     </div>
   </div>
+  </div>
+</div>
+
+<!-- ═══════════ RHYTHM ═══════════ -->
+<div class="sec fade d4 collapsible-section">
+  <div class="sec-label collapsible-header">协作节奏</div>
+  <div class="collapsible-body">
+  <div class="rgrid">
+    <div class="ritem"><b>晨同步</b> 每天 9:00 · 布布微信群：今天谁交货、谁需要帮忙、今天定什么</div>
+    <div class="ritem"><b>创作站会</b> 隔天 20min · 郁斌+长风+陈晶晶 · 做决定，不同步信息</div>
+    <div class="ritem"><b>周决策会</b> 每周 45min · 许老师+郁斌+布布+陈晶晶</div>
+    <div class="ritem"><b>即时</b> 按需 · 涉及两人以上决定 → 10min 语音</div>
+  </div>
+  </div>
 </div>
 
 <!-- ═══════════ DAILY LOG ═══════════ -->
 <div class="log fade d4">
   <h2>更新记录</h2>
 
-  <div class="day">
+  <div class="day latest">
     <div class="dhead"><span class="date">6.22</span><span class="title">周日 · 距开机4天</span></div>
     <div class="ditems">
       <div class="di">🎨 人物资产风格确定为 <b>3D仿真人+CG渲染</b>。统一提示词确保风格一致，氛围感优先</div>
@@ -338,7 +410,7 @@ hr{border:none;border-top:1px solid var(--hair);margin:0 0 36px}
       <div class="di">📡 6.26宣发15条渠道确认14条。官媒9条就位，新华社港澳办暂定。3000宫庙+台湾媒体就位</div>
       <div class="di">✒️ 妈祖片名书法字由吴老师对接外部书法大家</div>
       <div class="di">🎙 MV配音：邀请小田老师做女声声线采集，吴老师配点题词</div>
-      <div class="di">⏱ 排期调整：8.1 → 8.15，七段每段留缓冲。剧本/分镜/画面/精修各自独立成段</div>
+      <div class="di">⏱ 排期调整：剧本延至 7.21，分镜与剧本后期重叠，8.15 交付不变</div>
       <div class="di">👥 制作组分工明确，吴老师统筹</div>
     </div>
   </div>
@@ -346,8 +418,8 @@ hr{border:none;border-top:1px solid var(--hair);margin:0 0 36px}
   <div class="day">
     <div class="dhead"><span class="date">6.21</span><span class="title">周六 · 四场会密集推进</span></div>
     <div class="ditems">
-      <div class="di">📖 剧情大纲定稿：10传+焚屋引航为素材，单元剧，灯锚双线，海燕公反派，亲情线为主不设爱情线，双版开篇报批</div>
-      <div class="di">👤 全部角色形象定稿：妈祖林默/成仙双形象，六日上人，千里眼顺风耳，四条闽台龙王，宠物小黄小白</div>
+      <div class="di">📖 剧情大纲定稿：10传+焚屋引航为素材，单元剧，灯锚双线，海燕公反派，亲情线为主</div>
+      <div class="di">👤 全部角色形象定稿：妈祖林默/成仙双形象，六日上人，千里眼顺风耳，龙王，宠物</div>
       <div class="di">🎬 MV预告片框架定稿：郑和持圣杯→签化金光→妈祖法相。画面策略：局部增强张力</div>
       <div class="di">🖋 伏笔设计讨论：海燕公非至恶，阿拉伯商人线，拉片《Enemy》学习，多季铺垫规划</div>
       <div class="di">🤝 HiShorts王小曼线上会完成，发企划书+跟进合作模式</div>
@@ -367,5 +439,19 @@ hr{border:none;border-top:1px solid var(--hair);margin:0 0 36px}
 </div>
 
 </article>
+
+<script>
+// ═══════════ Mobile collapsible ═══════════
+if(window.innerWidth<=640){
+  document.querySelectorAll('.collapsible-header').forEach(h=>{
+    h.classList.remove('open');
+    h.nextElementSibling?.classList.remove('open');
+    h.addEventListener('click',()=>{
+      h.classList.toggle('open');
+      h.nextElementSibling?.classList.toggle('open');
+    });
+  });
+}
+</script>
 </body>
 </html>
