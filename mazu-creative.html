@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>妈祖 · 剧本与角色</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#efe2d4;
+  --ink:#33302e;
+  --soft:#6b625c;
+  --faint:#8b827c;
+  --gold:#c4956a;
+  --teal:#2f6e64;
+  --red:#c4706e;
+  --hair:rgba(80,74,70,0.08);
+  --card:rgba(255,253,250,0.5);
+}
+body{
+  background:linear-gradient(180deg,#efe2d4 0%,#f2e6da 50%,#efe2d4 100%);
+  color:var(--ink);
+  font-family:"Noto Serif SC","Songti SC","STSong",Georgia,serif;
+  padding:64px 40px 120px;
+  -webkit-font-smoothing:antialiased;
+}
+article{max-width:860px;margin:0 auto}
+
+h1{font-size:24px;font-weight:300;letter-spacing:6px;margin-bottom:6px}
+.sub{font-size:12px;color:var(--faint);margin-bottom:48px;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif}
+
+/* ═══════════ SECTIONS ═══════════ */
+.sec{margin-bottom:52px}
+.sec-label{
+  font-size:9px;color:var(--faint);letter-spacing:5px;
+  margin-bottom:16px;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
+}
+
+/* ═══════════ STORY OVERVIEW ═══════════ */
+.overview{
+  background:var(--card);padding:28px;border-radius:3px;
+  border-left:2px solid var(--teal);
+  font-size:14px;color:var(--soft);line-height:2.1;
+  margin-bottom:32px;
+}
+
+/* ═══════════ STORY CARDS ═══════════ */
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:32px}
+.story{
+  background:var(--card);padding:20px;border-radius:3px;
+  border-left:2px solid var(--teal);
+  transition:transform 0.2s ease;
+}
+.story:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(80,74,70,0.06)}
+.story .snum{font-size:10px;color:var(--teal);letter-spacing:2px;margin-bottom:6px;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif}
+.story .sname{font-size:15px;font-weight:500;margin-bottom:8px}
+.story .sdesc{font-size:12px;color:var(--soft);line-height:1.9}
+
+/* ═══════════ PROPS ═══════════ */
+.props{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:32px}
+.prop{
+  background:var(--card);padding:20px;border-radius:3px;
+  text-align:center;
+}
+.prop .picon{font-size:28px;margin-bottom:8px}
+.prop .pname{font-size:14px;margin-bottom:6px}
+.prop .ptype{font-size:10px;color:var(--gold);letter-spacing:2px;margin-bottom:8px;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif}
+.prop .pdesc{font-size:12px;color:var(--soft);line-height:1.8}
+
+/* ═══════════ STRUCTURE ═══════════ */
+.flow{
+  display:flex;align-items:center;gap:0;margin-bottom:32px;overflow-x:auto;
+  padding:8px 0;font-size:11px;
+}
+.flow-step{
+  background:var(--card);padding:10px 16px;border-radius:3px;
+  white-space:nowrap;text-align:center;flex-shrink:0;
+}
+.flow-arrow{color:var(--gold);flex-shrink:0;font-size:14px;padding:0 4px}
+.flow-step .fs{color:var(--teal);font-weight:500}
+
+/* ═══════════ CHARACTER CARDS ═══════════ */
+.char-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:32px}
+.char{
+  background:var(--card);padding:20px;border-radius:3px;
+  border-top:2px solid var(--gold);
+  transition:transform 0.2s ease;
+}
+.char:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(80,74,70,0.06)}
+.char .cicon{font-size:24px;margin-bottom:8px}
+.char .cname{font-size:15px;margin-bottom:3px}
+.char .crole{font-size:10px;color:var(--gold);letter-spacing:2px;margin-bottom:10px;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif}
+.char .cdetail{font-size:11px;color:var(--soft);line-height:1.8}
+.char .cactor{font-size:10px;color:var(--faint);margin-top:6px;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif}
+
+/* ═══════════ STYLE BAR ═══════════ */
+.style-bar{
+  background:var(--card);padding:20px;border-radius:3px;
+  border-left:2px solid var(--red);margin-bottom:32px;
+  font-size:12px;color:var(--soft);line-height:2;
+}
+.style-bar b{color:var(--ink)}
+
+/* ═══════════ EMOTIONAL ARC ═══════════ */
+.arc{
+  background:var(--card);padding:20px;border-radius:3px;
+  font-size:12px;color:var(--soft);line-height:2;
+  margin-bottom:32px;
+}
+.arc h3{font-size:14px;color:var(--ink);margin-bottom:10px;font-weight:500}
+.arc .rel{margin-bottom:10px;padding-left:16px;border-left:1px solid var(--hair)}
+
+hr{border:none;border-top:1px solid var(--hair);margin:44px 0}
+
+@media(max-width:640px){
+  body{padding:40px 24px}
+  .story-grid{grid-template-columns:1fr}
+  .char-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:400px){
+  .char-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<article>
+
+<h1>妈祖 · 剧本与角色</h1>
+<div class="sub">创作圣经 · 2026.06.22</div>
+
+<!-- ═══════════ OVERVIEW ═══════════ -->
+<div class="overview">
+  以林默出生到羽化的 <b>10个核心传说 + 焚屋引航</b> 为主要素材，扩写改编为 <b>24集 × 15分钟</b> 的单元剧。
+  三集一个故事单元，每个单元让林默获得新认识——对世界的认识、对人的认识，神通逐渐增强。
+  感情线以<b>亲情为核心</b>，不设爱情线。反派 <b>海燕公</b> 贯穿全剧。
+  开篇<b>双版本报批</b>：郑成功海战版 / 阿拉伯海战版，由协会审核决定。
+</div>
+
+<!-- ═══════════ 10+1 STORIES ═══════════ -->
+<div class="sec">
+  <div class="sec-label">故事素材 · 10传 + 焚屋引航</div>
+  <div class="story-grid">
+    <div class="story">
+      <div class="snum">0 1</div>
+      <div class="sname">妈祖诞降</div>
+      <div class="sdesc">深夜出生，满屋红光。从出生到满月不哭不闹，取名「默」。一个家庭如何接纳一个不一样的孩子。</div>
+    </div>
+    <div class="story">
+      <div class="snum">0 2</div>
+      <div class="sname">窥井得符</div>
+      <div class="sdesc">16岁，井水中浮现神人捧铜符。女伴全跑了，她独自伸手接住。从此能预知吉凶。</div>
+    </div>
+    <div class="story">
+      <div class="snum">0 3</div>
+      <div class="sname">机上救亲</div>
+      <div class="sdesc">织布机前神魂出游，海上救父兄。母亲将她摇醒。父亲得救，哥哥坠海。第一次救人，只救回一半。</div>
+    </div>
+    <div class="story">
+      <div class="snum">0 4</div>
+      <div class="sname">化草救商</div>
+      <div class="sdesc">商船触礁将沉。她拔一把草抛向海面。草化为杉木，托住船身。船员靠岸才知是神力。</div>
+    </div>
+    <div class="story">
+      <div class="snum">0 5</div>
+      <div class="sname">挂席泛槎</div>
+      <div class="sdesc">船夫因风浪不敢出海。她挂草席当帆，小船如飞鸟掠海。草席浸水不湿。</div>
+    </div>
+    <div class="story">
+      <div class="snum">0 6</div>
+      <div class="sname">铁马渡江</div>
+      <div class="sdesc">渔船全出海。她取下屋檐铁马，化为青白骏马，踏浪而去。回来后铁马不再响了。</div>
+    </div>
+    <div class="story">
+      <div class="snum">0 7</div>
+      <div class="sname">祷雨济民</div>
+      <div class="sdesc">莆田大旱。她登山顶设坛，说申时下雨。午时烈日，无人信。申时暴雨倾盆。</div>
+    </div>
+    <div class="story">
+      <div class="snum">0 8</div>
+      <div class="sname">降伏二神</div>
+      <div class="sdesc">收服顺风耳与千里眼。三战三收，敌人化为护法。从此站在妈祖身后。</div>
+    </div>
+    <div class="story">
+      <div class="snum">0 9</div>
+      <div class="sname">焚屋引航</div>
+      <div class="sdesc">夜黑风高，船队迷航。她点燃自家屋顶为海面引路。船队归来，家化灰烬。父亲问值不值得——她没有回答。</div>
+    </div>
+    <div class="story">
+      <div class="snum">1 0</div>
+      <div class="sname">湄屿飞升</div>
+      <div class="sdesc">28岁，独自走上山顶。云气遮山，钟鼓丝竹。人间少女转入神格。</div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══════════ STRUCTURE ═══════════ -->
+<div class="sec">
+  <div class="sec-label">剧情结构</div>
+
+  <div style="font-size:12px;color:var(--soft);line-height:1.8;margin-bottom:16px">
+    <b>单元剧形式。</b>每个小单元让林默获得新认识，神通逐渐增强。故事前期积累能力（出生→窥井得符→治病救人），中期节奏加快（化草救商→铁马渡江→遭遇更大挑战），情感冲突集中爆发（机上救亲→与母亲决裂→陷入低谷），重拾初心（降伏二神→主动帮助民众→祈雨→焚屋），最终抉择（海难/海战→羽化飞升）。
+  </div>
+
+  <div class="flow">
+    <div class="flow-step"><span class="fs">开篇爆炸</span><br>海战大场面</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">平淡主线<br>妈祖出生</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">缓慢上升<br>能力积累</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><span class="fs">小高潮</span><br>化草救商</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">转折下降<br>救亲失败</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">重新爬升<br>内求大爱</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><span class="fs">大高潮</span><br>湄屿飞升</div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══════════ PROPS ═══════════ -->
+<div class="sec">
+  <div class="sec-label">贯穿道具</div>
+  <div class="props">
+    <div class="prop">
+      <div class="picon">🏮</div>
+      <div class="pname">龙凤喜灯</div>
+      <div class="ptype">明 线</div>
+      <div class="pdesc">初始为简单灯，林默有法力后可用意念控制开关。象征引航。贯穿全剧，从出生时的灯到飞升时照彻海面。</div>
+    </div>
+    <div class="prop">
+      <div class="picon">⚓</div>
+      <div class="pname">船锚</div>
+      <div class="ptype">暗 线</div>
+      <div class="pdesc">在海难或引航时暗戳戳出现。象征稳定。不喧哗，但每一次风暴中都在——像妈祖自己。</div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══════════ EMOTIONAL ARC ═══════════ -->
+<div class="sec">
+  <div class="sec-label">感情线 · 亲情为核心</div>
+  <div class="arc">
+    <h3>兄妹情</h3>
+    <div class="rel">哥哥代表保护。在母亲期望林默嫁人时，哥哥是家庭矛盾的润滑剂。机上救亲后哥哥遇难，林默陷入自责——「如果我当时出海了，是不是两个都能救。」这是她人生的低谷。哥哥的死在后续情节中反复被唤起，成为她救人的动力，也是她与母亲之间最深的裂痕。</div>
+
+    <h3>母女情</h3>
+    <div class="rel">母亲代表世俗期望——希望林默嫁人、过正常生活。机上救亲后，林默将哥哥的死归咎于母亲将她摇醒，母女关系决裂。林默一度想放弃神通、顺应世俗。后续剧情中母亲逐渐理解林默的选择，在焚屋引航时母亲站在灰烬前——是她人生中第一次没有拦她。飞升前母女和解，成为全剧最重的情感落点。</div>
+
+    <h3>不设爱情线</h3>
+    <div class="rel">0621会议明确：以亲情线为核心，不设爱情线。墨娘成仙是自我升华，不因任何人——只因她选择了大爱。</div>
+
+    <h3>反派 · 海燕公</h3>
+    <div class="rel">贯穿全剧的反派。不是纯粹的恶——是人世间坏想法的具象化，撺掇别人干坏事。前期为所有事件（包括父亲和哥哥的死）埋下伏笔。最后被妈祖感化，重新守护海洋。背后可能设置更大的阴谋，为后续二三四季铺垫。</div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══════════ CHARACTERS ═══════════ -->
+<div class="sec">
+  <div class="sec-label">角色形象 · 3D仿真人+CG渲染</div>
+
+  <div class="style-bar">
+    <b>统一风格：</b>3D仿真人 + CG渲染。统一提示词确保风格一致。细节有松有弛，氛围感为第一要求。皮肤纹理真实，允许略有瑕疵。避免明星脸版权问题，可结合多个明星特征设计。先出氛围海报图 → 反推角色形象 → 修正服饰形态。
+  </div>
+
+  <div class="char-grid">
+    <div class="char">
+      <div class="cicon">🌊</div>
+      <div class="cname">林默（少女妈祖）</div>
+      <div class="crole">女 · 16-28岁 · 主角</div>
+      <div class="cdetail">朝气明媚，飒爽英气。眼神灵动且带怜悯，但不过于悲悯。服装偏中性，劲装搭配马甲外挂，便于活动。有完整的成长弧线——从活泼冲动到逐渐沉稳。</div>
+    </div>
+
+    <div class="char">
+      <div class="cicon">✨</div>
+      <div class="cname">妈祖（成仙后）</div>
+      <div class="crole">女 · 神格 · 主角</div>
+      <div class="cdetail">成熟稳重。法天象地——周身云雾、龙游其间、雷电交加，脸部保持少女的宁静。服装极尽华丽：九龙凤冠、披风、飘带。单独制作头冠/衣服后穿到角色身上。</div>
+    </div>
+
+    <div class="char">
+      <div class="cicon">🕶️</div>
+      <div class="cname">六日上人</div>
+      <div class="crole">男 · 贯穿 · 搞笑担当</div>
+      <div class="cdetail">皮肤较黑，佩戴生锈且用白布缠着的眼镜。服装根据朝代更换，MV中穿小兵衣服。亦庄亦谐的庙公，妈祖在人间的代言人。</div>
+      <div class="cactor">饰演：陈晶晶</div>
+    </div>
+
+    <div class="char">
+      <div class="cicon">👁️</div>
+      <div class="cname">千里眼</div>
+      <div class="crole">男 · 妖怪 → 护法</div>
+      <div class="cdetail">以庙中神像为基础。着红色服装。被收复前穿兽皮，体现野外妖怪形象；收复后换上神装。能看见千里之外。</div>
+    </div>
+
+    <div class="char">
+      <div class="cicon">👂</div>
+      <div class="cname">顺风耳</div>
+      <div class="crole">男 · 妖怪 → 护法</div>
+      <div class="cdetail">以庙中神像为基础。着蓝色服装。被收复前穿兽皮；收复后换上神装。能听见百里外的私语。与千里眼长相微调，总体相似。</div>
+    </div>
+
+    <div class="char">
+      <div class="cicon">🐉</div>
+      <div class="cname">四海龙王</div>
+      <div class="crole">神 · ×4 · 妈祖小弟</div>
+      <div class="cdetail">四条具有闽台文化特色的龙——红龙、白龙、黑龙、青龙。比动画中的龙更有质感、更锋利。妈祖出现时在云雾中盘旋。</div>
+    </div>
+
+    <div class="char">
+      <div class="cicon">⚔️</div>
+      <div class="cname">郑成功</div>
+      <div class="crole">男 · 明末 · 开篇方案A</div>
+      <div class="cdetail">开篇海战版主角。视觉冲击力强，尊重史实。展现台湾土著在妈祖显灵后配合郑成功赶走荷兰人的历史场景。</div>
+    </div>
+
+    <div class="char">
+      <div class="cicon">⛵</div>
+      <div class="cname">郑和</div>
+      <div class="crole">男 · 明代 · MV开场</div>
+      <div class="cdetail">MV预告片开场：郑和手持圣杯跪地祈祷，武将同跪，中央妈祖像，六日上人穿水兵服举签筒。</div>
+    </div>
+
+    <div class="char">
+      <div class="cicon">🐕</div>
+      <div class="cname">小黄 · 小白</div>
+      <div class="crole">宠物 · 中华田园犬</div>
+      <div class="cdetail">妈祖身边的伙伴。二创中可用暗示手法展现宠物与墨娘成长的关联——如猫在升仙时变为石老虎。</div>
+    </div>
+
+    <div class="char">
+      <div class="cicon">😈</div>
+      <div class="cname">海燕公</div>
+      <div class="crole">贯穿反派</div>
+      <div class="cdetail">人世间坏想法的具象化。撺掇别人干坏事，但非至恶。前期为所有事件埋下伏笔。最终被妈祖感化。背后可能设更大阴谋（为S2-S4铺垫）。</div>
+    </div>
+
+    <div class="char">
+      <div class="cicon">🧚</div>
+      <div class="cname">水雀仙班</div>
+      <div class="crole">群像 · 仙班</div>
+      <div class="cdetail">风格统一的群像角色。不一定完全类人，以突出妈祖权威性。按擅长领域分工——水仙质感专人统一做。</div>
+    </div>
+
+    <div class="char">
+      <div class="cicon">🌪️</div>
+      <div class="cname">阿拉伯商人</div>
+      <div class="crole">开篇方案B</div>
+      <div class="cdetail">阿拉伯海战版开篇：商人遇海盗和海怪，妈祖失去神通后烧屋相助。体现妈祖的大爱无界。</div>
+    </div>
+
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══════════ MV ═══════════ -->
+<div class="sec">
+  <div class="sec-label">MV预告片 · 内容框架</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+    <div style="background:var(--card);padding:18px;border-radius:3px;border-top:2px solid var(--gold)">
+      <div style="font-size:12px;font-weight:500;margin-bottom:8px">开场</div>
+      <div style="font-size:11px;color:var(--soft);line-height:1.8">海浪打船身，柱子吱嘎响。郑和持圣杯跪地祈祷。武将同跪。中央妈祖像。六日上人穿水兵服举签筒。</div>
+    </div>
+    <div style="background:var(--card);padding:18px;border-radius:3px;border-top:2px solid var(--gold)">
+      <div style="font-size:12px;font-weight:500;margin-bottom:8px">高潮</div>
+      <div style="font-size:11px;color:var(--soft);line-height:1.8">签筒内签剧烈晃动 → 一支签化金光冲破云层 → 打回海面 → 海水涨潮 → 妈祖法相空中现身。</div>
+    </div>
+    <div style="background:var(--card);padding:18px;border-radius:3px;border-top:2px solid var(--gold)">
+      <div style="font-size:12px;font-weight:500;margin-bottom:8px">画面策略</div>
+      <div style="font-size:11px;color:var(--soft);line-height:1.8">局部增强张力。神技法天象地。不拍全景只拍局部——手、眼、衣角。大部分展现神仙神技。</div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══════════ VISUAL REFERENCES ═══════════ -->
+<div class="sec">
+  <div class="sec-label">视觉参考</div>
+  <div style="font-size:12px;color:var(--soft);line-height:2;background:var(--card);padding:20px;border-radius:3px">
+    <b>参考剧集：</b>《Enemy》（煎饼果仔，20亿播放量）——学习情节穿插和情感处理。前五集靠埋伏笔和表演，后面靠演技。<br>
+    <b>妈祖服装参考：</b>图册中九龙凤冠、披风等元素。参考河南卫视中国神仙的华丽服装风格，细节上强化。<br>
+    <b>龙王参考：</b>不与哪吒中的龙王撞款。闽台文化质感，做锋利增强战斗力。<br>
+    <b>千里眼顺风耳参考：</b>庙中神像为基础。<br>
+    <b>面部处理：</b>不一定使用虚幻引擎，根据实际情况选择合适技术。<br>
+    <b>建议工具：</b>香蕉做图，便于后期修改和调整光效。避免 image 做图时光影过强难以调整。
+  </div>
+</div>
+
+</article>
+</body>
+</html>
