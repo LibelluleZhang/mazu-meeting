@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>妈祖 · 项目企划书</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root {
+  --bg: #efe2d4;
+  --ink: #33302e;
+  --soft: #6b625c;
+  --faint: #8b827c;
+  --accent: #2f6e64;
+  --asoft: #5d9a90;
+  --gold: #c4956a;
+  --red: #c4706e;
+  --hair: rgba(80,74,70,0.10);
+  --card: rgba(255,253,250,0.45);
+}
+
+html{scroll-behavior:smooth}
+body{
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Noto Serif SC","Songti SC","STSong","Source Serif 4",Georgia,"Times New Roman",serif;
+  line-height: 1.9;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── Scroll Progress ── */
+#progress-bar{
+  position:fixed;top:0;left:0;height:2px;
+  background: linear-gradient(90deg, var(--accent), var(--asoft));
+  z-index:1000;transition:width 0.1s linear;
+}
+
+/* ── Back to Top ── */
+#back-top{
+  position:fixed;bottom:32px;right:24px;
+  width:40px;height:40px;border-radius:50%;
+  background: rgba(255,253,250,0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border:1px solid var(--hair);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;z-index:999;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.4s;
+  color:var(--accent);font-size:18px;
+}
+#back-top.visible{opacity:1;pointer-events:auto}
+#back-top:hover{background:rgba(255,253,250,0.9);transform:translateY(-2px)}
+
+/* ── Container ── */
+article{
+  max-width: 640px;
+  margin:0 auto;
+  padding: 0 32px 120px;
+}
+
+/* ── Cover ── */
+.cover{
+  text-align:center;
+  padding:100px 0 80px;
+  position:relative;
+}
+.cover::before{
+  content:'';position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:280px;height:280px;
+  background:radial-gradient(circle,rgba(196,149,106,0.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+.cover .tag{
+  font-size:11px;letter-spacing:8px;color:var(--faint);
+  margin-bottom:40px;position:relative;z-index:1;
+  font-family: -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
+}
+.cover h1{
+  font-size:68px;font-weight:300;color:var(--ink);
+  letter-spacing:18px;margin-bottom:20px;position:relative;z-index:1;
+}
+.cover .sub{
+  font-size:15px;color:var(--gold);letter-spacing:6px;margin-bottom:8px;
+  position:relative;z-index:1;
+  font-family: -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
+}
+.cover .line{
+  width:36px;height:1px;background:var(--gold);
+  margin:36px auto;position:relative;z-index:1;
+}
+.cover .info{
+  font-size:12px;color:var(--faint);letter-spacing:3px;
+  position:relative;z-index:1;
+  font-family: -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
+}
+
+/* ── Stats Row ── */
+.stats-row{
+  display:flex;justify-content:space-around;
+  padding:36px 0;margin:0 0 36px;
+  border-top:1px solid var(--hair);
+  border-bottom:1px solid var(--hair);
+}
+.stat{text-align:center}
+.stat .num{font-size:36px;font-weight:200;color:var(--gold);letter-spacing:2px;line-height:1.2}
+.stat .lbl{font-size:10px;color:var(--faint);letter-spacing:2px;margin-top:4px;
+  font-family: -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
+}
+
+/* ── Section ── */
+.sec{padding:64px 0}
+.sec-num{font-size:10px;letter-spacing:6px;color:var(--faint);margin-bottom:8px;
+  font-family: -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
+}
+.sec-title{
+  font-size:24px;font-weight:300;color:var(--ink);
+  letter-spacing:4px;margin-bottom:36px;line-height:1.4;
+}
+.sec p{margin:14px 0;font-size:15px;color:var(--soft);line-height:2.1}
+.sec .en-block{font-size:13px;color:var(--faint);line-height:1.8;margin:6px 0 20px;font-style:italic;letter-spacing:0.5px}
+.sec .en-block strong{font-style:normal;color:var(--gold)}
+
+/* ── Divider ── */
+.dv{
+  height:1px;background:linear-gradient(90deg,transparent,var(--hair) 20%,var(--hair) 80%,transparent);
+  margin:0;
+}
+
+/* ── Pull Quote ── */
+.pull{
+  position:relative;padding:28px 0 28px 28px;margin:32px 0;
+  border-left:1px solid var(--gold);
+}
+.pull p{font-size:18px;color:var(--ink);line-height:2;font-weight:300}
+.pull .attr{font-size:11px;color:var(--faint);margin-top:10px;letter-spacing:2px;
+  font-family: -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
+}
+
+/* ── Beat Card ── */
+.beat{
+  margin:20px 0;padding:24px 28px;
+  background:var(--card);border-left:2px solid var(--accent);
+  transition:transform 0.3s ease,box-shadow 0.3s ease;
+}
+.beat:hover{transform:translateX(4px);box-shadow:0 2px 16px rgba(80,74,70,0.06)}
+.beat .label{
+  font-size:10px;color:var(--asoft);letter-spacing:4px;margin-bottom:6px;
+  font-family: -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
+}
+.beat p{font-size:14px;color:var(--soft);line-height:2;margin:0}
+
+/* ── Visual Grid ── */
+.vis-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:24px 0}
+.vis-card{
+  padding:28px;background:var(--card);
+  border-top:2px solid var(--accent);
+  transition:transform 0.3s ease;
+}
+.vis-card:hover{transform:translateY(-3px)}
+.vis-card.full{grid-column:1/-1}
+.vis-card .vlabel{
+  font-size:10px;color:var(--asoft);letter-spacing:3px;margin-bottom:10px;
+  font-family: -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
+}
+.vis-card p{font-size:14px;color:var(--soft);line-height:1.9;margin:0}
+
+/* ── Team ── */
+.team-item{
+  padding:24px 0;border-bottom:1px solid var(--hair);
+  transition:background 0.3s;
+}
+.team-item:hover{background:rgba(255,253,250,0.3)}
+.team-item .name{font-size:18px;font-weight:300;color:var(--ink);letter-spacing:2px;margin-bottom:2px}
+.team-item .role{font-size:11px;color:var(--gold);letter-spacing:3px;margin-bottom:8px;
+  font-family: -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
+}
+.team-item p{font-size:14px;color:var(--soft);line-height:1.8;margin:0}
+.team-item .note{font-size:12px;color:var(--faint);margin-top:4px;font-style:italic}
+
+/* ── Table ── */
+.tbl{width:100%;margin:24px 0}
+.tbl td,.tbl th{padding:12px 0;font-size:14px;border-bottom:1px solid var(--hair);text-align:left;vertical-align:top}
+.tbl th{color:var(--faint);font-weight:400;letter-spacing:2px;font-size:11px;width:180px;
+  font-family: -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
+}
+.tbl td{color:var(--soft);line-height:1.8}
+.tbl .lvl{color:var(--gold);font-size:11px;letter-spacing:1px;
+  font-family: -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
+}
+
+/* ── Progress ── */
+.prog-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin:24px 0}
+.prog-col h4{
+  font-size:10px;color:var(--faint);letter-spacing:4px;margin-bottom:16px;font-weight:400;
+  font-family: -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
+}
+.prog-item{
+  font-size:13px;color:var(--soft);margin:10px 0;
+  padding:10px 0 10px 16px;border-left:1px solid var(--hair);
+  line-height:1.7;transition:border-color 0.3s;
+}
+.prog-item:hover{border-left-color:var(--asoft)}
+.prog-item.hi{color:var(--accent);font-weight:500}
+
+/* ── Partner Card ── */
+.partner-card{
+  margin:16px 0;padding:28px;background:var(--card);
+  border-left:2px solid var(--gold);
+  transition:transform 0.3s ease;
+}
+.partner-card:hover{transform:translateX(4px)}
+.partner-card .plabel{
+  font-size:10px;color:var(--gold);letter-spacing:4px;margin-bottom:8px;
+  font-family: -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
+}
+.partner-card p{font-size:14px;color:var(--soft);line-height:1.9;margin:0}
+
+/* ── Footer ── */
+.footer{text-align:center;padding:80px 0 0}
+.footer p{font-size:13px;color:var(--faint);line-height:2.5;letter-spacing:1px}
+.footer .end{font-size:16px;color:var(--gold);margin-top:44px;letter-spacing:4px;font-weight:300}
+
+/* ── Signature ── */
+.signature{
+  display:inline-block;margin-top:24px;padding:8px 0;
+  border-top:1px solid var(--gold);
+  font-size:13px;color:var(--soft);letter-spacing:2px;
+}
+
+/* ── Fade-in animation ── */
+.fade-in{
+  opacity:0;transform:translateY(16px);
+  animation:fadeUp 0.7s ease forwards;
+}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+.fade-in.d1{animation-delay:0.1s}
+.fade-in.d2{animation-delay:0.25s}
+.fade-in.d3{animation-delay:0.4s}
+.fade-in.d4{animation-delay:0.55s}
+.fade-in.d5{animation-delay:0.7s}
+
+/* ── Responsive ── */
+@media(max-width:600px){
+  article{padding:0 24px 80px}
+  .cover{padding:72px 0 56px}
+  .cover h1{font-size:52px;letter-spacing:14px}
+  .vis-grid{grid-template-columns:1fr}
+  .prog-grid{grid-template-columns:1fr}
+  .stats-row{gap:12px}
+  .stat .num{font-size:28px}
+  .sec-title{font-size:21px}
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+<button id="back-top" aria-label="返回顶部" title="返回顶部">↑</button>
+
+<article>
+
+<!-- ═══════════ COVER ═══════════ -->
+<section class="cover">
+  <div class="tag fade-in d1">P R O J E C T &nbsp; · &nbsp; P R O P O S A L</div>
+  <h1 class="fade-in d2">妈祖</h1>
+  <div class="sub fade-in d3">M A Z U</div>
+  <div class="line fade-in d4"></div>
+  <div class="sub fade-in d4">首部获中华妈祖文化交流协会官方授权</div>
+  <div class="sub fade-in d4" style="margin-top:2px">A I &nbsp; 国 &nbsp; 风 &nbsp; 诗 &nbsp; 选 &nbsp; 剧 &nbsp; 集</div>
+  <div class="info fade-in d5" style="margin-top:56px">泉州市手拉手互联科技有限公司 &nbsp;·&nbsp; 2026</div>
+</section>
+
+<!-- ═══════════ STATS ═══════════ -->
+<div class="stats-row fade-in d3">
+  <div class="stat"><div class="num">24</div><div class="lbl">集 × 15 分钟</div></div>
+  <div class="stat"><div class="num">48</div><div class="lbl">独立故事</div></div>
+  <div class="stat"><div class="num">4 亿</div><div class="lbl">信众基础</div></div>
+  <div class="stat"><div class="num">51 国</div><div class="lbl">宫庙遍布</div></div>
+</div>
+
+<!-- ═══════════ 01 DIRECTOR ═══════════ -->
+<section class="sec fade-in">
+  <div class="sec-num">0 1</div>
+  <div class="sec-title">导演陈述</div>
+
+  <p>一千年前，湄洲岛上有个女孩叫默。</p>
+  <p>她不哭不闹，能望海，能听风，能记住每个人的名字。十六岁那年，她在井水里看到了自己的命运。二十八岁那年，独自走上山顶，再也没有回来。</p>
+  <p>成神之前，她只是一个普通的渔村少女。我们想拍的是这个部分——她怎么对待身边的每一个人，怎么在不确定中做出选择，怎么被接住，又怎么接住别人。</p>
+
+  <div class="pull">
+    <p>全剧没有飞天，没有法术，没有金光。神性不来自超自然——来自她比任何人更在乎每一个具体的人。</p>
+  </div>
+
+  <p>市面唯一有大众认知度的妈祖影视作品是 2012 年刘涛版，核心叙事为「显灵救人」。此后十三年，没有第二部。不是没人想做——是没有授权，没有技术，没有找到合适的叙事角度。现在三个条件全部具备了。我们选择了一条最难的、也是最值得走的路：把妈祖从神坛请回人间。</p>
+</section>
+
+<div class="dv"></div>
+
+<!-- ═══════════ 02 PROJECT ═══════════ -->
+<section class="sec fade-in">
+  <div class="sec-num">0 2</div>
+  <div class="sec-title">项目</div>
+
+  <table class="tbl">
+    <tr><th>片名</th><td>《妈祖》 / Mazu</td></tr>
+    <tr><th>类型</th><td>国风 · 诗选 · 剧情</td></tr>
+    <tr><th>形式</th><td>24 集 × 15 分钟 · 三集一个故事单元</td></tr>
+    <tr><th>故事</th><td>48 个独立故事 · 妈祖人间分身串联全季</td></tr>
+    <tr><th>画风</th><td>3D 写实 · 色彩参考北宋美学 · 视觉语言丰沛而当代</td></tr>
+    <tr><th>备案</th><td>国家广电总局备案通过</td></tr>
+    <tr><th>出品</th><td>泉州市手拉手互联科技有限公司</td></tr>
+  </table>
+</section>
+
+<div class="dv"></div>
+
+<!-- ═══════════ 03 STORY ═══════════ -->
+<section class="sec fade-in">
+  <div class="sec-num">0 3</div>
+  <div class="sec-title">故事</div>
+
+  <p>48 个独立故事，三集一个单元。每集一个普通人，妈祖是观察者。时代不限，地点不限——北宋的渔村、民国的码头、今天的世界各地。</p>
+
+  <div class="beat"><div class="label">第 一 季 · 成 神 前</div><p>聚焦妈祖成神前的十个核心传说——从诞降到湄屿飞升。一个渔村少女如何一步步成为被千万人仰望的存在。</p></div>
+
+  <div class="beat"><div class="label">诞降</div><p>一个求子得女的家庭，如何接纳这个不哭不闹的女婴。</p></div>
+  <div class="beat"><div class="label">窥井得符</div><p>十六岁，井水中出现神人捧着一双铜符。女伴全跑了，她独自伸手接住。</p></div>
+  <div class="beat"><div class="label">机上救亲</div><p>织布机前，神魂出游救父兄。母亲把她摇醒。救父失兄——第一次尝到能力的代价。</p></div>
+  <div class="beat"><div class="label">化草救商</div><p>商船触礁将沉，无人敢救。她拔一把草抛向海面。草化杉木，托住船身。</p></div>
+  <div class="beat"><div class="label">祷雨济民</div><p>莆田大旱，登山顶设坛。午时烈日，申时暴雨倾盆。</p></div>
+  <div class="beat"><div class="label">降伏二神</div><p>收服顺风耳与千里眼。从敌人到护法。三战三收。</p></div>
+  <div class="beat"><div class="label">湄屿飞升</div><p>二十八岁，独自走上山顶。云气遮山，钟鼓丝竹。人间少女转入神格。</p></div>
+
+  <div class="beat" style="margin-top:32px"><div class="label">成 神 后</div><p>贯穿历代：宋代赐匾、元代漕运、郑和下西洋、郑成功收复台湾、施琅澎湖助战。</p></div>
+
+  <div class="beat"><div class="label">现 代 贯 穿 线</div><p>一位 90 年代归国的 IT 青年，在泉州天后宫偶遇自称「六日上人」的庙公。庙公随意讲述妈祖故事，每段暗合青年的人生困惑。他回头寻找时，工作人员说从未有过这个人。此后，他在巴西天妃宫、台北朝天宫、吉隆坡庙会中反复与之相遇。古今穿梭——妈祖的精神在不同时代以不同方式「被接住」。</p></div>
+</section>
+
+<div class="dv"></div>
+
+<!-- ═══════════ 04 VISUALS ═══════════ -->
+<section class="sec fade-in">
+  <div class="sec-num">0 4</div>
+  <div class="sec-title">视觉与美学</div>
+
+  <p>色彩参考北宋美学的克制用色与大面积留白。暖沙底色贯穿全剧，红色仅作为强调色在关键场景中出现。但整体视觉语言丰沛、有层次、具有当代冲击力——并非寡淡的仿古。</p>
+
+  <div class="vis-grid">
+    <div class="vis-card"><div class="vlabel">成 神 前</div><p>渔村少女，朴素真实，有完整的成长弧线。保持人性化特征，反对过度神化。</p></div>
+    <div class="vis-card"><div class="vlabel">成 神 后</div><p>法天象地——周身云雾、龙游其间、雷电交加。脸部始终保持少女的宁静。动态环绕而非静态悬浮。</p></div>
+    <div class="vis-card full"><div class="vlabel">场 景</div><p>泉州商贸繁华——聚宝街、顺济门、天后宫。海战磅礴——郑成功舰队破浪、炮火烟雾。日常诗意——渔村海蛎壳厝、织布机光影、井水倒影中的另一个世界。AI 的优势：在历史考据的准确性之上，实现传统拍摄难以完成的视觉奇观。</p></div>
+  </div>
+</section>
+
+<div class="dv"></div>
+
+<!-- ═══════════ 05 CULTURE ═══════════ -->
+<section class="sec fade-in">
+  <div class="sec-num">0 5</div>
+  <div class="sec-title">文化意义</div>
+
+  <p>妈祖信俗一千年。四亿信众。五千余座宫庙遍布五十一国。UNESCO 人类非物质文化遗产。</p>
+  <p>但信众在老化——核心群体六十岁以上，年轻一代「拜拜但不了解妈祖是谁」。如果这一代人没有用当代视听语言重新讲述妈祖，二十年后这个文化符号将面临代际断裂。</p>
+
+  <div class="pull">
+    <p>这不只是一部剧集。这是一次文化基础设施的建设。</p>
+  </div>
+
+  <div class="beat"><div class="label">对信众</div><p>妈祖在 AI 时代的第一眼。</p></div>
+  <div class="beat"><div class="label">对全球华人</div><p>精神归属的当代坐标。</p></div>
+  <div class="beat"><div class="label">对国际观众</div><p>进入中国海洋文明的第一入口。</p></div>
+  <div class="beat"><div class="label">对两岸</div><p>最大公约数的文化符号，超越政治的民间情感连接。</p></div>
+</section>
+
+<div class="dv"></div>
+
+<!-- ═══════════ 06 AUTHORIZATION ═══════════ -->
+<section class="sec fade-in">
+  <div class="sec-num">0 6</div>
+  <div class="sec-title">授权体系</div>
+
+  <p>国内妈祖题材影视作品最高配置。协会已明确不再批同类授权。</p>
+
+  <table class="tbl">
+    <tr><th>中华妈祖文化交流协会</th><td><span class="lvl">副部级</span> · 全球最高妈祖机构 · 已报备文旅部 · 独家</td></tr>
+    <tr><th>泉州天后宫</th><td><span class="lvl">世遗</span> · 国内唯一世遗点妈祖宫庙 · 海丝起点 · 官庙</td></tr>
+    <tr><th>福建省妈祖文化研究会</th><td><span class="lvl">省级</span> · 学术机构</td></tr>
+    <tr><th>山东海峡两岸妈祖交流</th><td><span class="lvl">国台办级</span> · 对台文化交流通道</td></tr>
+  </table>
+
+  <p style="font-size:12px;color:var(--faint);margin-top:16px">对比：2012 年刘涛版——祖庙授权（民间机构）。本项目——协会授权 + 世遗官庙，代际跃升。</p>
+</section>
+
+<div class="dv"></div>
+
+<!-- ═══════════ 07 TEAM ═══════════ -->
+<section class="sec fade-in">
+  <div class="sec-num">0 7</div>
+  <div class="sec-title">主创团队</div>
+
+  <div class="team-item">
+    <div class="name">郁斌</div>
+    <div class="role">导演</div>
+    <p>数字艺术家。NFT 先驱。玛莎拉蒂、福特合作艺术家。莆田籍。作品兼具东方美学底蕴与当代视觉锐度。定义全剧视觉语言与叙事风格。</p>
+  </div>
+
+  <div class="team-item">
+    <div class="name">陈晶晶</div>
+    <div class="role">文化顾问 / 六日上人</div>
+    <p>妈祖文化资深研究员。协会外联办前主任。十五年全身心投入妈祖文化事业。为剧本提供学术级文化准确性把关。在剧中饰演贯穿多集的庙公式角色「六日上人」——亦庄亦谐，妈祖在人间的代言人。</p>
+  </div>
+
+  <div class="team-item">
+    <div class="name">布布</div>
+    <div class="role">制片 / 社群发起人</div>
+    <p>项目总统筹。近百人创作社群组织者。全球青年组织节点：706 / waytoAGI / 纽约 AIGC。北美、南美在地资源。负责资源整合、对外合作与全盘运营。</p>
+  </div>
+
+  <div class="team-item">
+    <div class="name">长风</div>
+    <div class="role">核心编剧</div>
+    <p>领衔编剧组。采用公开投稿制面向全国创作者征集。审核流程：团队内部审核 → 中华妈祖文化交流协会 → 广电总局。</p>
+  </div>
+
+  <div class="team-item">
+    <div class="name">音乐</div>
+    <div class="role">AI 或待定人选</div>
+    <p>含「妈祖」唱段可改为闽南语。开放声音共创收集，追求大合唱质感。实地收录妈祖游神场景环境声。</p>
+  </div>
+
+  <div class="team-item">
+    <div class="name">泉州市手拉手互联科技有限公司</div>
+    <div class="role">出品</div>
+    <p>科技型企业。月产能 2000+ 分钟。十五人制作团队专配。自有资金投入。定位：AI 技术规模化精品内容生产。</p>
+  </div>
+</section>
+
+<div class="dv"></div>
+
+<!-- ═══════════ 08 PROGRESS ═══════════ -->
+<section class="sec fade-in">
+  <div class="sec-num">0 8</div>
+  <div class="sec-title">项目进展</div>
+
+  <div class="prog-grid">
+    <div class="prog-col">
+      <h4>已完成</h4>
+      <div class="prog-item">四层授权全部到位，壁垒闭合</div>
+      <div class="prog-item">国家广电总局备案通过</div>
+      <div class="prog-item">33 篇妈祖知识库上线（CC 协议开源）</div>
+      <div class="prog-item">编剧创作手册 + AI 生产管线就位</div>
+      <div class="prog-item">近百人创作社群覆盖四层</div>
+      <div class="prog-item">6 场关键会议一周内密集推进</div>
+      <div class="prog-item">第一轮编剧公开征选启动</div>
+    </div>
+    <div class="prog-col">
+      <h4>关键节点</h4>
+      <div class="prog-item hi">6.26 &nbsp; 泉州天后宫开机仪式</div>
+      <div class="prog-item">8 月 &nbsp; 首部短片上线</div>
+      <div class="prog-item">Q3 &nbsp; 全季剧本开发</div>
+      <div class="prog-item">Q4 &nbsp; 全季制作 + 平台合作</div>
+      <div class="prog-item hi">2027 Q1 &nbsp; 全季上线 + 影展申报</div>
+    </div>
+  </div>
+</section>
+
+<div class="dv"></div>
+
+<!-- ═══════════ 09 COLLABORATION ═══════════ -->
+<section class="sec fade-in">
+  <div class="sec-num">0 9</div>
+  <div class="sec-title">合作机会</div>
+
+  <p>本项目以「平台策展」模式运作。我们不只是内容生产者，更是妈祖 IP 在 AI 时代的策展机构——制定标准、开放投稿、评审遴选、赋能放大、归口分发。</p>
+
+  <div class="partner-card"><div class="plabel">致 影 展 机 构</div><p>首部短片 / 全季成片的特别放映合作。共同探索「AI + 传统文化」短片的创作与评审标准。品类定义级项目的独家展映权——AI 时代文化叙事的前沿标杆案例。</p></div>
+  <div class="partner-card"><div class="plabel">致 平 台 方</div><p>独家授权 + 节展背书 + 信众底盘 + 对台价值。国内精品短剧 / 国创频道 S+ 级合作。海外付费平台 + YouTube + 国际发行代理多线并行。</p></div>
+  <div class="partner-card"><div class="plabel">致 品 牌 方</div><p>文旅 · 茶 · 香薰 · 海洋环保。妈祖不卖东西——品牌的角色是帮助这个故事被更多人看见。联名限定，年上限三个品牌。</p></div>
+  <div class="partner-card"><div class="plabel">致 投 资 机 构</div><p>品类独占（授权壁垒闭合）· 产能覆盖（AI 边际成本低）· 收入递进（分账 → 授权 → 电影 → 平台化）· 非财务回报（行业话语权、两岸文化资产、UNESCO 案例潜力）。首季自有资金已覆盖。</p></div>
+</section>
+
+<div class="dv"></div>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="footer fade-in">
+  <p>制片 / 布布</p>
+  <div class="signature">
+    wechat&nbsp; Libellule_Zhangqt<br>
+    email&nbsp; superbabubu@proton.me<br>
+    线上&nbsp; libellulezhang.github.io/mazu-knowledge/
+  </div>
+  <div class="end">不是做一部剧集。<br>是定义妈祖文化在 AI 时代的样子。</div>
+</footer>
+
+</article>
+
+<script>
+// ── Scroll progress ──
+const bar = document.getElementById('progress-bar');
+window.addEventListener('scroll',()=>{
+  const h = document.documentElement;
+  const pct = h.scrollTop/(h.scrollHeight-h.clientHeight)*100;
+  bar.style.width = pct+'%';
+});
+
+// ── Back to top ──
+const bt = document.getElementById('back-top');
+window.addEventListener('scroll',()=>{
+  bt.classList.toggle('visible', window.scrollY > 600);
+});
+bt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+// ── Scroll-triggered fade ──
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting) e.target.classList.add('fade-in');
+  });
+},{threshold:0.15});
+
+document.querySelectorAll('.sec,.dv,.stats-row').forEach(el=>{
+  if(!el.classList.contains('fade-in')) observer.observe(el);
+});
+
+// ── Tag title easter egg ──
+const titles = ['还在吗？','妈祖记得你','海还在动','风没停'];
+const orig = document.title;
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden){
+    document.title = titles[Math.floor(Math.random()*titles.length)];
+  }else{
+    document.title = '你回来了。';
+    setTimeout(()=>{document.title=orig},2000);
+  }
+});
+</script>
+
+</body>
+</html>
