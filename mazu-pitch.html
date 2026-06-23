@@ -131,17 +131,58 @@ td{font-size:15px;line-height:1.7}
 /* Print: landscape, one slide per page */
 @media print{
   @page{size:A3 landscape;margin:0}
-  html{scroll-snap-type:none}
-  body{background:#fff}
-  .topnav,.progress{display:none}
-  .slide{min-height:100vh;height:100vh;page-break-after:always;scroll-snap-align:none;padding:48px 64px}
+  html{scroll-snap-type:none;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{background:#fff!important}
+  .topnav,.progress{display:none!important}
+  .slide{min-height:100vh;height:100vh;page-break-after:always;scroll-snap-align:none;overflow:visible;padding:36px 48px;display:flex;align-items:center;justify-content:center}
+  .slide:last-child{page-break-after:auto}
   .slide::before{display:none}
-  .bg-cover{background:#0a0a08!important}
-  .bg-dark{background:#0f1419!important}
-  .bg-warm{background:#f6f1e8!important}
-  .bg-light{background:#faf8f5!important}
-  .card{break-inside:avoid}
-  h1,h2,.big-num,.stat-num,.card,.tl-row,.hl-box{animation:none!important;opacity:1!important;transform:none!important}
+  .slide-inner{max-width:1100px}
+  /* Solid backgrounds for print */
+  .bg-cover{background:#0f0d0a!important;color:#e8e4df}
+  .bg-dark{background:#0f1419!important;color:#e8e4df}
+  .bg-warm{background:#f6f1e8!important;color:#2c2824}
+  .bg-light{background:#faf8f5!important;color:#2c2824}
+  /* Remove animations for print */
+  h1,h2,.big-num,.stat-num,.stat-item{animation:none!important;opacity:1!important;transform:none!important}
+  .card{animation:none!important;opacity:1!important;transform:none!important;break-inside:avoid;box-shadow:none!important}
+  .card:hover{transform:none!important;box-shadow:none!important}
+  .tl-row{animation:none!important;opacity:1!important;transform:none!important}
+  .hl-box{animation:none!important;opacity:1!important;transform:none!important}
+  table{animation:none!important;opacity:1!important}
+  .sub{animation:none!important;opacity:1!important;transform:none!important}
+  .quote{animation:none!important;opacity:1!important}
+  .big-desc{animation:none!important;opacity:1!important}
+  /* Adjust text sizes for print readability */
+  h1{font-size:72px!important}
+  h2{font-size:42px!important;margin-bottom:36px!important}
+  .card h4{font-size:15px!important}
+  .card p{font-size:13px!important;line-height:1.7!important}
+  .sub{font-size:15px!important}
+  .stat-num{font-size:52px!important}
+  .stat-label{font-size:10px!important}
+  .big-num{font-size:120px!important}
+  .big-desc{font-size:17px!important}
+  .quote{font-size:20px!important}
+  .flow-step .step-name{font-size:14px!important}
+  .flow-step .step-detail{font-size:11px!important}
+  .tl-date{font-size:17px!important}
+  .tl-content{font-size:15px!important}
+  th{font-size:10px!important}
+  td{font-size:13px!important}
+  /* Card adjustments */
+  .card{padding:24px 28px!important;border-radius:12px!important}
+  .cards{gap:16px!important}
+  .flow{margin:28px 0!important;gap:8px!important}
+  .flow-step{padding:18px 14px!important;border-radius:12px!important}
+  .flow-arrow{font-size:16px!important}
+  .tl-row{padding:18px 0!important}
+  .timeline{max-width:520px!important}
+  /* Grain overlay off */
+  .slide::before{display:none!important}
+  /* Footer adjustments */
+  .footer-text{font-size:13px!important}
+  .footer-cta{font-size:13px!important;margin-top:32px!important}
 }
 
 /* Responsive */
