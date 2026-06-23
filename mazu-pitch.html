@@ -2,232 +2,450 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>妈祖 · 合作碰撞</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>《妈祖》</title>
 <style>
-:root{--bg:#efe2d4;--ink:#33302e;--soft:#6b625c;--faint:#8b827c;--accent:#2f6e64;--asoft:#5d9a90;--gold:#c4956a;--hair:rgba(80,74,70,0.10);--card:rgba(255,253,250,0.45)}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700&family=Inter:wght@200;300;400;500;600&display=swap');
+
 *{margin:0;padding:0;box-sizing:border-box}
-html{background:var(--bg);-webkit-text-size-adjust:100%}
-body{color:var(--ink);font-family:"Noto Serif SC","Songti SC","STSong","Source Serif 4",Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.9}
-article{max-width:580px;margin:0 auto;padding:40px 28px 80px}
-.top-bar{display:flex;justify-content:flex-end;margin-bottom:28px}
-.lang-switch{display:flex;gap:0;border:1px solid var(--hair);border-radius:6px;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-.lang-switch button{padding:3px 10px;font-size:10px;border:none;background:transparent;color:var(--faint);cursor:pointer;letter-spacing:.04em;transition:all .2s}
-.lang-switch button.active{background:var(--accent);color:#fff}
-.lang-switch button:hover:not(.active){color:var(--accent)}
-[data-en]{display:none}
-html[lang="en"] [data-zh]{display:none}
-html[lang="en"] [data-en]{display:inline}
-html[lang="zh"] [data-en]{display:none}
-html[lang="zh"] [data-zh]{display:inline}
-nav{margin-bottom:28px;font-size:12px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-nav a{color:var(--soft);text-decoration:none;transition:all .2s;padding:2px 0;border-bottom:1px solid transparent}
-nav a:hover{color:var(--accent);border-color:var(--accent)}
-nav span{color:var(--faint);margin:0 6px}
-header{text-align:center;margin-bottom:48px}
-header h1{font-size:clamp(24px,5vw,30px);font-weight:300;letter-spacing:.04em;line-height:1.45;margin-bottom:14px}
-header h1 span{color:var(--accent);font-weight:400}
-header p{font-size:15px;color:var(--soft);line-height:1.75;max-width:440px;margin:0 auto}
-section{margin-bottom:56px}
-h2{font-size:19px;font-weight:400;color:var(--accent);letter-spacing:.02em;margin-bottom:20px;padding-bottom:8px;border-bottom:1px solid var(--hair)}
-p{font-size:15px;margin-bottom:14px;line-height:1.95}
-.callout{padding:22px 26px;border-left:4px solid var(--accent);background:rgba(47,110,100,.04);margin:24px 0;font-size:15px;line-height:1.85;border-radius:0 8px 8px 0}
-.big-text{font-size:18px;line-height:1.85;color:var(--ink);font-weight:300;letter-spacing:.02em;text-align:center;padding:28px 0;margin:28px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
-.way{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid var(--hair);align-items:flex-start;transition:all .2s}
-.way:last-child{border-bottom:none}
-.way:hover{background:rgba(255,253,250,.3)}
-.way .icon{font-size:22px;min-width:36px;text-align:center;line-height:1.4}
-.way .body{flex:1}
-.way .title{font-weight:600;font-size:15px;margin-bottom:2px}
-.way .desc{font-size:13px;color:var(--soft);line-height:1.7}
-.people{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:7px;margin:14px 0}
-.person{word-break:break-all;padding:9px 12px;background:var(--card);border:1px solid var(--hair);border-radius:8px;font-size:13px;transition:all .2s}
-.person:hover{border-color:var(--asoft)}
-.person .pn{font-weight:600;font-size:13px}
-.person .pr{font-size:10px;color:var(--soft);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-.quote{text-align:center;padding:32px 20px;margin:28px 0;background:var(--card);border-radius:10px;font-size:16px;font-weight:300;line-height:1.8;color:var(--accent);letter-spacing:.02em}
-footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--hair);text-align:center;font-size:11px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-footer a{color:var(--soft);text-decoration:none;transition:all .2s;padding:2px 0;border-bottom:1px solid transparent}
-footer a:hover{color:var(--accent);border-color:var(--accent)}
-@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-article{animation:fadeIn .6s cubic-bezier(.4,0,.2,1) both}
-html{scroll-behavior:smooth}
-a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
-@media(prefers-reduced-motion:reduce){article{animation:none}html{scroll-behavior:auto}}
-.progress{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:100;width:0;transition:width .1s linear}
-.btt{position:fixed;bottom:24px;right:24px;width:36px;height:36px;border-radius:50%;background:var(--card);border:1px solid var(--hair);color:var(--accent);font-size:16px;cursor:pointer;opacity:0;transform:translateY(12px);transition:all .3s cubic-bezier(.4,0,.2,1);z-index:50;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,sans-serif;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-.btt.visible{opacity:1;transform:translateY(0)}
-.btt:hover{background:var(--accent);color:#fff;border-color:var(--accent);transform:translateY(-2px)}
-.poe-overlay{position:fixed;inset:0;background:rgba(51,48,46,.3);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
-.poe-overlay.show{opacity:1;pointer-events:auto}
-.poe-box{background:var(--bg);border-radius:16px;padding:32px 24px;text-align:center;max-width:280px;width:90%;animation:popIn .4s cubic-bezier(.34,1.56,.64,1)}
-@keyframes popIn{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
-.poe-box .result{font-size:48px;animation:toss .6s ease}
-@keyframes toss{0%{transform:rotate(0) scale(0);opacity:0}50%{transform:rotate(180deg) scale(1.2);opacity:1}100%{transform:rotate(360deg) scale(1);opacity:1}}
-.poe-box .msg{margin-top:12px;font-size:15px;color:var(--ink);line-height:1.6}
-.poe-box .close-btn{margin-top:16px;font-size:12px;color:var(--faint);font-family:-apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer;border:none;background:none}
-@media(max-width:600px){article{padding:24px 14px 56px}header{margin-bottom:32px}header h1{font-size:22px}header p{font-size:13px}.big-text{font-size:16px;padding:20px 0}.way{gap:10px}.people{grid-template-columns:1fr 1fr}}
-@media(max-width:380px){.people{grid-template-columns:1fr}}
+html{scroll-behavior:smooth;scroll-snap-type:y mandatory;overflow-y:scroll}
+body{font-family:"Inter",-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Serif SC",sans-serif;background:#000;color:#f5f5f7;-webkit-font-smoothing:antialiased}
+
+.slide{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;scroll-snap-align:start;overflow:hidden;padding:80px}
+.slide-inner{width:100%;max-width:1200px;position:relative;z-index:2}
+
+/* Apple-style backgrounds */
+.bg-light{background:#faf8f5;color:#2c2824}
+.bg-warm{background:linear-gradient(180deg,#f6f1e8 0%,#ede4d4 100%);color:#2c2824}
+.bg-dark{background:#0f1419;color:#e8e4df}
+.bg-cover{background:radial-gradient(ellipse at 50% 30%,#1c1610 0%,#0a0a08 70%);color:#e8e4df}
+
+/* Typography */
+h1{font-family:"Noto Serif SC",serif;font-size:clamp(64px,8vw,120px);font-weight:200;letter-spacing:0.08em;line-height:1.1}
+h2{font-family:"Noto Serif SC",serif;font-size:clamp(36px,5vw,64px);font-weight:200;letter-spacing:0.04em;margin-bottom:48px}
+h2 .accent{color:#c4a265}
+h3{font-size:20px;font-weight:500;margin-bottom:16px;color:#2c2824}
+.bg-dark h3,.bg-cover h3{color:#e8e4df}
+
+.sub{font-size:18px;font-weight:300;color:#7a756f;max-width:580px;line-height:1.8;margin-bottom:48px}
+.bg-dark .sub,.bg-cover .sub{color:#9a9590}
+
+/* Stats */
+.stat-group{display:flex;gap:clamp(32px,6vw,80px);flex-wrap:wrap}
+.stat-item{text-align:center}
+.stat-num{font-family:"Noto Serif SC",serif;font-size:clamp(40px,5vw,72px);font-weight:100;color:#c4a265;line-height:1}
+.bg-cover .stat-num,.bg-dark .stat-num{color:#d4b895}
+.stat-label{font-size:12px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#8b8680;margin-top:12px}
+.bg-cover .stat-label,.bg-dark .stat-label{color:#7a7570}
+
+/* Cards */
+.cards{display:grid;gap:24px}
+.cards-2{grid-template-columns:1fr 1fr}
+.cards-3{grid-template-columns:1fr 1fr 1fr}
+.cards-4{grid-template-columns:1fr 1fr 1fr 1fr}
+
+.card{background:rgba(255,255,255,0.8);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:20px;padding:40px;border:1px solid rgba(0,0,0,0.05);transition:transform 0.3s ease,box-shadow 0.3s ease}
+.bg-dark .card,.bg-cover .card{background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.06)}
+.card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.06)}
+.bg-dark .card:hover,.bg-cover .card:hover{box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+.card h4{font-size:17px;font-weight:600;margin-bottom:12px;letter-spacing:-0.01em}
+.card p{font-size:15px;line-height:1.8;color:#5c5752}
+.bg-dark .card p,.bg-cover .card p{color:#b0aca7}
+.bg-dark .card h4,.bg-cover .card h4{color:#e8e4df}
+
+.card-accent{border-left:3px solid #c4a265;padding-left:37px}
+
+/* Flow */
+.flow{display:flex;align-items:center;gap:12px;margin:48px 0;flex-wrap:wrap;justify-content:center}
+.flow-step{flex:1;min-width:140px;background:rgba(255,255,255,0.8);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:16px;padding:28px 20px;text-align:center;border:1px solid rgba(0,0,0,0.05);transition:transform 0.3s ease}
+.flow-step:hover{transform:translateY(-4px)}
+.flow-step .step-num{font-size:11px;font-weight:600;letter-spacing:0.15em;color:#c4a265;margin-bottom:8px}
+.flow-step .step-name{font-size:16px;font-weight:600;margin-bottom:6px;color:#2c2824}
+.flow-step .step-detail{font-size:12px;color:#8b8680;line-height:1.6}
+.flow-arrow{color:#c4a265;font-size:20px;font-weight:200}
+
+/* Timeline */
+.timeline{max-width:600px;margin:0 auto}
+.tl-row{display:flex;padding:24px 0;border-bottom:1px solid rgba(0,0,0,0.08)}
+.tl-row:last-child{border-bottom:none}
+.tl-date{width:140px;font-size:20px;font-weight:300;color:#c4a265;letter-spacing:0.04em}
+.tl-content{font-size:17px;line-height:1.6;color:#2c2824}
+
+/* Table */
+table{width:100%;border-collapse:collapse}
+th,td{padding:18px 24px;text-align:left;border-bottom:1px solid rgba(0,0,0,0.05)}
+.bg-dark th,.bg-dark td{border-bottom-color:rgba(255,255,255,0.06)}
+th{font-size:11px;font-weight:600;letter-spacing:0.15em;color:#8b8680;text-transform:uppercase}
+td{font-size:15px;line-height:1.7}
+.bg-dark td{color:#e8e4df}
+
+/* Highlight box */
+.hl-box{background:rgba(255,255,255,0.6);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:20px;padding:40px;border-left:3px solid #c4a265;max-width:700px;margin:0 auto}
+.hl-box p{font-size:16px;line-height:2.2;color:#2c2824}
+
+/* Big statement */
+.big-num{font-family:"Noto Serif SC",serif;font-size:clamp(80px,12vw,160px);font-weight:100;color:#c4a265;line-height:1;text-align:center}
+.big-desc{font-size:20px;font-weight:300;color:#8b8680;text-align:center;margin-top:16px;letter-spacing:0.06em}
+
+/* Quote */
+.quote{font-family:"Noto Serif SC",serif;font-size:24px;font-weight:300;line-height:1.8;color:#5c5752;font-style:italic;max-width:640px}
+
+/* Footer */
+.footer-text{font-size:15px;color:#8b8680;line-height:2.4;text-align:center}
+.footer-cta{font-size:15px;color:#c4a265;letter-spacing:0.06em;margin-top:48px}
+
+/* Progress bar */
+.progress{position:fixed;top:0;left:0;height:3px;background:#c4a265;z-index:100;transition:width 0.1s ease}
+
+/* Scroll animations */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-stagger > *{opacity:0;transform:translateY(30px);transition:opacity 0.6s cubic-bezier(0.16,1,0.3,1),transform 0.6s cubic-bezier(0.16,1,0.3,1)}
+.reveal-stagger > *.visible{opacity:1;transform:translateY(0)}
+
+/* Counter */
+.counter{display:inline-block}
+
+/* Parallax */
+.parallax{transition:transform 0.1s linear}
+
+/* Enhanced hover */
+.card{transition:transform 0.4s cubic-bezier(0.16,1,0.3,1),box-shadow 0.4s cubic-bezier(0.16,1,0.3,1)}
+.card:hover{transform:translateY(-6px);box-shadow:0 24px 80px rgba(0,0,0,0.08)}
+.bg-dark .card:hover,.bg-cover .card:hover{box-shadow:0 24px 80px rgba(0,0,0,0.35)}
+
+/* Responsive */
+@media(max-width:768px){
+  .slide{padding:48px 24px}
+  .cards-2,.cards-3,.cards-4{grid-template-columns:1fr}
+  .flow{flex-direction:column}.flow-arrow{transform:rotate(90deg)}
+  .stat-group{gap:24px}
+  .card{padding:28px}
+  h1{font-size:48px}
+  h2{font-size:28px}
+  .big-num{font-size:72px}
+}
 </style>
 </head>
 <body>
-<div class="progress"></div>
-<article>
-<div class="top-bar">
-<div class="lang-switch">
-<button onclick="setLang('zh')" class="active" id="btn-zh">中文</button>
-<button onclick="setLang('en')" id="btn-en">EN</button>
+
+<div class="progress" id="progress"></div>
+
+<!-- 1. COVER -->
+<div class="slide bg-cover">
+  <div class="slide-inner" style="text-align:center">
+    <div style="font-size:12px;letter-spacing:0.3em;color:#c4a265;margin-bottom:40px;font-weight:500">PROJECT COOPERATION</div>
+    <h1>《妈祖》</h1>
+    <div style="font-size:20px;font-weight:300;color:#b0aca7;margin-top:16px;letter-spacing:0.15em">东方文化影像项目</div>
+    <div style="font-size:13px;color:#7a7570;margin-top:48px">泉州手拉手科技有限公司 · 2026年6月</div>
+    <div class="stat-group" style="justify-content:center;margin-top:64px">
+      <div class="stat-item"><div class="stat-num">24集</div><div class="stat-label">× 15分钟</div></div>
+      <div class="stat-item"><div class="stat-num">4亿</div><div class="stat-label">信众底盘</div></div>
+      <div class="stat-item"><div class="stat-num">51国</div><div class="stat-label">宫庙分布</div></div>
+      <div class="stat-item"><div class="stat-num">14年</div><div class="stat-label">内容空白</div></div>
+    </div>
+  </div>
 </div>
+
+<!-- 2. 项目概述 -->
+<div class="slide bg-warm">
+  <div class="slide-inner">
+    <h2>项目<span class="accent">概述</span></h2>
+    <div class="cards cards-2">
+      <div class="card card-accent">
+        <h4>内容规格</h4>
+        <p>二十四集系列。每集15分钟。视觉品质对标3A游戏过场动画——3D仿真人CG渲染，统一提示词体系确保风格一致。融入闽南语音韵元素。</p>
+        <p style="margin-top:12px;font-size:13px;color:#c4a265;font-weight:500">不是AI短剧。是妈祖IP在AI时代的第一个画面。品类定义者。</p>
+      </div>
+      <div class="card">
+        <h4>授权基础</h4>
+        <p>中华妈祖文化交流协会独家影视授权。文化部主管机构。明确不再开放同类授权。指导单位：协会·泉州天后宫·福建省妈祖文化研究会·山东省海峡两岸妈祖文化交流活动。</p>
+      </div>
+      <div class="card">
+        <h4>当前阶段</h4>
+        <p>6月1日启动。23天内剧情大纲、角色形象、MV框架、视觉风格全部定稿。</p>
+        <p style="margin-top:12px;font-size:16px;color:#2c2824;font-weight:500;letter-spacing:0.02em">6.26 泉州天后宫开机　·　8.1 首部成片交付　·　2027 Q1 全季上线</p>
+      </div>
+      <div class="card">
+        <h4>出品方</h4>
+        <p>泉州市手拉手互联科技有限公司。专注AIGC与漫剧内容，技术、制作、运营全链路覆盖。月产能2000+分钟。</p>
+      </div>
+    </div>
+  </div>
 </div>
-<nav><a href="mazu-intro.html">← <span data-zh>首页</span><span data-en>Home</span></a><span>/</span><span data-zh>合作碰撞</span><span data-en>Collaborate</span></nav>
-<header>
-<h1>让这件事<br><span>变得更值得</span></h1>
-<p><span data-zh>一个项目能走多远，不取决于谁发起的，取决于多少人觉得它值得。</span><span data-en>How far a project goes depends not on who started it, but on how many people feel it's worth it.</span></p>
-</header>
-<section>
-<h2><span data-zh>一件事的内核</span><span data-en>What This Is About</span></h2>
-<p><span data-zh>妈祖不是商业 IP。1000 年来人们走向她，不是因为她是非遗，是因为心里有事。孩子出海没回来，自己不知道该不该离开这份工作。点一炷香，不是程序，是需要有人听见。</span><span data-en>Mazu is not a commercial IP. For a thousand years, people have come to her not because she's cultural heritage — but because something weighs on their heart.</span></p>
-<p><span data-zh>这个项目想延续的，就是这种在乎。</span><span data-en>What this project wants to carry forward is that care.</span></p>
-<p><span data-zh>每集故事来自真实的人类瞬间。不编造，不说教。让看的人在那个瞬间感觉自己被接住了，哪怕只有三分钟。每一帧都对得起妈祖这个名字。</span><span data-en>Every story comes from a real human moment. No fabrication, no moralizing. To let someone feel held, even for just three minutes.</span></p>
-<p><span data-zh>AI 让这种在乎可以低成本地拍出来，传出去。但技术永远是手段。最终的目的只有一个，让一个人在看剧的三分钟里，感觉生活还可以变好一点点。</span><span data-en>AI makes this care affordable to capture and share. But technology is only the means. The only purpose: to let someone feel, in those three minutes, that life can get a little better.</span></p>
-<div class="big-text">
-<span data-zh>不是付费墙，是妈祖点头。<br>不是宣传片，是作品。<br>让人类更好。让生活更好。让别人更好。</span>
-<span data-en>Not a paywall. Mazu's nod.<br>Not a promo. A work.<br>For humanity. For life. For others.</span>
+
+<!-- 3. 品类独占 -->
+<div class="slide bg-dark">
+  <div class="slide-inner" style="text-align:center">
+    <div class="big-num">1</div>
+    <div class="big-desc" style="color:#a1a1a6">品类只有一个玩家</div>
+    <div class="hl-box" style="text-align:left;margin-top:40px">
+      <p>协会独家授权且明确不再开放。<br>上一部妈祖影视作品为2012年刘涛版——祖庙级授权，距今十四年。<br>本次为协会级授权。授权层级代际跃升。<br>未来妈祖题材影视内容均从该授权线产出。<br>市场没有竞品，只有这一个。</p>
+    </div>
+  </div>
 </div>
-</section>
-<section>
-<h2><span data-zh>你可以怎么参与</span><span data-en>Ways to Be Part of It</span></h2>
-<div class="way">
-<div class="icon">🌏</div>
-<div class="body">
-<div class="title"><span data-zh>让你的品牌出现在对的地方</span><span data-en>Put your brand where it belongs</span></div>
-<div class="desc"><span data-zh>不是贴片广告，不是口播植入。是你的品牌和被接住的瞬间站在一起。文旅、茶、香薰、家居、海洋环保——如果你的产品本身就让人感觉被在乎，那它本来就属于这个故事。</span><span data-en>Not product placement. Your brand standing alongside a moment of being held. Travel, tea, fragrance, home, ocean conservation — if your product makes people feel cared for, it already belongs in this story.</span></div>
+
+<!-- 4. 价值底盘 -->
+<div class="slide bg-warm">
+  <div class="slide-inner">
+    <h2>价值<span class="accent">底盘</span></h2>
+    <div class="cards cards-3">
+      <div class="card">
+        <h4>认知基础</h4>
+        <p>UNESCO人类非物质文化遗产。四亿信众，五千余座宫庙遍布五十一国。用户无需从零教育。十四年内容空白意味着被压抑的观看需求。</p>
+      </div>
+      <div class="card">
+        <h4>市场窗口</h4>
+        <p>2026年中国AI短剧市场240亿，用户2.8亿，年增速70%。广电新规要求AI内容先备案后上线——合规项目获结构性优势。长安三万里10天7亿、中国奇谭破亿播放。妈祖是唯一兼具文化底盘、品类独占与合规壁垒的项目。</p>
+      </div>
+      <div class="card">
+        <h4>海外底盘</h4>
+        <p>全球海外华人约6000万。台湾800余座妈祖庙、信众1600余万。东南亚天福宫、青云亭遍布华人区。妈祖信俗是海外华人核心文化纽带——不需要从零建认知，缺的是当代影像作品。</p>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- 5. IP对标 -->
+<div class="slide bg-light">
+  <div class="slide-inner">
+    <h2>IP<span class="accent">对标</span></h2>
+    <div class="sub">全球文化IP的商业化路径已验证。妈祖站在同一条航道上——品类独占、认知底盘、全球网络，三者兼有的IP不存在第二个。</div>
+    <div class="cards cards-3">
+      <div class="card"><h4>只此青绿</h4><p>春晚→数字藏品→品牌联名→电影版→海外巡演。传统文化IP消费化路径已跑通。妈祖：影像锚→文旅→品牌共创，同一条变现链。</p></div>
+      <div class="card"><h4>百年孤独 / Netflix</h4><p>全球5000万册、46种译本。首次影视化Netflix全球发行。"本土内容全球化"战略。妈祖：51国宫庙+6000万华人=天然全球分发网络。</p></div>
+      <div class="card"><h4>漫威宇宙</h4><p>北欧神话→电影宇宙→主题公园，全球收入350亿美元。妈祖角色体系（千里眼顺风耳、四海龙王）具备同等系统开发空间。</p></div>
+    </div>
+    <div class="card card-accent" style="margin-top:24px"><p style="font-size:15px;color:#5c5752">宝可梦全球第一IP（880亿美元）：IP长期价值=持续内容产出×多品类渗透。迪士尼IP授权年零售额620亿美元。妈祖的平台策展模式——不是一次性交付，是持续产出内容引擎。</p></div>
+  </div>
 </div>
-<div class="way">
-<div class="icon">🤝</div>
-<div class="body">
-<div class="title"><span data-zh>成为传播节点</span><span data-en>Be a node in the network</span></div>
-<div class="desc"><span data-zh>你有社群，有平台，有线下空间。可以一起让故事抵达该抵达的人。</span><span data-en>You have a community, a platform, a physical space. Together we can help the story reach the people it's meant for.</span></div>
+
+<!-- 6. 商业模型 -->
+<div class="slide bg-warm">
+  <div class="slide-inner">
+    <h2>商业<span class="accent">模型</span></h2>
+    <div class="sub">不是单一内容生产方，是妈祖IP在AI时代的策展平台。内容持续产出，而非一次性交付。</div>
+    <div class="flow">
+      <div class="flow-step"><div class="step-num">01</div><div class="step-name">制定标准</div><div class="step-detail">第一季24集<br>定义品质基准</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div class="step-num">02</div><div class="step-name">开放投稿</div><div class="step-detail">知识库开源<br>面向全球创作者</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div class="step-num">03</div><div class="step-name">评审遴选</div><div class="step-detail">团队→协会→专家<br>三级审看</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div class="step-num">04</div><div class="step-name">赋能放大</div><div class="step-detail">署名+分账<br>+节展推荐</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div class="step-num">05</div><div class="step-name">归口分发</div><div class="step-detail">平台+宫庙私域<br>统一发行管道</div></div>
+    </div>
+    <div class="cards cards-3" style="margin-top:32px">
+      <div class="card"><h4>内容供应链</h4><p>知识库开源降低门槛。近百人社群自发集结。编辑部全球开放，首批稿件已进入流程。</p></div>
+      <div class="card"><h4>分发网络</h4><p>线上平台 + 线下五千余座宫庙私域。线上线下一体化分发闭环。</p></div>
+      <div class="card"><h4>增长引擎</h4><p>首季正片为品质锚。番外、二创、UGC在锚上持续生长。平台获得持续内容供给。</p></div>
+    </div>
+  </div>
 </div>
+
+<!-- 7. 核心受众 -->
+<div class="slide bg-light">
+  <div class="slide-inner" style="text-align:center">
+    <h2>核心<span class="accent">受众</span></h2>
+    <div style="margin-bottom:48px">
+      <div class="big-num" style="font-size:clamp(48px,7vw,80px)">全年龄段</div>
+      <div class="big-desc">妈祖题材的观众跨度远超垂直品类</div>
+      <div style="font-size:14px;color:#86868b;max-width:500px;margin:16px auto 0;line-height:1.8">B站二创18–30岁主力 · 抖音妈祖内容35–55岁高活跃 · 线下信众60岁以上核心群体。三个年龄圈层自然叠加。</div>
+    </div>
+    <div class="cards cards-3">
+      <div class="card"><h4>传统文化爱好者</h4><p>B站国风区、小红书文化类活跃用户。2012版《妈祖》怀旧观众群。</p></div>
+      <div class="card"><h4>两岸及海外华人</h4><p>台湾1600万信众、800余座妈祖庙。东南亚华人社群。全球海外华人6000万。</p></div>
+      <div class="card"><h4>泛文化兴趣群体</h4><p>被《中国奇谭》《长安三万里》打开国风审美的增量观众。对题材无预设——最易转化。</p></div>
+    </div>
+  </div>
 </div>
-<div class="way">
-<div class="icon">💡</div>
-<div class="body">
-<div class="title"><span data-zh>资源共创</span><span data-en>Resource co-creation</span></div>
-<div class="desc"><span data-zh>你有拍摄场地，有声音设备，有 AI 算力，有学术资源。这些都能让故事更完整。不是赞助，是一起做。</span><span data-en>You have a location, sound equipment, AI compute, academic resources. All of this can make the story fuller. Not sponsorship — making it together.</span></div>
+
+<!-- 8. 政策环境 -->
+<div class="slide bg-dark">
+  <div class="slide-inner" style="text-align:center">
+    <h2>政策<span class="accent">环境</span></h2>
+    <div class="hl-box" style="text-align:left">
+      <p>2022年 中办国办印发《关于推进实施国家文化数字化战略的意见》<br>2025年10月 第十届世界妈祖文化论坛「数字化传承创新」分论坛<br>　　协会常务副会长俞建忠提出数字化传播方向<br>2026年3月 全国两会期间，AI赋能非遗数字化列入讨论<br>2026年5月 文旅部推动海峡两岸妈祖祭典标准共通</p>
+    </div>
+  </div>
 </div>
+
+<!-- 9. 剧情概述 -->
+<div class="slide bg-warm">
+  <div class="slide-inner">
+    <h2>剧情<span class="accent">概述</span></h2>
+    <div class="quote" style="margin-bottom:48px">「妈祖之所以被四亿人信奉一千年，不是因为神迹——是因为她在乎每一个具体的人。」</div>
+    <div class="cards cards-2">
+      <div class="card"><h4>故事内核</h4><p>八个核心传说改编。以林默从渔村少女到海上守护神的成长为主线。主题：被接住的瞬间。不追求神怪奇观——故事的核心是人。</p></div>
+      <div class="card"><h4>叙事结构</h4><p>灯锚双线——龙凤喜灯明线（引航），船锚暗线（稳定）。贯穿反派海晏公——坏念头的具象化，最终被感化。感情线以亲情为核心，不设爱情线。单元剧形态。</p></div>
+    </div>
+  </div>
 </div>
-<div class="way">
-<div class="icon">🎯</div>
-<div class="body">
-<div class="title"><span data-zh>长期同行</span><span data-en>Walk together</span></div>
-<div class="desc"><span data-zh>如果你看到了更远的可能性——院线电影、全球巡展、UNESCO 案例——我们可以坐下来聊一个更长的故事。</span><span data-en>If you see further possibilities — a feature film, a global tour, a UNESCO case — let's sit down and talk about a longer story.</span></div>
+
+<!-- 10. 创作资产 -->
+<div class="slide bg-light">
+  <div class="slide-inner">
+    <h2>创作<span class="accent">资产</span></h2>
+    <div class="sub">以下各项均已完成或确立。不是计划——是已经交付的成果。</div>
+    <table>
+      <tr><th>类别</th><th>内容</th><th style="text-align:right">状态</th></tr>
+      <tr><td>剧情大纲</td><td>八个核心传说+焚屋引航。灯锚双线。海晏公反派。亲情线为主</td><td style="text-align:right;color:#c4a265;font-weight:500">已定稿</td></tr>
+      <tr><td>角色形象</td><td>妈祖林默/成仙双形象。千里眼顺风耳。四条闽台龙</td><td style="text-align:right;color:#c4a265;font-weight:500">已定稿</td></tr>
+      <tr><td>MV框架</td><td>郑和海景→签化金光→妈祖法相</td><td style="text-align:right;color:#c4a265;font-weight:500">已定稿</td></tr>
+      <tr><td>视觉风格</td><td>3D仿真人CG渲染。统一提示词体系</td><td style="text-align:right;color:#c4a265;font-weight:500">已确立</td></tr>
+      <tr><td>音乐方向</td><td>融入闽南语音韵元素。开放声音共创</td><td style="text-align:right;color:#c4a265;font-weight:500">已确立</td></tr>
+      <tr><td>知识库</td><td>妈祖文化开源文档上线</td><td style="text-align:right;color:#86868b">已上线</td></tr>
+      <tr><td>预告片</td><td>第一支MV预告片制作中</td><td style="text-align:right;color:#86868b">进行中</td></tr>
+    </table>
+  </div>
 </div>
+
+<!-- 11. 核心团队 -->
+<div class="slide bg-warm">
+  <div class="slide-inner">
+    <h2>核心<span class="accent">团队</span></h2>
+    <table>
+      <tr><th>姓名</th><th>角色</th><th>背景</th></tr>
+      <tr><td>许老师</td><td>出品人</td><td>自有资金投入。月产能2000+分钟</td></tr>
+      <tr><td>郁斌</td><td>导演</td><td>莆田籍数字艺术家。福特合作艺术家</td></tr>
+      <tr><td>陈晶晶</td><td>文化顾问</td><td>十五年妈祖文化研究</td></tr>
+      <tr><td>吴老师</td><td>制作负责人</td><td>统筹十五人制作团队</td></tr>
+      <tr><td>长风</td><td>编剧</td><td>在地驻场。剧本主线架构串联</td></tr>
+      <tr><td>布布</td><td>制片</td><td>项目统筹、对外合作</td></tr>
+    </table>
+  </div>
 </div>
-</section>
-<section>
-<h2><span data-zh>已经同行的伙伴</span><span data-en>Already Walking With Us</span></h2>
-<div class="people">
-<div class="person"><div class="pn">妈祖文化协会</div><div class="pr"><span data-zh>指导单位</span><span data-en>Guiding Institution</span></div></div>
-<div class="person"><div class="pn">莆田文旅局</div><div class="pr"><span data-zh>指导单位</span><span data-en>Guiding Institution</span></div></div>
-<div class="person"><div class="pn">上海浦东科创协会</div><div class="pr"><span data-zh>科创+文化</span><span data-en>Tech + Culture</span></div></div>
-<div class="person"><div class="pn"><span data-zh>长三角高端产业促进中心</span><span data-en>Yangtze Delta Innovation Center</span></div><div class="pr">AI</div></div>
-<div class="person"><div class="pn">星辰 StarLab</div><div class="pr">OPC</div></div>
-<div class="person"><div class="pn">waytoAGI</div><div class="pr"><span data-zh>AI创作者社区</span><span data-en>AI Creator Community</span></div></div>
-<div class="person"><div class="pn">706</div><div class="pr"><span data-zh>全球青年社群</span><span data-en>Global Youth Community</span></div></div>
-<div class="person"><div class="pn">33美术馆</div><div class="pr"><span data-zh>广美教授</span><span data-en>GAFA Professor</span></div></div>
-<div class="person"><div class="pn">纽约AIGC</div><div class="pr"><span data-zh>国际传播</span><span data-en>Global Reach</span></div></div>
-<div class="person"><div class="pn"><span data-zh>北电/厦大/台大</span><span data-en>BFA / XMU / NTU</span></div><div class="pr"><span data-zh>高校网络</span><span data-en>University Network</span></div></div>
-<div class="person"><div class="pn"><span data-zh>高雄寺庙</span><span data-en>Kaohsiung Temple</span></div><div class="pr"><span data-zh>台湾在地</span><span data-en>Taiwan Local</span></div></div>
+
+<!-- 12. 交付节奏 -->
+<div class="slide bg-light">
+  <div class="slide-inner" style="text-align:center">
+    <h2>交付<span class="accent">节奏</span></h2>
+    <div class="timeline">
+      <div class="tl-row"><span class="tl-date">6.26</span><span class="tl-content">泉州天后宫开机<br>3分钟MV预告片发布</span></div>
+      <div class="tl-row"><span class="tl-date">6月–7月</span><span class="tl-content">剧本开发<br>分场景剧本完成</span></div>
+      <div class="tl-row"><span class="tl-date">8.1</span><span class="tl-content">首部成片交付</span></div>
+      <div class="tl-row"><span class="tl-date">2027 Q1</span><span class="tl-content">全季二十四集上线</span></div>
+    </div>
+  </div>
 </div>
-</section>
-<section>
-<h2><span data-zh>导演说</span><span data-en>The Director Says</span></h2>
-<div class="quote">
-<span data-zh>妈祖不是神。在故事里，她只是渔村少女。能望海，能听风，能记住每个人名字。神性来自，她比任何人更在乎每一个具体的人。</span>
-<span data-en>Mazu is not a goddess. In our story, she's just a girl from a fishing village. She can watch the sea, listen to the wind, remember everyone's name. Her divinity comes from caring more about each person than anyone else.</span>
-<p style="text-align:right;font-size:12px;color:var(--faint);margin-top:14px">郁斌 · giulianoooooo</p>
+
+<!-- 13. IP发展路线 -->
+<div class="slide bg-warm">
+  <div class="slide-inner">
+    <h2>IP发展<span class="accent">路线</span></h2>
+    <div class="cards cards-3">
+      <div class="card"><h4>2026</h4><p style="font-size:15px;line-height:2.2">6.26泉州天后宫开机<br>MV预告片发布<br>首部成片交付<br>平台合作对接</p></div>
+      <div class="card"><h4>2027</h4><p style="font-size:15px;line-height:2.2">全季二十四集上线<br>番外 / 二创 / UGC<br>节展报送<br>文旅联动启动</p></div>
+      <div class="card"><h4>2028+</h4><p style="font-size:15px;line-height:2.2">海外版本本地化<br>品牌共创体系<br>衍生内容矩阵<br>线下沉浸体验</p></div>
+    </div>
+    <div class="card card-accent" style="margin-top:32px"><p>第一季是品质锚。创作者生态在平台公域和宫庙私域之间循环生长。合作方拿到的不是24集——是持续产出的内容引擎。</p></div>
+  </div>
 </div>
-</section>
-<footer>
-<a href="mazu-recruit.html"><span data-zh>共创者招募</span><span data-en>Join Us</span></a> ·
-<a href="mazu-community.html"><span data-zh>社群成员</span><span data-en>Community</span></a> ·
-<a href="mazu-voice.html"><span data-zh>有话说</span><span data-en>Speak</span></a>
-</footer>
-</article>
-<div class="poe-overlay" id="poe-overlay" onclick="closePoe()">
-<div class="poe-box" onclick="event.stopPropagation()">
-<div class="result" id="poe-result"></div>
-<div class="msg" id="poe-msg"></div>
-<button class="close-btn" onclick="closePoe()"><span data-zh>知道了</span><span data-en>OK</span></button>
+
+<!-- 14. 风险管控 -->
+<div class="slide bg-dark">
+  <div class="slide-inner">
+    <h2>风险<span class="accent">管控</span></h2>
+    <div class="cards cards-4">
+      <div class="card"><h4>文化准确性</h4><p>中华妈祖文化交流协会全程指导。剧本提交协会审定。妈祖文化学者嵌入创作团队日常把关。</p></div>
+      <div class="card"><h4>内容合规</h4><p>唯一允许展现神迹的中国神明。已通过国家广电备案。</p></div>
+      <div class="card"><h4>交付保障</h4><p>自有资金不受融资周期影响。AI制作流程降本增效。</p></div>
+      <div class="card"><h4>品牌安全</h4><p>年合作品牌数量设上限。公共口径统一管理。</p></div>
+    </div>
+  </div>
 </div>
+
+<!-- 15. 合作方向 -->
+<div class="slide bg-light">
+  <div class="slide-inner">
+    <h2>合作<span class="accent">方向</span></h2>
+    <div class="cards cards-2">
+      <div class="card"><h4>平台发行</h4><p>首发窗口、专区运营、会员内容。分账或授权模式可协商。</p></div>
+      <div class="card"><h4>联合出品</h4><p>资金与资源协同。出品方署名。后续内容优先权。</p></div>
+      <div class="card"><h4>品牌共创</h4><p>情绪资产授权合作。年合作品牌数量有上限。</p></div>
+      <div class="card"><h4>文旅联动</h4><p>城市文化名片、节庆活动、线下展映、宫庙路线。</p></div>
+      <div class="card"><h4>海外传播</h4><p>字幕本地化、海外华人社群、区域发行代理。</p></div>
+      <div class="card"><h4>衍生开发</h4><p>互动产品、线下体验、授权及后续内容优先合作。</p></div>
+    </div>
+  </div>
 </div>
-<button class="btt" aria-label="返回顶部">↑</button>
+
+<!-- 16. CLOSING -->
+<div class="slide bg-cover" style="text-align:center">
+  <div class="slide-inner">
+    <h1 style="margin-bottom:32px">《妈祖》</h1>
+    <div style="font-size:18px;font-weight:300;color:#b0aca7;letter-spacing:0.15em;margin-bottom:48px">项目组</div>
+    <div class="footer-text">
+      项目联络：泉州手拉手科技有限公司<br>
+      <span style="font-size:13px;color:#7a7570;margin-top:24px;display:inline-block">2026年6月23日</span>
+    </div>
+    <div class="footer-cta">欢迎预约项目详细沟通。视觉资料及完整数据可另行提供。</div>
+  </div>
+</div>
+
 <script>
-function setLang(lang) {
-document.documentElement.setAttribute('lang', lang);
-document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
-document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-localStorage.setItem('mazu-lang', lang);
+// Progress bar
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-window.innerHeight
+  const p=h>0?(window.scrollY/h)*100:0
+  document.getElementById('progress').style.width=p+'%'
+})
+
+// Intersection Observer for scroll animations
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible')
+      // Trigger counter animations
+      e.target.querySelectorAll('.counter').forEach(c=>{
+        const target=parseInt(c.dataset.target)
+        if(target&&!c.dataset.animated){
+          c.dataset.animated='1'
+          animateCounter(c,target)
+        }
+      })
+      // Stagger children
+      if(e.target.classList.contains('reveal-stagger')){
+        Array.from(e.target.children).forEach((child,i)=>{
+          setTimeout(()=>child.classList.add('visible'),i*100)
+        })
+      }
+    }
+  })
+},{threshold:0.15,rootMargin:'0px 0px -50px 0px'})
+
+document.querySelectorAll('.reveal,.reveal-stagger,.cards,.card,.flow-step,.tl-row,h1,h2,.big-num').forEach(el=>{
+  if(!el.closest('.slide:first-child')||el.tagName==='H1'){
+    observer.observe(el)
+  }
+})
+
+// Counter animation
+function animateCounter(el,target){
+  const duration=1500,start=0,startTime=performance.now()
+  function update(now){
+    const elapsed=now-startTime,progress=Math.min(elapsed/duration,1)
+    const eased=1-Math.pow(1-progress,3)
+    el.textContent=Math.floor(start+(target-start)*eased).toLocaleString()
+    if(progress<1)requestAnimationFrame(update)
+  }
+  requestAnimationFrame(update)
 }
-var saved = localStorage.getItem('mazu-lang');
-if (saved) setLang(saved);
-// Mazu easter egg
-(function(){
-var el = document.querySelector('h1 span');
-if (!el) return;
-var clicks = 0, timer;
-el.addEventListener('click', function(){
-clicks++;
-el.style.transform = 'scale(1.08)'; el.style.color = 'var(--gold)';
-setTimeout(function(){ el.style.transform = ''; el.style.color = ''; }, 400);
-clearTimeout(timer);
-timer = setTimeout(function(){ clicks = 0; }, 1500);
-if (clicks >= 3){ clicks = 0; tossPoe(); }
-});
-})();
-function tossPoe(){
-var outcomes = [
-{r:'☯️', m:'<span data-zh>圣杯。妈祖说，可以。</span><span data-en>Sacred cup. Mazu says yes.</span>'},
-{r:'😊', m:'<span data-zh>笑杯。妈祖笑了。<br>她在听，只是不说。</span><span data-en>Laughing cup. She\'s listening.</span>'},
-{r:'🙏', m:'<span data-zh>圣杯。妈祖点头了。<br>去做吧。</span><span data-en>Sacred cup. Mazu nods. Go ahead.</span>'}
-];
-var o = outcomes[Math.floor(Math.random()*outcomes.length)];
-document.getElementById('poe-result').textContent = o.r;
-document.getElementById('poe-msg').innerHTML = o.m;
-document.getElementById('poe-overlay').classList.add('show');
+
+// Parallax on cover
+const coverSlide=document.querySelector('.bg-cover')
+if(coverSlide){
+  coverSlide.addEventListener('mousemove',e=>{
+    const x=(e.clientX/window.innerWidth-0.5)*20
+    const y=(e.clientY/window.innerHeight-0.5)*20
+    coverSlide.querySelector('.slide-inner').style.transform=`translate(${x}px,${y}px)`
+  })
+  coverSlide.addEventListener('mouseleave',()=>{
+    coverSlide.querySelector('.slide-inner').style.transform='translate(0,0)'
+  })
 }
-function closePoe(){ document.getElementById('poe-overlay').classList.remove('show'); }
-// Tab title
-var T = document.title, msgs = ['还在吗？','妈祖记得你','海还在动','风没停'];
-document.addEventListener('visibilitychange', function(){
-if (document.hidden){ document.title = msgs[Math.floor(Math.random()*msgs.length)]; }
-else { document.title = '你回来了。'; setTimeout(function(){document.title=T;},2000); }
-});
-// Bottom blessing
-(function(){
-var b = document.createElement('div');
-b.style.cssText = 'text-align:center;font-size:12px;color:var(--faint);margin-top:12px;font-style:italic';
-var bl = [
-'<span data-zh>妈祖说：今天有风，但你会到岸的。</span><span data-en>Mazu says: There\'s wind today, but you\'ll reach shore.</span>',
-'<span data-zh>妈祖说：你做的事，有人看见了。</span><span data-en>Mazu says: Someone saw what you did.</span>',
-'<span data-zh>妈祖说：累了就坐一会儿。海又不会跑。</span><span data-en>Mazu says: Rest. The sea isn\'t going anywhere.</span>',
-'<span data-zh>妈祖说：我记得你的名字。</span><span data-en>Mazu says: I remember your name.</span>'
-];
-b.innerHTML = bl[Math.floor(Math.random()*bl.length)];
-var f = document.querySelector('footer');
-if (f) f.appendChild(b);
-})();
-// Progress + BTT
-(function(){
-var bar=document.querySelector('.progress');
-window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-window.innerHeight;bar.style.width=h>0?(window.scrollY/h*100)+'%':'0'},{passive:true});
-var btt=document.querySelector('.btt');
-btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
-window.addEventListener('scroll',function(){btt.classList.toggle('visible',window.scrollY>400)},{passive:true});
-if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.style.scrollBehavior='auto';
-})();
 </script>
+
 </body>
 </html>
