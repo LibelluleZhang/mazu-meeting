@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>《妈祖》</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700&family=Inter:wght@200;300;400;500;600&display=swap');
-
+/* System fonts - no external dependencies */
+body{font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",-apple-system,BlinkMacSystemFont,sans-serif}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-snap-type:y mandatory;overflow-y:scroll}
-body{font-family:"Inter",-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Serif SC",sans-serif;background:#000;color:#f5f5f7;-webkit-font-smoothing:antialiased}
+body{font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",-apple-system,BlinkMacSystemFont,sans-serif;background:#000;color:#f5f5f7;-webkit-font-smoothing:antialiased}
 
 .slide{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;scroll-snap-align:start;overflow:hidden;padding:80px}
 .slide-inner{width:100%;max-width:1200px;position:relative;z-index:2}
@@ -21,8 +21,8 @@ body{font-family:"Inter",-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Se
 .bg-cover{background:radial-gradient(ellipse at 50% 30%,#1c1610 0%,#0a0a08 70%);color:#e8e4df}
 
 /* Typography */
-h1{font-family:"Noto Serif SC",serif;font-size:clamp(64px,8vw,120px);font-weight:200;letter-spacing:0.08em;line-height:1.1}
-h2{font-family:"Noto Serif SC",serif;font-size:clamp(36px,5vw,64px);font-weight:200;letter-spacing:0.04em;margin-bottom:48px}
+h1{font-family:"STSong","Songti SC","Noto Serif SC",serif;font-size:clamp(64px,8vw,120px);font-weight:200;letter-spacing:0.08em;line-height:1.1}
+h2{font-family:"STSong","Songti SC","Noto Serif SC",serif;font-size:clamp(36px,5vw,64px);font-weight:200;letter-spacing:0.04em;margin-bottom:48px}
 h2 .accent{color:#c4a265}
 h3{font-size:20px;font-weight:500;margin-bottom:16px;color:#2c2824}
 .bg-dark h3,.bg-cover h3{color:#e8e4df}
@@ -33,7 +33,7 @@ h3{font-size:20px;font-weight:500;margin-bottom:16px;color:#2c2824}
 /* Stats */
 .stat-group{display:flex;gap:clamp(32px,6vw,80px);flex-wrap:wrap}
 .stat-item{text-align:center}
-.stat-num{font-family:"Noto Serif SC",serif;font-size:clamp(40px,5vw,72px);font-weight:100;color:#c4a265;line-height:1}
+.stat-num{font-family:"STSong","Songti SC","Noto Serif SC",serif;font-size:clamp(40px,5vw,72px);font-weight:100;color:#c4a265;line-height:1}
 .bg-cover .stat-num,.bg-dark .stat-num{color:#d4b895}
 .stat-label{font-size:12px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#8b8680;margin-top:12px}
 .bg-cover .stat-label,.bg-dark .stat-label{color:#7a7570}
@@ -84,11 +84,11 @@ td{font-size:15px;line-height:1.7}
 .hl-box p{font-size:16px;line-height:2.2;color:#2c2824}
 
 /* Big statement */
-.big-num{font-family:"Noto Serif SC",serif;font-size:clamp(80px,12vw,160px);font-weight:100;color:#c4a265;line-height:1;text-align:center}
+.big-num{font-family:"STSong","Songti SC","Noto Serif SC",serif;font-size:clamp(80px,12vw,160px);font-weight:100;color:#c4a265;line-height:1;text-align:center}
 .big-desc{font-size:20px;font-weight:300;color:#8b8680;text-align:center;margin-top:16px;letter-spacing:0.06em}
 
 /* Quote */
-.quote{font-family:"Noto Serif SC",serif;font-size:24px;font-weight:300;line-height:1.8;color:#5c5752;font-style:italic;max-width:640px}
+.quote{font-family:"STSong","Songti SC","Noto Serif SC",serif;font-size:24px;font-weight:300;line-height:1.8;color:#5c5752;font-style:italic;max-width:640px}
 
 /* Footer */
 .footer-text{font-size:15px;color:#8b8680;line-height:2.4;text-align:center}
