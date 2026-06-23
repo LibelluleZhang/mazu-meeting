@@ -112,6 +112,13 @@ td{font-size:15px;line-height:1.7}
 /* Parallax */
 .parallax{transition:transform 0.1s linear}
 
+/* Top nav */
+.topnav{position:fixed;top:0;left:0;right:0;z-index:200;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;background:rgba(250,248,245,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.05);transition:background 0.3s}
+.topnav .logo{font-family:"Noto Serif SC","STSong","Songti SC",serif;font-size:16px;font-weight:600;color:#2c2824;letter-spacing:0.08em}
+.topnav .links{display:flex;gap:24px}
+.topnav .links a{font-size:13px;color:#8b8680;text-decoration:none;font-weight:500;letter-spacing:0.04em;transition:color 0.3s;white-space:nowrap}
+.topnav .links a:hover,.topnav .links a.active{color:#c4a265}
+
 /* Enhanced hover */
 .card{transition:transform 0.4s cubic-bezier(0.16,1,0.3,1),box-shadow 0.4s cubic-bezier(0.16,1,0.3,1)}
 .card:hover{transform:translateY(-6px);box-shadow:0 24px 80px rgba(0,0,0,0.08)}
@@ -131,6 +138,16 @@ td{font-size:15px;line-height:1.7}
 </style>
 </head>
 <body>
+
+<nav class="topnav">
+  <a href="mazu-intro.html" class="logo">妈祖</a>
+  <div class="links">
+    <a href="mazu-intro.html">项目首页</a>
+    <a href="mazu-recruit.html">共创招募</a>
+    <a href="mazu-community.html">社群成员</a>
+    <a href="mazu-pitch.html" class="active">商务合作</a>
+  </div>
+</nav>
 
 <div class="progress" id="progress"></div>
 
